@@ -27,12 +27,12 @@ A skill with no open PR is available to claim.
 ## What goes where
 
 - `skills/<skill-name>/README.md`
-  The executable skill prompt. This file IS the skill.
-  When deployed, it is copied as-is to `~/.claude/skills/<skill-name>.md`
-  and becomes invokable as `/<skill-name>` in Claude Code.
-  No separate build step or SKILL.md is needed.
-  Write it so an agent can follow it directly, not so a human can read
-  about it.
+  The executable skill prompt. Write it so an agent can follow it
+  directly, not so a human can read about it.
+  Deployment is environment-specific: Claude Code copies it to
+  `~/.claude/skills/<skill-name>.md`; other runtimes (Codex, CI, etc.)
+  may package or sync it differently. The README format does not assume
+  any single deployment path.
 
 - `inventory/`
   Strategy documents, workflow outlines, templates, and profiles.
