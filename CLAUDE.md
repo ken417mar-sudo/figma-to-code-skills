@@ -45,11 +45,15 @@ Rules:
 - The Gotchas section must contain real failure warnings, not placeholders.
 - Platform-aware skills must reference the tech-stack profile explicitly.
 
-## Do not edit inventory/ without agreement
+## Editing inventory/
 
-`inventory/` contains strategy documents. If you think one needs
-changing, open a GitHub Issue to discuss it first. Do not edit it
-unilaterally.
+Do not edit strategy documents (`skills-strategy-overview.md`,
+`workflow-outline.md`) without opening an issue first.
+
+Small updates to `skill-template.md` or `tech-stack-profile.md` are
+allowed inside a skill PR when the change is directly required by the
+skill you are writing. Include a one-line rationale in the PR description
+explaining why the template or profile needed to change.
 
 ## Phase 1 skill ownership
 

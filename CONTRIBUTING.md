@@ -27,13 +27,20 @@ A skill with no open PR is available to claim.
 ## What goes where
 
 - `skills/<skill-name>/README.md`
-  The executable skill prompt and its documentation.
-  This is the main deliverable for each skill.
+  The executable skill prompt. This file IS the skill.
+  When deployed, it is copied as-is to `~/.claude/skills/<skill-name>.md`
+  and becomes invokable as `/<skill-name>` in Claude Code.
+  No separate build step or SKILL.md is needed.
+  Write it so an agent can follow it directly, not so a human can read
+  about it.
 
 - `inventory/`
   Strategy documents, workflow outlines, templates, and profiles.
-  These define the system. Do not edit them without agreement.
-  Open an issue first if you think a strategy document needs to change.
+  Do not edit strategy documents (e.g. `skills-strategy-overview.md`,
+  `workflow-outline.md`) without opening an issue first.
+  Small related updates to `skill-template.md` or `tech-stack-profile.md`
+  are allowed inside a skill PR when the change is directly required by
+  the skill being written. Include a brief rationale in the PR description.
 
 - `experiments/`
   Throw anything here: test prompts, sample outputs, Figma URLs used
