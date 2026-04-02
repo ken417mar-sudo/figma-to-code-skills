@@ -3,78 +3,114 @@
 ## Goal
 
 Turn Figma design context plus confirmed rules into implementation code
-for the declared platform and framework.
+for the declared platform and framework. Do not guess the platform — if
+the profile is missing and it changes the output shape, ask first.
 
 ## When to use
 
-- when a target design or component should be translated into production
-  code
-- when implementation should follow both the design and the project rule
-  set
-- when platform profile is known and downstream code output is the goal
+- A target design or component should be translated into production code.
+- Implementation must follow both the design and the project rule set.
+- The platform profile is known and code output is the goal.
 
 ## When not to use
 
-- when the main task is still clarifying rules or cleaning the Figma file
-- when the platform profile is missing and would materially change the
-  output
+- The main task is still clarifying rules — use
+  `figma-create-design-system-rules` first.
+- The Figma file is too noisy to implement against — use
+  `figma-ai-implementation-cleanup` first.
+- The platform profile is missing and it would materially change the
+  output shape.
 
 ## Required context
 
-- tech-stack profile
+- Tech-stack profile (required):
   - `target`: `web` | `ios` | `android`
-  - `framework`: for example `react`, `swiftui`, `compose`
-  - `token_format`: for example `css-vars`, `swift-tokens`,
+  - `framework`: e.g. `react`, `vue`, `swiftui`, `uikit`, `compose`
+  - `token_format`: e.g. `css-vars`, `tailwind-theme`, `swift-tokens`,
     `compose-tokens`
-- design context
-- rule source
+- Design context: the Figma frame, component, or node to implement.
+- Rule source: confirmed project spec or output from
+  `figma-create-design-system-rules`.
 
 ## Inputs
 
-- Figma frame, component, or node
-- project spec or captured rules
-- tech-stack profile
-- optional codebase conventions or existing component references
+- Figma frame, component, or node (URL, file key, or node id).
+- Project spec or captured rules.
+- Tech-stack profile.
+- Optional: existing codebase component references or naming conventions.
 
 ## Outputs
 
-- implementation code
-- explicit mapping notes for major layout or component choices
-- unresolved questions when design meaning is still ambiguous
+- Implementation code for the declared platform and framework.
+- Mapping notes for major layout or component choices (why a specific
+  pattern was chosen).
+- Unresolved questions when design meaning is still ambiguous after
+  reading the context.
 
 ## Workflow
 
-1. Confirm the target platform profile and rule source.
-2. Read the smallest useful Figma context for the target.
-3. Map layout, tokens, and components to platform-appropriate code
-   patterns.
-4. Prefer existing code components and rules where available.
-5. Produce implementation output and surface any unresolved ambiguity.
+1. Confirm the tech-stack profile. If `target`, `framework`, or
+   `token_format` are missing, ask before writing any code.
+2. Confirm the rule source. If no confirmed spec exists, ask whether to
+   use `figma-create-design-system-rules` first or proceed with
+   inferred rules marked as provisional.
+3. Read the Figma context using the `figma` skill:
+   - `get_design_context` for layout, component structure, and code hints.
+   - `get_variable_defs` for token values.
+   - Read only the target node — do not pull the entire file.
+4. Check the codebase for existing components that match the design
+   target. Reuse them rather than generating new code from scratch.
+5. Map layout, tokens, and components to platform-appropriate patterns:
+   - **web**: flexbox/grid, CSS vars or Tailwind tokens, JSX component
+     API.
+   - **ios**: SwiftUI stacks/modifiers or UIKit layout, Swift token
+     references, Apple platform conventions.
+   - **android**: Compose layout or XML, Material token mapping, density
+     and adaptive layout rules.
+6. Write the implementation. Prefer confirmed rules over inferred ones.
+   Mark any inferred choices in comments or mapping notes.
+7. Surface unresolved ambiguity explicitly — do not silently pick a
+   default for anything that changes the component's behavior or
+   structure.
 
 ## Clarification policy
 
-- ask when platform profile is missing or incomplete
-- ask when component boundaries are unclear
-- ask when interaction behavior or content hierarchy changes the code
-  shape
-- ask when an implementation choice would be expensive to undo
+Ask before proceeding when:
+- The platform profile is missing or incomplete.
+- Component boundaries are unclear (e.g. should this be one component or
+  two?).
+- Interaction behavior or content hierarchy changes the code shape (e.g.
+  a list that could be static or dynamic).
+- An implementation choice would be expensive to undo (e.g. choosing a
+  state management pattern or a layout approach that affects many
+  components).
+
+Do not ask when:
+- The design context and rules together make the correct choice
+  unambiguous.
+- The choice is purely cosmetic and reversible.
 
 ## Gotchas
 
-- do not silently default to web
-- do not output code that ignores the declared framework conventions
-- do not invent reusable rules during implementation when they should be
-  confirmed first
-- do not optimize only for pixel similarity if the structural component
-  model becomes worse
-
-## Key rule
-
-This skill should not guess the target platform when platform changes the
-implementation shape.
+- Never silently default to web when the platform is unspecified. Ask.
+- Do not output code that ignores the declared framework conventions
+  (e.g. writing class-based React when the project uses hooks, or using
+  UIKit patterns in a SwiftUI project).
+- Do not invent reusable rules during implementation. If a pattern looks
+  like it should be a shared rule, flag it for `figma-create-design-system-rules`
+  rather than encoding it silently in the output.
+- Do not optimize only for pixel similarity. A structurally wrong
+  component that looks correct in a screenshot will break under real
+  content and state changes.
+- Code Connect snippets returned by `get_design_context` are the
+  authoritative component reference. Use them instead of generating new
+  component code from scratch.
 
 ## Verification
 
-- the output matches the declared target platform and framework
-- the code respects existing rules before inferred rules
-- the result is structurally sane, not only visually similar
+- The output targets the declared platform and framework — not a default
+  guess.
+- The code respects confirmed rules before inferred ones.
+- The result is structurally correct, not only visually similar.
+- Mapping notes explain non-obvious choices.
+- Unresolved ambiguity is listed, not hidden.
