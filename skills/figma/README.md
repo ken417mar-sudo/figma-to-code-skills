@@ -42,17 +42,19 @@ information before generating or verifying code.
 ## Workflow
 
 1. Parse the Figma URL or reference to extract `fileKey` and `nodeId`.
-2. Call `get_design_context` with the extracted ids. This is the primary
-   tool — it returns code hints, a screenshot, and contextual metadata in
-   one call.
-3. If the result is too large or ambiguous, call `get_metadata` first to
-   inspect the node tree, then narrow to the specific node before
-   re-calling `get_design_context`.
-4. Call `get_variable_defs` only when token values are needed for
+2. If `nodeId` is missing or the reference is page-level (plain file key
+   or broad file URL), call `get_metadata` on the root or page first to
+   inspect the tree and identify the correct target node.
+3. Call `get_design_context` with the resolved `fileKey` and `nodeId`.
+   This is the primary tool — it returns code hints, a screenshot, and
+   contextual metadata in one call.
+4. If the result is still too large or ambiguous, call `get_metadata` to
+   narrow further, then re-call `get_design_context` on the specific node.
+5. Call `get_variable_defs` only when token values are needed for
    implementation or verification.
-5. Call `get_screenshot` only when a visual check is needed and
+6. Call `get_screenshot` only when a visual check is needed and
    `get_design_context` did not already return a screenshot.
-6. Pass the collected context to the downstream skill (implement, verify,
+7. Pass the collected context to the downstream skill (implement, verify,
    capture-design-system, etc.).
 
 ## Clarification policy
