@@ -95,8 +95,10 @@ Ask before proceeding when:
 Do not ask when:
 - The mismatch is clearly unintentional and the correct value is
   specified in the design or token system.
-- The difference is structural (wrong component hierarchy) — always
-  classify as blocking.
+- The difference is structural — classify it based on impact: blocking if
+  it affects reusability, state correctness, layout stability, or
+  behavior; significant if it is a meaningful deviation without functional
+  impact; intentional if it is a known platform-specific adaptation.
 
 ## Gotchas
 
