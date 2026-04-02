@@ -79,7 +79,9 @@ Do not ask when:
   `get_design_context` returns variable references or code hints, use
   those — they are more precise than pixel inspection.
 - Do not read the entire file when a specific node is enough. Large reads
-  waste context and slow down the workflow.
+  waste context and slow down the workflow. For broad references, narrow
+  to the correct page before calling `get_metadata` on the root — root
+  reads on large files return noisy results fast.
 - Node ids in URLs use `-` as separator (e.g. `1-2`). Convert to `:` when
   passing to tools (e.g. `1:2`).
 - `get_design_context` may return Code Connect snippets if the file has
