@@ -44,18 +44,16 @@ modify the Figma file, not just read from it.
 
 ## Workflow
 
-1. Load the skill instructions: call `use_figma` only after loading the
-   `/figma-use` skill if it is available in the session.
-2. Identify the exact write target — resolve the node id or page name
+1. Identify the exact write target — resolve the node id or page name
    before writing. If the target is ambiguous, call `get_metadata` to
    inspect the tree first.
-3. Determine the minimum safe write scope. Prefer scoped edits over
+2. Determine the minimum safe write scope. Prefer scoped edits over
    broad canvas operations.
-4. Execute the write via `use_figma` with a JavaScript snippet targeting
+3. Execute the write via `use_figma` with a JavaScript snippet targeting
    the resolved node.
-5. Verify the result: call `get_screenshot` or `get_metadata` on the
+4. Verify the result: call `get_screenshot` or `get_metadata` on the
    affected node to confirm the change landed correctly.
-6. Hand the updated node reference or file state to the next workflow
+5. Hand the updated node reference or file state to the next workflow
    step.
 
 ## Clarification policy
