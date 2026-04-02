@@ -55,6 +55,11 @@ allowed inside a skill PR when the change is directly required by the
 skill you are writing. Include a one-line rationale in the PR description
 explaining why the template or profile needed to change.
 
+## Coordination
+
+Cross-skill and cross-PR feedback lives in issue #4.
+Check it at the start of each session before claiming a skill.
+
 ## Phase 1 skill ownership
 
 These are the Phase 1 skills. Claim them one at a time.

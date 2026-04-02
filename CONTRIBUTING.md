@@ -89,6 +89,9 @@ contributor. If you are unsure whether a design choice is right, open an
 issue before writing code. This is the shared communication channel
 between all contributors.
 
+Cross-skill and cross-PR feedback for the Phase 1 rewrite goes in
+issue #4 (Coordination: Phase 1 skill rewrite).
+
 ## Gotchas section upkeep
 
 When a skill produces a recurring wrong output during real testing,
