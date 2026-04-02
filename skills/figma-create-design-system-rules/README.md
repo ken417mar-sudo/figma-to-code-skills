@@ -63,11 +63,13 @@ for human review — not a final spec to implement against directly.
      been confirmed by the team.
    - **Unknown**: a gap where the design does not provide enough
      information.
-5. Call `create_design_system_rules` if available in the session to
-   generate a structured rule draft from the Figma file.
-6. Produce the rule draft. Mark all inferred rules as provisional. List
-   all unknowns explicitly at the end.
-7. Hand the draft to the user or team for review before passing it to
+5. Produce the rule draft from the context collected in step 3. Mark all
+   inferred rules as provisional. List all unknowns explicitly at the end.
+   If `create_design_system_rules` is available in the session, use it as
+   a supplemental template or structural reference — it does not consume
+   the node-specific context directly, so the primary draft must come from
+   `get_design_context` and `get_variable_defs`.
+6. Hand the draft to the user or team for review before passing it to
    `figma-implement-design` or `figma-verify-implementation`.
 
 ## Clarification policy
