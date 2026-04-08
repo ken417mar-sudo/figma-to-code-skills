@@ -81,6 +81,10 @@ Ask follow-up questions when:
 - Component behavior is implied but not clearly defined (e.g. "the button
   has a hover state" without specifying the exact visual change) — ask for
   the specific value or behavior.
+- The product appears to need interaction states that the current
+  component board does not fully show (e.g. hover-close, focus, pressed,
+  disabled, error, loading) — ask which states are truly required and
+  whether they belong in a provisional validation layer.
 
 Do not ask when:
 - The rule is already specific and platform-unambiguous.
@@ -99,6 +103,10 @@ Do not ask when:
 - If the team has existing code, ask to see a representative component
   file — actual code reveals conventions that people forget to mention in
   interviews.
+- Do not assume that common product affordances belong in the canonical
+  component set just because they are common elsewhere. Confirm whether a
+  missing interaction state is intentionally absent, or should be added as
+  a provisional validation state first.
 
 ## Verification
 

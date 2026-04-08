@@ -86,6 +86,10 @@ Ask before proceeding when:
   two?).
 - Interaction behavior or content hierarchy changes the code shape (e.g.
   a list that could be static or dynamic).
+- The product appears to need interaction states or affordances that the
+  current component board does not explicitly show (e.g. hover-only close
+  button, selected affordance, focus treatment). Confirm the required
+  states before implementing them by default.
 - An implementation choice would be expensive to undo (e.g. choosing a
   state management pattern or a layout approach that affects many
   components).
@@ -118,6 +122,10 @@ Do not ask when:
   structural branch — not as a single template with minor prop tweaks. Treating
   structural variants as visual-only differences will produce incomplete or
   broken rendering for the missed variants.
+- Do not add product-common interaction affordances by default when the
+  formal component set does not include them. Confirm the required states
+  first, then implement them as a product-layer behavior or a provisional
+  validated state.
 - Stateful stroke or border treatments must not change box geometry between
   states. Reserve the same border/stroke space in all states (e.g. transparent
   border in default, colored border in selected), or use a non-layout-affecting

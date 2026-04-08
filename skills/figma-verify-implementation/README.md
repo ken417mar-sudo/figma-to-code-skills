@@ -88,6 +88,10 @@ Ask before proceeding when:
 - A difference may be intentional because of platform-specific conventions
   (e.g. iOS safe area insets, Android status bar handling) — ask whether
   to classify it as intentional before marking it as a mismatch.
+- The implementation includes interaction states or affordances that are
+  not present in the formal component board, and it is unclear whether
+  they were explicitly approved as product-layer behavior — ask before
+  classifying them as mismatches.
 - The severity rubric is unclear and the project has not defined
   acceptable tolerances — ask what threshold separates minor from
   significant.

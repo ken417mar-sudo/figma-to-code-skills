@@ -49,11 +49,15 @@ modify the Figma file, not just read from it.
    inspect the tree first.
 2. Determine the minimum safe write scope. Prefer scoped edits over
    broad canvas operations.
-3. Execute the write via `use_figma` with a JavaScript snippet targeting
+3. If the write adds a validation-only supplement board, make it
+   explicitly provisional and check whether it should live inside an
+   existing board or become a standalone validation board on the same
+   page.
+4. Execute the write via `use_figma` with a JavaScript snippet targeting
    the resolved node.
-4. Verify the result: call `get_screenshot` or `get_metadata` on the
+5. Verify the result: call `get_screenshot` or `get_metadata` on the
    affected node to confirm the change landed correctly.
-5. Hand the updated node reference or file state to the next workflow
+6. Hand the updated node reference or file state to the next workflow
    step.
 
 ## Clarification policy
@@ -89,6 +93,12 @@ Do not ask when:
 - Before creating new components, call `search_design_system` to check
   whether an existing component can be reused via
   `importComponentByKeyAsync`.
+- If a provisional supplement grows beyond its parent board, move it into
+  a standalone validation board on the same page instead of stretching
+  the formal board.
+- When validating large components, reflow the board into multiple rows
+  before shrinking the component content. Avoid layouts that clip or
+  overlap neighboring artboards.
 
 ## Verification
 
