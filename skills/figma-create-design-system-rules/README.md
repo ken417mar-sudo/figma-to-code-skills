@@ -121,6 +121,9 @@ Do not ask when:
   canonical component rules. If the product needs states beyond the formal
   component board, capture them as provisional candidates until the team
   confirms them.
+- Common product patterns may be used to suggest candidate interaction
+  states when the board is incomplete, but those suggestions must remain
+  provisional until confirmed.
 
 ## Verification
 

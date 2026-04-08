@@ -195,6 +195,9 @@ to revise.
   selected-affordance states that the current component board does not
   fully express, confirm the required states first, then decide whether
   to add provisional validation states
+- common interaction patterns may help propose candidate missing states,
+  but they are not permission to silently redefine canonical component
+  rules
 - do not ask about every tiny visual detail if a safe local assumption is
   enough
 - never present guessed intent as confirmed project truth

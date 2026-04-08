@@ -107,6 +107,9 @@ Do not ask when:
   component set just because they are common elsewhere. Confirm whether a
   missing interaction state is intentionally absent, or should be added as
   a provisional validation state first.
+- Common interaction patterns can help you propose candidate missing
+  states, but only as provisional interview material until the team
+  confirms them.
 
 ## Verification
 

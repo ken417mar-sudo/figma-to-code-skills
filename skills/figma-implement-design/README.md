@@ -126,6 +126,8 @@ Do not ask when:
   formal component set does not include them. Confirm the required states
   first, then implement them as a product-layer behavior or a provisional
   validated state.
+- Common interaction patterns may justify proposing a provisional state,
+  but they do not justify silently treating that state as canonical.
 - Stateful stroke or border treatments must not change box geometry between
   states. Reserve the same border/stroke space in all states (e.g. transparent
   border in default, colored border in selected), or use a non-layout-affecting
