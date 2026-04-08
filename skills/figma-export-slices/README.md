@@ -34,3 +34,13 @@ Examples:
   temporary signed links. They expire and must not be used as asset sources in
   code. Always export the asset through this workflow and commit it to the
   repository before wiring it into the implementation.
+- Some Figma components are built from multiple vector sub-nodes (e.g. an X
+  icon made of two separate rotated strokes). Exporting a single sub-node
+  produces an incomplete asset. Inspect the component structure first and
+  compose a single complete SVG from all constituent paths before committing
+  the asset.
+- SVG assets used as icons must use `currentColor` for stroke/fill so they
+  inherit the surrounding text color. When inlining SVG into JSX, bind
+  `stroke` or `fill` to `currentColor` and set the color via a CSS class on
+  the SVG element. Do not use `<img>` for icons that need color theming —
+  `img` does not inherit CSS `color`.
