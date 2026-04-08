@@ -94,7 +94,8 @@ For each skill:
 
 - `Role`: asset export layer
 - `Scope`: export slices and image/vector assets using platform-aware
-  density and format rules
+  density and format rules, with icon resources defaulting to exported
+  `svg` where possible
 - `Not for`: deciding what the design system should be or implementing UI
   code, but it should be invoked when implementation depends on real
   design-owned assets

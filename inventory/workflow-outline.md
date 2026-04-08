@@ -92,8 +92,10 @@ Reason:
    variables for reusable tokens, styles for reusable presentation
    patterns, and only keep low-confidence mappings as provisional.
 10. Export implementation assets when the design depends on real icons,
-   images, or slices. Use the asset profile and the export workflow
-   rather than replacing them with placeholders.
+   images, or slices. All icon resources should go through the export
+   workflow, with `svg` as the default preferred format when feasible.
+   Use the asset profile and export workflow rather than replacing them
+   with placeholders or hand-drawn substitutes.
 11. If the file already contains external variable aliases or mixed
    foundation sources, decide whether to preserve, remap, or bridge
    them before broad component binding begins.
@@ -130,7 +132,7 @@ Instead, it should:
 - turn the confirmed subset into explicit Figma foundations where useful
   (`Variables`, `样式`, and later component bindings)
 - treat design-owned icons and images as real assets that need export,
-  not as optional placeholders
+  not as optional placeholders or hand-coded stand-ins
 - decide how local foundations and any pre-existing external aliases
   should coexist before broad rebinding
 - implement code from the corrected rule set, not directly from the raw

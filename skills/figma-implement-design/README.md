@@ -65,6 +65,8 @@ the profile is missing and it changes the output shape, ask first.
    `figma-export-slices` (or the equivalent asset-export path) before
    final implementation. Do not replace design-owned assets with generic
    placeholders unless the workflow explicitly marks them as unresolved.
+   For icons, default to exported `svg` assets rather than hand-coded
+   replicas.
 6. Map layout, tokens, and components to platform-appropriate patterns:
    - **web**: flexbox/grid, CSS vars or Tailwind tokens, JSX component
      API.
@@ -113,7 +115,8 @@ Do not ask when:
   content and state changes.
 - Do not fake design-owned icons or images with placeholder blocks,
   improvised SVGs, or ad hoc CSS shapes when the design expects an
-  exported asset. Use the asset export workflow first.
+  exported asset. Use the asset export workflow first. Icon resources
+  should default to exported assets, preferably SVG.
 - Code Connect snippets returned by `get_design_context` are the
   authoritative component reference. Use them instead of generating new
   component code from scratch.

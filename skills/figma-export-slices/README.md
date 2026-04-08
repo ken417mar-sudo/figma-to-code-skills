@@ -16,12 +16,15 @@ Implementation rule:
 - If the design depends on real icons, raster images, or slices, route
   them through this asset workflow instead of substituting placeholders,
   fake SVGs, or ad hoc CSS shapes.
-- Prefer exporting and naming the real asset first, then wire the code
-  to that asset.
+- All icon resources should default to this workflow. Prefer exporting
+  the real asset as `svg` first, then fall back to raster exports only
+  when SVG is not viable for the target platform or the source asset.
+- Export and name the real asset first, then wire the code to that
+  asset.
 
 Examples:
 
-- web: prefer `svg` plus modern raster formats when needed
+- web: prefer `svg` for icons, plus modern raster formats when needed
 - iOS: support scale-based exports such as `@1x`, `@2x`, `@3x`
 - Android: support density buckets such as `mdpi` through `xxxhdpi`
 
