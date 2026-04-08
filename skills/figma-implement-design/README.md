@@ -60,16 +60,21 @@ the profile is missing and it changes the output shape, ask first.
    - Read only the target node — do not pull the entire file.
 4. Check the codebase for existing components that match the design
    target. Reuse them rather than generating new code from scratch.
-5. Map layout, tokens, and components to platform-appropriate patterns:
+5. Check whether the design depends on real assets such as icons,
+   raster images, or exported slices. If yes, route them through
+   `figma-export-slices` (or the equivalent asset-export path) before
+   final implementation. Do not replace design-owned assets with generic
+   placeholders unless the workflow explicitly marks them as unresolved.
+6. Map layout, tokens, and components to platform-appropriate patterns:
    - **web**: flexbox/grid, CSS vars or Tailwind tokens, JSX component
      API.
    - **ios**: SwiftUI stacks/modifiers or UIKit layout, Swift token
      references, Apple platform conventions.
    - **android**: Compose layout or XML, Material token mapping, density
      and adaptive layout rules.
-6. Write the implementation. Prefer confirmed rules over inferred ones.
+7. Write the implementation. Prefer confirmed rules over inferred ones.
    Mark any inferred choices in comments or mapping notes.
-7. Surface unresolved ambiguity explicitly — do not silently pick a
+8. Surface unresolved ambiguity explicitly — do not silently pick a
    default for anything that changes the component's behavior or
    structure.
 
@@ -102,9 +107,26 @@ Do not ask when:
 - Do not optimize only for pixel similarity. A structurally wrong
   component that looks correct in a screenshot will break under real
   content and state changes.
+- Do not fake design-owned icons or images with placeholder blocks,
+  improvised SVGs, or ad hoc CSS shapes when the design expects an
+  exported asset. Use the asset export workflow first.
 - Code Connect snippets returned by `get_design_context` are the
   authoritative component reference. Use them instead of generating new
   component code from scratch.
+- If a component-set property changes child structure across values (different
+  icon, background presence, divider existence, etc.), implement it as a
+  structural branch — not as a single template with minor prop tweaks. Treating
+  structural variants as visual-only differences will produce incomplete or
+  broken rendering for the missed variants.
+- Stateful stroke or border treatments must not change box geometry between
+  states. Reserve the same border/stroke space in all states (e.g. transparent
+  border in default, colored border in selected), or use a non-layout-affecting
+  layer such as inset box-shadow or outline. Geometry drift between states is a
+  visible layout jump.
+- Figma CDN image URLs returned by design-context tools are temporary signed
+  links that expire. Download assets into the repository (or use the
+  `figma-export-slices` workflow) immediately during implementation. Do not
+  hardcode signed URLs in source code.
 
 ## Verification
 
