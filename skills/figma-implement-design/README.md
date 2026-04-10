@@ -66,7 +66,10 @@ the profile is missing and it changes the output shape, ask first.
    final implementation. Do not replace design-owned assets with generic
    placeholders unless the workflow explicitly marks them as unresolved.
    For icons, default to exported `svg` assets rather than hand-coded
-   replicas.
+   replicas. Do not size the final icon directly from the exported SVG
+   canvas dimensions; also inspect the icon's actual geometry in its
+   parent component. Use semantic asset and variable names in code rather
+   than copying temporary Figma layer names verbatim.
 6. Map layout, tokens, and components to platform-appropriate patterns:
    - **web**: flexbox/grid, CSS vars or Tailwind tokens, JSX component
      API.
@@ -140,6 +143,21 @@ Do not ask when:
   links that expire. Download assets into the repository (or use the
   `figma-export-slices` workflow) immediately during implementation. Do not
   hardcode signed URLs in source code.
+- Exported SVG canvas dimensions are not the source of truth for rendered
+  icon size. Match the icon's in-component geometry from Figma (button size,
+  icon-frame size, and actual glyph bounds), otherwise the asset will often
+  render too large, too small, or visually off-center.
+- When `get_design_context` returns a CSS transform (e.g. `-rotate-90`) on
+  an icon or asset, verify whether the exported SVG already encodes the
+  intended orientation before copying the transform. Figma may apply a
+  rotation to a component wrapper while the exported asset is already
+  rendered in the correct direction. Copying the transform blindly will
+  produce a double-rotation and the wrong visual result.
+- Do not preserve unresolved Figma layer names as final code identifiers.
+  Generic names such as `ic_` or `icon` are acceptable as tracing clues in
+  Figma, but code should use a semantic identifier based on the confirmed
+  product role. If the role is still unclear, ask or mark it provisional
+  instead of pretending the name is settled.
 
 ## Verification
 
