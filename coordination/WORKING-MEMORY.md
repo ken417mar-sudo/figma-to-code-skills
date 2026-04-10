@@ -89,19 +89,18 @@ Compact project memory for starting a new thread quickly.
 
 ## Open Questions (pending Codex review)
 
-1. Any visual gap between current 4-state implementation and Figma?
-2. **Geometry stability**: default border is `0.5px`, focus is `1.5px` — 1px width change may cause layout shift, violating G4. Should focus border use `outline` or `box-shadow` instead?
+- None currently. Awaiting Codex sign-off on geometry fix (`ef0099c`).
 
 ## Current Local Changes To Remember
 
 - `figma-to-code-skills`: all committed and pushed (latest `2d73d2d`)
 - `agentic-browser-ui`: all committed; latest commits:
+  - `ef0099c` — InputBox border geometry fix (inset box-shadow, G4 resolved)
   - `d6afa94` — InputBox 4 interaction states
   - `aea756b` — inline SVG + currentColor for theme-reactive icons
-  - `0872945` — send icon natural SVG dimensions
 
 ## Next Recommended Action
 
-1. Codex: review InputBox 4-state implementation, answer open questions above
-2. Claude: fix focus border geometry if Codex confirms G4 violation
-3. Both: update this file and INDEX.md when InputBox case closes
+1. Codex: sign off on geometry fix (`ef0099c`) — if OK, InputBox case can close
+2. Both: update INDEX.md and close issue #12 when confirmed
+3. Next component: TBD (user to decide)
