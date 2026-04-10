@@ -42,6 +42,9 @@ for human review — not a final spec to implement against directly.
   component structure, and implementation conventions.
 - Inferred patterns extracted from the Figma design.
 - Explicit list of unknowns or low-confidence inferences, marked clearly.
+- Candidate mapping of confirmed rules into Figma foundations:
+  which items should become `Variables`, which should become reusable
+  `样式`, and which should stay provisional until reviewed.
 
 ## Workflow
 
@@ -69,7 +72,14 @@ for human review — not a final spec to implement against directly.
    a supplemental template or structural reference — it does not consume
    the node-specific context directly, so the primary draft must come from
    `get_design_context` and `get_variable_defs`.
-6. Hand the draft to the user or team for review before passing it to
+6. Split the draft into three buckets before handing it off:
+   - **Candidate variables**: stable token-like decisions such as color,
+     spacing, radius, sizing, and semantic text/surface values.
+   - **Candidate styles**: reusable text, effect, or stroke treatments
+     that should be directly reusable in Figma.
+   - **Remain provisional**: repeated patterns that still need human
+     naming or semantic confirmation.
+7. Hand the draft to the user or team for review before passing it to
    `figma-implement-design` or `figma-verify-implementation`.
 
 ## Clarification policy
@@ -81,6 +91,9 @@ Ask before proceeding when:
   takes precedence.
 - A repeated visual pattern might be a one-off exception rather than a
   true rule — ask before promoting it to a standard.
+- The design suggests that the product needs extra interaction states, but
+  the formal component board does not show them completely — ask which
+  states are required before turning them into candidate rules.
 
 Do not ask when:
 - A rule is directly readable from a token value or a consistent pattern
@@ -101,6 +114,16 @@ Do not ask when:
   as low-confidence.
 - Platform-specific rules must stay separated. Do not merge web and iOS
   conventions into a single rule.
+- Do not write guessed tokens or guessed style names directly into the
+  canonical library. This skill should identify candidate foundations,
+  not silently finalize them.
+- Do not silently promote a product-layer interaction need into the
+  canonical component rules. If the product needs states beyond the formal
+  component board, capture them as provisional candidates until the team
+  confirms them.
+- Common product patterns may be used to suggest candidate interaction
+  states when the board is incomplete, but those suggestions must remain
+  provisional until confirmed.
 
 ## Verification
 
@@ -110,3 +133,5 @@ Do not ask when:
 - Inferred rules are specific enough to guide implementation.
 - All inferred rules are marked as provisional.
 - Unknowns and low-confidence inferences are listed explicitly.
+- The draft clearly distinguishes candidate `Variables`, candidate
+  `样式`, and unresolved items.

@@ -88,6 +88,10 @@ Ask before proceeding when:
 - A difference may be intentional because of platform-specific conventions
   (e.g. iOS safe area insets, Android status bar handling) — ask whether
   to classify it as intentional before marking it as a mismatch.
+- The implementation includes interaction states or affordances that are
+  not present in the formal component board, and it is unclear whether
+  they were explicitly approved as product-layer behavior — ask before
+  classifying them as mismatches.
 - The severity rubric is unclear and the project has not defined
   acceptable tolerances — ask what threshold separates minor from
   significant.
@@ -115,6 +119,15 @@ Do not ask when:
 - Token mismatches (wrong color value, wrong spacing unit) are always at
   least significant — they indicate the implementation is not using the
   design system correctly.
+- Enumerate all variant axes from the component set before building the
+  verification surface. A grid that covers only a subset of axes will miss
+  entire classes of rendering bugs. A missing axis is itself a blocking
+  mismatch.
+- Stateful stroke or border treatments that change box geometry between
+  states (e.g. adding a border only in selected state) are a significant
+  mismatch. The default state must pre-allocate the same stroke space, or
+  the implementation must use a non-layout-affecting layer such as inset
+  shadow or outline.
 
 ## Verification
 

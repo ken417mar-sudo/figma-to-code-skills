@@ -88,12 +88,23 @@ Reason:
 6. Clean the draft just enough for implementation.
 7. Extract a rough implementation spec from the design itself.
 8. Let a human editor adjust the rough spec.
-9. Use the revised spec plus design context to implement code for the
+9. Map the confirmed part of that revised spec into Figma foundations:
+   variables for reusable tokens, styles for reusable presentation
+   patterns, and only keep low-confidence mappings as provisional.
+10. Export implementation assets when the design depends on real icons,
+   images, or slices. All icon resources should go through the export
+   workflow, with `svg` as the default preferred format when feasible.
+   Use the asset profile and export workflow rather than replacing them
+   with placeholders or hand-drawn substitutes.
+11. If the file already contains external variable aliases or mixed
+   foundation sources, decide whether to preserve, remap, or bridge
+   them before broad component binding begins.
+12. Use the revised spec plus design context to implement code for the
    chosen platform.
-10. Validate the result against the design using the platform-specific
+13. Validate the result against the design using the platform-specific
     verification surface and feed issues back into the
    spec.
-11. Record recurring mistakes as gotchas for the relevant skill.
+14. Record recurring mistakes as gotchas for the relevant skill.
 
 ## What The Workflow Must Handle
 
@@ -104,6 +115,8 @@ Reason:
 - repeated patterns that imply rules but are not documented
 - one-off exceptions that should not become standards
 - assets that need export naming and implementation mapping
+- pre-existing external variable aliases that may conflict with newly
+  created local foundations
 
 ## Key Principle
 
@@ -116,6 +129,12 @@ Instead, it should:
 - treat the design file as raw material
 - infer a first-pass rule set
 - expose that rule set for fast human correction
+- turn the confirmed subset into explicit Figma foundations where useful
+  (`Variables`, `样式`, and later component bindings)
+- treat design-owned icons and images as real assets that need export,
+  not as optional placeholders or hand-coded stand-ins
+- decide how local foundations and any pre-existing external aliases
+  should coexist before broad rebinding
 - implement code from the corrected rule set, not directly from the raw
   mess whenever possible
 
@@ -158,6 +177,8 @@ It should actively confirm with the user when the uncertainty affects:
 
 - component boundaries
 - interaction behavior
+- which interaction states are actually required for the product when the
+  current component board does not show them completely
 - content hierarchy
 - visual rules that may become reusable standards
 - implementation choices that could cause rework later
@@ -172,6 +193,13 @@ to revise.
 - ask when ambiguity changes meaning
 - ask when ambiguity could create the wrong reusable pattern
 - ask when a decision would be expensive to undo
+- if the product needs hover/focus/pressed/disabled/error/loading or
+  selected-affordance states that the current component board does not
+  fully express, confirm the required states first, then decide whether
+  to add provisional validation states
+- common interaction patterns may help propose candidate missing states,
+  but they are not permission to silently redefine canonical component
+  rules
 - do not ask about every tiny visual detail if a safe local assumption is
   enough
 - never present guessed intent as confirmed project truth
@@ -193,14 +221,22 @@ to revise.
 
 - `figma-create-design-system-rules`
   Generate a first-pass rule set from the draft and project context,
-  guided by the target platform profile.
+  guided by the target platform profile, then identify which confirmed
+  parts are ready to become candidate variables and styles.
 
 - `figma`
   Read design context, screenshots, variables, and metadata.
 
 - `figma-use`
   Make structured edits in the Figma file when cleanup or normalization is
-  needed.
+  needed, including creating standalone validation boards when
+  supplemental state coverage would otherwise overflow or overlap formal
+  artboards.
+
+- `figma-generate-library`
+  Promote confirmed rules into explicit Figma foundations such as
+  variables, styles, and later library components — but only after human
+  confirmation of naming and semantics.
 
 - `figma-code-connect-components`
   Link repeated design patterns to real code components once the mapping is
@@ -229,6 +265,8 @@ to revise.
 - a clean description of the messy-design-to-code workflow
 - a standard rule-draft format that humans can edit quickly
 - a standard tech-stack profile format that all major skills can consume
+- a repeatable path from rough rules to candidate `Variables` and
+  `样式`
 - a checklist for deciding whether a visual pattern is a rule or an
   exception
 - a better boundary between cleanup, rule extraction, and final

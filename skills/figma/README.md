@@ -87,6 +87,14 @@ Do not ask when:
 - `get_design_context` may return Code Connect snippets if the file has
   Code Connect set up. Treat those as the authoritative component
   reference, not the raw generated code.
+- When reading a component set, enumerate all variant properties before
+  starting implementation. If a property value changes child structure
+  (different icon, background presence, divider, etc.), it drives a
+  structural branch — not a visual tweak. Missing one axis means an entire
+  rendering path goes unimplemented.
+- Image URLs returned in `get_design_context` responses are temporary Figma
+  CDN signed links. Do not pass them to the implementation as asset sources.
+  Export the asset to the repository first.
 
 ## Verification
 
