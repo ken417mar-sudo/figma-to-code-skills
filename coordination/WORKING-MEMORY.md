@@ -77,27 +77,31 @@ Compact project memory for starting a new thread quickly.
 ## InputBox Status
 
 - current main task
-- base implementation exists in
-  `/Users/markun/Documents/Codex/Mars/agentic-browser-ui/src/components/InputBox.tsx`
-- exported assets already exist for plus/model-toggle/voice/send icons
-- current conclusion: layout is good enough to continue into state work
-- known accepted exception: the toggle background can remain a bridge
-  exception for now
-- recent fix: send button arrow should not be rotated and should be sized by
-  in-component geometry, not raw SVG canvas size
+- base implementation: `agentic-browser-ui/src/components/InputBox.tsx`
+- icons: plus/model-toggle/voice converted to inline SVG + currentColor; send stays `<img>` (fixed white)
+- 4 interaction states implemented (commit `d6afa94`):
+  - default: `0.5px rgba(0,105,193,0.26)` border, white bg
+  - focus: `1.5px #1f63ed` border, white bg
+  - disabled: `0.5px` border, `#f9f9fa` bg, `opacity-55`, button disabled
+  - error: `1px #e53b33` border, white bg
+- App.tsx verify grid covers all 4 states
+- known accepted exception: 开关 bg remains bridge exception (external alias, value equivalent)
+
+## Open Questions (pending Codex review)
+
+1. Any visual gap between current 4-state implementation and Figma?
+2. **Geometry stability**: default border is `0.5px`, focus is `1.5px` — 1px width change may cause layout shift, violating G4. Should focus border use `outline` or `box-shadow` instead?
 
 ## Current Local Changes To Remember
 
-- `figma-to-code-skills` has uncommitted rule updates:
-  - `skills/figma-export-slices/README.md` — new SVG color-check step
-  - `coordination/WORKING-MEMORY.md` — this file
-- `agentic-browser-ui` is clean; latest commits:
-  - `aea756b` — close/plus/voice/model-toggle converted to inline SVG + currentColor
-  - `0872945` — send icon sized to natural SVG dimensions (10×11)
-  - `0acbf47` — InputBox initial implementation
+- `figma-to-code-skills`: all committed and pushed (latest `2d73d2d`)
+- `agentic-browser-ui`: all committed; latest commits:
+  - `d6afa94` — InputBox 4 interaction states
+  - `aea756b` — inline SVG + currentColor for theme-reactive icons
+  - `0872945` — send icon natural SVG dimensions
 
 ## Next Recommended Action
 
-1. Continue InputBox interaction states: `focus`, `disabled`, `error`.
-2. Commit figma-export-slices rule update (SVG color-check step).
-3. Update INDEX.md InputBox status after inline SVG fix.
+1. Codex: review InputBox 4-state implementation, answer open questions above
+2. Claude: fix focus border geometry if Codex confirms G4 violation
+3. Both: update this file and INDEX.md when InputBox case closes
