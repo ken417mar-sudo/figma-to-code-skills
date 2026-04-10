@@ -61,6 +61,9 @@ Compact project memory for starting a new thread quickly.
   are hardcoded design-system colors, inline as SVG component with
   `currentColor`. Only use `<img>` for intentionally fixed colors (e.g.
   white arrow on colored button, brand logo).
+- When `get_design_context` returns a CSS transform on an icon, verify the
+  exported SVG orientation before copying it. The asset may already encode
+  the correct direction — copying the transform blindly causes double-rotation.
 - Stateful borders/strokes must not change geometry between states.
 
 ## Tab Status
