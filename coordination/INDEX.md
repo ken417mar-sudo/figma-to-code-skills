@@ -3,9 +3,14 @@
 Single entry point for all three contributors (user, Claude, Codex).
 Update this file when phase, repos, or active work changes.
 
+## Stable Memory
+
+- Working summary for new threads:
+  `/Users/markun/Documents/Codex/Mars/figma-to-code-skills/coordination/WORKING-MEMORY.md`
+
 ## Current Phase
 
-Phase 2 — component implement → verify loop (InputBox)
+Phase 2 complete — InputBox implement→verify closed. Next component TBD.
 
 ## Active Repos
 
@@ -20,11 +25,10 @@ Local paths:
 
 ## Active Issues
 
-| Issue | Scope | Status |
-|---|---|---|
-| [#12 — InputBox implement→verify](https://github.com/ken417mar-sudo/figma-to-code-skills/issues/12) | InputBox component case | open |
+None currently open.
 
 Closed:
+- [#12 — InputBox implement→verify](https://github.com/ken417mar-sudo/figma-to-code-skills/issues/12) — closed, all 4 states verified
 - [#4 — Phase 1 skill rewrite](https://github.com/ken417mar-sudo/figma-to-code-skills/issues/4) — all skills rewritten, Tab case closed
 
 ## Active Figma File
@@ -45,17 +49,14 @@ Key node IDs:
 ### Tab — closed
 All 8 variants verified. close-off/close-on SVGs from source export wired. No gaps.
 
-### InputBox — in progress
-- Initial implementation: `agentic-browser-ui/src/components/InputBox.tsx` (commit `0acbf47`)
-- 4 icons exported: `inputbox-ic`, `inputbox-model-toggle`, `inputbox-voice`, `inputbox-send`
-- Known gaps: interactive states (focus ring, button hover) not yet implemented
-- Open questions: see issue #12
+### InputBox — closed
+All 4 states (default/focus/disabled/error) implemented and verified.
+Geometry stable via inset box-shadow. Icons use inline SVG + currentColor.
+Commits: `d6afa94`, `ef0099c` in agentic-browser-ui.
 
 ## Next Recommended Action
 
-1. Codex: review InputBox visual vs Figma, answer 3 questions in issue #12
-2. Claude: implement interactive states after Codex confirms layout is acceptable
-3. Both: update this file when InputBox case closes
+User to decide next component case.
 
 ## Source-of-Truth Notes
 

@@ -76,31 +76,20 @@ Compact project memory for starting a new thread quickly.
 
 ## InputBox Status
 
-- current main task
-- base implementation: `agentic-browser-ui/src/components/InputBox.tsx`
-- icons: plus/model-toggle/voice converted to inline SVG + currentColor; send stays `<img>` (fixed white)
-- 4 interaction states implemented (commit `d6afa94`):
-  - default: `0.5px rgba(0,105,193,0.26)` border, white bg
-  - focus: `1.5px #1f63ed` border, white bg
-  - disabled: `0.5px` border, `#f9f9fa` bg, `opacity-55`, button disabled
-  - error: `1px #e53b33` border, white bg
-- App.tsx verify grid covers all 4 states
-- known accepted exception: 开关 bg remains bridge exception (external alias, value equivalent)
+- **closed** — all 4 states verified, geometry stable
+- commits: `d6afa94` (4 states), `ef0099c` (geometry fix)
+- deferred non-blockers: `ic_` rename, `开关` bridge exception
 
-## Open Questions (pending Codex review)
+## Open Questions
 
-- None currently. Awaiting Codex sign-off on geometry fix (`ef0099c`).
+None. Awaiting user decision on next component.
 
 ## Current Local Changes To Remember
 
-- `figma-to-code-skills`: all committed and pushed (latest `2d73d2d`)
-- `agentic-browser-ui`: all committed; latest commits:
-  - `ef0099c` — InputBox border geometry fix (inset box-shadow, G4 resolved)
-  - `d6afa94` — InputBox 4 interaction states
-  - `aea756b` — inline SVG + currentColor for theme-reactive icons
+- Both repos clean and pushed.
+- `figma-to-code-skills` latest: `ace0804`
+- `agentic-browser-ui` latest: `ef0099c`
 
 ## Next Recommended Action
 
-1. Codex: sign off on geometry fix (`ef0099c`) — if OK, InputBox case can close
-2. Both: update INDEX.md and close issue #12 when confirmed
-3. Next component: TBD (user to decide)
+User to decide next component case (e.g. 关闭, 书签, or new component).
