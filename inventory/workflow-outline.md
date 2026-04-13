@@ -91,24 +91,31 @@ Reason:
 9. Map the confirmed part of that revised spec into Figma foundations:
    variables for reusable tokens, styles for reusable presentation
    patterns, and only keep low-confidence mappings as provisional.
-10. Export implementation assets when the design depends on real icons,
+10. If we add or expand provisional validation states in Figma to cover
+   missing product states, get explicit user or team confirmation that the
+   provisional cards match the intended behavior before treating them as
+   implementation input. Unconfirmed provisional states are candidates, not
+   implementation-ready truth.
+11. Export implementation assets when the design depends on real icons,
    images, or slices. All icon resources should go through the export
    workflow, with `svg` as the default preferred format when feasible.
    Use the asset profile and export workflow rather than replacing them
-   with placeholders or hand-drawn substitutes. Do not assume the exported
-   asset canvas dimensions are the final rendered size in code; match the
-   asset's in-component geometry from Figma. Name exported assets by their
-   confirmed product role in code, not by temporary raw layer names such as
-   `ic_`, `Group 12`, or `Frame 1`.
-11. If the file already contains external variable aliases or mixed
+   with placeholders or hand-drawn substitutes. If the exported source-file
+   asset already exists in the repository, implementation must use that
+   asset as the geometry source and must not keep or add a handwritten
+   replacement icon. Do not assume the exported asset canvas dimensions are
+   the final rendered size in code; match the asset's in-component geometry
+   from Figma. Name exported assets by their confirmed product role in code,
+   not by temporary raw layer names such as `ic_`, `Group 12`, or `Frame 1`.
+12. If the file already contains external variable aliases or mixed
    foundation sources, decide whether to preserve, remap, or bridge
    them before broad component binding begins.
-12. Use the revised spec plus design context to implement code for the
+13. Use the revised spec plus design context to implement code for the
    chosen platform.
-13. Validate the result against the design using the platform-specific
+14. Validate the result against the design using the platform-specific
     verification surface and feed issues back into the
    spec.
-14. Record recurring mistakes as gotchas for the relevant skill.
+15. Record recurring mistakes as gotchas for the relevant skill.
 
 ## What The Workflow Must Handle
 

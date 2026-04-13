@@ -81,6 +81,10 @@ for human review — not a final spec to implement against directly.
      naming or semantic confirmation.
 7. Hand the draft to the user or team for review before passing it to
    `figma-implement-design` or `figma-verify-implementation`.
+8. If the workflow adds new provisional validation states in Figma to fill
+   a missing-state gap, get explicit user or team confirmation on those
+   provisional cards before treating them as implementation-ready rules.
+   Until confirmed, keep them in the provisional bucket.
 
 ## Clarification policy
 
@@ -94,6 +98,9 @@ Ask before proceeding when:
 - The design suggests that the product needs extra interaction states, but
   the formal component board does not show them completely — ask which
   states are required before turning them into candidate rules.
+- New provisional validation cards were added in Figma to fill a missing
+  state gap — ask whether those cards are approved before passing them to
+  implementation.
 
 Do not ask when:
 - A rule is directly readable from a token value or a consistent pattern

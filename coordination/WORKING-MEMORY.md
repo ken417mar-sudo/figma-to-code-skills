@@ -61,6 +61,12 @@ Compact project memory for starting a new thread quickly.
   are hardcoded design-system colors, inline as SVG component with
   `currentColor`. Only use `<img>` for intentionally fixed colors (e.g.
   white arrow on colored button, brand logo).
+- **Pre-implementation asset check (hard gate):** Before writing any icon
+  geometry in a component, check whether the icon has already been exported
+  into the repo. If `src/assets/figma/*.svg` already contains the source
+  icon, implementation must import that file — do not write or keep a
+  handwritten SVG substitute. This check must happen before implementation
+  starts, not as a cleanup step afterward.
 - When `get_design_context` returns a CSS transform on an icon, verify the
   exported SVG orientation before copying it. The asset may already encode
   the correct direction — copying the transform blindly causes double-rotation.
