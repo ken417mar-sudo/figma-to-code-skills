@@ -95,7 +95,11 @@ Reason:
    missing product states, get explicit user or team confirmation that the
    provisional cards match the intended behavior before treating them as
    implementation input. Unconfirmed provisional states are candidates, not
-   implementation-ready truth.
+   implementation-ready truth. Build each provisional card from the current
+   approved component baseline first, including existing icon assets and
+   unchanged structure, then modify only the state-specific deltas. Do not
+   silently redraw or swap parts of the baseline component that are not part
+   of the intended state change.
 11. Export implementation assets when the design depends on real icons,
    images, or slices. All icon resources should go through the export
    workflow, with `svg` as the default preferred format when feasible.

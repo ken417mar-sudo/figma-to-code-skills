@@ -84,7 +84,10 @@ for human review — not a final spec to implement against directly.
 8. If the workflow adds new provisional validation states in Figma to fill
    a missing-state gap, get explicit user or team confirmation on those
    provisional cards before treating them as implementation-ready rules.
-   Until confirmed, keep them in the provisional bucket.
+   Until confirmed, keep them in the provisional bucket. When describing or
+   reviewing those cards, assume they inherit the current approved component
+   baseline unless the state explicitly changes a property. Unchanged icons,
+   structure, and content should be carried over, not reinterpreted.
 
 ## Clarification policy
 
@@ -101,6 +104,10 @@ Ask before proceeding when:
 - New provisional validation cards were added in Figma to fill a missing
   state gap — ask whether those cards are approved before passing them to
   implementation.
+- A provisional card appears to redraw or swap unchanged parts of the
+  baseline component (especially icons or structure) instead of only
+  showing the intended state delta — ask whether that difference is
+  intentional before promoting the card into implementation input.
 
 Do not ask when:
 - A rule is directly readable from a token value or a consistent pattern

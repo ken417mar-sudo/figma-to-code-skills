@@ -53,11 +53,16 @@ modify the Figma file, not just read from it.
    explicitly provisional and check whether it should live inside an
    existing board or become a standalone validation board on the same
    page.
-4. Execute the write via `use_figma` with a JavaScript snippet targeting
+4. When adding a provisional state card for an existing component, copy
+   the current approved component baseline first and preserve all
+   unchanged parts, including icon assets, text, and structure. Apply
+   only the specific state delta that the provisional card is meant to
+   demonstrate.
+5. Execute the write via `use_figma` with a JavaScript snippet targeting
    the resolved node.
-5. Verify the result: call `get_screenshot` or `get_metadata` on the
+6. Verify the result: call `get_screenshot` or `get_metadata` on the
    affected node to confirm the change landed correctly.
-6. Hand the updated node reference or file state to the next workflow
+7. Hand the updated node reference or file state to the next workflow
    step.
 
 ## Clarification policy
@@ -81,6 +86,10 @@ Do not ask when:
 - `use_figma` executes JavaScript via the Figma Plugin API. Syntax errors
   in the snippet will silently fail or produce partial results — always
   verify after writing.
+- Do not redraw a component while creating a provisional state card unless
+  the redraw is itself the intended change. Start from the approved
+  baseline component and keep all unchanged icons, structure, and content
+  intact.
 - For the font "Inter", the style name is `"Semi Bold"` (with a space),
   not `"SemiBold"`. Wrong font style names cause silent fallback to the
   default weight.
