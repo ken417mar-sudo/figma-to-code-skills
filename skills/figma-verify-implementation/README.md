@@ -128,6 +128,11 @@ Do not ask when:
   mismatch. The default state must pre-allocate the same stroke space, or
   the implementation must use a non-layout-affecting layer such as inset
   shadow or outline.
+- Do not approve icon sizing just because the exported SVG file "looks"
+  correct in isolation. Verify the icon against its in-component geometry
+  in Figma. If the implementation sized the icon from raw asset canvas
+  dimensions instead of the component's icon frame and glyph bounds,
+  classify that as a significant mismatch.
 
 ## Verification
 

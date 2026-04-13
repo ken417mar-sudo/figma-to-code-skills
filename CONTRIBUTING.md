@@ -9,7 +9,7 @@ These rules apply to everyone equally.
 - Every change goes through a feature branch and a pull request.
 - Branch naming: `<area>/<short-description>`
   - Examples: `skill/figma-implement-design`, `setup/branch-protection`,
-    `fix/capture-ds-clarification-policy`
+  `fix/capture-ds-clarification-policy`
 - Keep each branch focused on one skill or one topic.
 
 ## Skill ownership
@@ -17,6 +17,7 @@ These rules apply to everyone equally.
 Each skill folder is owned by one contributor at a time to avoid conflicts.
 
 Before editing a skill:
+
 1. Check open PRs and branches to confirm no one else is working on it.
 2. If it is free, claim it by opening a branch and a draft PR promptly.
 3. If it is taken, wait for the PR to merge or coordinate with the owner.
@@ -27,28 +28,25 @@ A skill with no open PR is available to claim.
 ## What goes where
 
 - `skills/<skill-name>/README.md`
-  The executable skill prompt. Write it so an agent can follow it
-  directly, not so a human can read about it.
-  Deployment is environment-specific: Claude Code copies it to
-  `~/.claude/skills/<skill-name>.md`; other runtimes (Codex, CI, etc.)
-  may package or sync it differently. The README format does not assume
-  any single deployment path.
-
+The executable skill prompt. Write it so an agent can follow it
+directly, not so a human can read about it.
+Deployment is environment-specific: Claude Code copies it to
+`~/.claude/skills/<skill-name>.md`; other runtimes (Codex, CI, etc.)
+may package or sync it differently. The README format does not assume
+any single deployment path.
 - `inventory/`
-  Strategy documents, workflow outlines, templates, and profiles.
-  Do not edit strategy documents (e.g. `skills-strategy-overview.md`,
-  `workflow-outline.md`) without opening an issue first.
-  Small related updates to `skill-template.md` or `tech-stack-profile.md`
-  are allowed inside a skill PR when the change is directly required by
-  the skill being written. Include a brief rationale in the PR description.
-
+Strategy documents, workflow outlines, templates, and profiles.
+Do not edit strategy documents (e.g. `skills-strategy-overview.md`,
+`workflow-outline.md`) without opening an issue first.
+Small related updates to `skill-template.md` or `tech-stack-profile.md`
+are allowed inside a skill PR when the change is directly required by
+the skill being written. Include a brief rationale in the PR description.
 - `experiments/`
-  Throw anything here: test prompts, sample outputs, Figma URLs used
-  during testing, rough drafts. No ownership rules apply.
-
+Throw anything here: test prompts, sample outputs, Figma URLs used
+during testing, rough drafts. No ownership rules apply.
 - `references/`
-  External docs, screenshots, example files, and notes.
-  Add freely. Do not remove others' references without asking.
+External docs, screenshots, example files, and notes.
+Add freely. Do not remove others' references without asking.
 
 ## Skill README format
 
@@ -78,7 +76,7 @@ Bad: "This skill should confirm the tech-stack profile."
 
 - Title: same style as commit messages.
 - Description: what changed and why. Link to a related issue if one
-  exists.
+exists.
 - Keep PRs small. One skill per PR is the default.
 - PRs that touch `inventory/` need a brief rationale.
 

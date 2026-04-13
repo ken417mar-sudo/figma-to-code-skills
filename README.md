@@ -18,7 +18,7 @@ In other words:
 - start from a real design draft
 - prefer existing rules when they already exist
 - ask for clarification when a missing detail would change the intended
-  design or implementation meaning
+design or implementation meaning
 - extract enough structure and rules from it
 - let a human quickly adjust the rough rules
 - use that cleaned context to produce better code output

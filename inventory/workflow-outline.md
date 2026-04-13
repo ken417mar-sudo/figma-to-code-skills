@@ -95,7 +95,11 @@ Reason:
    images, or slices. All icon resources should go through the export
    workflow, with `svg` as the default preferred format when feasible.
    Use the asset profile and export workflow rather than replacing them
-   with placeholders or hand-drawn substitutes.
+   with placeholders or hand-drawn substitutes. Do not assume the exported
+   asset canvas dimensions are the final rendered size in code; match the
+   asset's in-component geometry from Figma. Name exported assets by their
+   confirmed product role in code, not by temporary raw layer names such as
+   `ic_`, `Group 12`, or `Frame 1`.
 11. If the file already contains external variable aliases or mixed
    foundation sources, decide whether to preserve, remap, or bridge
    them before broad component binding begins.
@@ -133,6 +137,9 @@ Instead, it should:
   (`Variables`, `样式`, and later component bindings)
 - treat design-owned icons and images as real assets that need export,
   not as optional placeholders or hand-coded stand-ins
+- treat exported asset dimensions as transport metadata, not as the source
+  of truth for rendered icon size; verify the icon's actual in-component
+  geometry before wiring it into code
 - decide how local foundations and any pre-existing external aliases
   should coexist before broad rebinding
 - implement code from the corrected rule set, not directly from the raw

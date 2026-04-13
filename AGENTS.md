@@ -1,6 +1,6 @@
-# CLAUDE.md
+# AGENTS.md
 
-Instructions for Claude Code working in this repository.
+Instructions for Codex working in this repository.
 
 ## Before touching any file
 
@@ -31,7 +31,7 @@ Do not ask the user to relay messages to Codex manually.
 This is the main task in Phase 1.
 
 The goal is to turn each skill README from a specification document into
-an executable prompt that Claude or another agent can follow directly.
+an executable prompt that Codex or another agent can follow directly.
 
 Rules:
 
