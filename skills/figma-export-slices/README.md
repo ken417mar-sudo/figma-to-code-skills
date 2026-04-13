@@ -22,6 +22,10 @@ Implementation rule:
 - Export and name the real asset first, then wire the code to that
   asset. Use a semantic repo-facing name based on the icon's role in the
   component, not the raw Figma layer name.
+- Once the exported source-file icon exists in the repository, that file
+  becomes the required geometry source for implementation. Do not keep,
+  add, or refine a handwritten substitute SVG for the same icon after
+  export.
 - Treat the exported file's canvas size as packaging data, not as the
   rendered size contract. Before implementation, also inspect the icon's
   parent frame and visual bounds in Figma so code matches the in-component

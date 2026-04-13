@@ -66,10 +66,13 @@ the profile is missing and it changes the output shape, ask first.
    final implementation. Do not replace design-owned assets with generic
    placeholders unless the workflow explicitly marks them as unresolved.
    For icons, default to exported `svg` assets rather than hand-coded
-   replicas. Do not size the final icon directly from the exported SVG
-   canvas dimensions; also inspect the icon's actual geometry in its
-   parent component. Use semantic asset and variable names in code rather
-   than copying temporary Figma layer names verbatim.
+   replicas. If the exported source-file icon already exists in the
+   repository, use that asset as the geometry source and remove any
+   handwritten replacement for the same icon. Do not size the final icon
+   directly from the exported SVG canvas dimensions; also inspect the
+   icon's actual geometry in its parent component. Use semantic asset and
+   variable names in code rather than copying temporary Figma layer names
+   verbatim.
 6. Map layout, tokens, and components to platform-appropriate patterns:
    - **web**: flexbox/grid, CSS vars or Tailwind tokens, JSX component
      API.
@@ -95,6 +98,9 @@ Ask before proceeding when:
   current component board does not explicitly show (e.g. hover-only close
   button, selected affordance, focus treatment). Confirm the required
   states before implementing them by default.
+- The implementation would rely on newly added provisional Figma state
+  cards rather than an already confirmed component board. Ask whether
+  those provisional states are approved before coding against them.
 - An implementation choice would be expensive to undo (e.g. choosing a
   state management pattern or a layout approach that affects many
   components).
