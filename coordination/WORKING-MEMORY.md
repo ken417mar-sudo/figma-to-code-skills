@@ -67,6 +67,12 @@ Compact project memory for starting a new thread quickly.
   icon, implementation must import that file — do not write or keep a
   handwritten SVG substitute. This check must happen before implementation
   starts, not as a cleanup step afterward.
+- Newly added provisional Figma state cards must be explicitly approved by
+  the user or team before they become implementation input.
+- Provisional state cards for an existing component must start from the
+  approved baseline component and preserve all unchanged parts, including
+  icon assets, text, and structure. Only the state-specific delta should
+  change.
 - When `get_design_context` returns a CSS transform on an icon, verify the
   exported SVG orientation before copying it. The asset may already encode
   the correct direction — copying the transform blindly causes double-rotation.
@@ -88,23 +94,23 @@ Compact project memory for starting a new thread quickly.
 
 ## Toolbar Status
 
-- **in progress** — code written (Toolbar.tsx), NOT yet committed
-- workflow violation: code was written before Figma provisional states were added (now remediated)
-- provisional board updated:
-  - NavIcon disabled state (`1872:10395`): 4 cards, rule: `opacity: 0.3` on button wrapper ✓
-  - Bookmark bookmarked + URLBar focused (`1873:10395`): designs added ✓ (blocker cleared)
-- next step: implement `bookmarked` + `urlFocused` → verify → commit
+- **closed** — all 5 states verified, committed, and pushed
+- commits: `eb13c90` (Toolbar.tsx + assets), `dbd1136` (bookmark icon viewBox fix)
+- provisional boards confirmed:
+  - NavIcon disabled (`1872:10395`): `opacity: 0.3` on 24×24 wrapper ✓
+  - Bookmark bookmarked + URLBar focused (`1873:10395`): icons correct ✓
+- deferred non-blocker: `border border-[0.5px]` redundancy in `urlFocused`
 
 ## Open Questions
 
-None — all Toolbar provisional states are in Figma.
+None at the moment.
 
 ## Current Local Changes To Remember
 
-- `figma-to-code-skills` clean and pushed. latest: `1ebd443`
-- `agentic-browser-ui`: Toolbar.tsx + assets written, NOT committed (pending verification)
+- `figma-to-code-skills`: main closeout sync in progress on current branch
+- `agentic-browser-ui`: clean on `main`, latest `dbd1136`
 
 ## Next Recommended Action
 
-User to add Bookmark bookmarked and URLBar focused designs to Figma provisional
-board, then implement those two states and verify all Toolbar states.
+Start the next component case, or close out Phase 3 explicitly and plan the
+next workflow target.
