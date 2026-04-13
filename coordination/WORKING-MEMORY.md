@@ -80,16 +80,28 @@ Compact project memory for starting a new thread quickly.
 - commits: `d6afa94` (4 states), `ef0099c` (geometry fix)
 - deferred non-blockers: `ic_` rename, `开关` bridge exception
 
+## Toolbar Status
+
+- **in progress** — code written (Toolbar.tsx), NOT yet committed
+- workflow violation: code was written before Figma provisional states were added
+- provisional board updated: NavIcon disabled state added (`1872:10395`)
+  - 4 cards: back/enabled, back/disabled, forward/enabled, forward/disabled
+  - rule: `opacity: 0.3` on the 24×24 button wrapper when disabled
+- **blocked on user**: Bookmark bookmarked state and URLBar focused state
+  designs not yet added to Figma (user said "先补充设计")
+- next step: user adds those two designs → implement → verify → commit
+
 ## Open Questions
 
-None. Awaiting user decision on next component.
+- Bookmark bookmarked state: user to add design to Figma provisional board
+- URLBar focused state: user to add design to Figma provisional board
 
 ## Current Local Changes To Remember
 
-- Both repos clean and pushed.
-- `figma-to-code-skills` latest: `ace0804`
-- `agentic-browser-ui` latest: `ef0099c`
+- `figma-to-code-skills` clean and pushed. latest: `1ebd443`
+- `agentic-browser-ui`: Toolbar.tsx + assets written, NOT committed (pending verification)
 
 ## Next Recommended Action
 
-User to decide next component case (e.g. 关闭, 书签, or new component).
+User to add Bookmark bookmarked and URLBar focused designs to Figma provisional
+board, then implement those two states and verify all Toolbar states.
