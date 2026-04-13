@@ -10,7 +10,7 @@ Update this file when phase, repos, or active work changes.
 
 ## Current Phase
 
-Phase 2 complete — InputBox implement→verify closed. Next component TBD.
+Phase 3 in progress — Toolbar implement→verify.
 
 ## Active Repos
 
@@ -25,7 +25,7 @@ Local paths:
 
 ## Active Issues
 
-None currently open.
+- [#13 — Coordination Log (permanent)](https://github.com/ken417mar-sudo/figma-to-code-skills/issues/13) — never close, rolling action log
 
 Closed:
 - [#12 — InputBox implement→verify](https://github.com/ken417mar-sudo/figma-to-code-skills/issues/12) — closed, all 4 states verified
@@ -53,10 +53,17 @@ All 8 variants verified. close-off/close-on SVGs from source export wired. No ga
 All 4 states (default/focus/disabled/error) implemented and verified.
 Geometry stable via inset box-shadow. Icons use inline SVG + currentColor.
 Commits: `d6afa94`, `ef0099c` in agentic-browser-ui.
+focus-shadow mismatch noted by Codex — accepted as-is, not a blocker.
+
+### Toolbar — in progress
+Toolbar.tsx written, NOT committed. Provisional states in Figma:
+- NavIcon disabled (`1872:10395`): opacity 0.3 on button wrapper ✓
+- Bookmark bookmarked + URLBar focused (`1873:10395`): designs added ✓
+Next: implement bookmarked/urlFocused states → verify → commit.
 
 ## Next Recommended Action
 
-User to decide next component case.
+Implement `bookmarked` + `urlFocused` states in Toolbar.tsx, add verify cases in App.tsx, verify against Figma `1873:10395`, then commit.
 
 ## Source-of-Truth Notes
 

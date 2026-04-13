@@ -83,18 +83,15 @@ Compact project memory for starting a new thread quickly.
 ## Toolbar Status
 
 - **in progress** — code written (Toolbar.tsx), NOT yet committed
-- workflow violation: code was written before Figma provisional states were added
-- provisional board updated: NavIcon disabled state added (`1872:10395`)
-  - 4 cards: back/enabled, back/disabled, forward/enabled, forward/disabled
-  - rule: `opacity: 0.3` on the 24×24 button wrapper when disabled
-- **blocked on user**: Bookmark bookmarked state and URLBar focused state
-  designs not yet added to Figma (user said "先补充设计")
-- next step: user adds those two designs → implement → verify → commit
+- workflow violation: code was written before Figma provisional states were added (now remediated)
+- provisional board updated:
+  - NavIcon disabled state (`1872:10395`): 4 cards, rule: `opacity: 0.3` on button wrapper ✓
+  - Bookmark bookmarked + URLBar focused (`1873:10395`): designs added ✓ (blocker cleared)
+- next step: implement `bookmarked` + `urlFocused` → verify → commit
 
 ## Open Questions
 
-- Bookmark bookmarked state: user to add design to Figma provisional board
-- URLBar focused state: user to add design to Figma provisional board
+None — all Toolbar provisional states are in Figma.
 
 ## Current Local Changes To Remember
 
