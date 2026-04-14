@@ -10,7 +10,8 @@ Update this file when phase, repos, or active work changes.
 
 ## Current Phase
 
-Phase 3 in progress — Toolbar implement→verify.
+Phase 3 closed (2026-04-13) — Tab, InputBox, Toolbar all verified and committed.
+Phase 4 TBD — next component to be decided by user.
 
 ## Active Repos
 
@@ -55,15 +56,17 @@ Geometry stable via inset box-shadow. Icons use inline SVG + currentColor.
 Commits: `d6afa94`, `ef0099c` in agentic-browser-ui.
 focus-shadow mismatch noted by Codex — accepted as-is, not a blocker.
 
-### Toolbar — in progress
-Toolbar.tsx written, NOT committed. Provisional states in Figma:
+### Toolbar — closed
+All 5 states verified and pushed.
+Commits: `eb13c90`, `dbd1136` in agentic-browser-ui.
+Provisional boards confirmed:
 - NavIcon disabled (`1872:10395`): opacity 0.3 on button wrapper ✓
-- Bookmark bookmarked + URLBar focused (`1873:10395`): designs added ✓
-Next: implement bookmarked/urlFocused states → verify → commit.
+- Bookmark bookmarked + URLBar focused (`1873:10395`): icons correct ✓
+Deferred non-blocker: `border border-[0.5px]` redundancy in `urlFocused`.
 
 ## Next Recommended Action
 
-Implement `bookmarked` + `urlFocused` states in Toolbar.tsx, add verify cases in App.tsx, verify against Figma `1873:10395`, then commit.
+User to decide the next component case, or start Phase 4 planning.
 
 ## Source-of-Truth Notes
 
