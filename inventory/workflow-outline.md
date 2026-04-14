@@ -26,7 +26,7 @@ Minimum profile:
 - `target`: `web` | `ios` | `android`
 - `framework`: for example `react`, `swiftui`, `compose`
 - `token_format`: for example `css-vars`, `swift-tokens`,
-  `compose-tokens`
+`compose-tokens`
 
 ## Additional Capabilities We Likely Need
 
@@ -38,14 +38,14 @@ Reason:
 
 - many teams already have rules, but they are undocumented
 - implementation quality improves if those rules are captured before code
-  generation
+generation
 - this helps us preserve the principle of "existing spec first"
 
 Suggested role in the workflow:
 
 1. interview the user or team
 2. capture the existing rules, tokens, component expectations, and edge
-   cases
+  cases
 3. save them into a reusable project skill or editable rule document
 
 ### 2. Expand sketches or low-fidelity drafts into design-system components
@@ -73,31 +73,31 @@ Reason:
 
 - visual similarity alone is not enough
 - structural issues, overrides, and implementation drift need explicit
-  review
+review
 - verification findings can improve both the code and the skill set
 
 ## Core Workflow
 
 1. Confirm the target tech-stack profile.
 2. Check whether a trusted spec or design-system rule set already
-   exists.
+  exists.
 3. If yes, use it as the implementation baseline and only use the design
-   draft for screen-specific details.
+  draft for screen-specific details.
 4. If not, intake the design draft.
 5. Identify noise vs. reusable patterns.
 6. Clean the draft just enough for implementation.
 7. Extract a rough implementation spec from the design itself.
 8. Let a human editor adjust the rough spec.
 9. Map the confirmed part of that revised spec into Figma foundations:
-   variables for reusable tokens, styles for reusable presentation
+  variables for reusable tokens, styles for reusable presentation
    patterns, and only keep low-confidence mappings as provisional.
 10. If we add or expand provisional validation states in Figma to cover
-   missing product states, get explicit user or team confirmation that the
+  missing product states, get explicit user or team confirmation that the
    provisional cards match the intended behavior before treating them as
    implementation input. Unconfirmed provisional states are candidates, not
    implementation-ready truth.
 11. Export implementation assets when the design depends on real icons,
-   images, or slices. All icon resources should go through the export
+  images, or slices. All icon resources should go through the export
    workflow, with `svg` as the default preferred format when feasible.
    Use the asset profile and export workflow rather than replacing them
    with placeholders or hand-drawn substitutes. If the exported source-file
@@ -108,12 +108,12 @@ Reason:
    from Figma. Name exported assets by their confirmed product role in code,
    not by temporary raw layer names such as `ic_`, `Group 12`, or `Frame 1`.
 12. If the file already contains external variable aliases or mixed
-   foundation sources, decide whether to preserve, remap, or bridge
+  foundation sources, decide whether to preserve, remap, or bridge
    them before broad component binding begins.
 13. Use the revised spec plus design context to implement code for the
-   chosen platform.
+  chosen platform.
 14. Validate the result against the design using the platform-specific
-    verification surface and feed issues back into the
+  verification surface and feed issues back into the
    spec.
 15. Record recurring mistakes as gotchas for the relevant skill.
 
@@ -127,7 +127,7 @@ Reason:
 - one-off exceptions that should not become standards
 - assets that need export naming and implementation mapping
 - pre-existing external variable aliases that may conflict with newly
-  created local foundations
+created local foundations
 
 ## Key Principle
 
@@ -141,16 +141,16 @@ Instead, it should:
 - infer a first-pass rule set
 - expose that rule set for fast human correction
 - turn the confirmed subset into explicit Figma foundations where useful
-  (`Variables`, `样式`, and later component bindings)
+(`Variables`, `样式`, and later component bindings)
 - treat design-owned icons and images as real assets that need export,
-  not as optional placeholders or hand-coded stand-ins
+not as optional placeholders or hand-coded stand-ins
 - treat exported asset dimensions as transport metadata, not as the source
-  of truth for rendered icon size; verify the icon's actual in-component
-  geometry before wiring it into code
+of truth for rendered icon size; verify the icon's actual in-component
+geometry before wiring it into code
 - decide how local foundations and any pre-existing external aliases
-  should coexist before broad rebinding
+should coexist before broad rebinding
 - implement code from the corrected rule set, not directly from the raw
-  mess whenever possible
+mess whenever possible
 
 ## Important Process Question
 
@@ -172,15 +172,15 @@ design system.
 
 - if a valid spec already exists, implement against the spec first
 - if the spec is partial, keep the spec as baseline and only infer the
-  missing parts
+missing parts
 - if no spec exists, generate a rough rule set from the design and let a
-  human revise it
+human revise it
 - if rules exist but are undocumented, capture them before broad
-  implementation work
+implementation work
 - if the design is incomplete, sketches or low-fi drafts can be expanded
-  to fill missing pieces, but they must respect the existing rule set
+to fill missing pieces, but they must respect the existing rule set
 - if the platform profile is missing and platform affects the output,
-  clarify the profile before implementation proceeds
+clarify the profile before implementation proceeds
 
 ## Clarification Policy
 
@@ -192,7 +192,7 @@ It should actively confirm with the user when the uncertainty affects:
 - component boundaries
 - interaction behavior
 - which interaction states are actually required for the product when the
-  current component board does not show them completely
+current component board does not show them completely
 - content hierarchy
 - visual rules that may become reusable standards
 - implementation choices that could cause rework later
@@ -208,14 +208,14 @@ to revise.
 - ask when ambiguity could create the wrong reusable pattern
 - ask when a decision would be expensive to undo
 - if the product needs hover/focus/pressed/disabled/error/loading or
-  selected-affordance states that the current component board does not
-  fully express, confirm the required states first, then decide whether
-  to add provisional validation states
+selected-affordance states that the current component board does not
+fully express, confirm the required states first, then decide whether
+to add provisional validation states
 - common interaction patterns may help propose candidate missing states,
-  but they are not permission to silently redefine canonical component
-  rules
+but they are not permission to silently redefine canonical component
+rules
 - do not ask about every tiny visual detail if a safe local assumption is
-  enough
+enough
 - never present guessed intent as confirmed project truth
 - never silently default to web when the project target is unknown
 
@@ -231,48 +231,39 @@ to revise.
 ## Skill Implications
 
 - `figma-ai-implementation-cleanup`
-  Prepare messy files so later steps have less noise.
-
+Prepare messy files so later steps have less noise.
 - `figma-create-design-system-rules`
-  Generate a first-pass rule set from the draft and project context,
-  guided by the target platform profile, then identify which confirmed
-  parts are ready to become candidate variables and styles.
-
+Generate a first-pass rule set from the draft and project context,
+guided by the target platform profile, then identify which confirmed
+parts are ready to become candidate variables and styles.
 - `figma`
-  Read design context, screenshots, variables, and metadata.
-
+Read design context, screenshots, variables, and metadata.
 - `figma-use`
-  Make structured edits in the Figma file when cleanup or normalization is
-  needed, including creating standalone validation boards when
-  supplemental state coverage would otherwise overflow or overlap formal
-  artboards.
-
+Make structured edits in the Figma file when cleanup or normalization is
+needed, including creating standalone validation boards when
+supplemental state coverage would otherwise overflow or overlap formal
+artboards.
 - `figma-generate-library`
-  Promote confirmed rules into explicit Figma foundations such as
-  variables, styles, and later library components — but only after human
-  confirmation of naming and semantics.
-
+Promote confirmed rules into explicit Figma foundations such as
+variables, styles, and later library components — but only after human
+confirmation of naming and semantics.
 - `figma-code-connect-components`
-  Link repeated design patterns to real code components once the mapping is
-  clear enough, but only when Code Connect support matches the target
-  framework.
-
+Link repeated design patterns to real code components once the mapping is
+clear enough, but only when Code Connect support matches the target
+framework.
 - `figma-implement-design`
-  Produce code from the design plus the corrected rule set for the target
-  platform and framework.
-
+Produce code from the design plus the corrected rule set for the target
+platform and framework.
 - `figma-capture-design-system`
-  Capture implicit team rules and turn them into an explicit reusable
-  implementation reference, including platform-specific conventions.
-
+Capture implicit team rules and turn them into an explicit reusable
+implementation reference, including platform-specific conventions.
 - `figma-sketch-to-system-components`
-  Fill missing components or states from sketches while staying inside the
-  project's established system.
-
+Fill missing components or states from sketches while staying inside the
+project's established system.
 - `figma-verify-implementation`
-  Compare built UI against design, classify mismatches, and feed the
-  findings back into code and rules using the correct verification path
-  for web, iOS, or Android.
+Compare built UI against design, classify mismatches, and feed the
+findings back into code and rules using the correct verification path
+for web, iOS, or Android.
 
 ## Near-Term Deliverables
 
@@ -280,11 +271,12 @@ to revise.
 - a standard rule-draft format that humans can edit quickly
 - a standard tech-stack profile format that all major skills can consume
 - a repeatable path from rough rules to candidate `Variables` and
-  `样式`
+`样式`
 - a checklist for deciding whether a visual pattern is a rule or an
-  exception
+exception
 - a better boundary between cleanup, rule extraction, and final
-  implementation
+implementation
 - a clear boundary between "capture existing rules" and "invent missing
-  UI from sketches"
+UI from sketches"
 - a reusable gotcha format for mature skills
+

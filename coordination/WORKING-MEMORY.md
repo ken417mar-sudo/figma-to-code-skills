@@ -91,7 +91,7 @@ the canonical tab component set
 - **closed** — all 4 states verified, geometry stable
 - commits: `d6afa94` (4 states), `ef0099c` (geometry fix)
 - deferred non-blockers: `ic_` rename, `开关` bridge exception,
-  focus-state shadow token mismatch accepted as-is
+focus-state shadow token mismatch accepted as-is
 
 ## Toolbar Status
 

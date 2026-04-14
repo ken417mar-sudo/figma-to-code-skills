@@ -23,21 +23,21 @@ The default priority is:
 - skills should encode workflow judgment, not only tool syntax
 - mature skills should accumulate `gotchas`
 - smaller composable skills are preferred, with larger orchestrating skills
-  on top
+on top
 
 ## Workflow We Are Building
 
 1. Confirm the target tech-stack profile.
 2. Check whether a usable spec or design-system rule set already exists.
 3. If rules exist but are undocumented, capture them into a reusable skill
-   or editable rule file.
+  or editable rule file.
 4. If the design file is messy, clean it just enough to reduce
-   implementation noise.
+  implementation noise.
 5. If coverage is missing, infer a rough rule draft from the design.
 6. Let a human revise the rule draft.
 7. Implement code using the spec plus the design context.
 8. Verify the built result against Figma using the platform-appropriate
-   surface.
+  surface.
 9. Turn repeated failure modes into skill gotchas.
 
 ## Platform Profile
@@ -47,7 +47,7 @@ Every major workflow should receive a tech-stack profile with at least:
 - `target`: `web` | `ios` | `android`
 - `framework`: for example `react`, `swiftui`, `compose`
 - `token_format`: for example `css-vars`, `swift-tokens`,
-  `compose-tokens`
+`compose-tokens`
 
 Reference:
 
@@ -60,37 +60,32 @@ Reference:
 These are base capabilities that support everything else.
 
 - `figma`
-  General read access to design context, screenshots, variables, metadata,
-  and assets.
-
+General read access to design context, screenshots, variables, metadata,
+and assets.
 - `figma-use`
-  Structured write access to Figma files for cleanup, organization,
-  component editing, variables, and layout fixes.
+Structured write access to Figma files for cleanup, organization,
+component editing, variables, and layout fixes.
 
 ### B. Core delivery layer
 
 These are the most important skills for the first version of the workflow.
 
 - `figma-capture-design-system`
-  Capture existing but undocumented design-system knowledge through
-  interview and convert it into an explicit implementation reference,
-  including platform-specific rules.
-
+Capture existing but undocumented design-system knowledge through
+interview and convert it into an explicit implementation reference,
+including platform-specific rules.
 - `figma-ai-implementation-cleanup`
-  Reduce messy layers, bad naming, hidden legacy content, and other noise
-  that makes implementation unstable.
-
+Reduce messy layers, bad naming, hidden legacy content, and other noise
+that makes implementation unstable.
 - `figma-create-design-system-rules`
-  Generate a rough rule set when no complete spec exists, or fill missing
-  parts when the spec is partial. The output must be profile-aware.
-
+Generate a rough rule set when no complete spec exists, or fill missing
+parts when the spec is partial. The output must be profile-aware.
 - `figma-implement-design`
-  Turn Figma design context plus rules into implementation code for the
-  declared target platform and framework.
-
+Turn Figma design context plus rules into implementation code for the
+declared target platform and framework.
 - `figma-verify-implementation`
-  Compare built UI against Figma, annotate differences, and classify what
-  matters using a platform-appropriate verification path.
+Compare built UI against Figma, annotate differences, and classify what
+matters using a platform-appropriate verification path.
 
 ### C. System-enrichment layer
 
@@ -98,16 +93,14 @@ These are important, but not all of them need to be in the very first
 milestone.
 
 - `figma-code-connect-components`
-  Map Figma components to real code components once repeated patterns are
-  clear enough. This is framework-dependent and should only be used where
-  Code Connect support matches the target stack.
-
+Map Figma components to real code components once repeated patterns are
+clear enough. This is framework-dependent and should only be used where
+Code Connect support matches the target stack.
 - `figma-generate-library`
-  Build or update a Figma design system library from codebase and tokens.
-
+Build or update a Figma design system library from codebase and tokens.
 - `figma-export-slices`
-  Export slices and assets needed by implementation according to the
-  target platform asset profile.
+Export slices and assets needed by implementation according to the
+target platform asset profile.
 
 ### D. Gap-filling and acceleration layer
 
@@ -115,14 +108,12 @@ These are useful when the project is incomplete, but they should not
 override the main source-of-truth rules.
 
 - `figma-sketch-to-system-components`
-  Expand sketches or low-fidelity drafts into components that stay within
-  the established design system.
-
+Expand sketches or low-fidelity drafts into components that stay within
+the established design system.
 - `figma-generate-design`
-  Generate or update Figma screens from code or page structure.
-
+Generate or update Figma screens from code or page structure.
 - `figma-create-new-file`
-  Create a new blank Figma or FigJam file as setup support.
+Create a new blank Figma or FigJam file as setup support.
 
 ## Recommended Build Order
 
@@ -192,7 +183,7 @@ Use:
 Outcome:
 
 - reduce noise before implementation and avoid turning accidental mess
-  into standards
+into standards
 
 ### 4. Design is visually complete, but component mapping to code is weak
 
