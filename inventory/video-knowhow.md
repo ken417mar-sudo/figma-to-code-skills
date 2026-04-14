@@ -193,7 +193,7 @@ Takeaway:
 Why it matters for us:
 
 - we should treat Figma as an ambiguity-resolution surface, not only as a
-  passive source file
+passive source file
 
 Reference:
 
