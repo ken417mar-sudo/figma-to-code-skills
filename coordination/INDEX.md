@@ -10,7 +10,8 @@ Update this file when phase, repos, or active work changes.
 
 ## Current Phase
 
-Phase 3 complete — Toolbar implement→verify closed. Next component TBD.
+Phase 3 closed (2026-04-13) — Tab, InputBox, Toolbar all verified and committed.
+Phase 4 TBD — next component to be decided by user.
 
 ## Active Repos
 
