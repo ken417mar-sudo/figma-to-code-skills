@@ -85,6 +85,10 @@ for human review — not a final spec to implement against directly.
    a missing-state gap, get explicit user or team confirmation on those
    provisional cards before treating them as implementation-ready rules.
    Until confirmed, keep them in the provisional bucket.
+9. If the team confirms that a provisional state is meant to become the
+   canonical component state, mark it for promotion back into the formal
+   component area. Do not plan to keep the provisional card and the
+   formal component as long-lived parallel sources of truth.
 
 ## Clarification policy
 
@@ -101,6 +105,9 @@ Ask before proceeding when:
 - New provisional validation cards were added in Figma to fill a missing
   state gap — ask whether those cards are approved before passing them to
   implementation.
+- A provisional state has already been approved and implementation is
+  about to depend on it, but it is still unclear whether the team wants
+  it promoted back into the formal component area after validation.
 
 Do not ask when:
 - A rule is directly readable from a token value or a consistent pattern
@@ -131,6 +138,10 @@ Do not ask when:
 - Common product patterns may be used to suggest candidate interaction
   states when the board is incomplete, but those suggestions must remain
   provisional until confirmed.
+- Do not let approved provisional states linger indefinitely as a second
+  component source of truth. Once the team confirms that a provisional
+  state is the intended canonical state, plan its promotion back into the
+  formal component area and retire or archive the provisional copy.
 
 ## Verification
 
@@ -142,3 +153,6 @@ Do not ask when:
 - Unknowns and low-confidence inferences are listed explicitly.
 - The draft clearly distinguishes candidate `Variables`, candidate
   `样式`, and unresolved items.
+- Any approved provisional state that is meant to become canonical is
+  explicitly marked for formal-component promotion rather than left as a
+  permanent parallel version.

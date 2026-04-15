@@ -88,6 +88,10 @@ of duplicating them.
      branch, prop, structural fork, or verification case — not just
      mentioned in notes
    - required states are either already present or explicitly approved
+   - if the case depends on approved provisional states because the
+     formal component area was incomplete, there is an explicit plan for
+     whether those states stay temporary or are promoted back into the
+     formal component area after validation
    - asset needs are known, and export is scheduled before code if real
      design-owned assets are required
    - verification surface is not only known, but scoped to cover every
@@ -123,6 +127,10 @@ of duplicating them.
    - summarize what was done and against which design source
    - record blocking or significant mismatches still open
    - separate deferred non-blockers from true completion blockers
+   - if implementation depended on approved provisional states, state
+     whether those states have been promoted back into the formal
+     component area; if not, record the explicit reason they are still
+     temporary
    - state whether the case is implementation-complete, coverage-
      complete, visual-verification-complete, or still partial
    - update `#13` with actions and conclusions
@@ -137,6 +145,9 @@ Ask before proceeding when:
 - The active component target is ambiguous.
 - The case would rely on provisional states that are not explicitly
   approved.
+- The case relies on approved provisional states, but there is no clear
+  decision about whether they should be promoted back into the formal
+  component area after validation.
 - The formal component board appears incomplete and the missing detail
   changes implementation shape.
 - A claimed variant axis has no explicit implementation branch or no
@@ -173,6 +184,10 @@ Do not ask when:
   `visual-verification-complete`. Rendering every named axis is
   necessary, but it is still not enough if the real implementation has
   not been visually checked against the target node.
+- Do not let approved provisional states become a permanent shadow
+  system. If the team accepts them as canonical, promotion back into the
+  formal component area is part of closeout, not an optional future
+  cleanup.
 - Do not update `coordination/WORKING-MEMORY.md` for every transient
   action. Only write back stable state that a new session would need.
 - Do not promote every case-specific compromise into a shared gotcha.
@@ -186,6 +201,9 @@ Do not ask when:
 - Every claimed variant axis is either:
   - explicitly mapped to implementation and verification coverage, or
   - explicitly marked as deferred / not yet verified.
+- If the case used approved provisional states as implementation input,
+  closeout makes clear whether those states were promoted back into the
+  formal component area or are still temporary for a named reason.
 - If the case is being called verified rather than merely covered, the
   real rendered implementation has been visually checked against the
   target node for the main fidelity dimensions.
