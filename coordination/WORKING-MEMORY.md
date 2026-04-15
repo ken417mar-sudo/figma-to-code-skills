@@ -116,24 +116,46 @@ focus-state shadow token mismatch accepted as-is
 - current code state in `agentic-browser-ui`:
   - Dialog structure and static variant axes implemented
   - `closeVariant='hover'` now forces the hover icon
-  - image content branch now renders even with empty `imageSrc` (gray placeholder)
-  - visual fidelity pass has started
-- current open issues:
-  - horizontal image dialog still uses the text-dialog spacing shell; spacing is too loose vs Figma
-  - button-type verify cards in `App.tsx` are still handwritten examples, not real `DialogButton` branches
+  - image content branch, image spacing shell, image circle close overlay, and real image verify asset are all wired
+  - implementation synced in `agentic-browser-ui` PR `#1`
+- current remaining step:
+  - browser-side final visual confirmation, then closeout
 - interpret current checkpoint as:
   - implementation-complete
-  - verification-partial
+  - verification-partial until browser confirmation is recorded
+
+## Dialog Learnings Worth Reusing
+
+- Do not count a variant axis as covered just because it is named in notes.
+  The axis must map to a real prop, structural branch, or verify case.
+- Static verify cards must render the real implementation branch, not
+  handwritten stand-ins.
+- Media/image variants should verify with the real exported asset, not a
+  placeholder, otherwise fit/crop/overlay bugs stay hidden.
+- Image/media variants can need a different spacing shell from text variants;
+  do not assume one shared wrapper survives visual verification.
+- Overlay controls (such as image close buttons) are easy to miss if the
+  branch is verified only structurally.
+
+## Shell Follow-up Candidates
+
+- Add an explicit distinction between `coverage-complete` and
+  `visual-verification-complete`.
+- Keep treating interactive-only axes as deferred unless the verification
+  surface can drive them explicitly.
+- During closeout, do not call a case verified until the real target node has
+  been visually checked, even if axis coverage is complete.
 
 ## Open Questions
 
-- Dialog visual verify still needs one more pass before closeout.
+- Record the final Dialog browser confirmation, then decide whether the shell
+  needs one more focused visual-verification patch.
 
 ## Current Local Changes To Remember
 
-- `figma-to-code-skills`: Phase 4 shared-state sync in progress on current branch
-- `agentic-browser-ui`: Dialog implementation is local and uncommitted on `main`
+- `figma-to-code-skills`: Phase 4 shared-state sync and Dialog learnings are on PR `#20`
+- `agentic-browser-ui`: Dialog implementation is on PR `#1`
 
 ## Next Recommended Action
 
-Finish Dialog visual verify / fix, then close the case before starting the next component or making another shell-quality pass.
+Finish Dialog browser-side visual confirmation, then close the case before starting the next component or making another shell-quality pass.

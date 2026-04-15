@@ -11,7 +11,7 @@ Update this file when phase, repos, or active work changes.
 ## Current Phase
 
 Phase 3 closed (2026-04-13) — Tab, InputBox, Toolbar all verified and committed.
-Phase 4 in progress (2026-04-15) — `figma-execution-shell` merged; Dialog case is in visual verify / fix.
+Phase 4 in progress (2026-04-15) — `figma-execution-shell` merged; Dialog case is implemented, synced to code PR, and waiting on final visual closeout.
 
 ## Active Repos
 
@@ -72,20 +72,20 @@ Phase 4 validation case for the merged `figma-execution-shell`.
 
 Current implementation status:
 - Dialog structure and variant axes are implemented in `agentic-browser-ui`
-- close hover forcing and image-content branch bugs were fixed
-- work has moved into visual fidelity verification against Figma
+- close hover forcing, image-content branch, image spacing shell, image circle close, and real image verify asset were all fixed
+- implementation is now synced in `agentic-browser-ui` PR `#1`
 
-Current open gaps:
-- horizontal image dialog still uses the text-dialog spacing shell; image variant spacing is too loose vs Figma
-- button-type verify cards in `App.tsx` are still handwritten examples, not the real `DialogButton` implementation branches
+Current closeout state:
+- code-level blockers identified by Codex are currently resolved
+- final browser-side visual confirmation is still the last closeout step
 
 Current status should be treated as:
 - implementation-complete
-- verification-partial
+- verification-partial until final visual confirmation is recorded
 
 ## Next Recommended Action
 
-Finish Dialog visual verify / fix, then close the case and only after that decide whether shell / verify-quality needs one more focused patch.
+Finish the final Dialog browser-side visual confirmation, close the case, then decide whether shell / verify-quality needs one more focused patch.
 
 ## Source-of-Truth Notes
 
