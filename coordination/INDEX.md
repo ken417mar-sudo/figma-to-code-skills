@@ -11,7 +11,7 @@ Update this file when phase, repos, or active work changes.
 ## Current Phase
 
 Phase 3 closed (2026-04-13) — Tab, InputBox, Toolbar all verified and committed.
-Phase 4 TBD — next component to be decided by user.
+Phase 4 in progress (2026-04-15) — `figma-execution-shell` merged; Dialog case is implemented, synced to code PR, and waiting on final visual closeout.
 
 ## Active Repos
 
@@ -44,6 +44,8 @@ Key node IDs:
 | 页签 (8 variants) | `1714:977`, `1714:983`, `1714:990`, `1714:1001`, `1720:89968`, `1720:89980`, `1720:89992`, `1720:90000` |
 | 关闭 Hover=off | `1714:1013` |
 | 关闭 Hover=on | `1714:1017` |
+| Dialog section | `1922:32133` |
+| Dialog core block | `1922:31967` |
 
 ## Current State
 
@@ -64,9 +66,26 @@ Provisional boards confirmed:
 - Bookmark bookmarked + URLBar focused (`1873:10395`): icons correct ✓
 Deferred non-blocker: `border border-[0.5px]` redundancy in `urlFocused`.
 
+### Dialog — in progress
+Phase 4 validation case for the merged `figma-execution-shell`.
+`figma-execution-shell` skeleton merged via PR `#18`; shell v2 gate tightening merged via PR `#19`.
+
+Current implementation status:
+- Dialog structure and variant axes are implemented in `agentic-browser-ui`
+- close hover forcing, image-content branch, image spacing shell, image circle close, and real image verify asset were all fixed
+- implementation is now synced in `agentic-browser-ui` PR `#1`
+
+Current closeout state:
+- code-level blockers identified by Codex are currently resolved
+- final browser-side visual confirmation is still the last closeout step
+
+Current status should be treated as:
+- implementation-complete
+- verification-partial until final visual confirmation is recorded
+
 ## Next Recommended Action
 
-User to decide the next component case, or start Phase 4 planning.
+Finish the final Dialog browser-side visual confirmation, close the case, then decide whether shell / verify-quality needs one more focused patch.
 
 ## Source-of-Truth Notes
 

@@ -33,6 +33,8 @@ Compact project memory for starting a new thread quickly.
 - send icon: `1708:30363`
 - provisional standalone board: `1787:10395`
 - provisional tab interaction block: `1840:11328`
+- Dialog section: `1922:32133`
+- Dialog core block: `1922:31967`
 
 ## Core Workflow
 
@@ -77,6 +79,9 @@ change.
 exported SVG orientation before copying it. The asset may already encode
 the correct direction — copying the transform blindly causes double-rotation.
 - Stateful borders/strokes must not change geometry between states.
+- `figma-execution-shell` is now in main; use it as the protocol wrapper for
+real component cases, then tighten it only after a real run exposes a stable
+gap.
 
 ## Tab Status
 
@@ -102,15 +107,55 @@ focus-state shadow token mismatch accepted as-is
   - Bookmark bookmarked + URLBar focused (`1873:10395`): icons correct ✓
 - deferred non-blocker: `border border-[0.5px]` redundancy in `urlFocused`
 
+## Dialog Status
+
+- **in progress** — Phase 4 validation case for the execution shell
+- shell milestones:
+  - PR `#18` merged — initial `figma-execution-shell`
+  - PR `#19` merged — shell v2 gate tightening
+- current code state in `agentic-browser-ui`:
+  - Dialog structure and static variant axes implemented
+  - `closeVariant='hover'` now forces the hover icon
+  - image content branch, image spacing shell, image circle close overlay, and real image verify asset are all wired
+  - implementation synced in `agentic-browser-ui` PR `#1`
+- current remaining step:
+  - browser-side final visual confirmation, then closeout
+- interpret current checkpoint as:
+  - implementation-complete
+  - verification-partial until browser confirmation is recorded
+
+## Dialog Learnings Worth Reusing
+
+- Do not count a variant axis as covered just because it is named in notes.
+  The axis must map to a real prop, structural branch, or verify case.
+- Static verify cards must render the real implementation branch, not
+  handwritten stand-ins.
+- Media/image variants should verify with the real exported asset, not a
+  placeholder, otherwise fit/crop/overlay bugs stay hidden.
+- Image/media variants can need a different spacing shell from text variants;
+  do not assume one shared wrapper survives visual verification.
+- Overlay controls (such as image close buttons) are easy to miss if the
+  branch is verified only structurally.
+
+## Shell Follow-up Candidates
+
+- Add an explicit distinction between `coverage-complete` and
+  `visual-verification-complete`.
+- Keep treating interactive-only axes as deferred unless the verification
+  surface can drive them explicitly.
+- During closeout, do not call a case verified until the real target node has
+  been visually checked, even if axis coverage is complete.
+
 ## Open Questions
 
-None at the moment.
+- Record the final Dialog browser confirmation, then decide whether the shell
+  needs one more focused visual-verification patch.
 
 ## Current Local Changes To Remember
 
-- `figma-to-code-skills`: main closeout sync in progress on current branch
-- `agentic-browser-ui`: clean on `main`, latest `dbd1136`
+- `figma-to-code-skills`: Phase 4 shared-state sync and Dialog learnings are on PR `#20`
+- `agentic-browser-ui`: Dialog implementation is on PR `#1`
 
 ## Next Recommended Action
 
-Phase 3 formally closed (2026-04-13). Decide the next component case to start Phase 4.
+Finish Dialog browser-side visual confirmation, then close the case before starting the next component or making another shell-quality pass.
