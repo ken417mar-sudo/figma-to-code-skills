@@ -33,6 +33,8 @@ Compact project memory for starting a new thread quickly.
 - send icon: `1708:30363`
 - provisional standalone board: `1787:10395`
 - provisional tab interaction block: `1840:11328`
+- Dialog section: `1922:32133`
+- Dialog core block: `1922:31967`
 
 ## Core Workflow
 
@@ -77,6 +79,9 @@ change.
 exported SVG orientation before copying it. The asset may already encode
 the correct direction — copying the transform blindly causes double-rotation.
 - Stateful borders/strokes must not change geometry between states.
+- `figma-execution-shell` is now in main; use it as the protocol wrapper for
+real component cases, then tighten it only after a real run exposes a stable
+gap.
 
 ## Tab Status
 
@@ -102,15 +107,33 @@ focus-state shadow token mismatch accepted as-is
   - Bookmark bookmarked + URLBar focused (`1873:10395`): icons correct ✓
 - deferred non-blocker: `border border-[0.5px]` redundancy in `urlFocused`
 
+## Dialog Status
+
+- **in progress** — Phase 4 validation case for the execution shell
+- shell milestones:
+  - PR `#18` merged — initial `figma-execution-shell`
+  - PR `#19` merged — shell v2 gate tightening
+- current code state in `agentic-browser-ui`:
+  - Dialog structure and static variant axes implemented
+  - `closeVariant='hover'` now forces the hover icon
+  - image content branch now renders even with empty `imageSrc` (gray placeholder)
+  - visual fidelity pass has started
+- current open issues:
+  - horizontal image dialog still uses the text-dialog spacing shell; spacing is too loose vs Figma
+  - button-type verify cards in `App.tsx` are still handwritten examples, not real `DialogButton` branches
+- interpret current checkpoint as:
+  - implementation-complete
+  - verification-partial
+
 ## Open Questions
 
-None at the moment.
+- Dialog visual verify still needs one more pass before closeout.
 
 ## Current Local Changes To Remember
 
-- `figma-to-code-skills`: main closeout sync in progress on current branch
-- `agentic-browser-ui`: clean on `main`, latest `dbd1136`
+- `figma-to-code-skills`: Phase 4 shared-state sync in progress on current branch
+- `agentic-browser-ui`: Dialog implementation is local and uncommitted on `main`
 
 ## Next Recommended Action
 
-Phase 3 formally closed (2026-04-13). Decide the next component case to start Phase 4.
+Finish Dialog visual verify / fix, then close the case before starting the next component or making another shell-quality pass.
