@@ -11,7 +11,7 @@ Update this file when phase, repos, or active work changes.
 ## Current Phase
 
 Phase 3 closed (2026-04-13) — Tab, InputBox, Toolbar all verified and committed.
-Phase 4 in progress (2026-04-15) — `figma-execution-shell` merged; Dialog case is implemented, synced to code PR, and waiting on final visual closeout.
+Phase 4 in progress (2026-04-15) — `figma-execution-shell` merged; Dialog closed as first shell validation case. Next component TBD.
 
 ## Active Repos
 
@@ -66,26 +66,17 @@ Provisional boards confirmed:
 - Bookmark bookmarked + URLBar focused (`1873:10395`): icons correct ✓
 Deferred non-blocker: `border border-[0.5px]` redundancy in `urlFocused`.
 
-### Dialog — in progress
-Phase 4 validation case for the merged `figma-execution-shell`.
-`figma-execution-shell` skeleton merged via PR `#18`; shell v2 gate tightening merged via PR `#19`.
-
-Current implementation status:
-- Dialog structure and variant axes are implemented in `agentic-browser-ui`
-- close hover forcing, image-content branch, image spacing shell, image circle close, and real image verify asset were all fixed
-- implementation is now synced in `agentic-browser-ui` PR `#1`
-
-Current closeout state:
-- code-level blockers identified by Codex are currently resolved
-- final browser-side visual confirmation is still the last closeout step
-
-Current status should be treated as:
-- implementation-complete
-- verification-partial until final visual confirmation is recorded
+### Dialog — closed
+Phase 4 validation case for `figma-execution-shell`. Closed 2026-04-15.
+All axes implemented: CloseIcon × 4 variants, DialogButton × 3 types + hover (all 6 type×state combos), ButtonGroup × 3 layouts, DialogContent × 3 variants.
+Fixes applied: close hover prop-driven, image-content branch, image spacing, image circle close, local asset (dialog-image-placeholder@1x.png), text button hover (#999→#333).
+Commits: `4790990` in agentic-browser-ui (branch: codex/dialog-phase4-closeout).
+Deferred non-blocker: HYQiHei font loading — shared typography pass, not Dialog-specific.
+Provisional-state promotion: no provisional states were used; all implementation sourced from formal Figma component board.
 
 ## Next Recommended Action
 
-Finish the final Dialog browser-side visual confirmation, close the case, then decide whether shell / verify-quality needs one more focused patch.
+User to decide the next Phase 4 component case.
 
 ## Source-of-Truth Notes
 
