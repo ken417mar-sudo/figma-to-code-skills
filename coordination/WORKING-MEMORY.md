@@ -33,6 +33,8 @@ Compact project memory for starting a new thread quickly.
 - send icon: `1708:30363`
 - provisional standalone board: `1787:10395`
 - provisional tab interaction block: `1840:11328`
+- Dialog section: `1922:32133`
+- Dialog core layout: `1922:31967`
 
 ## Core Workflow
 
@@ -102,15 +104,28 @@ focus-state shadow token mismatch accepted as-is
   - Bookmark bookmarked + URLBar focused (`1873:10395`): icons correct ✓
 - deferred non-blocker: `border border-[0.5px]` redundancy in `urlFocused`
 
+## Dialog Status
+
+- **closed** — first real `figma-execution-shell` validation case
+- implementation landed in `agentic-browser-ui` PR #1
+- verification and shell rule learnings landed in `figma-to-code-skills` PR #21
+- fixed during the pass:
+  - close variants render through the real component path
+  - image/media branch uses repo-local asset and includes circular close overlay
+  - button-type verify uses real `DialogButton`
+  - `type × state` matrix called out explicitly instead of implied
+- deferred non-blocker:
+  - `HYQiHei:75W` / `HYQiHei:60S` are still not loaded in the runtime surface, so typography falls back; accepted for a later typography pass, not kept as a Dialog blocker
+
 ## Open Questions
 
-None at the moment.
+- When to do the shared typography/font-loading pass for cases that currently rely on `HYQiHei:*` family tokens but render with fallback fonts.
 
 ## Current Local Changes To Remember
 
-- `figma-to-code-skills`: main closeout sync in progress on current branch
-- `agentic-browser-ui`: clean on `main`, latest `dbd1136`
+- `figma-to-code-skills`: `skill/dialog-closeout-sync` updates shared memory to reflect Dialog closed
+- `agentic-browser-ui`: Dialog implementation already merged in PR #1
 
 ## Next Recommended Action
 
-Phase 3 formally closed (2026-04-13). Decide the next component case to start Phase 4.
+Dialog is closed enough to move on. Start the next Phase 4 component case, and keep typography/font-loading as a separate shared follow-up rather than reopening Dialog.

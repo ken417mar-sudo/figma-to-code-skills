@@ -11,7 +11,7 @@ Update this file when phase, repos, or active work changes.
 ## Current Phase
 
 Phase 3 closed (2026-04-13) — Tab, InputBox, Toolbar all verified and committed.
-Phase 4 TBD — next component to be decided by user.
+Phase 4 in progress (2026-04-15) — `figma-execution-shell` validated on Dialog; Dialog case closed with one deferred typography non-blocker.
 
 ## Active Repos
 
@@ -41,6 +41,8 @@ Key node IDs:
 | Component | Node ID |
 |---|---|
 | InputBox | `1708:30342` |
+| Dialog section | `1922:32133` |
+| Dialog core layout | `1922:31967` |
 | 页签 (8 variants) | `1714:977`, `1714:983`, `1714:990`, `1714:1001`, `1720:89968`, `1720:89980`, `1720:89992`, `1720:90000` |
 | 关闭 Hover=off | `1714:1013` |
 | 关闭 Hover=on | `1714:1017` |
@@ -64,9 +66,22 @@ Provisional boards confirmed:
 - Bookmark bookmarked + URLBar focused (`1873:10395`): icons correct ✓
 Deferred non-blocker: `border border-[0.5px]` redundancy in `urlFocused`.
 
+### Dialog — closed
+Dialog validated as the first real `figma-execution-shell` case.
+Implementation synced in `agentic-browser-ui` PR #1 and rule learnings promoted in `figma-to-code-skills` PR #21.
+
+What was fixed during the case:
+- close icon variants now render through the real component path
+- image branch now uses the real media shell, circular close overlay, and repo-local image asset
+- button type verification now uses the real `DialogButton` implementation
+- `type × state` matrix is explicitly called out instead of being implied
+
+Deferred non-blocker:
+- runtime typography still falls back because `HYQiHei:75W` / `HYQiHei:60S` are not yet loaded; accepted for now as a later typography pass, not a Dialog closeout blocker
+
 ## Next Recommended Action
 
-User to decide the next component case, or start Phase 4 planning.
+Pick the next Phase 4 component case. Keep Dialog typography font-loading as a later shared follow-up, not a blocker for the next case.
 
 ## Source-of-Truth Notes
 
