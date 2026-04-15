@@ -82,11 +82,15 @@ of duplicating them.
 3. Run readiness gates for the case:
    - tech-stack profile is complete enough to shape implementation
    - component target and variant axes are identified
+   - every claimed variant axis is mapped to an explicit implementation
+     branch, prop, structural fork, or verification case — not just
+     mentioned in notes
    - required states are either already present or explicitly approved
    - asset needs are known, and export is scheduled before code if real
      design-owned assets are required
-   - verification surface is known, or the team explicitly accepts that
-     the case cannot be closed yet
+   - verification surface is not only known, but scoped to cover every
+     axis the team intends to claim as verified; if coverage is partial,
+     mark the case implementation-ready only, not verification-ready
 4. Route the case to the minimum required downstream skills:
    - use `figma` for read-only design inspection
    - use `figma-ai-implementation-cleanup` if the design file is too
@@ -101,10 +105,15 @@ of duplicating them.
      implementation-ready, verification-ready, or closeout-ready
    - do not skip a blocked checkpoint just because another downstream
      skill can technically run
+   - do not upgrade a case to verification-ready until the visible
+     verification surface can explicitly exercise all claimed axes, or
+     the uncovered axes are clearly marked as deferred
 6. Close out the case in a fixed shape:
    - summarize what was done and against which design source
    - record blocking or significant mismatches still open
    - separate deferred non-blockers from true completion blockers
+   - state whether the case is implementation-complete, verification-
+     complete, or still partial
    - update `#13` with actions and conclusions
    - update `coordination/WORKING-MEMORY.md` only if the result changes
      stable project memory
@@ -119,6 +128,9 @@ Ask before proceeding when:
   approved.
 - The formal component board appears incomplete and the missing detail
   changes implementation shape.
+- A claimed variant axis has no explicit implementation branch or no
+  explicit verification case yet, and the team still expects the case to
+  count as fully verified.
 - The verification surface is missing, but the team expects the case to
   be closed in the same run.
 - Multiple downstream skill paths are plausible and would produce
@@ -136,6 +148,10 @@ Do not ask when:
   rule inline.
 - Do not start implementation just because the design target looks
   understandable. The case must still pass readiness gates.
+- Do not confuse "variant axes identified" with "variant axes actually
+  exercisable." An axis that is only described in prose but cannot be
+  driven through component props, structural branches, or verify cases is
+  not ready to claim as covered.
 - Do not treat "we can verify later" as equivalent to "the case is
   ready to close." Missing verification may be acceptable for progress,
   but it is not a closed state.
@@ -149,6 +165,9 @@ Do not ask when:
 - The shell clearly identified the source of truth before implementation.
 - The case passed or failed readiness gates explicitly; nothing important
   was left implicit.
+- Every claimed variant axis is either:
+  - explicitly mapped to implementation and verification coverage, or
+  - explicitly marked as deferred / not yet verified.
 - Downstream skills were invoked in a sensible order rather than by habit
   or guesswork.
 - Closeout separated blockers, deferred non-blockers, and next actions.
