@@ -84,6 +84,10 @@ of duplicating them.
 3. Run readiness gates for the case:
    - tech-stack profile is complete enough to shape implementation
    - component target and variant axes are identified
+   - if the component uses combined variant axes (for example `type ×
+     state`), the intended combinations are explicit; do not treat a
+     whole category such as "interactive states" as covered or deferred
+     without naming which combinations ship and which are postponed
    - every claimed variant axis is mapped to an explicit implementation
      branch, prop, structural fork, or verification case — not just
      mentioned in notes
@@ -119,6 +123,9 @@ of duplicating them.
      has been checked against the target Figma node for the main fidelity
      dimensions (structure, spacing, typography, color, asset fit, and
      overlay controls when present)
+   - do not count a visual check as stable if the surface still depends
+     on temporary signed asset URLs or unregistered font families that
+     prevent the browser/app from rendering the intended hierarchy
 6. Close out the case in a fixed shape:
    - summarize what was done and against which design source
    - record blocking or significant mismatches still open
@@ -147,6 +154,9 @@ Ask before proceeding when:
 - The team wants to call the case verification-complete, but the current
   evidence only proves axis coverage rather than a real visual check
   against the target node.
+- A combined matrix such as `type × state` is being treated as "covered"
+  or "deferred" in aggregate, but the concrete combinations have not been
+  named.
 - Multiple downstream skill paths are plausible and would produce
   materially different output.
 
@@ -173,6 +183,15 @@ Do not ask when:
   `visual-verification-complete`. Rendering every named axis is
   necessary, but it is still not enough if the real implementation has
   not been visually checked against the target node.
+- Do not assume design tokens in code guarantee the same hierarchy in the
+  rendered surface. If a font family is not actually loaded or
+  registered, the case is not visually verified yet.
+- Do not let temporary signed asset URLs sneak into the verification
+  surface. A case that depends on expiring Figma CDN links is not stably
+  verified.
+- Do not treat a 2D matrix such as `type × state` as covered just because
+  one axis is rendered and the other is mentioned in notes. Name the
+  implemented combinations and the deferred combinations explicitly.
 - Do not update `coordination/WORKING-MEMORY.md` for every transient
   action. Only write back stable state that a new session would need.
 - Do not promote every case-specific compromise into a shared gotcha.

@@ -69,13 +69,22 @@ failure patterns back into the skill set as gotchas.
      only for verification.
    - If the target variant depends on exported assets (especially images
      or media), verify with the real asset rather than a placeholder.
+   - Do not rely on temporary signed Figma CDN URLs in the implementation
+     or verification surface. Export the asset into the repo first so the
+     check is stable and repeatable.
 4. Compare the two surfaces across these dimensions in order:
    - **Structure**: component hierarchy, nesting, element count.
    - **Spacing**: padding, margin, gap values against token or pixel spec.
-   - **Typography**: font family, size, weight, line height, color.
+   - **Typography**: font family, size, weight, line height, color, and
+     whether the intended font is actually loaded / registered in the
+     runtime surface rather than silently falling back.
    - **Color**: fills, borders, shadows against token values.
    - **States**: hover, focus, disabled, error, empty — are all required
      states present?
+   - **Combined variant matrices when present**: if the component set is
+     organized as combinations such as `type × state`, verify the
+     intended combinations explicitly instead of checking only one axis
+     and assuming the cross-product is covered.
    - **Component behavior**: interactive elements, scroll, overflow.
    - **Media / overlays when present**: image fit, crop, mask, overlay
      controls, and any variant-specific shell differences from text
@@ -119,6 +128,9 @@ Ask before proceeding when:
 - The case is about to be marked as visually verified, but the current
   surface still uses placeholders, hand-built stand-ins, or otherwise
   avoids the real implementation branch.
+- A combined matrix (for example `type × state`) is being treated as
+  "implemented" or "deferred" in aggregate, but the exact combinations
+  have not been named.
 
 Do not ask when:
 - The mismatch is clearly unintentional and the correct value is
@@ -156,6 +168,10 @@ Do not ask when:
 - Media or image variants should be checked with the real exported asset,
   not a placeholder. Otherwise fit, crop, masking, or overlay-control
   bugs will stay hidden until later.
+- A temporary signed Figma asset URL is not a stable verification asset.
+  If the surface depends on an expiring CDN link, classify the case as
+  partial until the asset is exported into the repo or another stable
+  source.
 - Do not assume a media/image variant can reuse the same spacing shell as
   a text variant. Re-check outer padding, internal wrappers, and overlay
   controls independently for the media branch.
@@ -172,6 +188,14 @@ Do not ask when:
   in Figma. If the implementation sized the icon from raw asset canvas
   dimensions instead of the component's icon frame and glyph bounds,
   classify that as a significant mismatch.
+- Do not assume a font token in code means the typography hierarchy is
+  correct in the rendered surface. If the intended font family is not
+  actually loaded, the fallback rendering can collapse title/body
+  contrast and should be classified as a significant mismatch.
+- If the design defines a matrix such as `type × state`, do not mark the
+  matrix verified unless each intended combination is either explicitly
+  exercised or explicitly deferred. A vague note like "hover deferred" is
+  not enough if some hover combinations are supposed to ship now.
 
 ## Verification
 
@@ -179,6 +203,8 @@ Do not ask when:
   variant.
 - The verification surface uses the real implementation branch and the
   real exported assets for the target variant where applicable.
+- Typography verification confirmed real rendered hierarchy, not just
+  token names present in source.
 - Mismatches are prioritized by severity, not dumped as an undifferentiated
   list.
 - The final result clearly distinguishes `coverage-complete` from
