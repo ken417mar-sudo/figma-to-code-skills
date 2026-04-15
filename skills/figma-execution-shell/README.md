@@ -61,6 +61,8 @@ of duplicating them.
   - blockers cleared
   - deferred non-blockers
   - next step
+  - whether the case is only coverage-complete or truly
+    visual-verification-complete
   - whether any recurring failure should be promoted into skill gotchas
 
 ## Workflow
@@ -91,6 +93,10 @@ of duplicating them.
    - verification surface is not only known, but scoped to cover every
      axis the team intends to claim as verified; if coverage is partial,
      mark the case implementation-ready only, not verification-ready
+   - if the case is expected to close in the same run, there is a real
+     plan to visually compare the rendered implementation against the
+     target node; axis coverage alone is not enough to claim
+     verification-complete
 4. Route the case to the minimum required downstream skills:
    - use `figma` for read-only design inspection
    - use `figma-ai-implementation-cleanup` if the design file is too
@@ -108,12 +114,17 @@ of duplicating them.
    - do not upgrade a case to verification-ready until the visible
      verification surface can explicitly exercise all claimed axes, or
      the uncovered axes are clearly marked as deferred
+   - do not upgrade a case from coverage-complete to
+     visual-verification-complete until the real rendered implementation
+     has been checked against the target Figma node for the main fidelity
+     dimensions (structure, spacing, typography, color, asset fit, and
+     overlay controls when present)
 6. Close out the case in a fixed shape:
    - summarize what was done and against which design source
    - record blocking or significant mismatches still open
    - separate deferred non-blockers from true completion blockers
-   - state whether the case is implementation-complete, verification-
-     complete, or still partial
+   - state whether the case is implementation-complete, coverage-
+     complete, visual-verification-complete, or still partial
    - update `#13` with actions and conclusions
    - update `coordination/WORKING-MEMORY.md` only if the result changes
      stable project memory
@@ -133,6 +144,9 @@ Ask before proceeding when:
   count as fully verified.
 - The verification surface is missing, but the team expects the case to
   be closed in the same run.
+- The team wants to call the case verification-complete, but the current
+  evidence only proves axis coverage rather than a real visual check
+  against the target node.
 - Multiple downstream skill paths are plausible and would produce
   materially different output.
 
@@ -155,6 +169,10 @@ Do not ask when:
 - Do not treat "we can verify later" as equivalent to "the case is
   ready to close." Missing verification may be acceptable for progress,
   but it is not a closed state.
+- Do not confuse `coverage-complete` with
+  `visual-verification-complete`. Rendering every named axis is
+  necessary, but it is still not enough if the real implementation has
+  not been visually checked against the target node.
 - Do not update `coordination/WORKING-MEMORY.md` for every transient
   action. Only write back stable state that a new session would need.
 - Do not promote every case-specific compromise into a shared gotcha.
@@ -168,6 +186,9 @@ Do not ask when:
 - Every claimed variant axis is either:
   - explicitly mapped to implementation and verification coverage, or
   - explicitly marked as deferred / not yet verified.
+- If the case is being called verified rather than merely covered, the
+  real rendered implementation has been visually checked against the
+  target node for the main fidelity dimensions.
 - Downstream skills were invoked in a sensible order rather than by habit
   or guesswork.
 - Closeout separated blockers, deferred non-blockers, and next actions.
