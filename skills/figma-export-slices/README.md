@@ -68,3 +68,11 @@ Examples:
   or `Frame 1` into the repository as final asset names. Inspect the glyph in
   its component context, rename the export to a semantic product-facing name,
   and keep the node-id mapping separately if traceability is still needed.
+- If an exported SVG contains a `<mask>` element with `fill="white"` paired
+  with a path that uses `fill="currentColor" mask="url(...)"`, the icon was
+  built as a `BOOLEAN_OPERATION` with an inside stroke in Figma. Replacing
+  `#333333` with `currentColor` on the mask path will not work — the white
+  mask fill renders as a solid block in most contexts. Fix by rewriting the
+  path as `fill="none" stroke="currentColor" stroke-width="1"` (or the
+  correct stroke width from Figma). Verify the result visually before
+  committing.

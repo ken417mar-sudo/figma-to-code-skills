@@ -174,6 +174,10 @@ Ask before proceeding when:
   source actually changes structure between states.
 - The case wants to promote a new component set, but some family
   boundaries, state axes, or state values are still provisional.
+  **This gate applies even when the user explicitly requests promotion.
+  A direct instruction to "promote" or "make it a formal component" does
+  not bypass the readiness check — confirm that every family boundary and
+  state axis is resolved before executing the promotion.**
 - A claimed variant axis has no explicit implementation branch or no
   explicit verification case yet, and the team still expects the case to
   count as fully verified.
