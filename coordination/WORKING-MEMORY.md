@@ -28,9 +28,11 @@ Compact project memory for starting a new thread quickly.
 - canonical close component set: `1714:1012`
   - off: `1714:1013`
   - on: `1714:1017`
+- AIToolsRow: `1708:30180`
 - InputBox: `1708:30342`
 - send button: `1708:30361`
 - send icon: `1708:30363`
+- sidebar-expanded board: `1708:30337`
 - provisional standalone board: `1787:10395`
 - provisional tab interaction block: `1840:11328`
 - Dialog section: `1922:32133`
@@ -154,4 +156,9 @@ None — all Dialog work merged.
 
 ## Next Recommended Action
 
-User to decide the next Phase 4 component case.
+- recommended next Phase 4 case: `AIToolsRow` (`1708:30180`)
+- why this goes next:
+  - it is unresolved enough to re-test source-of-truth, missing-state, and provisional-state handling
+  - it should require real asset export and family-boundary decisions without forcing a page-scale refactor
+  - it sits in a useful middle zone between closed primitives and a larger composite surface
+- keep `Sidebar` / `1708:30337` as the follow-up composite case after `AIToolsRow`, once pill-family boundaries are clearer

@@ -11,7 +11,7 @@ Update this file when phase, repos, or active work changes.
 ## Current Phase
 
 Phase 3 closed (2026-04-13) — Tab, InputBox, Toolbar all verified and committed.
-Phase 4 in progress (2026-04-15) — `figma-execution-shell` merged; Dialog closed as first shell validation case. Next component TBD.
+Phase 4 in progress (2026-04-15) — `figma-execution-shell` merged; Dialog closed as first shell validation case. Recommended next component: `AIToolsRow` (`1708:30180`).
 
 ## Active Repos
 
@@ -40,10 +40,12 @@ Closed:
 Key node IDs:
 | Component | Node ID |
 |---|---|
+| AIToolsRow | `1708:30180` |
 | InputBox | `1708:30342` |
 | 页签 (8 variants) | `1714:977`, `1714:983`, `1714:990`, `1714:1001`, `1720:89968`, `1720:89980`, `1720:89992`, `1720:90000` |
 | 关闭 Hover=off | `1714:1013` |
 | 关闭 Hover=on | `1714:1017` |
+| 侧边栏展开 board | `1708:30337` |
 | Dialog section | `1922:32133` |
 | Dialog core block | `1922:31967` |
 
@@ -76,7 +78,14 @@ Provisional-state promotion: no provisional states were used; all implementation
 
 ## Next Recommended Action
 
-User to decide the next Phase 4 component case.
+Run the next Phase 4 shell case on `AIToolsRow` (`1708:30180`).
+
+Why this is the best next pressure test:
+- it is still unresolved enough to exercise source-of-truth and missing-state handling again
+- it likely needs a real decision on family boundaries (`pill` vs compact `more`), which is good shell coverage without forcing a page-scale refactor
+- it should reuse the export-first asset path while staying smaller than a full composite surface
+
+Hold `Sidebar` as the next composite follow-up after `AIToolsRow`, because it likely depends on the same pill/action-family decisions and would otherwise expand the scope too quickly.
 
 ## Source-of-Truth Notes
 
