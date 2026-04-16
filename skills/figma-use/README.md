@@ -62,11 +62,16 @@ modify the Figma file, not just read from it.
    overlap any existing artboard, component board, or validation board.
    Leave a visible safety gap instead of butting boards directly
    together.
-4. Execute the write via `use_figma` with a JavaScript snippet targeting
+4. If the write adds or edits component state cards, default to applying
+   the state treatment on the same root control container used by the
+   default state. Do not append a new state-only rectangle, wrapper, or
+   overlay shape unless the formal source of truth explicitly proves that
+   the state is structurally different.
+5. Execute the write via `use_figma` with a JavaScript snippet targeting
    the resolved node.
-5. Verify the result: call `get_screenshot` or `get_metadata` on the
+6. Verify the result: call `get_screenshot` or `get_metadata` on the
    affected node to confirm the change landed correctly.
-6. Hand the updated node reference or file state to the next workflow
+7. Hand the updated node reference or file state to the next workflow
    step.
 
 ## Clarification policy
@@ -85,6 +90,9 @@ Ask before proceeding when:
 - The standalone validation board placement is ambiguous, crowded, or
   likely to overlap an existing artboard or board — ask before placing
   it.
+- The proposed state treatment only works by adding a new child shape,
+  wrapper, or overlay, and it is unclear whether the formal component
+  really changes structure across states.
 
 Do not ask when:
 - A single unambiguous node id is provided and the write intent is clear.
@@ -116,6 +124,11 @@ Do not ask when:
   A standalone provisional board still needs its own clear canvas area
   and should not overlap, touch, or visually merge into neighboring
   artboards or boards.
+- Do not build state variants by appending ad hoc rectangle layers to a
+  control unless the formal component source explicitly proves that the
+  state introduces a structural layer. Default, hover, and active should
+  normally share the same root container and differ only in container-
+  level styling.
 - If a provisional supplement grows beyond its parent board, move it into
   a standalone validation board on the same page instead of stretching
   the formal board.
@@ -131,6 +144,8 @@ Do not ask when:
   area rather than inside a formal product page artboard by accident.
 - Any standalone provisional board sits in clear empty canvas space with
   a visible buffer and does not overlap any existing artboard or board.
+- State cards preserve the same root control structure as the baseline
+  unless the formal source explicitly proves a structural state change.
 - No unintended broad canvas changes were introduced.
 - The edit moved the workflow forward — reduced ambiguity, created the
   required structure, or normalized the target correctly.

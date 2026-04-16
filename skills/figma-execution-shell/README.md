@@ -95,6 +95,12 @@ of duplicating them.
    - if the case uses a standalone validation board, its placement is
      explicitly non-overlapping and leaves clear canvas separation from
      every existing artboard or board
+   - if the case adds provisional state cards, each state is attached to
+     the same root control container as the baseline unless the formal
+     source explicitly proves a structural state change
+   - if the case is proposing a new component or component set, every
+     family boundary and state axis needed for that promotion is already
+     confirmed; otherwise the work stays provisional
    - if the case depends on approved provisional states because the
      formal component area was incomplete, there is an explicit plan for
      whether those states stay temporary or are promoted back into the
@@ -163,6 +169,11 @@ Ask before proceeding when:
 - The proposed standalone validation board still overlaps or crowds
   neighboring artboards or boards, even if it is technically outside the
   target artboard.
+- The proposed provisional state card only works by appending a new
+  shape, wrapper, or overlay layer and it is unclear whether the formal
+  source actually changes structure between states.
+- The case wants to promote a new component set, but some family
+  boundaries, state axes, or state values are still provisional.
 - A claimed variant axis has no explicit implementation branch or no
   explicit verification case yet, and the team still expects the case to
   count as fully verified.
@@ -209,6 +220,13 @@ Do not ask when:
   Standalone validation boards still fail the workflow if they overlap
   other artboards or boards or if they are dropped into crowded canvas
   with no clear separation.
+- Do not treat a state overlay layer as proof of a correct state card.
+  If hover/active only work by appending a new rectangle or wrapper to
+  the default control, the card is still suspect unless the formal
+  source explicitly shows that extra structure.
+- Do not promote a provisional family decision or proposal-only state
+  into a formal component set. Canonical promotion comes after state and
+  family confirmation, not before.
 - Do not update `coordination/WORKING-MEMORY.md` for every transient
   action. Only write back stable state that a new session would need.
 - Do not promote every case-specific compromise into a shared gotcha.
@@ -228,6 +246,11 @@ Do not ask when:
 - Any standalone validation board used by the case has clear separation
   from every neighboring artboard or board and is not merely shifted a
   few pixels into another crowded area.
+- Provisional state cards preserve root structure by default and do not
+  rely on ad hoc appended state layers unless a structural state change
+  is explicitly proven.
+- No new component or component set was treated as canonical while its
+  family boundary or state axis was still explicitly provisional.
 - If the case used approved provisional states as implementation input,
   closeout makes clear whether those states were promoted back into the
   formal component area or are still temporary for a named reason.

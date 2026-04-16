@@ -83,6 +83,13 @@ artboard or board.
 approved baseline component and preserve all unchanged parts, including
 icon assets, text, and structure. Only the state-specific delta should
 change.
+- State variants should default to the same root control container as the
+baseline. If hover/active only work by appending a new rectangle,
+wrapper, or overlay layer, treat that as suspect unless the formal
+component source explicitly proves a structural state change.
+- Do not promote a new component or component set into canonical formal
+status while its family boundary or one of its state axes is still
+provisional or proposal-only.
 - When `get_design_context` returns a CSS transform on an icon, verify the
 exported SVG orientation before copying it. The asset may already encode
 the correct direction — copying the transform blindly causes double-rotation.
