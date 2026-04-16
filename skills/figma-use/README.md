@@ -57,7 +57,11 @@ modify the Figma file, not just read from it.
    - never a formal product page artboard unless the user or team
      explicitly approved that placement
    Prefer the standalone validation board when there is any risk of
-   mixing workflow-only material into formal page content.
+   mixing workflow-only material into formal page content. Standalone
+   validation boards must sit in clear empty canvas space and must not
+   overlap any existing artboard, component board, or validation board.
+   Leave a visible safety gap instead of butting boards directly
+   together.
 4. Execute the write via `use_figma` with a JavaScript snippet targeting
    the resolved node.
 5. Verify the result: call `get_screenshot` or `get_metadata` on the
@@ -78,6 +82,9 @@ Ask before proceeding when:
 - The intended provisional supplement would land inside a formal product
   page artboard rather than a component board or standalone validation
   board — ask whether that exception is actually intended.
+- The standalone validation board placement is ambiguous, crowded, or
+  likely to overlap an existing artboard or board — ask before placing
+  it.
 
 Do not ask when:
 - A single unambiguous node id is provided and the write intent is clear.
@@ -105,6 +112,10 @@ Do not ask when:
   page artboard by default. Keep validation material in a clearly
   labeled supplement area or a standalone provisional board on the same
   page.
+- Do not treat "outside the artboard" as sufficient placement logic.
+  A standalone provisional board still needs its own clear canvas area
+  and should not overlap, touch, or visually merge into neighboring
+  artboards or boards.
 - If a provisional supplement grows beyond its parent board, move it into
   a standalone validation board on the same page instead of stretching
   the formal board.
@@ -118,6 +129,8 @@ Do not ask when:
   via screenshot or metadata check).
 - Any new provisional validation board landed in the declared parent
   area rather than inside a formal product page artboard by accident.
+- Any standalone provisional board sits in clear empty canvas space with
+  a visible buffer and does not overlap any existing artboard or board.
 - No unintended broad canvas changes were introduced.
 - The edit moved the workflow forward — reduced ambiguity, created the
   required structure, or normalized the target correctly.

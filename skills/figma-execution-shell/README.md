@@ -92,6 +92,9 @@ of duplicating them.
      explicit placement plan for where those cards will live; workflow-
      only supplements should default to a standalone or clearly bounded
      validation board, not a formal product page artboard
+   - if the case uses a standalone validation board, its placement is
+     explicitly non-overlapping and leaves clear canvas separation from
+     every existing artboard or board
    - if the case depends on approved provisional states because the
      formal component area was incomplete, there is an explicit plan for
      whether those states stay temporary or are promoted back into the
@@ -157,6 +160,9 @@ Ask before proceeding when:
 - The case needs provisional validation cards, but their landing zone is
   still unclear or they would fall inside a formal product page artboard
   without explicit approval.
+- The proposed standalone validation board still overlaps or crowds
+  neighboring artboards or boards, even if it is technically outside the
+  target artboard.
 - A claimed variant axis has no explicit implementation branch or no
   explicit verification case yet, and the team still expects the case to
   count as fully verified.
@@ -199,6 +205,10 @@ Do not ask when:
   state coverage. Until the cards themselves exist in the intended
   landing zone, the case is still in clarification or setup, not ready
   for implementation.
+- Do not confuse "not inside the artboard" with "placed correctly."
+  Standalone validation boards still fail the workflow if they overlap
+  other artboards or boards or if they are dropped into crowded canvas
+  with no clear separation.
 - Do not update `coordination/WORKING-MEMORY.md` for every transient
   action. Only write back stable state that a new session would need.
 - Do not promote every case-specific compromise into a shared gotcha.
@@ -215,6 +225,9 @@ Do not ask when:
 - Any provisional validation layer used by the case was created in the
   intended validation area rather than inside a formal product page
   artboard by default.
+- Any standalone validation board used by the case has clear separation
+  from every neighboring artboard or board and is not merely shifted a
+  few pixels into another crowded area.
 - If the case used approved provisional states as implementation input,
   closeout makes clear whether those states were promoted back into the
   formal component area or are still temporary for a named reason.

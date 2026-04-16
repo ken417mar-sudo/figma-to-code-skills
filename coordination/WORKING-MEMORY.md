@@ -76,6 +76,9 @@ the user or team before they become implementation input.
 - Workflow-only provisional boards should default to a standalone or
 clearly bounded validation area on the same page, not inside a formal
 product page artboard unless that exception is explicitly approved.
+- "Standalone" is not enough by itself: provisional boards must also sit
+in clear empty canvas space with visible separation from every existing
+artboard or board.
 - Provisional state cards for an existing component must start from the
 approved baseline component and preserve all unchanged parts, including
 icon assets, text, and structure. Only the state-specific delta should
