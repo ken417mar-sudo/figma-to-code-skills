@@ -109,20 +109,18 @@ focus-state shadow token mismatch accepted as-is
 
 ## Dialog Status
 
-- **in progress** — Phase 4 validation case for the execution shell
+- **closed** — Phase 4 validation case for the execution shell, verified 2026-04-16
 - shell milestones:
   - PR `#18` merged — initial `figma-execution-shell`
   - PR `#19` merged — shell v2 gate tightening
-- current code state in `agentic-browser-ui`:
-  - Dialog structure and static variant axes implemented
-  - `closeVariant='hover'` now forces the hover icon
-  - image content branch, image spacing shell, image circle close overlay, and real image verify asset are all wired
-  - implementation synced in `agentic-browser-ui` PR `#1`
-- current remaining step:
-  - browser-side final visual confirmation, then closeout
-- interpret current checkpoint as:
-  - implementation-complete
-  - verification-partial until browser confirmation is recorded
+  - PR `#21` merged — shell v3 final tightening
+- final code state in `agentic-browser-ui`:
+  - All axes implemented: CloseIcon × 4 variants, DialogButton × 3 types + hover (all 6 type×state combos), ButtonGroup × 3 layouts, DialogContent × 3 variants
+  - Fixes applied: close hover prop-driven, image-content branch, image spacing, image circle close, local asset (dialog-image-placeholder@1x.png), text button hover (#999→#333)
+  - Commits: `b5c9f24`, `b167b79`, `763239b` in agentic-browser-ui (branch: codex/dialog-phase4-closeout)
+  - Merged via PR `#1` in agentic-browser-ui
+- deferred non-blocker: HYQiHei font loading — shared typography pass, not Dialog-specific
+- visual verification complete, all verify cards confirmed
 
 ## Dialog Learnings Worth Reusing
 
@@ -148,14 +146,12 @@ focus-state shadow token mismatch accepted as-is
 
 ## Open Questions
 
-- Record the final Dialog browser confirmation, then decide whether the shell
-  needs one more focused visual-verification patch.
+None — Dialog case closed.
 
 ## Current Local Changes To Remember
 
-- `figma-to-code-skills`: Phase 4 shared-state sync and Dialog learnings are on PR `#20`
-- `agentic-browser-ui`: Dialog implementation is on PR `#1`
+None — all Dialog work merged.
 
 ## Next Recommended Action
 
-Finish Dialog browser-side visual confirmation, then close the case before starting the next component or making another shell-quality pass.
+User to decide the next Phase 4 component case.
