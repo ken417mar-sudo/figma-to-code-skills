@@ -95,7 +95,9 @@ review
   missing product states, get explicit user or team confirmation that the
    provisional cards match the intended behavior before treating them as
    implementation input. Unconfirmed provisional states are candidates, not
-   implementation-ready truth.
+   implementation-ready truth. By default, place workflow-only
+   provisional cards in a standalone or clearly bounded validation board
+   on the same page, not inside a formal product page artboard.
 11. Export implementation assets when the design depends on real icons,
   images, or slices. All icon resources should go through the export
    workflow, with `svg` as the default preferred format when feasible.
@@ -241,8 +243,8 @@ Read design context, screenshots, variables, and metadata.
 - `figma-use`
 Make structured edits in the Figma file when cleanup or normalization is
 needed, including creating standalone validation boards when
-supplemental state coverage would otherwise overflow or overlap formal
-artboards.
+supplemental state coverage would otherwise overflow, overlap, or
+contaminate formal artboards.
 - `figma-generate-library`
 Promote confirmed rules into explicit Figma foundations such as
 variables, styles, and later library components — but only after human
@@ -279,4 +281,3 @@ implementation
 - a clear boundary between "capture existing rules" and "invent missing
 UI from sketches"
 - a reusable gotcha format for mature skills
-

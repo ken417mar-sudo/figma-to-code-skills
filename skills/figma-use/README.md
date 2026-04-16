@@ -50,9 +50,14 @@ modify the Figma file, not just read from it.
 2. Determine the minimum safe write scope. Prefer scoped edits over
    broad canvas operations.
 3. If the write adds a validation-only supplement board, make it
-   explicitly provisional and check whether it should live inside an
-   existing board or become a standalone validation board on the same
-   page.
+   explicitly provisional and declare the intended landing zone before
+   writing:
+   - existing component board supplement area
+   - standalone validation board on the same page
+   - never a formal product page artboard unless the user or team
+     explicitly approved that placement
+   Prefer the standalone validation board when there is any risk of
+   mixing workflow-only material into formal page content.
 4. Execute the write via `use_figma` with a JavaScript snippet targeting
    the resolved node.
 5. Verify the result: call `get_screenshot` or `get_metadata` on the
@@ -70,6 +75,9 @@ Ask before proceeding when:
   source or only a local instance.
 - The write scope is unclear (e.g. "clean up the file" without a
   specified frame) — ask for a specific target.
+- The intended provisional supplement would land inside a formal product
+  page artboard rather than a component board or standalone validation
+  board — ask whether that exception is actually intended.
 
 Do not ask when:
 - A single unambiguous node id is provided and the write intent is clear.
@@ -93,6 +101,10 @@ Do not ask when:
 - Before creating new components, call `search_design_system` to check
   whether an existing component can be reused via
   `importComponentByKeyAsync`.
+- Do not place workflow-only provisional boards inside a formal product
+  page artboard by default. Keep validation material in a clearly
+  labeled supplement area or a standalone provisional board on the same
+  page.
 - If a provisional supplement grows beyond its parent board, move it into
   a standalone validation board on the same page instead of stretching
   the formal board.
@@ -104,6 +116,8 @@ Do not ask when:
 
 - The intended node or page was changed, not a neighboring one (confirm
   via screenshot or metadata check).
+- Any new provisional validation board landed in the declared parent
+  area rather than inside a formal product page artboard by accident.
 - No unintended broad canvas changes were introduced.
 - The edit moved the workflow forward — reduced ambiguity, created the
   required structure, or normalized the target correctly.

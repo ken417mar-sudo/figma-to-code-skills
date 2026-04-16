@@ -88,6 +88,10 @@ of duplicating them.
      branch, prop, structural fork, or verification case — not just
      mentioned in notes
    - required states are either already present or explicitly approved
+   - if the case needs provisional validation states, there is an
+     explicit placement plan for where those cards will live; workflow-
+     only supplements should default to a standalone or clearly bounded
+     validation board, not a formal product page artboard
    - if the case depends on approved provisional states because the
      formal component area was incomplete, there is an explicit plan for
      whether those states stay temporary or are promoted back into the
@@ -150,6 +154,9 @@ Ask before proceeding when:
   component area after validation.
 - The formal component board appears incomplete and the missing detail
   changes implementation shape.
+- The case needs provisional validation cards, but their landing zone is
+  still unclear or they would fall inside a formal product page artboard
+  without explicit approval.
 - A claimed variant axis has no explicit implementation branch or no
   explicit verification case yet, and the team still expects the case to
   count as fully verified.
@@ -188,6 +195,10 @@ Do not ask when:
   system. If the team accepts them as canonical, promotion back into the
   formal component area is part of closeout, not an optional future
   cleanup.
+- Do not treat a note-only provisional frame as equivalent to actual
+  state coverage. Until the cards themselves exist in the intended
+  landing zone, the case is still in clarification or setup, not ready
+  for implementation.
 - Do not update `coordination/WORKING-MEMORY.md` for every transient
   action. Only write back stable state that a new session would need.
 - Do not promote every case-specific compromise into a shared gotcha.
@@ -201,6 +212,9 @@ Do not ask when:
 - Every claimed variant axis is either:
   - explicitly mapped to implementation and verification coverage, or
   - explicitly marked as deferred / not yet verified.
+- Any provisional validation layer used by the case was created in the
+  intended validation area rather than inside a formal product page
+  artboard by default.
 - If the case used approved provisional states as implementation input,
   closeout makes clear whether those states were promoted back into the
   formal component area or are still temporary for a named reason.

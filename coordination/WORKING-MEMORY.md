@@ -73,6 +73,9 @@ handwritten SVG substitute. This check must happen before implementation
 starts, not as a cleanup step afterward.
 - Newly added provisional Figma state cards must be explicitly approved by
 the user or team before they become implementation input.
+- Workflow-only provisional boards should default to a standalone or
+clearly bounded validation area on the same page, not inside a formal
+product page artboard unless that exception is explicitly approved.
 - Provisional state cards for an existing component must start from the
 approved baseline component and preserve all unchanged parts, including
 icon assets, text, and structure. Only the state-specific delta should
