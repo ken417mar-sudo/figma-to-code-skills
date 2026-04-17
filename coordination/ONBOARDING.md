@@ -31,7 +31,7 @@ Communication channel: GitHub issue [#13](https://github.com/ken417mar-sudo/figm
 | Phase 1 | closed | Rewrote all skill READMEs from spec docs into executable agent prompts |
 | Phase 2 | closed | Established tech-stack profile, workflow baseline, coordination structure |
 | Phase 3 | closed (2026-04-13) | Tab, InputBox, Toolbar — all verified and committed |
-| Phase 4 | in progress | `figma-execution-shell` merged; Dialog + AIToolsRow closed; Sidebar is next |
+| Phase 4 | in progress | `figma-execution-shell` merged; Dialog, AIToolsRow, Sidebar (default-only) all closed |
 
 ## Current component status
 
@@ -42,19 +42,19 @@ Communication channel: GitHub issue [#13](https://github.com/ken417mar-sudo/figm
 | Toolbar | closed | 5 states verified |
 | Dialog | closed | All axes verified, HYQiHei font deferred |
 | AIToolsRow | closed | ToolPill family, hover/active, inline SVG icons |
-| Sidebar | **next** | Recommended Phase 4 follow-up, node `1708:30337` |
+| Sidebar | closed | Default-only, 6 formal states verified; hover/active/collapsed deferred |
 
 ## Component Family Definition
 
-Two trial cards written and replay-validated (2026-04-17). Both passed Figma / code / verify three-segment validation. Format confirmed general across provisional-axis (AIToolsRow) and pure-formal (Dialog) cases.
+Three trial cards written and replay-validated (2026-04-17). All passed Figma / code / verify three-segment validation. Format confirmed general across provisional-axis (AIToolsRow), pure-formal (Dialog), and composite-formal (Sidebar) cases.
 
-Cards: `experiments/trial-component-family-definition-aitoolsrow.md`, `experiments/trial-component-family-definition-dialog.md`
+Cards: `experiments/trial-component-family-definition-aitoolsrow.md`, `experiments/trial-component-family-definition-dialog.md`, `experiments/trial-component-family-definition-sidebar.md`
 
 ## Current todo
 
 1. Formalize Component Family Definition into `figma-create-design-system-rules` output format (pending user decision on timing)
-2. Start Sidebar case — read Figma node `1708:30337`, produce Family Definition card first, then implement
-3. Resolve `get_screenshot` tool issue (Figma MCP returns empty — deferred)
+2. Decide whether Sidebar expands into confirmed interaction / collapsed states
+3. Commit / push `codex/sidebar-phase4` in `agentic-browser-ui` (Codex)
 4. Shared typography pass for HYQiHei font (deferred non-blocker)
 
 ## Quick entry points

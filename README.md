@@ -42,5 +42,4 @@ Default operating model:
 
 ## Current Focus
 
-Phase 4 is in progress. `figma-execution-shell` is merged, Dialog is
-closed, and `AIToolsRow` is the active shell-validation follow-up case.
+Phase 4 is in progress. `figma-execution-shell` is merged. Dialog, AIToolsRow, and Sidebar (default-only) are all closed. Next: decide whether Sidebar expands into confirmed interaction / collapsed states, or move to the next component.
