@@ -11,7 +11,7 @@ Update this file when phase, repos, or active work changes.
 ## Current Phase
 
 Phase 3 closed (2026-04-13) — Tab, InputBox, Toolbar all verified and committed.
-Phase 4 in progress (2026-04-17) — `figma-execution-shell` merged; Dialog closed as first shell validation case; `AIToolsRow` (`1708:30180`) is implemented, blockers are fixed, and the case is waiting on final visual verification closeout.
+Phase 4 in progress (2026-04-17) — `figma-execution-shell` merged; Dialog, AIToolsRow, and Sidebar (default-only) are all closed; formal verify pass completed for Sidebar (6/6 states passed).
 
 ## Active Repos
 
@@ -87,9 +87,17 @@ Commits in agentic-browser-ui (merged via PR #3):
 Deferred: active state remains proposal-level (not yet formally confirmed).
 Gotchas promoted: BOOLEAN_OPERATION mask SVG fix, verify surface width rule, promotion gate on user instruction.
 
+### Sidebar — closed (2026-04-17)
+Phase 4 follow-up case. Formal default-only pass completed by Claude Code.
+All 6 formal states passed (V1 Sidebar expanded, V2 QuickActionItem default, V5 ProjectItem default, V7 HistoryItem default, V9 SidebarHeader default, V10 UserInfo default).
+Section-header padding bug fixed: Projects `pl-[12px] pr-[4px]`, History `px-[12px]`.
+Local implementation in agentic-browser-ui (branch: `codex/sidebar-phase4`) — not yet committed/pushed.
+Deferred non-blockers: SVG icon color hardcoding (theme-reactive未确认); hover/active/collapsed states unconfirmed.
+Verify card: `experiments/trial-component-family-definition-sidebar.md`
+
 ## Next Recommended Action
 
-User to decide the next Phase 4 component case. Sidebar (`1708:30337`) is the recommended follow-up.
+Commit / push `codex/sidebar-phase4` in `agentic-browser-ui`, then decide whether Sidebar expands into confirmed interaction / collapsed states.
 
 ## Source-of-Truth Notes
 
