@@ -172,6 +172,13 @@ Do not ask when:
   in Figma. If the implementation sized the icon from raw asset canvas
   dimensions instead of the component's icon frame and glyph bounds,
   classify that as a significant mismatch.
+- When creating verify cards, default the container width to the Figma
+  source component's original width. For adaptive or flex components,
+  treat the Figma width as the reference lower bound, then propose a
+  suggested adaptive range (e.g. min / max) and let the user confirm
+  before adding responsive test cases. Never set the container narrower
+  than the component's natural expanded width — doing so compresses flex
+  children and makes the verify surface misleading.
 
 ## Verification
 

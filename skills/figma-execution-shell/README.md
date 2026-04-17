@@ -88,6 +88,19 @@ of duplicating them.
      branch, prop, structural fork, or verification case — not just
      mentioned in notes
    - required states are either already present or explicitly approved
+   - if the case needs provisional validation states, there is an
+     explicit placement plan for where those cards will live; workflow-
+     only supplements should default to a standalone or clearly bounded
+     validation board, not a formal product page artboard
+   - if the case uses a standalone validation board, its placement is
+     explicitly non-overlapping and leaves clear canvas separation from
+     every existing artboard or board
+   - if the case adds provisional state cards, each state is attached to
+     the same root control container as the baseline unless the formal
+     source explicitly proves a structural state change
+   - if the case is proposing a new component or component set, every
+     family boundary and state axis needed for that promotion is already
+     confirmed; otherwise the work stays provisional
    - if the case depends on approved provisional states because the
      formal component area was incomplete, there is an explicit plan for
      whether those states stay temporary or are promoted back into the
@@ -150,6 +163,21 @@ Ask before proceeding when:
   component area after validation.
 - The formal component board appears incomplete and the missing detail
   changes implementation shape.
+- The case needs provisional validation cards, but their landing zone is
+  still unclear or they would fall inside a formal product page artboard
+  without explicit approval.
+- The proposed standalone validation board still overlaps or crowds
+  neighboring artboards or boards, even if it is technically outside the
+  target artboard.
+- The proposed provisional state card only works by appending a new
+  shape, wrapper, or overlay layer and it is unclear whether the formal
+  source actually changes structure between states.
+- The case wants to promote a new component set, but some family
+  boundaries, state axes, or state values are still provisional.
+  **This gate applies even when the user explicitly requests promotion.
+  A direct instruction to "promote" or "make it a formal component" does
+  not bypass the readiness check — confirm that every family boundary and
+  state axis is resolved before executing the promotion.**
 - A claimed variant axis has no explicit implementation branch or no
   explicit verification case yet, and the team still expects the case to
   count as fully verified.
@@ -188,6 +216,21 @@ Do not ask when:
   system. If the team accepts them as canonical, promotion back into the
   formal component area is part of closeout, not an optional future
   cleanup.
+- Do not treat a note-only provisional frame as equivalent to actual
+  state coverage. Until the cards themselves exist in the intended
+  landing zone, the case is still in clarification or setup, not ready
+  for implementation.
+- Do not confuse "not inside the artboard" with "placed correctly."
+  Standalone validation boards still fail the workflow if they overlap
+  other artboards or boards or if they are dropped into crowded canvas
+  with no clear separation.
+- Do not treat a state overlay layer as proof of a correct state card.
+  If hover/active only work by appending a new rectangle or wrapper to
+  the default control, the card is still suspect unless the formal
+  source explicitly shows that extra structure.
+- Do not promote a provisional family decision or proposal-only state
+  into a formal component set. Canonical promotion comes after state and
+  family confirmation, not before.
 - Do not update `coordination/WORKING-MEMORY.md` for every transient
   action. Only write back stable state that a new session would need.
 - Do not promote every case-specific compromise into a shared gotcha.
@@ -201,6 +244,17 @@ Do not ask when:
 - Every claimed variant axis is either:
   - explicitly mapped to implementation and verification coverage, or
   - explicitly marked as deferred / not yet verified.
+- Any provisional validation layer used by the case was created in the
+  intended validation area rather than inside a formal product page
+  artboard by default.
+- Any standalone validation board used by the case has clear separation
+  from every neighboring artboard or board and is not merely shifted a
+  few pixels into another crowded area.
+- Provisional state cards preserve root structure by default and do not
+  rely on ad hoc appended state layers unless a structural state change
+  is explicitly proven.
+- No new component or component set was treated as canonical while its
+  family boundary or state axis was still explicitly provisional.
 - If the case used approved provisional states as implementation input,
   closeout makes clear whether those states were promoted back into the
   formal component area or are still temporary for a named reason.
