@@ -1,16 +1,20 @@
 # Trial: Component Family Definition — Dialog
 
-> 试验版第二样本。用于验证 Component Family Definition 结构对多 axis、
-> 结构分支、内容分支类组件的通用性。
-> 参照 AIToolsRow 样本格式，回放验证 Figma / code / verify 三段。
+> composite family  
+> definition produced: 2026-04-17  
+> status: controlled trial-run
+
+回放验证通过。格式已升级为受控试运行模板（见 `inventory/component-family-definition-template.md`）。
+Sub-family 卡（CloseIcon / DialogButton / ButtonGroup / DialogContent）可按需单独拆出。
 
 ---
 
 ## Family Boundary
 
 **Family name:** Dialog  
+**Family type:** composite  
 **Root component:** `Dialog`（组合容器）  
-**Sub-families（内部独立可复用）:**
+**Sub-families（各自可独立复用和验证，可单独拆卡）:**
 - `CloseIcon` — 关闭按钮，4 variants
 - `DialogButton` — 操作按钮，3 types × 2 states
 - `ButtonGroup` — 按钮组合，3 layouts
@@ -77,14 +81,17 @@
 
 ## Required States
 
-| Component | State | Formal / Provisional |
-|---|---|---|
-| CloseIcon | default / hover / none / circle | formal（Figma component set に全 4 variants） |
-| DialogButton | default / hover | formal（Figma component set に全 6 combos） |
-| DialogContent | text / title-left / image | formal |
-| ButtonGroup | single / vertical / horizontal | formal |
-
-**特記:** Dialog は AIToolsRow と異なり、provisional state を一切使用しなかった。全実装が Figma 正式定義から導出。
+| Component | State / Value | definition_status | verification_status |
+|---|---|---|---|
+| CloseIcon | default / hover / none / circle | formal | visual-verification-complete |
+| DialogButton | solid × default | formal | visual-verification-complete |
+| DialogButton | solid × hover | formal | visual-verification-complete |
+| DialogButton | outline × default | formal | visual-verification-complete |
+| DialogButton | outline × hover | formal | visual-verification-complete |
+| DialogButton | text × default | formal | visual-verification-complete |
+| DialogButton | text × hover | formal | visual-verification-complete |
+| DialogContent | text / title-left / image | formal | visual-verification-complete |
+| ButtonGroup | single / vertical / horizontal | formal | visual-verification-complete |
 
 ---
 
@@ -191,26 +198,24 @@ interface DialogProps {
 
 ## Verify Matrix
 
-| Case | Component | Axis combo | Coverage |
-|---|---|---|---|
-| V1 | CloseIcon | variant=default | ✅ verified |
-| V2 | CloseIcon | variant=hover | ✅ verified |
-| V3 | CloseIcon | variant=none | ✅ verified |
-| V4 | CloseIcon | variant=circle | ✅ verified |
-| V5 | DialogButton | type=solid, state=default | ✅ verified |
-| V6 | DialogButton | type=solid, state=hover | ✅ verified |
-| V7 | DialogButton | type=outline, state=default | ✅ verified |
-| V8 | DialogButton | type=outline, state=hover | ✅ verified |
-| V9 | DialogButton | type=text, state=default | ✅ verified |
-| V10 | DialogButton | type=text, state=hover | ✅ verified |
-| V11 | ButtonGroup | layout=single | ✅ verified |
-| V12 | ButtonGroup | layout=vertical | ✅ verified |
-| V13 | ButtonGroup | layout=horizontal | ✅ verified |
-| V14 | DialogContent | variant=text | ✅ verified |
-| V15 | DialogContent | variant=title-left | ✅ verified |
-| V16 | DialogContent | variant=image | ✅ verified |
-
-**Coverage status:** visual-verification-complete（2026-04-16）
+| Case | Component | Axis combo | definition_status | verification_status |
+|---|---|---|---|---|
+| V1 | CloseIcon | variant=default | formal | visual-verification-complete |
+| V2 | CloseIcon | variant=hover | formal | visual-verification-complete |
+| V3 | CloseIcon | variant=none | formal | visual-verification-complete |
+| V4 | CloseIcon | variant=circle | formal | visual-verification-complete |
+| V5 | DialogButton | type=solid, state=default | formal | visual-verification-complete |
+| V6 | DialogButton | type=solid, state=hover | formal | visual-verification-complete |
+| V7 | DialogButton | type=outline, state=default | formal | visual-verification-complete |
+| V8 | DialogButton | type=outline, state=hover | formal | visual-verification-complete |
+| V9 | DialogButton | type=text, state=default | formal | visual-verification-complete |
+| V10 | DialogButton | type=text, state=hover | formal | visual-verification-complete |
+| V11 | ButtonGroup | layout=single | formal | visual-verification-complete |
+| V12 | ButtonGroup | layout=vertical | formal | visual-verification-complete |
+| V13 | ButtonGroup | layout=horizontal | formal | visual-verification-complete |
+| V14 | DialogContent | variant=text | formal | visual-verification-complete |
+| V15 | DialogContent | variant=title-left | formal | visual-verification-complete |
+| V16 | DialogContent | variant=image | formal | visual-verification-complete |
 
 ---
 

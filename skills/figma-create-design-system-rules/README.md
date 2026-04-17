@@ -45,13 +45,26 @@ for human review — not a final spec to implement against directly.
 - Candidate mapping of confirmed rules into Figma foundations:
   which items should become `Variables`, which should become reusable
   `样式`, and which should stay provisional until reviewed.
+- **[Trial-run output]** When a component family boundary is clear enough
+  to define before implementation, produce a `Component Family Definition`
+  card as the first output. Use the template at
+  `inventory/component-family-definition-template.md`. This is the
+  preferred format for new component cases — not yet required, but use it
+  when the family boundary is unambiguous. The card must be produced
+  before implementation begins, not reconstructed after.
 
 ## Workflow
 
 1. Confirm the tech-stack profile. If `target`, `framework`, or
    `token_format` are missing, ask before proceeding — rules are
    platform-specific.
-2. Check whether an existing spec already covers the needed scope. If it
+2. **[Trial-run step]** If the component family boundary is clear, produce
+   a `Component Family Definition` card first (template:
+   `inventory/component-family-definition-template.md`). Fill
+   `definition_status` and `verification_status` independently for every
+   state row. For composite families, note sub-families that need their
+   own cards. Hand the card to the user for review before proceeding.
+3. Check whether an existing spec already covers the needed scope. If it
    does, identify only the gaps rather than regenerating the whole spec.
 3. Call `figma` skill tools to read the target frames and components:
    - `get_design_context` for layout, component structure, and code hints.
@@ -142,6 +155,11 @@ Do not ask when:
   component source of truth. Once the team confirms that a provisional
   state is the intended canonical state, plan its promotion back into the
   formal component area and retire or archive the provisional copy.
+- In a `Component Family Definition` card, never use a single combined
+  status column. `definition_status` and `verification_status` are
+  independent dimensions — a state can be `provisional-proposal` and
+  `visual-verification-complete` at the same time. Conflating them causes
+  downstream skills to misread "verified" as "formally approved".
 
 ## Verification
 
