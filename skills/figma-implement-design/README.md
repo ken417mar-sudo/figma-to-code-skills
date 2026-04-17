@@ -82,7 +82,11 @@ the profile is missing and it changes the output shape, ask first.
      and adaptive layout rules.
 7. Write the implementation. Prefer confirmed rules over inferred ones.
    Mark any inferred choices in comments or mapping notes.
-8. Surface unresolved ambiguity explicitly — do not silently pick a
+8. If implementation temporarily depends on an approved provisional state
+   because the formal component board was incomplete, record that
+   dependency and treat promotion back into the formal component area as a
+   closeout task rather than a forever-state.
+9. Surface unresolved ambiguity explicitly — do not silently pick a
    default for anything that changes the component's behavior or
    structure.
 
@@ -101,6 +105,9 @@ Ask before proceeding when:
 - The implementation would rely on newly added provisional Figma state
   cards rather than an already confirmed component board. Ask whether
   those provisional states are approved before coding against them.
+- The implementation would rely on an approved provisional state, but it
+  is unclear whether the team wants that state promoted back into the
+  formal component board after validation.
 - An implementation choice would be expensive to undo (e.g. choosing a
   state management pattern or a layout approach that affects many
   components).
@@ -140,6 +147,22 @@ Do not ask when:
   validated state.
 - Common interaction patterns may justify proposing a provisional state,
   but they do not justify silently treating that state as canonical.
+- Do not leave implementation permanently anchored to an approved
+  provisional state if the team has already accepted it as canonical. Use
+  the provisional state as a temporary bridge, then promote it back into
+  the formal component area and retire or archive the provisional copy.
+- Do not assume a state card is correct just because it looks close in a
+  screenshot. If hover/active are expressed by appending a new child
+  rectangle, wrapper, or overlay layer to the default control, treat that
+  as suspect unless the formal component source explicitly shows a
+  structural state change.
+- Default, hover, and active variants should preserve the same root
+  control structure unless the formal component source proves otherwise.
+  Prefer changing border, fill, shadow, opacity, or text/icon color on
+  the existing container instead of introducing a new state-only layer.
+- Do not treat a newly created component set as canonical if its family
+  boundary or one of its state axes is still marked provisional or
+  proposal-only.
 - Stateful stroke or border treatments must not change box geometry between
   states. Reserve the same border/stroke space in all states (e.g. transparent
   border in default, colored border in selected), or use a non-layout-affecting
@@ -171,5 +194,12 @@ Do not ask when:
   guess.
 - The code respects confirmed rules before inferred ones.
 - The result is structurally correct, not only visually similar.
+- State variants preserve the expected root structure and do not rely on
+  ad hoc appended state-only layers unless that structural difference was
+  explicitly confirmed in Figma.
 - Mapping notes explain non-obvious choices.
 - Unresolved ambiguity is listed, not hidden.
+- If the code depended on an approved provisional state, the output or
+  closeout notes state whether that state has already been promoted back
+  into the formal component board or is still pending for an explicit
+  reason.

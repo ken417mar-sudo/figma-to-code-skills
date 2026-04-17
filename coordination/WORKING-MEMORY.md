@@ -28,13 +28,15 @@ Compact project memory for starting a new thread quickly.
 - canonical close component set: `1714:1012`
   - off: `1714:1013`
   - on: `1714:1017`
+- AIToolsRow: `1708:30180`
 - InputBox: `1708:30342`
 - send button: `1708:30361`
 - send icon: `1708:30363`
+- sidebar-expanded board: `1708:30337`
 - provisional standalone board: `1787:10395`
 - provisional tab interaction block: `1840:11328`
 - Dialog section: `1922:32133`
-- Dialog core layout: `1922:31967`
+- Dialog core block: `1922:31967`
 
 ## Core Workflow
 
@@ -71,14 +73,30 @@ handwritten SVG substitute. This check must happen before implementation
 starts, not as a cleanup step afterward.
 - Newly added provisional Figma state cards must be explicitly approved by
 the user or team before they become implementation input.
+- Workflow-only provisional boards should default to a standalone or
+clearly bounded validation area on the same page, not inside a formal
+product page artboard unless that exception is explicitly approved.
+- "Standalone" is not enough by itself: provisional boards must also sit
+in clear empty canvas space with visible separation from every existing
+artboard or board.
 - Provisional state cards for an existing component must start from the
 approved baseline component and preserve all unchanged parts, including
 icon assets, text, and structure. Only the state-specific delta should
 change.
+- State variants should default to the same root control container as the
+baseline. If hover/active only work by appending a new rectangle,
+wrapper, or overlay layer, treat that as suspect unless the formal
+component source explicitly proves a structural state change.
+- Do not promote a new component or component set into canonical formal
+status while its family boundary or one of its state axes is still
+provisional or proposal-only.
 - When `get_design_context` returns a CSS transform on an icon, verify the
 exported SVG orientation before copying it. The asset may already encode
 the correct direction — copying the transform blindly causes double-rotation.
 - Stateful borders/strokes must not change geometry between states.
+- `figma-execution-shell` is now in main; use it as the protocol wrapper for
+real component cases, then tighten it only after a real run exposes a stable
+gap.
 
 ## Tab Status
 
@@ -106,26 +124,74 @@ focus-state shadow token mismatch accepted as-is
 
 ## Dialog Status
 
-- **closed** — first real `figma-execution-shell` validation case
-- implementation landed in `agentic-browser-ui` PR #1
-- verification and shell rule learnings landed in `figma-to-code-skills` PR #21
-- fixed during the pass:
-  - close variants render through the real component path
-  - image/media branch uses repo-local asset and includes circular close overlay
-  - button-type verify uses real `DialogButton`
-  - `type × state` matrix called out explicitly instead of implied
-- deferred non-blocker:
-  - `HYQiHei:75W` / `HYQiHei:60S` are still not loaded in the runtime surface, so typography falls back; accepted for a later typography pass, not kept as a Dialog blocker
+- **closed** — Phase 4 validation case for the execution shell, verified 2026-04-16
+- shell milestones:
+  - PR `#18` merged — initial `figma-execution-shell`
+  - PR `#19` merged — shell v2 gate tightening
+  - PR `#21` merged — shell v3 final tightening
+- final code state in `agentic-browser-ui`:
+  - All axes implemented: CloseIcon × 4 variants, DialogButton × 3 types + hover (all 6 type×state combos), ButtonGroup × 3 layouts, DialogContent × 3 variants
+  - Fixes applied: close hover prop-driven, image-content branch, image spacing, image circle close, local asset (dialog-image-placeholder@1x.png), text button hover (#999→#333)
+  - Commits: `b5c9f24`, `b167b79`, `763239b` in agentic-browser-ui (branch: codex/dialog-phase4-closeout)
+  - Merged via PR `#1` in agentic-browser-ui
+- deferred non-blocker: HYQiHei font loading — shared typography pass, not Dialog-specific
+- visual verification complete, all verify cards confirmed
+
+## Dialog Learnings Worth Reusing
+
+- Do not count a variant axis as covered just because it is named in notes.
+  The axis must map to a real prop, structural branch, or verify case.
+- Static verify cards must render the real implementation branch, not
+  handwritten stand-ins.
+- Media/image variants should verify with the real exported asset, not a
+  placeholder, otherwise fit/crop/overlay bugs stay hidden.
+- Image/media variants can need a different spacing shell from text variants;
+  do not assume one shared wrapper survives visual verification.
+- Overlay controls (such as image close buttons) are easy to miss if the
+  branch is verified only structurally.
+
+## AIToolsRow Status
+
+- **in progress** — implementation updated through blocker fixes, final visual verification still pending
+- provisional state work corrected in Figma:
+  - row-level overlay approach removed
+  - appended-rectangle state treatment removed
+  - current provisional frames:
+    - `[provisional] ToolPill/text` (`1956:65169`) — default / hover / active [proposal]
+    - `[provisional] ToolPill/icon-only` (`1956:65195`) — default / hover / active [proposal]
+- implementation state in `agentic-browser-ui`:
+  - branch: `codex/aitoolsrow-phase4`
+  - commits:
+    - `a97e009` — exported 5 icon SVGs, updated `slices-name-map.json`, implemented `AIToolsRow.tsx`, added verify cards in `App.tsx`
+    - `a922a91` — inline SVG icons for `currentColor`, verify surface widened to `704px`
+    - `7721405` — Skill icon BOOLEAN_OPERATION export fixed to `stroke="currentColor"`
+- current boundary:
+  - hover / active are now container-level treatments, not appended shapes
+  - verify surface now matches the Figma source width instead of the earlier `600px` squeeze
+  - icon rendering now uses inline SVG rather than `<img src={icon}>` for theme-reactive color
+  - `active` is still proposal-level until visual verification / explicit confirmation
+  - case is blocker-cleared and verify-ready, but not yet visual-verification-complete
+
+## Shell Follow-up Candidates
+
+- Add an explicit distinction between `coverage-complete` and
+  `visual-verification-complete`.
+- Keep treating interactive-only axes as deferred unless the verification
+  surface can drive them explicitly.
+- During closeout, do not call a case verified until the real target node has
+  been visually checked, even if axis coverage is complete.
 
 ## Open Questions
 
-- When to do the shared typography/font-loading pass for cases that currently rely on `HYQiHei:*` family tokens but render with fallback fonts.
+- Is AIToolsRow `active` visually and semantically acceptable enough to close, or should it stay proposal-only after verify?
 
 ## Current Local Changes To Remember
 
-- `figma-to-code-skills`: `skill/dialog-closeout-sync` updates shared memory to reflect Dialog closed
-- `agentic-browser-ui`: Dialog implementation already merged in PR #1
+- `agentic-browser-ui` has an active AIToolsRow branch for verification / closeout:
+  - branch: `codex/aitoolsrow-phase4`
+  - latest commit: `7721405`
 
 ## Next Recommended Action
 
-Dialog is closed enough to move on. Start the next Phase 4 component case, and keep typography/font-loading as a separate shared follow-up rather than reopening Dialog.
+- finish AIToolsRow visual verification and closeout first
+- then keep `Sidebar` / `1708:30337` as the follow-up composite case after AIToolsRow, once pill-family boundaries are clearer

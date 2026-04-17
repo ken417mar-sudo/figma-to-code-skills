@@ -7,7 +7,10 @@ Instructions for Claude Code working in this repository.
 1. Run `git status` to confirm you are on a feature branch, not `main`.
 2. Check open PRs with `gh pr list` to confirm no one else owns the skill
   you are about to edit.
-3. If the skill is free, start work. If taken, stop and tell the user.
+3. Read `coordination/INDEX.md`, `coordination/WORKING-MEMORY.md`, and
+  issue `#13` before starting so you have the current shared state.
+4. If the skill or area is free, start work. If taken, stop and tell the
+  user.
 
 ## Branch and commit rules
 
@@ -28,7 +31,8 @@ Do not ask the user to relay messages to Codex manually.
 
 ## Rewriting skill READMEs
 
-This is the main task in Phase 1.
+This was the main task in Phase 1 and remains the baseline for any skill
+README rewrite work.
 
 The goal is to turn each skill README from a specification document into
 an executable prompt that Claude or another agent can follow directly.
@@ -58,12 +62,18 @@ explaining why the template or profile needed to change.
 
 ## Coordination
 
-Cross-skill and cross-PR feedback lives in issue #4.
-Check it at the start of each session before claiming a skill.
+Cross-skill and cross-PR feedback now lives in issue `#13`, the permanent
+coordination log. Check it at the start of each session before claiming a
+skill or resuming a case.
 
-## Phase 1 skill ownership
+Treat issue `#4` as historical context for the Phase 1 rewrite, not as the
+current coordination board.
 
-These are the Phase 1 skills. Claim them one at a time.
+## Skill ownership
+
+Use open PRs plus the shared coordination files to determine ownership.
+If a skill has no open PR and issue `#13` does not indicate active work on
+it, the skill is available to claim.
 
 - `figma`
 - `figma-use`

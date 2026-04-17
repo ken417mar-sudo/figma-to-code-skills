@@ -87,8 +87,12 @@ contributor. If you are unsure whether a design choice is right, open an
 issue before writing code. This is the shared communication channel
 between all contributors.
 
-Cross-skill and cross-PR feedback for the Phase 1 rewrite goes in
-issue #4 (Coordination: Phase 1 skill rewrite).
+Current shared coordination happens in issue `#13` (Coordination Log,
+permanent). Use it for cross-skill and cross-PR updates, status handoff,
+and action summaries after each task.
+
+Treat issue `#4` as the historical coordination thread for the Phase 1
+rewrite only.
 
 ## Gotchas section upkeep
 
