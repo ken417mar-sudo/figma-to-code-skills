@@ -1,39 +1,45 @@
 # Figma to Code Skills
 
-This folder is the working area for organizing and building our
-`Figma to code` skills workflow.
+This repository holds the executable prompts, workflow rules, gotchas,
+and coordination memory for the Figma-to-code system we are refining
+across real component cases.
 
-## First Goal
+## What This Repo Does
 
-Our first goal is to make a messy or non-standard design file
-implementable in code even when there is no existing design system or
-formal specification.
+The project is built to make messy or non-standard design files
+implementable in code without pretending the design draft is already a
+clean source of truth.
 
-If a project already has an existing specification or design-system
-rules, we should use that specification first and treat the design file
-as a concrete input, not as the primary source for redefining rules.
+Default operating model:
 
-In other words:
+- prefer an existing project spec or design-system rule set when one
+  exists
+- treat the active Figma file as implementation input, not automatic
+  canonical truth
+- extract and confirm missing rules before broad implementation
+- route real assets through export instead of hand-drawing substitutes
+- verify implemented UI against Figma and record recurring failures as
+  reusable gotchas
 
-- start from a real design draft
-- prefer existing rules when they already exist
-- ask for clarification when a missing detail would change the intended
-design or implementation meaning
-- extract enough structure and rules from it
-- let a human quickly adjust the rough rules
-- use that cleaned context to produce better code output
+## Start Here
 
-## Structure
+- Current shared coordination:
+  [coordination/INDEX.md](/Users/markun/Documents/Codex/Mars/figma-to-code-skills/coordination/INDEX.md)
+- Compact stable memory for new threads:
+  [coordination/WORKING-MEMORY.md](/Users/markun/Documents/Codex/Mars/figma-to-code-skills/coordination/WORKING-MEMORY.md)
+- Current workflow baseline:
+  [inventory/workflow-outline.md](/Users/markun/Documents/Codex/Mars/figma-to-code-skills/inventory/workflow-outline.md)
+- Skill inventory:
+  [skills/README.md](/Users/markun/Documents/Codex/Mars/figma-to-code-skills/skills/README.md)
 
-- `skills/`: one folder per skill, ready to split and share later
-- `inventory/`: current skills, gaps, and task breakdown
-- `references/`: docs, examples, screenshots, and external notes
-- `experiments/`: small prototypes, prompts, and workflow tests
+## Repository Layout
 
-## Suggested next steps
+- `skills/`: executable skill prompts used by agents
+- `inventory/`: workflow rules, templates, and stack profiles
+- `coordination/`: shared status, active case memory, and handoff context
+- `experiments/`: case writeups, provisional findings, and workflow tests
 
-1. Define the core workflow for messy-design-to-code delivery.
-2. Fill each skill folder with its own brief, scope, inputs, outputs, and examples.
-3. Group the skills by purpose: read, generate, implement, cleanup, export.
-4. Mark overlaps, gaps, and the order we want to improve them in.
-5. Turn that into a concrete implementation plan.
+## Current Focus
+
+Phase 4 is in progress. `figma-execution-shell` is merged, Dialog is
+closed, and `AIToolsRow` is the active shell-validation follow-up case.

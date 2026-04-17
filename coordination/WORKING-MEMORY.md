@@ -150,6 +150,28 @@ focus-state shadow token mismatch accepted as-is
 - Overlay controls (such as image close buttons) are easy to miss if the
   branch is verified only structurally.
 
+## AIToolsRow Status
+
+- **in progress** — implementation updated through blocker fixes, final visual verification still pending
+- provisional state work corrected in Figma:
+  - row-level overlay approach removed
+  - appended-rectangle state treatment removed
+  - current provisional frames:
+    - `[provisional] ToolPill/text` (`1956:65169`) — default / hover / active [proposal]
+    - `[provisional] ToolPill/icon-only` (`1956:65195`) — default / hover / active [proposal]
+- implementation state in `agentic-browser-ui`:
+  - branch: `codex/aitoolsrow-phase4`
+  - commits:
+    - `a97e009` — exported 5 icon SVGs, updated `slices-name-map.json`, implemented `AIToolsRow.tsx`, added verify cards in `App.tsx`
+    - `a922a91` — inline SVG icons for `currentColor`, verify surface widened to `704px`
+    - `7721405` — Skill icon BOOLEAN_OPERATION export fixed to `stroke="currentColor"`
+- current boundary:
+  - hover / active are now container-level treatments, not appended shapes
+  - verify surface now matches the Figma source width instead of the earlier `600px` squeeze
+  - icon rendering now uses inline SVG rather than `<img src={icon}>` for theme-reactive color
+  - `active` is still proposal-level until visual verification / explicit confirmation
+  - case is blocker-cleared and verify-ready, but not yet visual-verification-complete
+
 ## Shell Follow-up Candidates
 
 - Add an explicit distinction between `coverage-complete` and
@@ -161,17 +183,15 @@ focus-state shadow token mismatch accepted as-is
 
 ## Open Questions
 
-None — Dialog case closed.
+- Is AIToolsRow `active` visually and semantically acceptable enough to close, or should it stay proposal-only after verify?
 
 ## Current Local Changes To Remember
 
-None — all Dialog work merged.
+- `agentic-browser-ui` has an active AIToolsRow branch for verification / closeout:
+  - branch: `codex/aitoolsrow-phase4`
+  - latest commit: `7721405`
 
 ## Next Recommended Action
 
-- recommended next Phase 4 case: `AIToolsRow` (`1708:30180`)
-- why this goes next:
-  - it is unresolved enough to re-test source-of-truth, missing-state, and provisional-state handling
-  - it should require real asset export and family-boundary decisions without forcing a page-scale refactor
-  - it sits in a useful middle zone between closed primitives and a larger composite surface
-- keep `Sidebar` / `1708:30337` as the follow-up composite case after `AIToolsRow`, once pill-family boundaries are clearer
+- finish AIToolsRow visual verification and closeout first
+- then keep `Sidebar` / `1708:30337` as the follow-up composite case after AIToolsRow, once pill-family boundaries are clearer
