@@ -44,11 +44,18 @@ Communication channel: GitHub issue [#13](https://github.com/ken417mar-sudo/figm
 | AIToolsRow | closed | ToolPill family, hover/active, inline SVG icons |
 | Sidebar | **next** | Recommended Phase 4 follow-up, node `1708:30337` |
 
+## Component Family Definition
+
+Two trial cards written and replay-validated (2026-04-17). Both passed Figma / code / verify three-segment validation. Format confirmed general across provisional-axis (AIToolsRow) and pure-formal (Dialog) cases.
+
+Cards: `experiments/trial-component-family-definition-aitoolsrow.md`, `experiments/trial-component-family-definition-dialog.md`
+
 ## Current todo
 
-1. Start Sidebar case — read Figma node `1708:30337`, identify missing states, propose provisional board if needed
-2. Resolve `get_screenshot` tool issue (Figma MCP returns empty — investigate after current case)
-3. Shared typography pass for HYQiHei font (deferred non-blocker across all components)
+1. Formalize Component Family Definition into `figma-create-design-system-rules` output format (pending user decision on timing)
+2. Start Sidebar case — read Figma node `1708:30337`, produce Family Definition card first, then implement
+3. Resolve `get_screenshot` tool issue (Figma MCP returns empty — deferred)
+4. Shared typography pass for HYQiHei font (deferred non-blocker)
 
 ## Quick entry points
 

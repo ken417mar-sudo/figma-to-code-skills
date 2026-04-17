@@ -1,6 +1,7 @@
 # Working Memory
 
 Compact project memory for starting a new thread quickly.
+**New to this project? Read [coordination/ONBOARDING.md](ONBOARDING.md) first.**
 
 ## Repos
 
@@ -62,6 +63,15 @@ Key node IDs:
 | AIToolsRow | closed (2026-04-17) | active state remains proposal-level |
 | Sidebar | next | — |
 
+## Component Family Definition
+
+Two trial cards written and replay-validated (2026-04-17):
+- `experiments/trial-component-family-definition-aitoolsrow.md`
+- `experiments/trial-component-family-definition-dialog.md`
+
+Both passed Figma / code / verify three-segment validation. Format confirmed general.
+Next step: formalize into `figma-create-design-system-rules` output format — pending user decision on timing.
+
 ## Next Recommended Action
 
-Start Sidebar (`1708:30337`) as the next Phase 4 component case.
+Formalize Component Family Definition into `figma-create-design-system-rules`, then start Sidebar (`1708:30337`) as the next Phase 4 component case using the card as first output.
