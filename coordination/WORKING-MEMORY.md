@@ -152,21 +152,16 @@ focus-state shadow token mismatch accepted as-is
 
 ## AIToolsRow Status
 
-- **in progress** — implementation updated through blocker fixes, final visual verification still pending
-- provisional state work corrected in Figma:
-  - row-level overlay approach removed
-  - appended-rectangle state treatment removed
-  - current provisional frames:
-    - `[provisional] ToolPill/text` (`1956:65169`) — default / hover / active [proposal]
-    - `[provisional] ToolPill/icon-only` (`1956:65195`) — default / hover / active [proposal]
-- implementation state in `agentic-browser-ui`:
-  - branch: `codex/aitoolsrow-phase4`
-  - commits:
-    - `a97e009` — exported 5 icon SVGs, updated `slices-name-map.json`, implemented `AIToolsRow.tsx`, added verify cards in `App.tsx`
-    - `a922a91` — inline SVG icons for `currentColor`, verify surface widened to `704px`
-    - `7721405` — Skill icon BOOLEAN_OPERATION export fixed to `stroke="currentColor"`
-- current boundary:
-  - hover / active are now container-level treatments, not appended shapes
+- **closed** — Phase 4 shell follow-up case, verified 2026-04-17
+- provisional state frames (Figma):
+  - `[provisional] ToolPill/text` (`1956:65169`) — default / hover / active [proposal]
+  - `[provisional] ToolPill/icon-only` (`1956:65195`) — default / hover / active [proposal]
+- final code state in `agentic-browser-ui` (merged via PR #3):
+  - commits: `a97e009`, `a922a91`, `7721405`
+  - ToolPill (text) × 3 states, ToolPill (icon-only) × 3 states
+  - inline SVG icons with currentColor, verify surface 704px
+- deferred: active state remains proposal-level
+- gotchas promoted to skills: BOOLEAN_OPERATION mask SVG fix, verify surface width rule, promotion gate on user instruction
   - verify surface now matches the Figma source width instead of the earlier `600px` squeeze
   - icon rendering now uses inline SVG rather than `<img src={icon}>` for theme-reactive color
   - `active` is still proposal-level until visual verification / explicit confirmation
@@ -183,13 +178,11 @@ focus-state shadow token mismatch accepted as-is
 
 ## Open Questions
 
-- Is AIToolsRow `active` visually and semantically acceptable enough to close, or should it stay proposal-only after verify?
+None — AIToolsRow closed. active state deferred as non-blocker.
 
 ## Current Local Changes To Remember
 
-- `agentic-browser-ui` has an active AIToolsRow branch for verification / closeout:
-  - branch: `codex/aitoolsrow-phase4`
-  - latest commit: `7721405`
+None — all AIToolsRow work merged.
 
 ## Next Recommended Action
 

@@ -76,32 +76,20 @@ Commits: `b5c9f24`, `b167b79`, `763239b` in agentic-browser-ui (branch: `codex/d
 Deferred non-blocker: HYQiHei font loading — shared typography pass, not Dialog-specific.
 Provisional-state promotion: no provisional states were used; all implementation sourced from formal Figma component board.
 
-### AIToolsRow — in progress
-Phase 4 shell follow-up case. Provisional ToolPill state frames were rebuilt correctly after the earlier row-level and appended-rectangle mistakes.
-Current implementation state from issue `#13`:
-- exported 5 icon SVGs and updated `slices-name-map.json`
-- implemented `AIToolsRow.tsx` with ToolPill text + icon-only variants and hover / active treatment at the container level
-- added verify cards in `App.tsx`
-- follow-up commits in `agentic-browser-ui` (branch: `codex/aitoolsrow-phase4`):
-  - `a97e009` — initial AIToolsRow implementation
-  - `a922a91` — inline SVG icons for `currentColor`, verify surface widened to `704px`
-  - `7721405` — Skill icon BOOLEAN_OPERATION export fixed to `stroke=\"currentColor\"`
-- earlier browser blockers are resolved:
-  - verify surface now matches Figma width (`704px`)
-  - icon rendering no longer depends on `<img src={icon}>` for theme-reactive color
-- `active` remains proposal-level until visually verified / confirmed
-Status: implementation-complete and blocker-cleared, but not yet visual-verification-complete.
+### AIToolsRow — closed
+Phase 4 shell follow-up case. Closed 2026-04-17.
+All axes implemented: ToolPill (text) × 3 states, ToolPill (icon-only) × 3 states.
+Provisional state frames rebuilt correctly at control level (not row-level).
+Commits in agentic-browser-ui (merged via PR #3):
+- `a97e009` — initial implementation
+- `a922a91` — inline SVG icons for currentColor, verify surface 704px
+- `7721405` — Skill icon BOOLEAN_OPERATION fix (stroke=currentColor)
+Deferred: active state remains proposal-level (not yet formally confirmed).
+Gotchas promoted: BOOLEAN_OPERATION mask SVG fix, verify surface width rule, promotion gate on user instruction.
 
 ## Next Recommended Action
 
-Finish the AIToolsRow visual verification pass and closeout on `issue #13`.
-
-Why this is the best next action:
-- the implementation branch already exists, so the cheapest risk reduction is to verify before starting another component
-- `active` is still proposal-level and should not be treated as fully closed without the visual check
-- closing AIToolsRow will give the shell a second end-to-end validation case after Dialog and confirm the new verify-surface and export gotchas are actually closed
-
-Hold `Sidebar` as the next composite follow-up after `AIToolsRow`, because it likely depends on the same pill/action-family decisions and would otherwise expand the scope too quickly.
+User to decide the next Phase 4 component case. Sidebar (`1708:30337`) is the recommended follow-up.
 
 ## Source-of-Truth Notes
 
