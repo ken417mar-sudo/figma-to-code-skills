@@ -23,10 +23,11 @@ Default operating model:
 
 ## Start Here
 
+- **New to this project?** Read [coordination/ONBOARDING.md](coordination/ONBOARDING.md) first.
 - Current shared coordination:
-  [coordination/INDEX.md](/Users/markun/Documents/Codex/Mars/figma-to-code-skills/coordination/INDEX.md)
+  [coordination/INDEX.md](coordination/INDEX.md)
 - Compact stable memory for new threads:
-  [coordination/WORKING-MEMORY.md](/Users/markun/Documents/Codex/Mars/figma-to-code-skills/coordination/WORKING-MEMORY.md)
+  [coordination/WORKING-MEMORY.md](coordination/WORKING-MEMORY.md)
 - Current workflow baseline:
   [inventory/workflow-outline.md](/Users/markun/Documents/Codex/Mars/figma-to-code-skills/inventory/workflow-outline.md)
 - Skill inventory:

@@ -4,39 +4,28 @@ Compact project memory for starting a new thread quickly.
 
 ## Repos
 
-- `figma-to-code-skills`
-  - path: `/Users/markun/Documents/Codex/Mars/figma-to-code-skills`
-  - purpose: workflow rules, gotchas, skill definitions
-- `agentic-browser-ui`
-  - path: `/Users/markun/Documents/Codex/Mars/agentic-browser-ui`
-  - purpose: implementation testbed for Figma-to-code cases
-- `figma-export-slices-skill`
-  - path: `/Users/markun/Documents/Cursor/skill_test/figma-export-slices`
-  - purpose: standalone export-slices skill repo
+- `figma-to-code-skills` — `/Users/markun/Documents/Codex/Mars/figma-to-code-skills` — workflow rules, gotchas, skill definitions
+- `agentic-browser-ui` — `/Users/markun/Documents/Codex/Mars/agentic-browser-ui` — implementation testbed for Figma-to-code cases
 
 ## Shared Coordination
 
-- stable entry: `/Users/markun/Documents/Codex/Mars/figma-to-code-skills/coordination/INDEX.md`
+- stable entry: `coordination/INDEX.md`
 - current active issue: [#13](https://github.com/ken417mar-sudo/figma-to-code-skills/issues/13) — permanent coordination log, never close
-- historical issue: [#4](https://github.com/ken417mar-sudo/figma-to-code-skills/issues/4)
 
 ## Active Figma File
 
 - file key: `iIbL9V4UrFeORPaM7KVji7`
 - main board: `1708:29412`
-- canonical tab component set: `1714:976`
-- canonical close component set: `1714:1012`
-  - off: `1714:1013`
-  - on: `1714:1017`
-- AIToolsRow: `1708:30180`
-- InputBox: `1708:30342`
-- send button: `1708:30361`
-- send icon: `1708:30363`
-- sidebar-expanded board: `1708:30337`
-- provisional standalone board: `1787:10395`
-- provisional tab interaction block: `1840:11328`
-- Dialog section: `1922:32133`
-- Dialog core block: `1922:31967`
+
+Key node IDs:
+| Component | Node ID |
+|---|---|
+| Tab component set | `1714:976` |
+| Close off/on | `1714:1013` / `1714:1017` |
+| InputBox | `1708:30342` |
+| AIToolsRow | `1708:30180` |
+| Dialog section | `1922:32133` |
+| Sidebar (next) | `1708:30337` |
 
 ## Core Workflow
 
@@ -52,139 +41,27 @@ Compact project memory for starting a new thread quickly.
 ## Key Rules Already Settled
 
 - Existing spec/design-system rules outrank inferred design rules.
-- Missing interaction states must be confirmed first; then they can be added
-as `provisional` validation states.
-- Common interaction patterns can justify proposing provisional states, but
-cannot silently redefine canonical component rules.
-- All icon resources default to the export workflow, preferably `svg`.
-- If `FIGMA_TOKEN` is missing and export is required, stop and ask the user
-for the token before continuing.
-- Exported SVG canvas dimensions are not the source of truth for rendered
-icon size; match the icon's in-component geometry from Figma.
-- After exporting an SVG, inspect stroke/fill values before wiring. If they
-are hardcoded design-system colors, inline as SVG component with
-`currentColor`. Only use `<img>` for intentionally fixed colors (e.g.
-white arrow on colored button, brand logo).
-- **Pre-implementation asset check (hard gate):** Before writing any icon
-geometry in a component, check whether the icon has already been exported
-into the repo. If `src/assets/figma/*.svg` already contains the source
-icon, implementation must import that file — do not write or keep a
-handwritten SVG substitute. This check must happen before implementation
-starts, not as a cleanup step afterward.
-- Newly added provisional Figma state cards must be explicitly approved by
-the user or team before they become implementation input.
-- Workflow-only provisional boards should default to a standalone or
-clearly bounded validation area on the same page, not inside a formal
-product page artboard unless that exception is explicitly approved.
-- "Standalone" is not enough by itself: provisional boards must also sit
-in clear empty canvas space with visible separation from every existing
-artboard or board.
-- Provisional state cards for an existing component must start from the
-approved baseline component and preserve all unchanged parts, including
-icon assets, text, and structure. Only the state-specific delta should
-change.
-- State variants should default to the same root control container as the
-baseline. If hover/active only work by appending a new rectangle,
-wrapper, or overlay layer, treat that as suspect unless the formal
-component source explicitly proves a structural state change.
-- Do not promote a new component or component set into canonical formal
-status while its family boundary or one of its state axes is still
-provisional or proposal-only.
-- When `get_design_context` returns a CSS transform on an icon, verify the
-exported SVG orientation before copying it. The asset may already encode
-the correct direction — copying the transform blindly causes double-rotation.
+- Missing interaction states must be confirmed first; then they can be added as `provisional` validation states.
+- Common interaction patterns can justify proposing provisional states, but cannot silently redefine canonical component rules.
+- All icon resources default to the export workflow, preferably `svg`. Inline as SVG component with `currentColor` for theme-reactive icons; only use `<img>` for intentionally fixed colors.
+- **Pre-implementation asset check (hard gate):** Check `src/assets/figma/*.svg` before writing any icon geometry. If the asset exists, import it — do not write a substitute.
+- Provisional boards must be standalone (not inside a formal artboard) and have clear canvas separation from neighboring boards.
+- Provisional state cards must apply state to the root control container, not by appending extra layers.
+- Do not promote a component set to canonical while any family boundary or state axis is still provisional — even if the user explicitly requests it.
 - Stateful borders/strokes must not change geometry between states.
-- `figma-execution-shell` is now in main; use it as the protocol wrapper for
-real component cases, then tighten it only after a real run exposes a stable
-gap.
+- `figma-execution-shell` is the protocol wrapper for all real component cases.
 
-## Tab Status
+## Component Status
 
-- considered functionally closed for now
-- all 8 variants were implemented and checked
-- close icon flow uses source-exported assets
-- product-layer hover-close behavior lives in provisional validation, not in
-the canonical tab component set
-
-## InputBox Status
-
-- **closed** — all 4 states verified, geometry stable
-- commits: `d6afa94` (4 states), `ef0099c` (geometry fix)
-- deferred non-blockers: `ic_` rename, `开关` bridge exception,
-focus-state shadow token mismatch accepted as-is
-
-## Toolbar Status
-
-- **closed** — all 5 states verified, committed, and pushed
-- commits: `eb13c90` (Toolbar.tsx + assets), `dbd1136` (bookmark icon viewBox fix)
-- provisional boards confirmed:
-  - NavIcon disabled (`1872:10395`): `opacity: 0.3` on 24×24 wrapper ✓
-  - Bookmark bookmarked + URLBar focused (`1873:10395`): icons correct ✓
-- deferred non-blocker: `border border-[0.5px]` redundancy in `urlFocused`
-
-## Dialog Status
-
-- **closed** — Phase 4 validation case for the execution shell, verified 2026-04-16
-- shell milestones:
-  - PR `#18` merged — initial `figma-execution-shell`
-  - PR `#19` merged — shell v2 gate tightening
-  - PR `#21` merged — shell v3 final tightening
-- final code state in `agentic-browser-ui`:
-  - All axes implemented: CloseIcon × 4 variants, DialogButton × 3 types + hover (all 6 type×state combos), ButtonGroup × 3 layouts, DialogContent × 3 variants
-  - Fixes applied: close hover prop-driven, image-content branch, image spacing, image circle close, local asset (dialog-image-placeholder@1x.png), text button hover (#999→#333)
-  - Commits: `b5c9f24`, `b167b79`, `763239b` in agentic-browser-ui (branch: codex/dialog-phase4-closeout)
-  - Merged via PR `#1` in agentic-browser-ui
-- deferred non-blocker: HYQiHei font loading — shared typography pass, not Dialog-specific
-- visual verification complete, all verify cards confirmed
-
-## Dialog Learnings Worth Reusing
-
-- Do not count a variant axis as covered just because it is named in notes.
-  The axis must map to a real prop, structural branch, or verify case.
-- Static verify cards must render the real implementation branch, not
-  handwritten stand-ins.
-- Media/image variants should verify with the real exported asset, not a
-  placeholder, otherwise fit/crop/overlay bugs stay hidden.
-- Image/media variants can need a different spacing shell from text variants;
-  do not assume one shared wrapper survives visual verification.
-- Overlay controls (such as image close buttons) are easy to miss if the
-  branch is verified only structurally.
-
-## AIToolsRow Status
-
-- **closed** — Phase 4 shell follow-up case, verified 2026-04-17
-- provisional state frames (Figma):
-  - `[provisional] ToolPill/text` (`1956:65169`) — default / hover / active [proposal]
-  - `[provisional] ToolPill/icon-only` (`1956:65195`) — default / hover / active [proposal]
-- final code state in `agentic-browser-ui` (merged via PR #3):
-  - commits: `a97e009`, `a922a91`, `7721405`
-  - ToolPill (text) × 3 states, ToolPill (icon-only) × 3 states
-  - inline SVG icons with currentColor, verify surface 704px
-- deferred: active state remains proposal-level
-- gotchas promoted to skills: BOOLEAN_OPERATION mask SVG fix, verify surface width rule, promotion gate on user instruction
-  - verify surface now matches the Figma source width instead of the earlier `600px` squeeze
-  - icon rendering now uses inline SVG rather than `<img src={icon}>` for theme-reactive color
-  - `active` is still proposal-level until visual verification / explicit confirmation
-  - case is blocker-cleared and verify-ready, but not yet visual-verification-complete
-
-## Shell Follow-up Candidates
-
-- Add an explicit distinction between `coverage-complete` and
-  `visual-verification-complete`.
-- Keep treating interactive-only axes as deferred unless the verification
-  surface can drive them explicitly.
-- During closeout, do not call a case verified until the real target node has
-  been visually checked, even if axis coverage is complete.
-
-## Open Questions
-
-None — AIToolsRow closed. active state deferred as non-blocker.
-
-## Current Local Changes To Remember
-
-None — all AIToolsRow work merged.
+| Component | Status | Deferred |
+|---|---|---|
+| Tab | closed | hover-close lives in provisional validation |
+| InputBox | closed | focus-shadow token mismatch accepted as-is |
+| Toolbar | closed | `border border-[0.5px]` redundancy in urlFocused |
+| Dialog | closed (2026-04-16) | HYQiHei font — shared typography pass |
+| AIToolsRow | closed (2026-04-17) | active state remains proposal-level |
+| Sidebar | next | — |
 
 ## Next Recommended Action
 
-- finish AIToolsRow visual verification and closeout first
-- then keep `Sidebar` / `1708:30337` as the follow-up composite case after AIToolsRow, once pill-family boundaries are clearer
+Start Sidebar (`1708:30337`) as the next Phase 4 component case.
