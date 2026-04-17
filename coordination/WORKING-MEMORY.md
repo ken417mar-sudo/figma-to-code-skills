@@ -51,6 +51,13 @@ Key node IDs:
 - Do not promote a component set to canonical while any family boundary or state axis is still provisional — even if the user explicitly requests it.
 - Stateful borders/strokes must not change geometry between states.
 - `figma-execution-shell` is the protocol wrapper for all real component cases.
+- Compact action-icon controls should separate interactive size from icon size.
+  Default pattern: `24×24` button/hit area with a `16×16` icon frame unless the formal source says otherwise.
+- Exported SVG canvas size is packaging data, not the rendered-size contract.
+  If a small icon looks wrong in code, inspect the SVG viewBox / padding and normalize the asset before changing component layout.
+- Section headers with optional actions should be modeled as separate slots (`label` + optional `action`) rather than as a single undifferentiated row.
+- If Figma gives an explicit inner row width, preserve it instead of defaulting list items to `w-full`.
+- For icon-size review comments, debug in this order: outer button box → rendered icon box → exported SVG canvas.
 
 ## Component Status
 
@@ -61,7 +68,7 @@ Key node IDs:
 | Toolbar | closed | `border border-[0.5px]` redundancy in urlFocused |
 | Dialog | closed (2026-04-16) | HYQiHei font — shared typography pass |
 | AIToolsRow | closed (2026-04-17) | active state remains proposal-level |
-| Sidebar | next | — |
+| Sidebar | closed (2026-04-17) | formal default-only pass; SVG color hardcoding + interaction/collapsed states deferred |
 
 ## Component Family Definition
 
@@ -72,6 +79,16 @@ Two trial cards written and replay-validated (2026-04-17):
 Both passed Figma / code / verify three-segment validation. Format confirmed general.
 Next step: formalize into `figma-create-design-system-rules` output format — pending user decision on timing.
 
+## Sidebar Progress
+
+- Figma MCP recovery confirmed on 2026-04-17.
+- Formal default-only pass completed 2026-04-17 by Claude Code: 6 formal states all passed (V1–V2, V5, V7, V9–V10).
+- Section-header padding bug fixed (`pl-[12px] pr-[4px]` for Projects, `px-[12px]` for History).
+- Local implementation in `agentic-browser-ui` (branch `codex/sidebar-phase4`) — not yet committed/pushed.
+- Deferred (non-blocking): SVG icon colors hardcoded (#333/#999), theme-reactive未确认; interaction/collapsed states unconfirmed.
+
 ## Next Recommended Action
 
-Formalize Component Family Definition into `figma-create-design-system-rules`, then start Sidebar (`1708:30337`) as the next Phase 4 component case using the card as first output.
+1. Commit / push `codex/sidebar-phase4` in `agentic-browser-ui`.
+2. Decide whether Sidebar expands into confirmed interaction / collapsed states.
+3. Formalize Component Family Definition into `figma-create-design-system-rules` when timing is right.
