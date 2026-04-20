@@ -42,7 +42,7 @@ Communication channel: GitHub issue [#13](https://github.com/ken417mar-sudo/figm
 | Toolbar | closed | 5 states verified |
 | Dialog | closed | All axes verified, HYQiHei font deferred |
 | AIToolsRow | closed | ToolPill family, hover/active, inline SVG icons |
-| Sidebar | closed | Default-only, 6 formal states verified; hover/active/collapsed deferred |
+| BrowserResultPage / AssistantSidebarPanel | closed | Composite family case; collapsed launcher deferred |
 
 ## Component Family Definition
 
@@ -58,10 +58,9 @@ Cards: `experiments/trial-component-family-definition-aitoolsrow.md`, `experimen
 
 ## Current todo
 
-1. Decide whether Sidebar expands into confirmed interaction / collapsed states
-2. Commit / push `codex/sidebar-phase4` in `agentic-browser-ui` (Codex)
-3. Use the formalized `Component Family Definition` output on the next new component-scoped case
-4. Shared typography pass for HYQiHei font (deferred non-blocker)
+1. Choose the next component-scoped case
+2. Optionally reopen collapsed launcher (`1708:30243`) as a confirmed follow-up
+3. Shared typography pass for HYQiHei font (deferred non-blocker)
 
 ## Quick entry points
 

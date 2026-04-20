@@ -42,4 +42,4 @@ Default operating model:
 
 ## Current Focus
 
-Phase 4 is in progress. `figma-execution-shell` is merged. Dialog, AIToolsRow, and Sidebar (default-only) are all closed. Next: decide whether Sidebar expands into confirmed interaction / collapsed states, or move to the next component.
+Phase 5 closed (2026-04-20). BrowserResultPage + AssistantSidebarPanel composite family case is complete and merged. Next: choose the next component-scoped case, or reopen the collapsed launcher path (`1708:30243`) as a confirmed follow-up.

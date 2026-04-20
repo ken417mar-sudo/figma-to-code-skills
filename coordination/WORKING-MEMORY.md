@@ -70,6 +70,7 @@ Key node IDs:
 | Dialog | closed (2026-04-16) | HYQiHei font — shared typography pass |
 | AIToolsRow | closed (2026-04-17) | active state remains proposal-level |
 | Sidebar | closed (2026-04-17) | formal default-only pass; SVG color hardcoding + interaction/collapsed states deferred |
+| BrowserResultPage / AssistantSidebarPanel | closed (2026-04-20) | composite family; collapsed launcher + interaction states deferred |
 
 ## Component Family Definition
 
@@ -96,33 +97,6 @@ Key formal constraints now locked:
 - Implementation is now committed, pushed, and visible in `agentic-browser-ui` PR #4 (`codex/sidebar-phase4`).
 - Deferred (non-blocking): SVG icon colors hardcoded (#333/#999), theme-reactive未确认; interaction/collapsed states unconfirmed.
 
-## Active Case: BrowserResultPage / Assistant Sidebar
-
-- New source node selected on 2026-04-20: `1708:30204` (`网页结果页`).
-- User-directed scope order: first clean up hierarchy and naming, then move into implementation.
-- Family boundary is treated as:
-  - composite root: `BrowserResultPage`
-  - simple sub-family: `AssistantSidebarPanel`
-- Live cards:
-  - `cases/component-family-definition-browser-result-page.md`
-  - `cases/component-family-definition-assistant-sidebar-panel.md`
-- Implementation is complete in `agentic-browser-ui` on branch `codex/browser-result-assistant-sidebar` (PR #5).
-- Review cleanup is complete:
-  - prompt-chip alignment restored to Figma intent
-  - assistant chip label weight corrected
-  - history icon exported from Figma node `1708:30289` and wired as `assistant-title-history@1x.svg`
-- Visual verify against the root board `1708:30204` passed.
-- Additional legacy cleanup committed on the same branch:
-  - `AIToolsRow.tsx` inline icons replaced with exported assets
-  - `InputBox.tsx` inline icons replaced with exported assets
-- Remaining non-blocking visual note for this case: compact `InputBox` background inside the sidebar slot still uses the shared opaque base surface instead of the Figma semi-transparent panel-specific fill.
-- Intentionally provisional:
-  - collapsed page state
-  - hidden toolbar launcher reference (`1708:30243`) as canonical click-to-open source
-  - panel-specific chip / composer interaction states beyond existing families
-
 ## Next Recommended Action
 
-1. Merge PR #5 and PR #27 if no further review comments land.
-2. Decide whether to formally close this case as complete while keeping the collapsed launcher path provisional.
-3. If the product needs close-state behavior next, reopen the hidden launcher path as a confirmed follow-up instead of silently promoting it now.
+Choose the next component-scoped case, or explicitly reopen the collapsed launcher path (`1708:30243`) as a new provisional case.

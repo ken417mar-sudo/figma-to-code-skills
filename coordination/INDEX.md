@@ -12,7 +12,7 @@ Update this file when phase, repos, or active work changes.
 
 Phase 3 closed (2026-04-13) — Tab, InputBox, Toolbar all verified and committed.
 Phase 4 closed (2026-04-20) — `figma-execution-shell` merged; Dialog, AIToolsRow, and Sidebar (default-only) are all closed.
-Phase 5 in progress (2026-04-20) — `BrowserResultPage` with right-side assistant sidebar expanded (`1708:30204`) is implemented, review-clean, and visually verified; closeout / merge sync remains.
+Phase 5 closed (2026-04-20) — `BrowserResultPage` + `AssistantSidebarPanel` composite family case closed; PR #5 (agentic-browser-ui) and PR #27 (figma-to-code-skills) merged.
 
 ## Active Repos
 
@@ -97,23 +97,16 @@ Implementation is now committed, pushed, and visible in `agentic-browser-ui` PR 
 Deferred non-blockers: SVG icon color hardcoding (theme-reactive未确认); hover/active/collapsed states unconfirmed.
 Verify card: `experiments/trial-component-family-definition-sidebar.md`
 
-### BrowserResultPage / Assistant Sidebar — implemented, verified, ready for closeout (2026-04-20)
-Next formal case after Sidebar closeout. Source node: `1708:30204`.
-This pass is no longer in hierarchy-only mode: implementation is up in `agentic-browser-ui` PR #5 and the live cards in PR #27 reflect the settled family boundary / naming.
-Live cards:
-- `cases/component-family-definition-browser-result-page.md`
-- `cases/component-family-definition-assistant-sidebar-panel.md`
-Implementation status:
-- `BrowserResultPage` + `AssistantSidebarPanel` implemented on branch `codex/browser-result-assistant-sidebar` (PR #5)
-- review comments addressed
-- visual verify against `1708:30204` passed
-- title-bar history icon now exported from source Figma and wired as a local asset
-- AIToolsRow / InputBox legacy inline-icon cleanup also committed on the same branch
-Remaining provisional question intentionally left open: whether the hidden toolbar launcher (`1708:30243`) is the canonical collapsed state for the click-to-open flow.
+### BrowserResultPage / Assistant Sidebar — closed (2026-04-20)
+Phase 5 composite family case. Source node: `1708:30204`.
+All formal states verified. Implementation merged via PR #5 (`agentic-browser-ui`). Family Definition cards merged via PR #27 (`figma-to-code-skills`).
+Live cards: `cases/component-family-definition-browser-result-page.md`, `cases/component-family-definition-assistant-sidebar-panel.md`
+Deferred non-blockers: collapsed launcher (`1708:30243`) remains provisional; prompt-chip interaction states provisional-proposal.
+Legacy inline-icon cleanup also completed on this branch (AIToolsRow, InputBox).
 
 ## Next Recommended Action
 
-If no further review comments land, merge PR #5 (`agentic-browser-ui`) and PR #27 (`figma-to-code-skills`), then choose the next component-scoped case or explicitly reopen the collapsed launcher path.
+Choose the next component-scoped case, or explicitly reopen the collapsed launcher path (`1708:30243`) as a new provisional case.
 
 ## Source-of-Truth Notes
 
