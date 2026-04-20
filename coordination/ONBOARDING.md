@@ -18,11 +18,19 @@ Secondary goal: every real component case teaches us something. Recurring failur
 
 | Contributor | Role |
 |---|---|
-| User (markun) | Owns design decisions, confirms provisional states, approves closeouts |
-| Claude Code | Executes component cases, writes/edits code, manages coordination files, syncs issue #13 |
-| Codex | Reviews implementation, runs browser verification, proposes rule tightening, opens PRs |
+| User (markun) | Final decision-maker on priorities, design decisions, provisional-state confirmation, and closeouts |
+| Claude Code | Executes component cases, writes/edits code, manages coordination files, and contributes explicitly attributed suggestions |
+| Codex | Reviews implementation, runs browser verification, proposes rule tightening, and contributes explicitly attributed suggestions |
 
 Communication channel: GitHub issue [#13](https://github.com/ken417mar-sudo/figma-to-code-skills/issues/13) — permanent rolling log, never close.
+
+Decision protocol:
+- keep suggestion ownership explicit (`user`, `Claude Code`, `Codex`)
+- do not collapse an individual recommendation into "the project thinks"
+  until contributors have aligned on it
+- once a recommendation or objection is raised, sync it to `#13` by
+  default so the shared log reflects not just actions, but advice and
+  pending decisions as well
 
 ## Project phases
 

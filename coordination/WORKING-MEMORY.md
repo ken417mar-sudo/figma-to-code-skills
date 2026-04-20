@@ -12,6 +12,8 @@ Compact project memory for starting a new thread quickly.
 
 - stable entry: `coordination/INDEX.md`
 - current active issue: [#13](https://github.com/ken417mar-sudo/figma-to-code-skills/issues/13) — permanent coordination log, never close
+- recommendation/opinion sync rule: default-post new suggestions,
+  disagreements, and prioritization proposals to `#13`
 
 ## Active Figma File
 
@@ -59,6 +61,13 @@ Key node IDs:
 - Section headers with optional actions should be modeled as separate slots (`label` + optional `action`) rather than as a single undifferentiated row.
 - If Figma gives an explicit inner row width, preserve it instead of defaulting list items to `w-full`.
 - For icon-size review comments, debug in this order: outer button box → rendered icon box → exported SVG canvas.
+- Keep recommendation ownership explicit until alignment happens.
+  User suggestion, Claude suggestion, and Codex suggestion are distinct
+  states; only after alignment should they be summarized as shared
+  consensus.
+- The user is the final decision-maker on prioritization, scope, and
+  closeout. Do not silently upgrade an agent recommendation into a
+  project decision.
 
 ## Component Status
 

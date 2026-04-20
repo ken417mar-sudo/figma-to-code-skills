@@ -21,6 +21,19 @@ Default operating model:
 - verify implemented UI against Figma and record recurring failures as
   reusable gotchas
 
+## Decision Protocol
+
+This repo is built collaboratively by the user, Claude Code, and Codex.
+
+- attribute every recommendation to its source unless it has already
+  become an explicit team consensus
+- treat agent suggestions and reviews as inputs, not final decisions
+- only mark something as shared consensus after the contributors have
+  aligned on it
+- the user makes the final decision on priority, scope, and closeout
+- sync recommendation or opinion changes into issue `#13` by default so
+  advice does not stay trapped in a single chat or PR
+
 ## Start Here
 
 - **New to this project?** Read [coordination/ONBOARDING.md](coordination/ONBOARDING.md) first.

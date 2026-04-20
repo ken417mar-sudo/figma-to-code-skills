@@ -3,6 +3,17 @@
 Single entry point for all three contributors (user, Claude, Codex).
 Update this file when phase, repos, or active work changes.
 
+## Decision Hygiene
+
+- Keep recommendation ownership explicit: say whether an idea came from
+  the user, Claude Code, Codex, or a later shared consensus.
+- Do not rewrite an individual agent suggestion as project consensus
+  until the contributors have aligned on it.
+- The user is the final decision-maker on priorities, scope, and
+  closeout.
+- Sync new recommendations, objections, and prioritization proposals to
+  issue `#13` by default.
+
 ## Stable Memory
 
 - Working summary for new threads:
