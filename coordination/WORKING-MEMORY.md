@@ -65,7 +65,7 @@ Key node IDs:
 | Component | Status | Deferred |
 |---|---|---|
 | Tab | closed | hover-close lives in provisional validation |
-| InputBox | closed | focus-shadow token mismatch accepted as-is |
+| InputBox | closed | focus-shadow token mismatch accepted as-is; compact sidebar bg remains a deferred non-blocker |
 | Toolbar | closed | `border border-[0.5px]` redundancy in urlFocused |
 | Dialog | closed (2026-04-16) | HYQiHei font — shared typography pass |
 | AIToolsRow | closed (2026-04-17) | active state remains proposal-level |
@@ -106,7 +106,16 @@ Key formal constraints now locked:
 - Live cards:
   - `cases/component-family-definition-browser-result-page.md`
   - `cases/component-family-definition-assistant-sidebar-panel.md`
-- Implementation has started in `agentic-browser-ui` on branch `codex/browser-result-assistant-sidebar` (PR #5); build passes, visual verify still pending.
+- Implementation is complete in `agentic-browser-ui` on branch `codex/browser-result-assistant-sidebar` (PR #5).
+- Review cleanup is complete:
+  - prompt-chip alignment restored to Figma intent
+  - assistant chip label weight corrected
+  - history icon exported from Figma node `1708:30289` and wired as `assistant-title-history@1x.svg`
+- Visual verify against the root board `1708:30204` passed.
+- Additional legacy cleanup committed on the same branch:
+  - `AIToolsRow.tsx` inline icons replaced with exported assets
+  - `InputBox.tsx` inline icons replaced with exported assets
+- Remaining non-blocking visual note for this case: compact `InputBox` background inside the sidebar slot still uses the shared opaque base surface instead of the Figma semi-transparent panel-specific fill.
 - Intentionally provisional:
   - collapsed page state
   - hidden toolbar launcher reference (`1708:30243`) as canonical click-to-open source
@@ -114,6 +123,6 @@ Key formal constraints now locked:
 
 ## Next Recommended Action
 
-1. Review the live hierarchy / naming cards for the BrowserResultPage case.
-2. Reuse existing `Toolbar` / `InputBox` families where possible during implementation.
-3. Keep the collapsed launcher flow provisional until the hidden reference is explicitly confirmed as canonical.
+1. Merge PR #5 and PR #27 if no further review comments land.
+2. Decide whether to formally close this case as complete while keeping the collapsed launcher path provisional.
+3. If the product needs close-state behavior next, reopen the hidden launcher path as a confirmed follow-up instead of silently promoting it now.

@@ -12,7 +12,7 @@ Update this file when phase, repos, or active work changes.
 
 Phase 3 closed (2026-04-13) — Tab, InputBox, Toolbar all verified and committed.
 Phase 4 closed (2026-04-20) — `figma-execution-shell` merged; Dialog, AIToolsRow, and Sidebar (default-only) are all closed.
-Phase 5 in progress (2026-04-20) — next case started: `BrowserResultPage` with right-side assistant sidebar expanded (`1708:30204`); hierarchy + naming live-card pass in progress.
+Phase 5 in progress (2026-04-20) — `BrowserResultPage` with right-side assistant sidebar expanded (`1708:30204`) is implemented, review-clean, and visually verified; closeout / merge sync remains.
 
 ## Active Repos
 
@@ -97,17 +97,23 @@ Implementation is now committed, pushed, and visible in `agentic-browser-ui` PR 
 Deferred non-blockers: SVG icon color hardcoding (theme-reactive未确认); hover/active/collapsed states unconfirmed.
 Verify card: `experiments/trial-component-family-definition-sidebar.md`
 
-### BrowserResultPage / Assistant Sidebar — hierarchy + naming in progress (2026-04-20)
+### BrowserResultPage / Assistant Sidebar — implemented, verified, ready for closeout (2026-04-20)
 Next formal case after Sidebar closeout. Source node: `1708:30204`.
-Scope for this pass: define family boundary, slot hierarchy, and canonical naming before implementation.
+This pass is no longer in hierarchy-only mode: implementation is up in `agentic-browser-ui` PR #5 and the live cards in PR #27 reflect the settled family boundary / naming.
 Live cards:
 - `cases/component-family-definition-browser-result-page.md`
 - `cases/component-family-definition-assistant-sidebar-panel.md`
-Open design question intentionally left provisional: whether the hidden toolbar launcher (`1708:30243`) is the canonical collapsed state for the click-to-open flow.
+Implementation status:
+- `BrowserResultPage` + `AssistantSidebarPanel` implemented on branch `codex/browser-result-assistant-sidebar` (PR #5)
+- review comments addressed
+- visual verify against `1708:30204` passed
+- title-bar history icon now exported from source Figma and wired as a local asset
+- AIToolsRow / InputBox legacy inline-icon cleanup also committed on the same branch
+Remaining provisional question intentionally left open: whether the hidden toolbar launcher (`1708:30243`) is the canonical collapsed state for the click-to-open flow.
 
 ## Next Recommended Action
 
-Review the live hierarchy / naming cards for `BrowserResultPage`, then implement the expanded assistant-sidebar case in `agentic-browser-ui`.
+If no further review comments land, merge PR #5 (`agentic-browser-ui`) and PR #27 (`figma-to-code-skills`), then choose the next component-scoped case or explicitly reopen the collapsed launcher path.
 
 ## Source-of-Truth Notes
 
