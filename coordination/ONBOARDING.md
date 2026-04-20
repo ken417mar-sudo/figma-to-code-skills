@@ -26,6 +26,8 @@ Communication channel: GitHub issue [#13](https://github.com/ken417mar-sudo/figm
 
 Decision protocol:
 - keep suggestion ownership explicit (`user`, `Claude Code`, `Codex`)
+- when posting recommendations through the shared GitHub account, prefix
+  them with the agent name, for example `Codex:` or `Claude Code:`
 - do not collapse an individual recommendation into "the project thinks"
   until contributors have aligned on it
 - once a recommendation or objection is raised, sync it to `#13` by
@@ -68,10 +70,10 @@ Cards: `experiments/trial-component-family-definition-aitoolsrow.md`, `experimen
 
 ## Current todo
 
-1. Run one more fresh component-scoped case to prove workflow repeatability
-2. Reopen collapsed launcher (`1708:30243`) or another missing state as a provisional-promotion validation case
-3. Validate either existing-rule capture or sketch / low-fi gap-filling on a real project need
-4. Validate at least one non-web or strongly profile-constrained case
+1. Run an existing-rule capture pass first on `agentic-browser-ui`, because that real project baseline is already available
+2. Run one more fresh component-scoped case to prove workflow repeatability
+3. Reopen collapsed launcher (`1708:30243`) or another missing state as a provisional-promotion validation case
+4. Validate sketch / low-fi gap-filling or non-web profile breadth only when a real project need appears
 5. Shared typography pass for HYQiHei font remains a deferred cross-case non-blocker
 
 ## Quick entry points

@@ -27,6 +27,9 @@ This repo is built collaboratively by the user, Claude Code, and Codex.
 
 - attribute every recommendation to its source unless it has already
   become an explicit team consensus
+- when posting recommendations or opinions under the shared GitHub
+  account, prefix them with the agent name, for example `Codex:` or
+  `Claude Code:`
 - treat agent suggestions and reviews as inputs, not final decisions
 - only mark something as shared consensus after the contributors have
   aligned on it
@@ -57,8 +60,8 @@ This repo is built collaboratively by the user, Claude Code, and Codex.
 
 Phase 6 planning (2026-04-20). The web component-to-code workflow has been validated through Phase 5. The next step is not more cleanup on the closed case, but targeted capability validation:
 
-1. prove the formalized workflow is repeatable on another fresh component-scoped case
-2. validate the full provisional-to-formal promotion path (starting with collapsed launcher `1708:30243` if chosen)
-3. validate design-system rule capture from an existing project baseline
-4. validate sketch / low-fidelity gap-filling into system-aligned components
-5. validate portability beyond the current web React path
+1. run either a repeatability case or an existing-rule capture case first, based on which real input is immediately available
+2. validate the other top-tier case next so both repeatability and existing-rule capture are proven early
+3. validate the full provisional-to-formal promotion path (starting with collapsed launcher `1708:30243` if chosen)
+4. validate sketch / low-fidelity gap-filling or platform breadth only when a real project need appears
+5. validate library / code-connect linkage after enough stable families exist

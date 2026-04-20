@@ -14,6 +14,8 @@ Compact project memory for starting a new thread quickly.
 - current active issue: [#13](https://github.com/ken417mar-sudo/figma-to-code-skills/issues/13) — permanent coordination log, never close
 - recommendation/opinion sync rule: default-post new suggestions,
   disagreements, and prioritization proposals to `#13`
+- shared-account attribution rule: prefix recommendation/commentary posts
+  with the agent name, for example `Codex:` or `Claude Code:`
 
 ## Active Figma File
 
@@ -114,13 +116,13 @@ Priority checklist for the next stage:
    Run one more fresh component-scoped case through the fully formalized workflow.
    Proof target: `Component Family Definition` + export gate + verify + closeout sync all work again without bespoke repair.
 
-2. `Provisional promotion case`
-   Reopen collapsed launcher `1708:30243` or another missing state as a confirmed provisional case.
-   Proof target: the team can move from provisional-proposal to confirmed implementation input to either formal promotion or explicit retirement.
-
-3. `Existing-rule capture case`
+2. `Existing-rule capture case`
    Validate the "existing spec first" branch on a real project with undocumented but stable rules.
    Proof target: captured rules actually steer implementation, rather than becoming passive documentation.
+
+3. `Provisional promotion case`
+   Reopen collapsed launcher `1708:30243` or another missing state as a confirmed provisional case.
+   Proof target: the team can move from provisional-proposal to confirmed implementation input to either formal promotion or explicit retirement.
 
 4. `Sketch / low-fi gap-fill case`
    Validate that missing states or components can be expanded from low-fidelity material without breaking the established system boundary.
@@ -137,6 +139,7 @@ Priority checklist for the next stage:
 ## Next Recommended Action
 
 Choose the next case from this order:
-1. repeatability
-2. provisional promotion
-3. existing-rule capture or sketch gap-fill, depending on whichever becomes a real project need first
+1. existing-rule capture first, using `agentic-browser-ui` as the current real project baseline
+2. repeatability next, on the first suitable fresh component-scoped board
+3. provisional promotion after the top-tier pair is complete
+4. sketch gap-fill or platform breadth only when a real project need appears

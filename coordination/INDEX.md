@@ -7,6 +7,9 @@ Update this file when phase, repos, or active work changes.
 
 - Keep recommendation ownership explicit: say whether an idea came from
   the user, Claude Code, Codex, or a later shared consensus.
+- When recommendations are posted through the shared GitHub account,
+  prefix them with the agent name, for example `Codex:` or
+  `Claude Code:`.
 - Do not rewrite an individual agent suggestion as project consensus
   until the contributors have aligned on it.
 - The user is the final decision-maker on priorities, scope, and
@@ -121,11 +124,11 @@ Legacy inline-icon cleanup also completed on this branch (AIToolsRow, InputBox).
 1. `Repeatability` — run one more fresh component-scoped case end-to-end under the now-formalized workflow (`Component Family Definition` first, export gate, verify, closeout sync).
 What this proves: Phase 5 was not a one-off success tied to a single page family.
 
-2. `Provisional -> Formal Promotion` — explicitly reopen collapsed launcher `1708:30243` or another missing state as a provisional case, get human confirmation, implement it, and then promote or retire the provisional artifact cleanly.
-What this proves: the team can not only constrain provisional states, but also close the loop when one should become formal.
-
-3. `Existing Rule Capture` — validate `figma-capture-design-system` or the equivalent capture workflow on a project with pre-existing implementation rules, then use those captured rules to drive a real implementation pass.
+2. `Existing Rule Capture` — validate `figma-capture-design-system` or the equivalent capture workflow on a project with pre-existing implementation rules, then use those captured rules to drive a real implementation pass.
 What this proves: the system can preserve "existing spec first" instead of only inferring rules from Figma.
+
+3. `Provisional -> Formal Promotion` — explicitly reopen collapsed launcher `1708:30243` or another missing state as a provisional case, get human confirmation, implement it, and then promote or retire the provisional artifact cleanly.
+What this proves: the team can not only constrain provisional states, but also close the loop when one should become formal.
 
 4. `Sketch / Gap Filling` — run one low-fidelity or incomplete-design case through `figma-sketch-to-system-components`, then verify that the generated missing state/component stays aligned with the established system.
 What this proves: the workflow can fill missing coverage without silently redefining the product system.
@@ -139,9 +142,11 @@ What this proves: the project can move from one-off implementation into reusable
 ## Next Recommended Action
 
 Priority order:
-1. run a repeatability case
-2. then run a provisional-promotion case
-3. then choose between existing-rule capture and sketch gap-filling based on which real project need appears first
+1. treat `Repeatability` and `Existing Rule Capture` as the joint top tier
+2. start with `Existing Rule Capture` first because `agentic-browser-ui` already provides a live project baseline and does not require waiting for a new clean Figma case
+3. run `Repeatability` next on the first suitable fresh component-scoped board
+4. then run a `Provisional -> Formal Promotion` case
+5. keep sketch/gap-fill and platform breadth demand-driven
 
 ## Source-of-Truth Notes
 
