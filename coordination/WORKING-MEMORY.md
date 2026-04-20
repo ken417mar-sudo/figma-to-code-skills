@@ -46,7 +46,7 @@ Key node IDs:
 - Missing interaction states must be confirmed first; then they can be added as `provisional` validation states.
 - Common interaction patterns can justify proposing provisional states, but cannot silently redefine canonical component rules.
 - All icon resources default to the export workflow, preferably `svg`. Inline as SVG component with `currentColor` for theme-reactive icons; only use `<img>` for intentionally fixed colors.
-- **Pre-implementation asset check (hard gate):** Check `src/assets/figma/*.svg` before writing any icon geometry. If the asset exists, import it — do not write a substitute.
+- **Pre-implementation asset check (hard gate):** For every design-owned icon or image, complete the export check before implementation. If the asset already exists in `src/assets/figma/`, import it. If it does not exist yet, export it first. Do not ship component code with inline SVG, placeholder geometry, or handwritten replacement icons while that export check is still incomplete.
 - Provisional boards must be standalone (not inside a formal artboard) and have clear canvas separation from neighboring boards.
 - Provisional state cards must apply state to the root control container, not by appending extra layers.
 - Do not promote a component set to canonical while any family boundary or state axis is still provisional — even if the user explicitly requests it.

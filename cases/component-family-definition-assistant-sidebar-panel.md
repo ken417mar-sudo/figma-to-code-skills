@@ -130,7 +130,7 @@ Naming rule for this family:
 | Asset | File | Notes |
 |---|---|---|
 | new-task icon | `assistant-title-new-task@1x.svg` | local title-bar action asset |
-| history icon | not exported yet | leading action in title bar |
+| history icon | `assistant-title-history@1x.svg` | leading action in title bar |
 | assistant chip logo | `assistant-sidebar-chip-logo@1x.svg` | selected chip at top-right |
 | prompt arrow | `assistant-prompt-arrow@1x.svg` | reused by each prompt chip |
 | compact composer icons | existing local InputBox assets | verify before reuse |
