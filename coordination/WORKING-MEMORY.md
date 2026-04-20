@@ -97,6 +97,37 @@ Key formal constraints now locked:
 - Implementation is now committed, pushed, and visible in `agentic-browser-ui` PR #4 (`codex/sidebar-phase4`).
 - Deferred (non-blocking): SVG icon colors hardcoded (#333/#999), theme-reactive未确认; interaction/collapsed states unconfirmed.
 
+## Phase 6 Planning
+
+Priority checklist for the next stage:
+
+1. `Repeatability case`
+   Run one more fresh component-scoped case through the fully formalized workflow.
+   Proof target: `Component Family Definition` + export gate + verify + closeout sync all work again without bespoke repair.
+
+2. `Provisional promotion case`
+   Reopen collapsed launcher `1708:30243` or another missing state as a confirmed provisional case.
+   Proof target: the team can move from provisional-proposal to confirmed implementation input to either formal promotion or explicit retirement.
+
+3. `Existing-rule capture case`
+   Validate the "existing spec first" branch on a real project with undocumented but stable rules.
+   Proof target: captured rules actually steer implementation, rather than becoming passive documentation.
+
+4. `Sketch / low-fi gap-fill case`
+   Validate that missing states or components can be expanded from low-fidelity material without breaking the established system boundary.
+   Proof target: the workflow can fill design gaps safely, not just implement already-clean boards.
+
+5. `Platform breadth case`
+   Validate at least one non-web target or a profile-aware dry run with real constraints.
+   Proof target: stack-profile gating is real behavior, not a web-only placeholder.
+
+6. `Library / Code Connect case`
+   Validate reusable mapping/library generation once a family is stable enough.
+   Proof target: the project can mature from case-by-case implementation into reusable design/code linkage.
+
 ## Next Recommended Action
 
-Choose the next component-scoped case, or explicitly reopen the collapsed launcher path (`1708:30243`) as a new provisional case.
+Choose the next case from this order:
+1. repeatability
+2. provisional promotion
+3. existing-rule capture or sketch gap-fill, depending on whichever becomes a real project need first

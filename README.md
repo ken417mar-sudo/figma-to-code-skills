@@ -42,4 +42,10 @@ Default operating model:
 
 ## Current Focus
 
-Phase 5 closed (2026-04-20). BrowserResultPage + AssistantSidebarPanel composite family case is complete and merged. Next: choose the next component-scoped case, or reopen the collapsed launcher path (`1708:30243`) as a confirmed follow-up.
+Phase 6 planning (2026-04-20). The web component-to-code workflow has been validated through Phase 5. The next step is not more cleanup on the closed case, but targeted capability validation:
+
+1. prove the formalized workflow is repeatable on another fresh component-scoped case
+2. validate the full provisional-to-formal promotion path (starting with collapsed launcher `1708:30243` if chosen)
+3. validate design-system rule capture from an existing project baseline
+4. validate sketch / low-fidelity gap-filling into system-aligned components
+5. validate portability beyond the current web React path

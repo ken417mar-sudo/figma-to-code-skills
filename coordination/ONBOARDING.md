@@ -31,7 +31,9 @@ Communication channel: GitHub issue [#13](https://github.com/ken417mar-sudo/figm
 | Phase 1 | closed | Rewrote all skill READMEs from spec docs into executable agent prompts |
 | Phase 2 | closed | Established tech-stack profile, workflow baseline, coordination structure |
 | Phase 3 | closed (2026-04-13) | Tab, InputBox, Toolbar — all verified and committed |
-| Phase 4 | in progress | `figma-execution-shell` merged; Dialog, AIToolsRow, Sidebar (default-only) all closed |
+| Phase 4 | closed (2026-04-20) | `figma-execution-shell` merged; Dialog, AIToolsRow, Sidebar (default-only) all closed |
+| Phase 5 | closed (2026-04-20) | BrowserResultPage + AssistantSidebarPanel composite family case merged and formally closed |
+| Phase 6 | planning | next step is capability validation beyond the proven web component loop |
 
 ## Current component status
 
@@ -58,9 +60,11 @@ Cards: `experiments/trial-component-family-definition-aitoolsrow.md`, `experimen
 
 ## Current todo
 
-1. Choose the next component-scoped case
-2. Optionally reopen collapsed launcher (`1708:30243`) as a confirmed follow-up
-3. Shared typography pass for HYQiHei font (deferred non-blocker)
+1. Run one more fresh component-scoped case to prove workflow repeatability
+2. Reopen collapsed launcher (`1708:30243`) or another missing state as a provisional-promotion validation case
+3. Validate either existing-rule capture or sketch / low-fi gap-filling on a real project need
+4. Validate at least one non-web or strongly profile-constrained case
+5. Shared typography pass for HYQiHei font remains a deferred cross-case non-blocker
 
 ## Quick entry points
 

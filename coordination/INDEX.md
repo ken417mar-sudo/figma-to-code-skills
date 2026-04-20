@@ -13,6 +13,7 @@ Update this file when phase, repos, or active work changes.
 Phase 3 closed (2026-04-13) — Tab, InputBox, Toolbar all verified and committed.
 Phase 4 closed (2026-04-20) — `figma-execution-shell` merged; Dialog, AIToolsRow, and Sidebar (default-only) are all closed.
 Phase 5 closed (2026-04-20) — `BrowserResultPage` + `AssistantSidebarPanel` composite family case closed; PR #5 (agentic-browser-ui) and PR #27 (figma-to-code-skills) merged.
+Phase 6 planning (2026-04-20) — next step is capability validation beyond the already-proven web component loop.
 
 ## Active Repos
 
@@ -104,9 +105,32 @@ Live cards: `cases/component-family-definition-browser-result-page.md`, `cases/c
 Deferred non-blockers: collapsed launcher (`1708:30243`) remains provisional; prompt-chip interaction states provisional-proposal.
 Legacy inline-icon cleanup also completed on this branch (AIToolsRow, InputBox).
 
+## Phase 6 Planning Checklist
+
+1. `Repeatability` — run one more fresh component-scoped case end-to-end under the now-formalized workflow (`Component Family Definition` first, export gate, verify, closeout sync).
+What this proves: Phase 5 was not a one-off success tied to a single page family.
+
+2. `Provisional -> Formal Promotion` — explicitly reopen collapsed launcher `1708:30243` or another missing state as a provisional case, get human confirmation, implement it, and then promote or retire the provisional artifact cleanly.
+What this proves: the team can not only constrain provisional states, but also close the loop when one should become formal.
+
+3. `Existing Rule Capture` — validate `figma-capture-design-system` or the equivalent capture workflow on a project with pre-existing implementation rules, then use those captured rules to drive a real implementation pass.
+What this proves: the system can preserve "existing spec first" instead of only inferring rules from Figma.
+
+4. `Sketch / Gap Filling` — run one low-fidelity or incomplete-design case through `figma-sketch-to-system-components`, then verify that the generated missing state/component stays aligned with the established system.
+What this proves: the workflow can fill missing coverage without silently redefining the product system.
+
+5. `Platform Breadth` — validate at least one non-web delivery profile, or at minimum run a profile-aware dry run that exercises the target/platform/framework decision gates with a real case.
+What this proves: the workflow baseline is not accidentally web-only.
+
+6. `Library / Mapping Layer` — run a real case that exercises `figma-generate-library` or `figma-code-connect-components` against the current codebase after a family is stable enough.
+What this proves: the project can move from one-off implementation into reusable design/code linkage.
+
 ## Next Recommended Action
 
-Choose the next component-scoped case, or explicitly reopen the collapsed launcher path (`1708:30243`) as a new provisional case.
+Priority order:
+1. run a repeatability case
+2. then run a provisional-promotion case
+3. then choose between existing-rule capture and sketch gap-filling based on which real project need appears first
 
 ## Source-of-Truth Notes
 
