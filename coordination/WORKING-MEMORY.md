@@ -26,7 +26,8 @@ Key node IDs:
 | InputBox | `1708:30342` |
 | AIToolsRow | `1708:30180` |
 | Dialog section | `1922:32133` |
-| Sidebar (next) | `1708:30337` |
+| Sidebar | `1708:30337` |
+| BrowserResultPage with assistant sidebar expanded | `1708:30204` |
 
 ## Core Workflow
 
@@ -92,12 +93,26 @@ Key formal constraints now locked:
 - Figma MCP recovery confirmed on 2026-04-17.
 - Formal default-only pass completed 2026-04-17 by Claude Code: 6 formal states all passed (V1–V2, V5, V7, V9–V10).
 - Section-header padding bug fixed (`pl-[12px] pr-[4px]` for Projects, `px-[12px]` for History).
-- Local implementation in `agentic-browser-ui` (branch `codex/sidebar-phase4`) — not yet committed/pushed.
+- Implementation is now committed, pushed, and visible in `agentic-browser-ui` PR #4 (`codex/sidebar-phase4`).
 - Deferred (non-blocking): SVG icon colors hardcoded (#333/#999), theme-reactive未确认; interaction/collapsed states unconfirmed.
+
+## Active Case: BrowserResultPage / Assistant Sidebar
+
+- New source node selected on 2026-04-20: `1708:30204` (`网页结果页`).
+- User-directed scope order: first clean up hierarchy and naming, then move into implementation.
+- Family boundary is treated as:
+  - composite root: `BrowserResultPage`
+  - simple sub-family: `AssistantSidebarPanel`
+- Live cards:
+  - `cases/component-family-definition-browser-result-page.md`
+  - `cases/component-family-definition-assistant-sidebar-panel.md`
+- Intentionally provisional:
+  - collapsed page state
+  - hidden toolbar launcher reference (`1708:30243`) as canonical click-to-open source
+  - panel-specific chip / composer interaction states beyond existing families
 
 ## Next Recommended Action
 
-1. Commit / push `codex/sidebar-phase4` in `agentic-browser-ui`.
-2. Decide whether Sidebar expands into confirmed interaction / collapsed states.
-3. Use the formalized `Component Family Definition` output on the next new
-   component-scoped case with a clear family boundary.
+1. Review the live hierarchy / naming cards for the BrowserResultPage case.
+2. Reuse existing `Toolbar` / `InputBox` families where possible during implementation.
+3. Keep the collapsed launcher flow provisional until the hidden reference is explicitly confirmed as canonical.
