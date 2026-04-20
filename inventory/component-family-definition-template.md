@@ -1,9 +1,11 @@
 # Component Family Definition — Template
 
-> Controlled trial-run format. Use this template when a component family
+> Formal output format. Use this template when a component family
 > boundary is clear enough to define before implementation begins.
-> Output from `figma-create-design-system-rules` when applicable.
-> Not yet a required output — treat as preferred format for new cases.
+> Required output from `figma-create-design-system-rules` for
+> component-scoped work when the family boundary is clear.
+> Produce it before implementation begins and update it in place as
+> definition or verification status changes.
 
 ---
 
@@ -50,7 +52,7 @@ verified, but definition not yet formally approved). Do not conflate them.
 
 > [simple | composite] family  
 > definition produced: [date]  
-> status: [trial-run | controlled | formal]
+> last updated: [date]
 
 ---
 
@@ -140,3 +142,5 @@ If all axes are already formal, state that explicitly.]
   a separate user sign-off action and a Figma component set update.
 - This card is a snapshot. Update it when definition or verification status
   changes, rather than creating a new card.
+- Do not add format-maturity labels such as `trial-run` or `controlled`
+  to new live cards. The format itself is already formal at the repo level.

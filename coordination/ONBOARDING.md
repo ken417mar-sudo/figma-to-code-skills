@@ -46,15 +46,21 @@ Communication channel: GitHub issue [#13](https://github.com/ken417mar-sudo/figm
 
 ## Component Family Definition
 
-Three trial cards written and replay-validated (2026-04-17). All passed Figma / code / verify three-segment validation. Format confirmed general across provisional-axis (AIToolsRow), pure-formal (Dialog), and composite-formal (Sidebar) cases.
+Three historical validation cards were written and replay-validated
+(2026-04-17). All passed Figma / code / verify three-segment validation.
+The format is now formalized as the required component-scoped output of
+`figma-create-design-system-rules` when the family boundary is clear.
+The three samples remain in `experiments/` as validation evidence across
+provisional-axis (AIToolsRow), pure-formal (Dialog), and
+composite-formal (Sidebar) cases.
 
 Cards: `experiments/trial-component-family-definition-aitoolsrow.md`, `experiments/trial-component-family-definition-dialog.md`, `experiments/trial-component-family-definition-sidebar.md`
 
 ## Current todo
 
-1. Formalize Component Family Definition into `figma-create-design-system-rules` output format (pending user decision on timing)
-2. Decide whether Sidebar expands into confirmed interaction / collapsed states
-3. Commit / push `codex/sidebar-phase4` in `agentic-browser-ui` (Codex)
+1. Decide whether Sidebar expands into confirmed interaction / collapsed states
+2. Commit / push `codex/sidebar-phase4` in `agentic-browser-ui` (Codex)
+3. Use the formalized `Component Family Definition` output on the next new component-scoped case
 4. Shared typography pass for HYQiHei font (deferred non-blocker)
 
 ## Quick entry points
