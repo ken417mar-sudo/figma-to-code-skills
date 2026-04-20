@@ -136,10 +136,11 @@ Do not ask when:
 - Do not optimize only for pixel similarity. A structurally wrong
   component that looks correct in a screenshot will break under real
   content and state changes.
-- Do not fake design-owned icons or images with placeholder blocks,
-  improvised SVGs, or ad hoc CSS shapes when the design expects an
-  exported asset. Use the asset export workflow first. Icon resources
-  should default to exported assets, preferably SVG.
+- Do not start implementation of a design-owned icon or image until the
+  export check is complete. If the asset already exists in the repository,
+  import it. If it does not exist yet, export it first. Do not leave a
+  component implemented with placeholder blocks, improvised SVGs, ad hoc
+  CSS shapes, or handwritten replacement geometry as a temporary bridge.
 - Code Connect snippets returned by `get_design_context` are the
   authoritative component reference. Use them instead of generating new
   component code from scratch.

@@ -11,7 +11,8 @@ Update this file when phase, repos, or active work changes.
 ## Current Phase
 
 Phase 3 closed (2026-04-13) — Tab, InputBox, Toolbar all verified and committed.
-Phase 4 in progress (2026-04-17) — `figma-execution-shell` merged; Dialog, AIToolsRow, and Sidebar (default-only) are all closed; formal verify pass completed for Sidebar (6/6 states passed).
+Phase 4 closed (2026-04-20) — `figma-execution-shell` merged; Dialog, AIToolsRow, and Sidebar (default-only) are all closed.
+Phase 5 in progress (2026-04-20) — `BrowserResultPage` with right-side assistant sidebar expanded (`1708:30204`) is implemented, review-clean, and visually verified; closeout / merge sync remains.
 
 ## Active Repos
 
@@ -41,6 +42,7 @@ Key node IDs:
 | Component | Node ID |
 |---|---|
 | AIToolsRow | `1708:30180` |
+| BrowserResultPage (assistant sidebar expanded) | `1708:30204` |
 | InputBox | `1708:30342` |
 | 页签 (8 variants) | `1714:977`, `1714:983`, `1714:990`, `1714:1001`, `1720:89968`, `1720:89980`, `1720:89992`, `1720:90000` |
 | 关闭 Hover=off | `1714:1013` |
@@ -91,13 +93,27 @@ Gotchas promoted: BOOLEAN_OPERATION mask SVG fix, verify surface width rule, pro
 Phase 4 follow-up case. Formal default-only pass completed by Claude Code.
 All 6 formal states passed (V1 Sidebar expanded, V2 QuickActionItem default, V5 ProjectItem default, V7 HistoryItem default, V9 SidebarHeader default, V10 UserInfo default).
 Section-header padding bug fixed: Projects `pl-[12px] pr-[4px]`, History `px-[12px]`.
-Local implementation in agentic-browser-ui (branch: `codex/sidebar-phase4`) — not yet committed/pushed.
+Implementation is now committed, pushed, and visible in `agentic-browser-ui` PR #4 (`codex/sidebar-phase4`).
 Deferred non-blockers: SVG icon color hardcoding (theme-reactive未确认); hover/active/collapsed states unconfirmed.
 Verify card: `experiments/trial-component-family-definition-sidebar.md`
 
+### BrowserResultPage / Assistant Sidebar — implemented, verified, ready for closeout (2026-04-20)
+Next formal case after Sidebar closeout. Source node: `1708:30204`.
+This pass is no longer in hierarchy-only mode: implementation is up in `agentic-browser-ui` PR #5 and the live cards in PR #27 reflect the settled family boundary / naming.
+Live cards:
+- `cases/component-family-definition-browser-result-page.md`
+- `cases/component-family-definition-assistant-sidebar-panel.md`
+Implementation status:
+- `BrowserResultPage` + `AssistantSidebarPanel` implemented on branch `codex/browser-result-assistant-sidebar` (PR #5)
+- review comments addressed
+- visual verify against `1708:30204` passed
+- title-bar history icon now exported from source Figma and wired as a local asset
+- AIToolsRow / InputBox legacy inline-icon cleanup also committed on the same branch
+Remaining provisional question intentionally left open: whether the hidden toolbar launcher (`1708:30243`) is the canonical collapsed state for the click-to-open flow.
+
 ## Next Recommended Action
 
-Commit / push `codex/sidebar-phase4` in `agentic-browser-ui`, then decide whether Sidebar expands into confirmed interaction / collapsed states.
+If no further review comments land, merge PR #5 (`agentic-browser-ui`) and PR #27 (`figma-to-code-skills`), then choose the next component-scoped case or explicitly reopen the collapsed launcher path.
 
 ## Source-of-Truth Notes
 
