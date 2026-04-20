@@ -87,11 +87,15 @@ review
 5. Identify noise vs. reusable patterns.
 6. Clean the draft just enough for implementation.
 7. Extract a rough implementation spec from the design itself.
-8. Let a human editor adjust the rough spec.
-9. Map the confirmed part of that revised spec into Figma foundations:
+8. If the current task is centered on a component family and the family
+  boundary is clear enough, produce a `Component Family Definition` card
+  as the formal component-scoped rule artifact before implementation.
+  Update the same card as definition or verification status changes.
+9. Let a human editor adjust the rough spec or the component-family card.
+10. Map the confirmed part of that revised spec into Figma foundations:
   variables for reusable tokens, styles for reusable presentation
    patterns, and only keep low-confidence mappings as provisional.
-10. If we add or expand provisional validation states in Figma to cover
+11. If we add or expand provisional validation states in Figma to cover
   missing product states, get explicit user or team confirmation that the
    provisional cards match the intended behavior before treating them as
    implementation input. Unconfirmed provisional states are candidates, not
@@ -100,7 +104,7 @@ review
    on the same page, not inside a formal product page artboard. A
    standalone validation board must also sit in clear empty canvas space
    with visible separation from every existing artboard or board.
-11. Export implementation assets when the design depends on real icons,
+12. Export implementation assets when the design depends on real icons,
   images, or slices. All icon resources should go through the export
    workflow, with `svg` as the default preferred format when feasible.
    Use the asset profile and export workflow rather than replacing them
@@ -111,15 +115,15 @@ review
    the final rendered size in code; match the asset's in-component geometry
    from Figma. Name exported assets by their confirmed product role in code,
    not by temporary raw layer names such as `ic_`, `Group 12`, or `Frame 1`.
-12. If the file already contains external variable aliases or mixed
+13. If the file already contains external variable aliases or mixed
   foundation sources, decide whether to preserve, remap, or bridge
    them before broad component binding begins.
-13. Use the revised spec plus design context to implement code for the
+14. Use the revised spec plus design context to implement code for the
   chosen platform.
-14. Validate the result against the design using the platform-specific
+15. Validate the result against the design using the platform-specific
   verification surface and feed issues back into the
    spec.
-15. Record recurring mistakes as gotchas for the relevant skill.
+16. Record recurring mistakes as gotchas for the relevant skill.
 
 ## What The Workflow Must Handle
 
@@ -239,7 +243,9 @@ Prepare messy files so later steps have less noise.
 - `figma-create-design-system-rules`
 Generate a first-pass rule set from the draft and project context,
 guided by the target platform profile, then identify which confirmed
-parts are ready to become candidate variables and styles.
+parts are ready to become candidate variables and styles. For
+component-scoped work with a clear family boundary, emit a `Component
+Family Definition` card as the formal first output.
 - `figma`
 Read design context, screenshots, variables, and metadata.
 - `figma-use`

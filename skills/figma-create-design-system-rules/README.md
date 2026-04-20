@@ -45,33 +45,38 @@ for human review — not a final spec to implement against directly.
 - Candidate mapping of confirmed rules into Figma foundations:
   which items should become `Variables`, which should become reusable
   `样式`, and which should stay provisional until reviewed.
-- **[Trial-run output]** When a component family boundary is clear enough
-  to define before implementation, produce a `Component Family Definition`
-  card as the first output. Use the template at
-  `inventory/component-family-definition-template.md`. This is the
-  preferred format for new component cases — not yet required, but use it
-  when the family boundary is unambiguous. The card must be produced
-  before implementation begins, not reconstructed after.
+- **Required component-scoped output:** when a component family boundary is
+  clear enough to define before implementation, produce a `Component
+  Family Definition` card as the first output. Use the template at
+  `inventory/component-family-definition-template.md`. This is the formal
+  output format for component cases in this repo. The card must be
+  produced before implementation begins, not reconstructed after.
 
 ## Workflow
 
 1. Confirm the tech-stack profile. If `target`, `framework`, or
    `token_format` are missing, ask before proceeding — rules are
    platform-specific.
-2. **[Trial-run step]** If the component family boundary is clear, produce
-   a `Component Family Definition` card first (template:
+2. Decide whether the task is component-scoped and whether the component
+   family boundary is clear enough to define safely.
+3. If the family boundary is clear, produce a `Component Family
+   Definition` card first (template:
    `inventory/component-family-definition-template.md`). Fill
    `definition_status` and `verification_status` independently for every
-   state row. For composite families, note sub-families that need their
-   own cards. Hand the card to the user for review before proceeding.
-3. Check whether an existing spec already covers the needed scope. If it
+   state row. For composite families, write the root card plus any
+   independently reusable or independently verifiable sub-family cards.
+   Hand the card to the user or team for review before proceeding.
+4. If the family boundary is not clear enough yet, say why and continue
+   with a broader editable rule draft instead of forcing the wrong card
+   granularity.
+5. Check whether an existing spec already covers the needed scope. If it
    does, identify only the gaps rather than regenerating the whole spec.
-3. Call `figma` skill tools to read the target frames and components:
+6. Call `figma` skill tools to read the target frames and components:
    - `get_design_context` for layout, component structure, and code hints.
    - `get_variable_defs` for token values (colors, spacing, typography).
    - `get_metadata` if the node tree structure is needed to understand
      component hierarchy.
-4. Extract patterns from the design context. For each inferred rule,
+7. Extract patterns from the design context. For each inferred rule,
    classify it as:
    - **Confirmed**: directly readable from the design (e.g. a token value,
      a consistent spacing unit).
@@ -79,26 +84,26 @@ for human review — not a final spec to implement against directly.
      been confirmed by the team.
    - **Unknown**: a gap where the design does not provide enough
      information.
-5. Produce the rule draft from the context collected in step 3. Mark all
+8. Produce the rule draft from the context collected in step 6. Mark all
    inferred rules as provisional. List all unknowns explicitly at the end.
    If `create_design_system_rules` is available in the session, use it as
    a supplemental template or structural reference — it does not consume
    the node-specific context directly, so the primary draft must come from
    `get_design_context` and `get_variable_defs`.
-6. Split the draft into three buckets before handing it off:
+9. Split the draft into three buckets before handing it off:
    - **Candidate variables**: stable token-like decisions such as color,
      spacing, radius, sizing, and semantic text/surface values.
    - **Candidate styles**: reusable text, effect, or stroke treatments
      that should be directly reusable in Figma.
    - **Remain provisional**: repeated patterns that still need human
      naming or semantic confirmation.
-7. Hand the draft to the user or team for review before passing it to
+10. Hand the draft to the user or team for review before passing it to
    `figma-implement-design` or `figma-verify-implementation`.
-8. If the workflow adds new provisional validation states in Figma to fill
+11. If the workflow adds new provisional validation states in Figma to fill
    a missing-state gap, get explicit user or team confirmation on those
    provisional cards before treating them as implementation-ready rules.
    Until confirmed, keep them in the provisional bucket.
-9. If the team confirms that a provisional state is meant to become the
+12. If the team confirms that a provisional state is meant to become the
    canonical component state, mark it for promotion back into the formal
    component area. Do not plan to keep the provisional card and the
    formal component as long-lived parallel sources of truth.
@@ -108,6 +113,8 @@ for human review — not a final spec to implement against directly.
 Ask before proceeding when:
 - The tech-stack profile is missing and it changes implementation
   conventions (e.g. CSS vars vs Tailwind theme vs Swift tokens).
+- The component family boundary is ambiguous enough that a `Component
+  Family Definition` card would likely be drawn at the wrong granularity.
 - An inferred rule may conflict with a known project standard — ask which
   takes precedence.
 - A repeated visual pattern might be a one-off exception rather than a
@@ -155,6 +162,9 @@ Do not ask when:
   component source of truth. Once the team confirms that a provisional
   state is the intended canonical state, plan its promotion back into the
   formal component area and retire or archive the provisional copy.
+- Do not keep calling new live component-family cards `trial-run` or
+  `controlled trial-run`. Those labels only apply to historical
+  validation samples under `experiments/`.
 - In a `Component Family Definition` card, never use a single combined
   status column. `definition_status` and `verification_status` are
   independent dimensions — a state can be `provisional-proposal` and
@@ -171,6 +181,9 @@ Do not ask when:
 - Unknowns and low-confidence inferences are listed explicitly.
 - The draft clearly distinguishes candidate `Variables`, candidate
   `样式`, and unresolved items.
+- For component-scoped work with a clear family boundary, a `Component
+  Family Definition` card is present as the first output, or the reason
+  for skipping it is stated explicitly.
 - Any approved provisional state that is meant to become canonical is
   explicitly marked for formal-component promotion rather than left as a
   permanent parallel version.

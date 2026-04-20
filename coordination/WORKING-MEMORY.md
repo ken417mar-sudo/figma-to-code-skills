@@ -72,12 +72,20 @@ Key node IDs:
 
 ## Component Family Definition
 
-Two trial cards written and replay-validated (2026-04-17):
+Three historical validation cards written and replay-validated (2026-04-17):
 - `experiments/trial-component-family-definition-aitoolsrow.md`
 - `experiments/trial-component-family-definition-dialog.md`
+- `experiments/trial-component-family-definition-sidebar.md`
 
-Both passed Figma / code / verify three-segment validation. Format confirmed general.
-Next step: formalize into `figma-create-design-system-rules` output format — pending user decision on timing.
+All three passed Figma / code / verify three-segment validation. The format
+is now formalized as the required component-scoped output of
+`figma-create-design-system-rules` when the family boundary is clear.
+Key formal constraints now locked:
+- `definition_status` and `verification_status` stay independent.
+- composite-family root cards describe composition; independently reusable or
+  independently verifiable sub-families get their own cards.
+- live cards should be updated in place instead of being recreated as new
+  "trial" documents.
 
 ## Sidebar Progress
 
@@ -91,4 +99,5 @@ Next step: formalize into `figma-create-design-system-rules` output format — p
 
 1. Commit / push `codex/sidebar-phase4` in `agentic-browser-ui`.
 2. Decide whether Sidebar expands into confirmed interaction / collapsed states.
-3. Formalize Component Family Definition into `figma-create-design-system-rules` when timing is right.
+3. Use the formalized `Component Family Definition` output on the next new
+   component-scoped case with a clear family boundary.
