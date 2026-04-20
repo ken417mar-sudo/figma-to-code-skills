@@ -106,6 +106,7 @@ Key formal constraints now locked:
 - Live cards:
   - `cases/component-family-definition-browser-result-page.md`
   - `cases/component-family-definition-assistant-sidebar-panel.md`
+- Implementation has started in `agentic-browser-ui` on branch `codex/browser-result-assistant-sidebar` (PR #5); build passes, visual verify still pending.
 - Intentionally provisional:
   - collapsed page state
   - hidden toolbar launcher reference (`1708:30243`) as canonical click-to-open source

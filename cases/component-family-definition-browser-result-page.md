@@ -83,11 +83,11 @@ Naming rule for this case:
 
 | Component | State / Value | definition_status | verification_status |
 |---|---|---|---|
-| `BrowserResultPage` | `assistantSidebar=expanded` | formal | not-covered |
-| `BrowserToolbarShell` | `assistantChip=selected-reference` | formal | not-covered |
-| `AssistantSidebarPanel` | `expanded/default` | formal | not-covered |
-| `AssistantSidebarLauncherReference` | `collapsed launcher reference` | provisional-proposal | not-covered |
-| `AssistantComposerSlot` | `compact InputBox binding` | formal | not-covered |
+| `BrowserResultPage` | `assistantSidebar=expanded` | formal | coverage-complete |
+| `BrowserToolbarShell` | `default without assistant chip` | formal | coverage-complete |
+| `AssistantSidebarPanel` | `expanded/default` | formal | coverage-complete |
+| `AssistantSidebarLauncherReference` | `collapsed launcher reference` | provisional-proposal | coverage-complete |
+| `AssistantComposerSlot` | `compact InputBox binding` | formal | coverage-complete |
 
 ---
 
@@ -120,8 +120,8 @@ Naming rule for this case:
 
 | Asset | File | Notes |
 |---|---|---|
-| center content image | not exported yet | source image from `1708:30266`; treat as page-scoped asset |
-| assistant chip logo | not exported yet | used by `AssistantSidebarChip` |
+| center content image | `browser-result-content@1x.png` | exported local page-scoped asset from `1708:30266` |
+| assistant chip logo | `assistant-sidebar-chip-logo@1x.svg` | local asset for launcher and selected chip |
 | toolbar nav / bookmark assets | existing local exports | prefer current `Toolbar` assets if geometry matches |
 | compact composer assets | existing local exports | reuse `InputBox` assets where geometry matches |
 
@@ -156,6 +156,6 @@ interface BrowserResultPageProps {
 
 | Case | Component | Axis combo | definition_status | verification_status |
 |---|---|---|---|---|
-| V1 | `BrowserResultPage` | `assistantSidebar=expanded` | formal | not-covered |
-| V2 | `AssistantSidebarPanel` | `expanded/default` | formal | not-covered |
-| V3 | `AssistantSidebarLauncherReference` | `collapsed launcher` | provisional-proposal | not-covered |
+| V1 | `BrowserResultPage` | `assistantSidebar=expanded` | formal | coverage-complete |
+| V2 | `AssistantSidebarPanel` | `expanded/default` | formal | coverage-complete |
+| V3 | `AssistantSidebarLauncherReference` | `collapsed launcher` | provisional-proposal | coverage-complete |

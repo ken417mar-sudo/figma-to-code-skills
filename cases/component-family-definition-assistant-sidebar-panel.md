@@ -76,11 +76,11 @@ Naming rule for this family:
 
 | Component | State / Value | definition_status | verification_status |
 |---|---|---|---|
-| `AssistantSidebarPanel` | `expanded/default` | formal | not-covered |
-| `AssistantSidebarTitleBar` | `default` | formal | not-covered |
-| `AssistantPromptList` | `visible/default` | formal | not-covered |
-| `AssistantComposerSlot` | `compact idle binding` | formal | not-covered |
-| `AssistantPromptChip` | `default` | formal | not-covered |
+| `AssistantSidebarPanel` | `expanded/default` | formal | coverage-complete |
+| `AssistantSidebarTitleBar` | `default` | formal | coverage-complete |
+| `AssistantPromptList` | `visible/default` | formal | coverage-complete |
+| `AssistantComposerSlot` | `compact idle binding` | formal | coverage-complete |
+| `AssistantPromptChip` | `default` | formal | coverage-complete |
 
 ---
 
@@ -129,10 +129,10 @@ Naming rule for this family:
 
 | Asset | File | Notes |
 |---|---|---|
-| new-task icon | not exported yet | leading action in title bar |
+| new-task icon | `assistant-title-new-task@1x.svg` | local title-bar action asset |
 | history icon | not exported yet | leading action in title bar |
-| assistant chip logo | not exported yet | selected chip at top-right |
-| prompt arrow | not exported yet | reused by each prompt chip |
+| assistant chip logo | `assistant-sidebar-chip-logo@1x.svg` | selected chip at top-right |
+| prompt arrow | `assistant-prompt-arrow@1x.svg` | reused by each prompt chip |
 | compact composer icons | existing local InputBox assets | verify before reuse |
 
 ---
@@ -166,7 +166,7 @@ interface AssistantSidebarPanelProps {
 
 | Case | Component | Axis combo | definition_status | verification_status |
 |---|---|---|---|---|
-| V1 | `AssistantSidebarPanel` | `expanded/default` | formal | not-covered |
-| V2 | `AssistantSidebarTitleBar` | `default` | formal | not-covered |
-| V3 | `AssistantPromptList` | `visible/default` | formal | not-covered |
-| V4 | `AssistantComposerSlot` | `compact idle binding` | formal | not-covered |
+| V1 | `AssistantSidebarPanel` | `expanded/default` | formal | coverage-complete |
+| V2 | `AssistantSidebarTitleBar` | `default` | formal | coverage-complete |
+| V3 | `AssistantPromptList` | `visible/default` | formal | coverage-complete |
+| V4 | `AssistantComposerSlot` | `compact idle binding` | formal | coverage-complete |
