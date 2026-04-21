@@ -10,7 +10,7 @@
 
 **Family name:** `WorkspacePage`  
 **Family type:** composite  
-**Figma source:** `2025:11950` (`默认`)  
+**Figma source:** `2025:11950` (`默认`) — file `iIbL9V4UrFeORPaM7KVji7`  
 **Sub-families:**
 - `TaskChatPanel` — left chat + task-launch surface (400px)
 - `WorkspaceSidebar` — narrow icon sidebar (48px) — already implemented, reuse
@@ -115,7 +115,7 @@ Naming rule for this case:
 | size | `448 × 40` |
 | traffic light dot size | `14 × 14` |
 | traffic light gap | `22px` between centers |
-| traffic light x offset | `8px` from left edge |
+| traffic light x offset | `24px` from left edge (pl-16 outer + pl-8 inner) |
 | traffic light y offset | `13px` from top |
 
 ### WorkspaceToolbar
