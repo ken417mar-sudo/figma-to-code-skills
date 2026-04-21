@@ -182,5 +182,5 @@ interface MessageItem {
 | V2 | `TaskChatPanel/Header` | `default` | formal | coverage-complete |
 | V3 | `MessageRow/UserBubble` | `default` | formal | coverage-complete |
 | V4 | `MessageRow/AIResponse` | `default` | formal | coverage-complete |
-| V5 | `AnalysisStatusRow` | `default` | formal | pending |
-| V6 | `AnalysisChip` | `default` | formal | pending |
+| V5 | `AnalysisStatusRow` | `default` | formal | coverage-complete |
+| V6 | `AnalysisChip` | `default` | formal | coverage-complete |
