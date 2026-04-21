@@ -137,6 +137,13 @@ Priority checklist for the next stage:
    Validate reusable mapping/library generation once a family is stable enough.
    Proof target: the project can mature from case-by-case implementation into reusable design/code linkage.
 
+7. `Verify quality reference`
+   When rebuilding or tightening `figma-verify-implementation`, review
+   https://github.com/chenenpei/skiils-collection (`figma-design-review`) as
+   a reference for input gating, screenshot-only limitations, P1/P2/P3
+   severity, and token/style/component-reuse checks. Do not fold it into the
+   main workflow now; treat it as a future verify-specific improvement source.
+
 ## Next Recommended Action
 
 Choose the next case from this order:
