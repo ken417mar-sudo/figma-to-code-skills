@@ -101,10 +101,20 @@ failure patterns back into the skill set as gotchas.
 6. Run the asset-source gate:
    - Confirm every design-owned icon or image uses the exported Figma
      asset or an approved currentColor conversion from that asset.
+   - Confirm the exported node granularity matches the rendered intent:
+     do not export a wrapper/control frame and then render it as the inner
+     glyph, or export an inner glyph and render it as the full control.
+   - Confirm the rendered size matches the source node being used. If a
+     `24px` wrapper asset contains a `16px` icon, either render the
+     wrapper at `24px` or export the inner `16px` icon directly.
    - If the implementation uses handwritten geometry, placeholder media,
      or a similarly named but different asset family, classify it as
      `P1 / blocking` when it changes the visible structure or required
      state, otherwise `P2 / significant`.
+   - If the implementation scales an exported wrapper asset down to mimic
+     an inner icon, or scales an inner icon up to mimic a wrapper,
+     classify it as `P2 / significant`; upgrade to `P1 / blocking` when
+     the asset becomes visibly wrong or masks a missing required node.
 7. Compare the two surfaces across these dimensions in order:
    - **Structure**: component hierarchy, nesting, element count.
    - **Spacing**: padding, margin, gap values against token or pixel spec.
@@ -228,6 +238,13 @@ Do not ask when:
   in Figma. If the implementation sized the icon from raw asset canvas
   dimensions instead of the component's icon frame and glyph bounds,
   classify that as a significant mismatch.
+- Do not confuse wrapper assets with glyph assets. If Figma shows a
+  `24px` action wrapper containing a `16px` icon, export or render the
+  correct layer for the implementation slot instead of scaling the wrong
+  layer to fit.
+- Do not hand-draw small divider or stroke assets just because they look
+  simple. Export/check the real Figma node first; many divider assets use
+  a larger canvas with a shorter centered stroke.
 - When creating verify cards, default the container width to the Figma
   source component's original width. For adaptive or flex components,
   treat the Figma width as the reference lower bound, then propose a
@@ -247,6 +264,10 @@ Do not ask when:
   target node or the difference is explicitly deferred.
 - Every design-owned asset has passed the asset-source gate; no
   handwritten or similarly named substitute is masking the target.
+- Exported asset node granularity matches the implementation slot:
+  wrapper assets are rendered as wrappers, glyph assets as glyphs, and
+  divider/stroke assets preserve their source canvas and visible stroke
+  geometry.
 - Mismatches are prioritized by severity, not dumped as an undifferentiated
   list.
 - The final result clearly distinguishes `coverage-complete` from
