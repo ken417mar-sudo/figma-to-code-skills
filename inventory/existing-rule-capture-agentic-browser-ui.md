@@ -22,7 +22,7 @@
 
 ## Token System
 
-### Color tokens (all provisional — defined in `src/index.css`)
+### Color tokens (repo-defined — defined in `src/index.css`)
 
 | Token | Value | Usage |
 |---|---|---|
@@ -114,9 +114,9 @@
 
 ## Interaction State Pattern
 
-**Confirmed standard (AIToolsRow, Tab):** hover and active states managed via local `useState` + mouse event handlers (`onMouseEnter`, `onMouseLeave`, `onMouseDown`, `onMouseUp`). No global state or CSS-only hover.
+**Confirmed standard:** prop-driven state is the baseline pattern for explicitly verifiable states. Examples: `Toolbar` uses `bookmarked`, `urlFocused` props; `Dialog` close icon uses a `variant` prop to force hover state for verify purposes.
 
-**Tentative:** Dialog close icon uses the same pattern but also accepts a `variant` prop to force hover state for Figma verify purposes. This dual-mode (prop-driven + pointer-driven) is a verify affordance, not a general pattern.
+**Tentative:** local `useState` + mouse event handlers (`onMouseEnter`, `onMouseLeave`, `onMouseDown`, `onMouseUp`) is a recurring implementation tactic for interactive hover/active controls where the state is pointer-driven and not externally observable. Applied in `AIToolsRow` (ToolPill) and `Tab` (close button hover). Not a mandatory pattern — prop-driven and pointer-driven approaches coexist in this codebase.
 
 ---
 
@@ -182,4 +182,4 @@ All assets live in `src/assets/figma/`. Source node mapping tracked in `slices-n
 | `NavDivider` / `RightDivider` inline SVG in Toolbar | `Toolbar.tsx` | structural dividers, not design-owned icons — needs explicit exception rule |
 | `fontFeatureSettings` inconsistently applied | multiple | present on some HYQiHei:60S usages, absent on others |
 | HYQiHei font loading | all components | deferred non-blocker, shared typography pass needed |
-| Tab.tsx `CloseIcon` inline SVG | `Tab.tsx` | no exported asset exists — needs export or explicit exception |
+| Tab.tsx `CloseIcon` inline SVG | `Tab.tsx` | exported assets `close-off@1x.svg` / `close-on@1x.svg` already exist — implementation drift, should wire to exports or document exception |
