@@ -2,7 +2,7 @@
 
 > simple family (child of WorkspacePage composite)  
 > definition produced: 2026-04-21  
-> last updated: 2026-04-21
+> last updated: 2026-04-21 (verification complete)
 
 ---
 
@@ -83,13 +83,13 @@
 
 | Component | State / Value | definition_status | verification_status |
 |---|---|---|---|
-| `TaskChatPanel` | `contentState=analysis-in-progress` | formal | pending |
-| `TaskChatPanel/Header` | `default` | formal | pending |
-| `MessageRow/UserBubble` | `default` | formal | pending |
-| `MessageRow/AIResponse` | `default` | formal | pending |
-| `AnalysisStatusRow` | `default` | formal | pending |
-| `AnalysisChip` | `default` | formal | pending |
-| `TaskChatPanel/InputArea` | `InputBox=default` | formal | pending |
+| `TaskChatPanel` | `contentState=analysis-in-progress` | formal | coverage-complete |
+| `TaskChatPanel/Header` | `default` | formal | coverage-complete |
+| `MessageRow/UserBubble` | `default` | formal | coverage-complete |
+| `MessageRow/AIResponse` | `default` | formal | coverage-complete |
+| `AnalysisStatusRow` | `default` | formal | coverage-complete |
+| `AnalysisChip` | `default` | formal | coverage-complete |
+| `TaskChatPanel/InputArea` | `InputBox=default` | formal | coverage-complete |
 
 ---
 
@@ -178,9 +178,9 @@ interface MessageItem {
 
 | Case | Component | Axis combo | definition_status | verification_status |
 |---|---|---|---|---|
-| V1 | `TaskChatPanel` | `contentState=analysis-in-progress` | formal | pending |
-| V2 | `TaskChatPanel/Header` | `default` | formal | pending |
-| V3 | `MessageRow/UserBubble` | `default` | formal | pending |
-| V4 | `MessageRow/AIResponse` | `default` | formal | pending |
+| V1 | `TaskChatPanel` | `contentState=analysis-in-progress` | formal | coverage-complete |
+| V2 | `TaskChatPanel/Header` | `default` | formal | coverage-complete |
+| V3 | `MessageRow/UserBubble` | `default` | formal | coverage-complete |
+| V4 | `MessageRow/AIResponse` | `default` | formal | coverage-complete |
 | V5 | `AnalysisStatusRow` | `default` | formal | pending |
 | V6 | `AnalysisChip` | `default` | formal | pending |

@@ -82,6 +82,7 @@ Key node IDs:
 | AIToolsRow | closed (2026-04-17) | active state remains proposal-level |
 | Sidebar | closed (2026-04-17) | formal default-only pass; SVG color hardcoding + interaction/collapsed states deferred |
 | BrowserResultPage / AssistantSidebarPanel | closed (2026-04-20) | composite family; collapsed launcher + interaction states deferred |
+| WorkspacePage / TaskChatPanel | coverage-complete (2026-04-21) | Phase 6 Repeatability; TitleBar x-offset fix applied; PR pending |
 
 ## Component Family Definition
 

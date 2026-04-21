@@ -27,7 +27,7 @@ Update this file when phase, repos, or active work changes.
 Phase 3 closed (2026-04-13) — Tab, InputBox, Toolbar all verified and committed.
 Phase 4 closed (2026-04-20) — `figma-execution-shell` merged; Dialog, AIToolsRow, and Sidebar (default-only) are all closed.
 Phase 5 closed (2026-04-20) — `BrowserResultPage` + `AssistantSidebarPanel` composite family case closed; PR #5 (agentic-browser-ui) and PR #27 (figma-to-code-skills) merged.
-Phase 6 planning (2026-04-20) — next step is capability validation beyond the already-proven web component loop.
+Phase 6 Repeatability case in progress (2026-04-21) — WorkspacePage composite + TaskChatPanel child family; implementation complete, verification coverage-complete; PR pending.
 
 ## Active Repos
 
@@ -118,6 +118,14 @@ All formal states verified. Implementation merged via PR #5 (`agentic-browser-ui
 Live cards: `cases/component-family-definition-browser-result-page.md`, `cases/component-family-definition-assistant-sidebar-panel.md`
 Deferred non-blockers: collapsed launcher (`1708:30243`) remains provisional; prompt-chip interaction states provisional-proposal.
 Legacy inline-icon cleanup also completed on this branch (AIToolsRow, InputBox).
+
+### WorkspacePage / TaskChatPanel — coverage-complete (2026-04-21)
+Phase 6 Repeatability case. Source node: `2025:11950` (file key: `Rl0a6sBBFnKBpMFnxfXoYT`).
+Composite root + child family. All V1–V4 (WorkspacePage) and V1–V6 (TaskChatPanel) states coverage-complete.
+New components: TitleBar, WorkspaceToolbar, TaskChatPanel (AnalysisStatusRow, AnalysisChip), WorkspacePage.
+Fix applied: TitleBar traffic lights x offset 24px → 8px.
+Live cards: `cases/component-family-definition-workspace-page.md`, `cases/component-family-definition-task-chat-panel.md`
+Branch: `codex/workspace-page-phase6` (agentic-browser-ui). PR pending.
 
 ## Phase 6 Planning Checklist
 

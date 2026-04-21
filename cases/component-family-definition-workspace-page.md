@@ -2,7 +2,7 @@
 
 > composite family  
 > definition produced: 2026-04-21  
-> last updated: 2026-04-21
+> last updated: 2026-04-21 (verification complete)
 
 ---
 
@@ -87,12 +87,12 @@ Naming rule for this case:
 
 | Component | State / Value | definition_status | verification_status |
 |---|---|---|---|
-| `WorkspacePage` | `layout=default` | formal | pending |
-| `TitleBar` | `default` | formal | pending |
-| `WorkspaceToolbar` | `default` | formal | pending |
+| `WorkspacePage` | `layout=default` | formal | coverage-complete |
+| `TitleBar` | `default` | formal | coverage-complete |
+| `WorkspaceToolbar` | `default` | formal | coverage-complete |
 | `WorkspaceSidebar` | `default` | formal | coverage-complete (Phase 4) |
-| `TaskChatPanel` | `default` (analysis in progress) | formal | pending |
-| `WorkspacePreview` | `wallpaper` | formal | pending |
+| `TaskChatPanel` | `default` (analysis in progress) | formal | coverage-complete |
+| `WorkspacePreview` | `wallpaper` | formal | coverage-complete |
 
 ---
 
@@ -168,7 +168,7 @@ interface WorkspacePageProps {
 
 | Case | Component | Axis combo | definition_status | verification_status |
 |---|---|---|---|---|
-| V1 | `WorkspacePage` | `layout=default` | formal | pending |
-| V2 | `TitleBar` | `default` | formal | pending |
-| V3 | `WorkspaceToolbar` | `default` | formal | pending |
-| V4 | `TaskChatPanel` | `default` (analysis in progress) | formal | pending |
+| V1 | `WorkspacePage` | `layout=default` | formal | coverage-complete |
+| V2 | `TitleBar` | `default` | formal | coverage-complete |
+| V3 | `WorkspaceToolbar` | `default` | formal | coverage-complete |
+| V4 | `TaskChatPanel` | `default` (analysis in progress) | formal | coverage-complete |
