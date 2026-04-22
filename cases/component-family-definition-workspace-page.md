@@ -2,7 +2,7 @@
 
 > composite family  
 > definition produced: 2026-04-21  
-> last updated: 2026-04-21 (verification complete)
+> last updated: 2026-04-22 (WorkspaceSidebar corrected, divider/bookmark fixed)
 
 ---
 
@@ -90,7 +90,7 @@ Naming rule for this case:
 | `WorkspacePage` | `layout=default` | formal | coverage-complete |
 | `TitleBar` | `default` | formal | coverage-complete |
 | `WorkspaceToolbar` | `default` | formal | coverage-complete |
-| `WorkspaceSidebar` | `default` | formal | coverage-complete (Phase 4) |
+| `WorkspaceSidebar` | `default` | formal | coverage-complete |
 | `TaskChatPanel` | `default` (analysis in progress) | formal | coverage-complete |
 | `WorkspacePreview` | `wallpaper` | formal | coverage-complete |
 
@@ -125,8 +125,8 @@ Naming rule for this case:
 | size | `1144 × 40` |
 | view switcher icons | `24 × 24`, gap `8px`, x offset `8px` |
 | actions cluster x offset | `1062px` from toolbar left |
-| divider | `2px` wide, `8px` height, centered vertically |
-| bookmark icon | `24 × 24` |
+| divider | `2px` wide, `8px` visible stroke height, centered vertically, `#CCCCCC` |
+| bookmark icon | action wrapper `h-[24px] px-[4px]`, inner icon `16 × 16` |
 | More icon | `24 × 24` |
 
 ---
@@ -138,7 +138,8 @@ Naming rule for this case:
 | PC view icon | `workspacetoolbar-desktop@1x.svg` | `2025:11957` |
 | Mobile view icon | `workspacetoolbar-mobile@1x.svg` | `2025:11962` |
 | Custom view icon | `workspacetoolbar-custom@1x.svg` | `2025:11966` |
-| Bookmark icon | `workspacetoolbar-bookmark@1x.svg` | `2025:11978` |
+| Bookmark inner icon | `workspacetoolbar-bookmark-inner@1x.svg` | `I2025:11978;490:39631` — 16×16, inner glyph |
+| Divider | `workspacetoolbar-divider@1x.svg` | `2025:11974` — 2×24 canvas, stroke 8px centered, `#CCCCCC` |
 | More icon | `workspacetoolbar-more@1x.svg` | `2025:11984` |
 | Wallpaper | `workspacepreview-wallpaper@1x.png` | `2025:12362` instance |
 
@@ -148,7 +149,7 @@ Naming rule for this case:
 
 - Do not promote `sidebar=collapsed` or `workspacePreview=app/web/mobile`
   until a dedicated board or explicit user confirmation exists.
-- `WorkspaceSidebar` is already formal — do not re-verify its internal states.
+- `WorkspaceSidebar` is a new narrow 48px icon-only sidebar specific to WorkspacePage — do not conflate with the expanded 240px browser Sidebar from Phase 4.
 
 ---
 
@@ -172,3 +173,4 @@ interface WorkspacePageProps {
 | V2 | `TitleBar` | `default` | formal | coverage-complete |
 | V3 | `WorkspaceToolbar` | `default` | formal | coverage-complete |
 | V4 | `TaskChatPanel` | `default` (analysis in progress) | formal | coverage-complete |
+| V5 | `WorkspaceSidebar` | `default` | formal | coverage-complete |
