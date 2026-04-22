@@ -18,11 +18,21 @@ Secondary goal: every real component case teaches us something. Recurring failur
 
 | Contributor | Role |
 |---|---|
-| User (markun) | Owns design decisions, confirms provisional states, approves closeouts |
-| Claude Code | Executes component cases, writes/edits code, manages coordination files, syncs issue #13 |
-| Codex | Reviews implementation, runs browser verification, proposes rule tightening, opens PRs |
+| User (markun) | Final decision-maker on priorities, design decisions, provisional-state confirmation, and closeouts |
+| Claude Code | Executes component cases, writes/edits code, manages coordination files, and contributes explicitly attributed suggestions |
+| Codex | Reviews implementation, runs browser verification, proposes rule tightening, and contributes explicitly attributed suggestions |
 
 Communication channel: GitHub issue [#13](https://github.com/ken417mar-sudo/figma-to-code-skills/issues/13) — permanent rolling log, never close.
+
+Decision protocol:
+- keep suggestion ownership explicit (`user`, `Claude Code`, `Codex`)
+- when posting recommendations through the shared GitHub account, prefix
+  them with the agent name, for example `Codex:` or `Claude Code:`
+- do not collapse an individual recommendation into "the project thinks"
+  until contributors have aligned on it
+- once a recommendation or objection is raised, sync it to `#13` by
+  default so the shared log reflects not just actions, but advice and
+  pending decisions as well
 
 ## Project phases
 
@@ -31,7 +41,9 @@ Communication channel: GitHub issue [#13](https://github.com/ken417mar-sudo/figm
 | Phase 1 | closed | Rewrote all skill READMEs from spec docs into executable agent prompts |
 | Phase 2 | closed | Established tech-stack profile, workflow baseline, coordination structure |
 | Phase 3 | closed (2026-04-13) | Tab, InputBox, Toolbar — all verified and committed |
-| Phase 4 | in progress | `figma-execution-shell` merged; Dialog, AIToolsRow, Sidebar (default-only) all closed |
+| Phase 4 | closed (2026-04-20) | `figma-execution-shell` merged; Dialog, AIToolsRow, Sidebar (default-only) all closed |
+| Phase 5 | closed (2026-04-20) | BrowserResultPage + AssistantSidebarPanel composite family case merged and formally closed |
+| Phase 6 | planning | next step is capability validation beyond the proven web component loop |
 
 ## Current component status
 
@@ -42,7 +54,7 @@ Communication channel: GitHub issue [#13](https://github.com/ken417mar-sudo/figm
 | Toolbar | closed | 5 states verified |
 | Dialog | closed | All axes verified, HYQiHei font deferred |
 | AIToolsRow | closed | ToolPill family, hover/active, inline SVG icons |
-| Sidebar | closed | Default-only, 6 formal states verified; hover/active/collapsed deferred |
+| BrowserResultPage / AssistantSidebarPanel | closed | Composite family case; collapsed launcher deferred |
 
 ## Component Family Definition
 
@@ -58,10 +70,11 @@ Cards: `experiments/trial-component-family-definition-aitoolsrow.md`, `experimen
 
 ## Current todo
 
-1. Decide whether Sidebar expands into confirmed interaction / collapsed states
-2. Commit / push `codex/sidebar-phase4` in `agentic-browser-ui` (Codex)
-3. Use the formalized `Component Family Definition` output on the next new component-scoped case
-4. Shared typography pass for HYQiHei font (deferred non-blocker)
+1. Run an existing-rule capture pass first on `agentic-browser-ui`, because that real project baseline is already available
+2. Run one more fresh component-scoped case to prove workflow repeatability
+3. Reopen collapsed launcher (`1708:30243`) or another missing state as a provisional-promotion validation case
+4. Validate sketch / low-fi gap-filling or non-web profile breadth only when a real project need appears
+5. Shared typography pass for HYQiHei font remains a deferred cross-case non-blocker
 
 ## Quick entry points
 

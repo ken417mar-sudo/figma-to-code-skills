@@ -21,6 +21,22 @@ Default operating model:
 - verify implemented UI against Figma and record recurring failures as
   reusable gotchas
 
+## Decision Protocol
+
+This repo is built collaboratively by the user, Claude Code, and Codex.
+
+- attribute every recommendation to its source unless it has already
+  become an explicit team consensus
+- when posting recommendations or opinions under the shared GitHub
+  account, prefix them with the agent name, for example `Codex:` or
+  `Claude Code:`
+- treat agent suggestions and reviews as inputs, not final decisions
+- only mark something as shared consensus after the contributors have
+  aligned on it
+- the user makes the final decision on priority, scope, and closeout
+- sync recommendation or opinion changes into issue `#13` by default so
+  advice does not stay trapped in a single chat or PR
+
 ## Start Here
 
 - **New to this project?** Read [coordination/ONBOARDING.md](coordination/ONBOARDING.md) first.
@@ -42,4 +58,10 @@ Default operating model:
 
 ## Current Focus
 
-Phase 4 is in progress. `figma-execution-shell` is merged. Dialog, AIToolsRow, and Sidebar (default-only) are all closed. Next: decide whether Sidebar expands into confirmed interaction / collapsed states, or move to the next component.
+Phase 6 planning (2026-04-20). The web component-to-code workflow has been validated through Phase 5. The next step is not more cleanup on the closed case, but targeted capability validation:
+
+1. run either a repeatability case or an existing-rule capture case first, based on which real input is immediately available
+2. validate the other top-tier case next so both repeatability and existing-rule capture are proven early
+3. validate the full provisional-to-formal promotion path (starting with collapsed launcher `1708:30243` if chosen)
+4. validate sketch / low-fidelity gap-filling or platform breadth only when a real project need appears
+5. validate library / code-connect linkage after enough stable families exist
