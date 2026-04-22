@@ -13,7 +13,7 @@
 **Figma source:** `2025:11950` (`默认`) — file `iIbL9V4UrFeORPaM7KVji7`  
 **Sub-families:**
 - `TaskChatPanel` — left chat + task-launch surface (400px)
-- `WorkspaceSidebar` — narrow icon sidebar (48px) — already implemented, reuse
+- `WorkspaceSidebar` — WorkspacePage-specific 48px narrow icon-only sidebar (new component, not the Phase 4 expanded Sidebar)
 - `TitleBar` — macOS-style title bar with traffic lights (448×40)
 - `WorkspaceToolbar` — right-side view switcher + actions (1144×40)
 
@@ -42,14 +42,14 @@ and binding of sub-families into the full workspace shell.
 | `功能` (inside WorkspaceToolbar) | `2025:11956` | `WorkspaceToolbar/ViewSwitcher` | PC/手机/自定义 |
 | `更多` | `2025:11973` | `WorkspaceToolbar/Actions` | 书签 + More |
 | `内容区` | `2025:12004` | `WorkspacePage/Content` | three-column content area |
-| `Sidebar` | `2025:12005` | `WorkspaceSidebar` | existing component, reuse |
+| `Sidebar` | `2025:12005` | `WorkspaceSidebar` | WorkspacePage-specific 48px narrow sidebar (new component) |
 | `对话区` | `2025:12085` | `TaskChatPanel` | child family card |
 | `环境` | `2025:12361` | `WorkspacePreview` | wallpaper, no component needed |
 
 Naming rule for this case:
 - use `Workspace*` for page-shell and right-side containers
 - use `TaskChat*` for the left chat panel and its internals
-- keep reused families (`WorkspaceSidebar`, `InputBox`) under their established names
+- `WorkspaceSidebar` is a new component specific to this page; `InputBox` is reused from its own family
 
 ---
 
