@@ -3,20 +3,6 @@
 Single entry point for all three contributors (user, Claude, Codex).
 Update this file when phase, repos, or active work changes.
 
-## Decision Hygiene
-
-- Keep recommendation ownership explicit: say whether an idea came from
-  the user, Claude Code, Codex, or a later shared consensus.
-- When recommendations are posted through the shared GitHub account,
-  prefix them with the agent name, for example `Codex:` or
-  `Claude Code:`.
-- Do not rewrite an individual agent suggestion as project consensus
-  until the contributors have aligned on it.
-- The user is the final decision-maker on priorities, scope, and
-  closeout.
-- Sync new recommendations, objections, and prioritization proposals to
-  issue `#13` by default.
-
 ## Stable Memory
 
 - Working summary for new threads:
@@ -26,8 +12,7 @@ Update this file when phase, repos, or active work changes.
 
 Phase 3 closed (2026-04-13) — Tab, InputBox, Toolbar all verified and committed.
 Phase 4 closed (2026-04-20) — `figma-execution-shell` merged; Dialog, AIToolsRow, and Sidebar (default-only) are all closed.
-Phase 5 closed (2026-04-20) — `BrowserResultPage` + `AssistantSidebarPanel` composite family case closed; PR #5 (agentic-browser-ui) and PR #27 (figma-to-code-skills) merged.
-Phase 6 Repeatability case in progress (2026-04-21) — WorkspacePage composite + TaskChatPanel child family; implementation complete, verification coverage-complete; PR pending.
+Phase 5 in progress (2026-04-20) — `BrowserResultPage` with right-side assistant sidebar expanded (`1708:30204`) is implemented, review-clean, and visually verified; closeout / merge sync remains.
 
 ## Active Repos
 
@@ -112,49 +97,23 @@ Implementation is now committed, pushed, and visible in `agentic-browser-ui` PR 
 Deferred non-blockers: SVG icon color hardcoding (theme-reactive未确认); hover/active/collapsed states unconfirmed.
 Verify card: `experiments/trial-component-family-definition-sidebar.md`
 
-### BrowserResultPage / Assistant Sidebar — closed (2026-04-20)
-Phase 5 composite family case. Source node: `1708:30204`.
-All formal states verified. Implementation merged via PR #5 (`agentic-browser-ui`). Family Definition cards merged via PR #27 (`figma-to-code-skills`).
-Live cards: `cases/component-family-definition-browser-result-page.md`, `cases/component-family-definition-assistant-sidebar-panel.md`
-Deferred non-blockers: collapsed launcher (`1708:30243`) remains provisional; prompt-chip interaction states provisional-proposal.
-Legacy inline-icon cleanup also completed on this branch (AIToolsRow, InputBox).
-
-### WorkspacePage / TaskChatPanel — coverage-complete (2026-04-21)
-Phase 6 Repeatability case. Source node: `2025:11950` (file key: `Rl0a6sBBFnKBpMFnxfXoYT`).
-Composite root + child family. All V1–V4 (WorkspacePage) and V1–V6 (TaskChatPanel) states coverage-complete.
-New components: TitleBar, WorkspaceToolbar, TaskChatPanel (AnalysisStatusRow, AnalysisChip), WorkspacePage.
-Fix applied: TitleBar traffic lights x offset 24px → 8px.
-Live cards: `cases/component-family-definition-workspace-page.md`, `cases/component-family-definition-task-chat-panel.md`
-Branch: `codex/workspace-page-phase6` (agentic-browser-ui). PR pending.
-
-## Phase 6 Planning Checklist
-
-1. `Repeatability` — run one more fresh component-scoped case end-to-end under the now-formalized workflow (`Component Family Definition` first, export gate, verify, closeout sync).
-What this proves: Phase 5 was not a one-off success tied to a single page family.
-
-2. `Existing Rule Capture` — validate `figma-capture-design-system` or the equivalent capture workflow on a project with pre-existing implementation rules, then use those captured rules to drive a real implementation pass.
-What this proves: the system can preserve "existing spec first" instead of only inferring rules from Figma.
-
-3. `Provisional -> Formal Promotion` — explicitly reopen collapsed launcher `1708:30243` or another missing state as a provisional case, get human confirmation, implement it, and then promote or retire the provisional artifact cleanly.
-What this proves: the team can not only constrain provisional states, but also close the loop when one should become formal.
-
-4. `Sketch / Gap Filling` — run one low-fidelity or incomplete-design case through `figma-sketch-to-system-components`, then verify that the generated missing state/component stays aligned with the established system.
-What this proves: the workflow can fill missing coverage without silently redefining the product system.
-
-5. `Platform Breadth` — validate at least one non-web delivery profile, or at minimum run a profile-aware dry run that exercises the target/platform/framework decision gates with a real case.
-What this proves: the workflow baseline is not accidentally web-only.
-
-6. `Library / Mapping Layer` — run a real case that exercises `figma-generate-library` or `figma-code-connect-components` against the current codebase after a family is stable enough.
-What this proves: the project can move from one-off implementation into reusable design/code linkage.
+### BrowserResultPage / Assistant Sidebar — implemented, verified, ready for closeout (2026-04-20)
+Next formal case after Sidebar closeout. Source node: `1708:30204`.
+This pass is no longer in hierarchy-only mode: implementation is up in `agentic-browser-ui` PR #5 and the live cards in PR #27 reflect the settled family boundary / naming.
+Live cards:
+- `cases/component-family-definition-browser-result-page.md`
+- `cases/component-family-definition-assistant-sidebar-panel.md`
+Implementation status:
+- `BrowserResultPage` + `AssistantSidebarPanel` implemented on branch `codex/browser-result-assistant-sidebar` (PR #5)
+- review comments addressed
+- visual verify against `1708:30204` passed
+- title-bar history icon now exported from source Figma and wired as a local asset
+- AIToolsRow / InputBox legacy inline-icon cleanup also committed on the same branch
+Remaining provisional question intentionally left open: whether the hidden toolbar launcher (`1708:30243`) is the canonical collapsed state for the click-to-open flow.
 
 ## Next Recommended Action
 
-Priority order:
-1. treat `Repeatability` and `Existing Rule Capture` as the joint top tier
-2. start with `Existing Rule Capture` first because `agentic-browser-ui` already provides a live project baseline and does not require waiting for a new clean Figma case
-3. run `Repeatability` next on the first suitable fresh component-scoped board
-4. then run a `Provisional -> Formal Promotion` case
-5. keep sketch/gap-fill and platform breadth demand-driven
+If no further review comments land, merge PR #5 (`agentic-browser-ui`) and PR #27 (`figma-to-code-skills`), then choose the next component-scoped case or explicitly reopen the collapsed launcher path.
 
 ## Source-of-Truth Notes
 

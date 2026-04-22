@@ -12,10 +12,6 @@ Compact project memory for starting a new thread quickly.
 
 - stable entry: `coordination/INDEX.md`
 - current active issue: [#13](https://github.com/ken417mar-sudo/figma-to-code-skills/issues/13) — permanent coordination log, never close
-- recommendation/opinion sync rule: default-post new suggestions,
-  disagreements, and prioritization proposals to `#13`
-- shared-account attribution rule: prefix recommendation/commentary posts
-  with the agent name, for example `Codex:` or `Claude Code:`
 
 ## Active Figma File
 
@@ -63,13 +59,6 @@ Key node IDs:
 - Section headers with optional actions should be modeled as separate slots (`label` + optional `action`) rather than as a single undifferentiated row.
 - If Figma gives an explicit inner row width, preserve it instead of defaulting list items to `w-full`.
 - For icon-size review comments, debug in this order: outer button box → rendered icon box → exported SVG canvas.
-- Keep recommendation ownership explicit until alignment happens.
-  User suggestion, Claude suggestion, and Codex suggestion are distinct
-  states; only after alignment should they be summarized as shared
-  consensus.
-- The user is the final decision-maker on prioritization, scope, and
-  closeout. Do not silently upgrade an agent recommendation into a
-  project decision.
 
 ## Component Status
 
@@ -81,8 +70,6 @@ Key node IDs:
 | Dialog | closed (2026-04-16) | HYQiHei font — shared typography pass |
 | AIToolsRow | closed (2026-04-17) | active state remains proposal-level |
 | Sidebar | closed (2026-04-17) | formal default-only pass; SVG color hardcoding + interaction/collapsed states deferred |
-| BrowserResultPage / AssistantSidebarPanel | closed (2026-04-20) | composite family; collapsed launcher + interaction states deferred |
-| WorkspacePage / TaskChatPanel | coverage-complete (2026-04-21) | Phase 6 Repeatability; TitleBar x-offset fix applied; PR pending |
 
 ## Component Family Definition
 
@@ -109,45 +96,33 @@ Key formal constraints now locked:
 - Implementation is now committed, pushed, and visible in `agentic-browser-ui` PR #4 (`codex/sidebar-phase4`).
 - Deferred (non-blocking): SVG icon colors hardcoded (#333/#999), theme-reactive未确认; interaction/collapsed states unconfirmed.
 
-## Phase 6 Planning
+## Active Case: BrowserResultPage / Assistant Sidebar
 
-Priority checklist for the next stage:
-
-1. `Repeatability case`
-   Run one more fresh component-scoped case through the fully formalized workflow.
-   Proof target: `Component Family Definition` + export gate + verify + closeout sync all work again without bespoke repair.
-
-2. `Existing-rule capture case`
-   Validate the "existing spec first" branch on a real project with undocumented but stable rules.
-   Proof target: captured rules actually steer implementation, rather than becoming passive documentation.
-
-3. `Provisional promotion case`
-   Reopen collapsed launcher `1708:30243` or another missing state as a confirmed provisional case.
-   Proof target: the team can move from provisional-proposal to confirmed implementation input to either formal promotion or explicit retirement.
-
-4. `Sketch / low-fi gap-fill case`
-   Validate that missing states or components can be expanded from low-fidelity material without breaking the established system boundary.
-   Proof target: the workflow can fill design gaps safely, not just implement already-clean boards.
-
-5. `Platform breadth case`
-   Validate at least one non-web target or a profile-aware dry run with real constraints.
-   Proof target: stack-profile gating is real behavior, not a web-only placeholder.
-
-6. `Library / Code Connect case`
-   Validate reusable mapping/library generation once a family is stable enough.
-   Proof target: the project can mature from case-by-case implementation into reusable design/code linkage.
-
-7. `Verify quality reference`
-   When rebuilding or tightening `figma-verify-implementation`, review
-   https://github.com/chenenpei/skiils-collection (`figma-design-review`) as
-   a reference for input gating, screenshot-only limitations, P1/P2/P3
-   severity, and token/style/component-reuse checks. Do not fold it into the
-   main workflow now; treat it as a future verify-specific improvement source.
+- New source node selected on 2026-04-20: `1708:30204` (`网页结果页`).
+- User-directed scope order: first clean up hierarchy and naming, then move into implementation.
+- Family boundary is treated as:
+  - composite root: `BrowserResultPage`
+  - simple sub-family: `AssistantSidebarPanel`
+- Live cards:
+  - `cases/component-family-definition-browser-result-page.md`
+  - `cases/component-family-definition-assistant-sidebar-panel.md`
+- Implementation is complete in `agentic-browser-ui` on branch `codex/browser-result-assistant-sidebar` (PR #5).
+- Review cleanup is complete:
+  - prompt-chip alignment restored to Figma intent
+  - assistant chip label weight corrected
+  - history icon exported from Figma node `1708:30289` and wired as `assistant-title-history@1x.svg`
+- Visual verify against the root board `1708:30204` passed.
+- Additional legacy cleanup committed on the same branch:
+  - `AIToolsRow.tsx` inline icons replaced with exported assets
+  - `InputBox.tsx` inline icons replaced with exported assets
+- Remaining non-blocking visual note for this case: compact `InputBox` background inside the sidebar slot still uses the shared opaque base surface instead of the Figma semi-transparent panel-specific fill.
+- Intentionally provisional:
+  - collapsed page state
+  - hidden toolbar launcher reference (`1708:30243`) as canonical click-to-open source
+  - panel-specific chip / composer interaction states beyond existing families
 
 ## Next Recommended Action
 
-Choose the next case from this order:
-1. existing-rule capture first, using `agentic-browser-ui` as the current real project baseline
-2. repeatability next, on the first suitable fresh component-scoped board
-3. provisional promotion after the top-tier pair is complete
-4. sketch gap-fill or platform breadth only when a real project need appears
+1. Merge PR #5 and PR #27 if no further review comments land.
+2. Decide whether to formally close this case as complete while keeping the collapsed launcher path provisional.
+3. If the product needs close-state behavior next, reopen the hidden launcher path as a confirmed follow-up instead of silently promoting it now.
