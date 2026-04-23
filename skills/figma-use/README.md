@@ -104,6 +104,10 @@ Do not ask when:
 - `use_figma` executes JavaScript via the Figma Plugin API. Syntax errors
   in the snippet will silently fail or produce partial results — always
   verify after writing.
+- `use_figma` does not return a structured execution result. Treat every
+  write as fire-and-check: follow it with `get_metadata`,
+  `get_design_context`, or another read path to confirm the change
+  landed as intended.
 - For the font "Inter", the style name is `"Semi Bold"` (with a space),
   not `"SemiBold"`. Wrong font style names cause silent fallback to the
   default weight.
@@ -116,6 +120,14 @@ Do not ask when:
 - Before creating new components, call `search_design_system` to check
   whether an existing component can be reused via
   `importComponentByKeyAsync`.
+- `createNodeFromSvg` wraps the imported SVG in a Frame. In auto-layout
+  parents, that new node may also land at the end of the child list.
+  Check the resulting wrapper structure and reorder with `insertChild()`
+  or equivalent if position matters.
+- SVGs that rely on `currentColor` render black when inserted directly
+  into Figma because the canvas has no CSS color context. If a
+  provisional board or other Figma write needs the final icon color,
+  replace `currentColor` with the intended hex value before insertion.
 - Do not place workflow-only provisional boards inside a formal product
   page artboard by default. Keep validation material in a clearly
   labeled supplement area or a standalone provisional board on the same
