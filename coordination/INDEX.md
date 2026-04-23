@@ -14,6 +14,7 @@ Phase 3 closed (2026-04-13) — Tab, InputBox, Toolbar all verified and committe
 Phase 4 closed (2026-04-20) — `figma-execution-shell` merged; Dialog, AIToolsRow, and Sidebar (default-only) are all closed.
 Phase 5 closed (2026-04-20) — BrowserResultPage + AssistantSidebarPanel composite family case merged and formally closed.
 Phase 6 closed (2026-04-22) — WorkspacePage + TaskChatPanel Repeatability case complete. All 8 component cases closed.
+Phase A closed (2026-04-23) — PR #6 (agentic-browser-ui WorkspacePage) and PR #17 (figma-use gotchas) both merged. No open PRs.
 
 ## Active Repos
 
@@ -113,16 +114,14 @@ Live cards:
 
 ## Open PRs
 
-| Repo | PR | Branch | Status |
-|---|---|---|---|
-| agentic-browser-ui | #6 | codex/workspace-page-phase6 | OPEN, MERGEABLE |
-| figma-to-code-skills | #17 | skill/figma-use-gotchas | OPEN — decide: merge or close as superseded |
+No open PRs in either repo.
 
 ## Next Recommended Action
 
-1. Merge agentic-browser-ui PR #6 to close WorkspacePage implementation side.
-2. Decide PR #17: if write-path gotchas are already in main, close as superseded; otherwise rebase and merge.
-3. Start Phase B — Existing-rule capture validation using agentic-browser-ui as baseline.
+Start Phase B — Existing-rule capture validation:
+1. Open branch `phase-b/existing-rule-capture-validation` in figma-to-code-skills.
+2. Update `inventory/existing-rule-capture-agentic-browser-ui.md` with concrete rules (8 dimensions, each with code evidence).
+3. Run one small downstream task that must cite the captured rules — exit when at least one decision is demonstrably rule-driven.
 
 ## Source-of-Truth Notes
 

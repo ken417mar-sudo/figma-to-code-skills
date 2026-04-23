@@ -58,12 +58,14 @@ This repo is built collaboratively by the user, Claude Code, and Codex.
 
 ## Current Focus
 
-Phase 6 Repeatability complete (2026-04-22). All 8 component cases closed: Tab, InputBox, Toolbar, Dialog, AIToolsRow, Sidebar, BrowserResultPage/AssistantSidebarPanel, WorkspacePage/TaskChatPanel.
+Phase A closed (2026-04-23). All PRs merged — no open PRs in either repo.
+- figma-to-code-skills main: `0227d31`
+- agentic-browser-ui main: `a70eacc`
 
 Phase B next — Existing-rule capture validation:
 
-1. merge agentic-browser-ui PR #6 (WorkspacePage) to close the implementation side
-2. decide figma-to-code-skills PR #17 (figma-use write-path gotchas): merge or close as superseded
-3. run existing-rule capture on agentic-browser-ui as baseline — turn implicit rules into an explicit rule artifact, then run one implementation task that must use those captured rules
+1. open branch `phase-b/existing-rule-capture-validation`, update `inventory/existing-rule-capture-agentic-browser-ui.md` with concrete rules (8 dimensions, each with code evidence)
+2. run one small downstream task that must cite the captured rules — exit when at least one decision is demonstrably rule-driven
+3. promote learnings back into skills (figma-capture-design-system / figma-execution-shell / figma-verify-implementation)
 4. validate provisional-to-formal promotion path (collapsed launcher `1708:30243`) when ready
 5. validate sketch / low-fidelity gap-filling or platform breadth only when a real project need appears
