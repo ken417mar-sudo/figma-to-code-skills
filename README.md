@@ -45,9 +45,9 @@ This repo is built collaboratively by the user, Claude Code, and Codex.
 - Compact stable memory for new threads:
   [coordination/WORKING-MEMORY.md](coordination/WORKING-MEMORY.md)
 - Current workflow baseline:
-  [inventory/workflow-outline.md](/Users/markun/Documents/Codex/Mars/figma-to-code-skills/inventory/workflow-outline.md)
+  [inventory/workflow-outline.md](inventory/workflow-outline.md)
 - Skill inventory:
-  [skills/README.md](/Users/markun/Documents/Codex/Mars/figma-to-code-skills/skills/README.md)
+  [skills/README.md](skills/README.md)
 
 ## Repository Layout
 
@@ -58,10 +58,12 @@ This repo is built collaboratively by the user, Claude Code, and Codex.
 
 ## Current Focus
 
-Phase 6 planning (2026-04-20). The web component-to-code workflow has been validated through Phase 5. The next step is not more cleanup on the closed case, but targeted capability validation:
+Phase 6 Repeatability complete (2026-04-22). All 8 component cases closed: Tab, InputBox, Toolbar, Dialog, AIToolsRow, Sidebar, BrowserResultPage/AssistantSidebarPanel, WorkspacePage/TaskChatPanel.
 
-1. run either a repeatability case or an existing-rule capture case first, based on which real input is immediately available
-2. validate the other top-tier case next so both repeatability and existing-rule capture are proven early
-3. validate the full provisional-to-formal promotion path (starting with collapsed launcher `1708:30243` if chosen)
-4. validate sketch / low-fidelity gap-filling or platform breadth only when a real project need appears
-5. validate library / code-connect linkage after enough stable families exist
+Phase B next — Existing-rule capture validation:
+
+1. merge agentic-browser-ui PR #6 (WorkspacePage) to close the implementation side
+2. decide figma-to-code-skills PR #17 (figma-use write-path gotchas): merge or close as superseded
+3. run existing-rule capture on agentic-browser-ui as baseline — turn implicit rules into an explicit rule artifact, then run one implementation task that must use those captured rules
+4. validate provisional-to-formal promotion path (collapsed launcher `1708:30243`) when ready
+5. validate sketch / low-fidelity gap-filling or platform breadth only when a real project need appears

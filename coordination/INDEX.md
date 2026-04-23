@@ -6,13 +6,14 @@ Update this file when phase, repos, or active work changes.
 ## Stable Memory
 
 - Working summary for new threads:
-  `/Users/markun/Documents/Codex/Mars/figma-to-code-skills/coordination/WORKING-MEMORY.md`
+  `coordination/WORKING-MEMORY.md`
 
 ## Current Phase
 
 Phase 3 closed (2026-04-13) — Tab, InputBox, Toolbar all verified and committed.
 Phase 4 closed (2026-04-20) — `figma-execution-shell` merged; Dialog, AIToolsRow, and Sidebar (default-only) are all closed.
-Phase 5 in progress (2026-04-20) — `BrowserResultPage` with right-side assistant sidebar expanded (`1708:30204`) is implemented, review-clean, and visually verified; closeout / merge sync remains.
+Phase 5 closed (2026-04-20) — BrowserResultPage + AssistantSidebarPanel composite family case merged and formally closed.
+Phase 6 closed (2026-04-22) — WorkspacePage + TaskChatPanel Repeatability case complete. All 8 component cases closed.
 
 ## Active Repos
 
@@ -22,8 +23,8 @@ Phase 5 in progress (2026-04-20) — `BrowserResultPage` with right-side assista
 | `agentic-browser-ui` | implementation target (React + Tailwind) |
 
 Local paths:
-- `/Users/markun/Documents/Codex/Mars/figma-to-code-skills`
-- `/Users/markun/Documents/Codex/Mars/agentic-browser-ui`
+- `~/Documents/Codex/Mars/figma-to-code-skills`
+- `~/Documents/Codex/Mars/agentic-browser-ui`
 
 ## Active Issues
 
@@ -97,23 +98,31 @@ Implementation is now committed, pushed, and visible in `agentic-browser-ui` PR 
 Deferred non-blockers: SVG icon color hardcoding (theme-reactive未确认); hover/active/collapsed states unconfirmed.
 Verify card: `experiments/trial-component-family-definition-sidebar.md`
 
-### BrowserResultPage / Assistant Sidebar — implemented, verified, ready for closeout (2026-04-20)
-Next formal case after Sidebar closeout. Source node: `1708:30204`.
-This pass is no longer in hierarchy-only mode: implementation is up in `agentic-browser-ui` PR #5 and the live cards in PR #27 reflect the settled family boundary / naming.
+### BrowserResultPage / AssistantSidebarPanel — closed (2026-04-21)
+Composite family case. Source node: `1708:30204`.
+Implementation merged via PR #5 (agentic-browser-ui) and PR #27 (figma-to-code-skills).
+Remaining provisional: collapsed launcher path (`1708:30243`); panel-specific chip/composer states deferred.
+
+### WorkspacePage / TaskChatPanel — closed (2026-04-22)
+Phase 6 Repeatability case. Composite family.
+Implementation in agentic-browser-ui PR #6 (OPEN, MERGEABLE).
+figma-to-code-skills PRs #28 and #29 merged into main (`7624dbe`).
 Live cards:
-- `cases/component-family-definition-browser-result-page.md`
-- `cases/component-family-definition-assistant-sidebar-panel.md`
-Implementation status:
-- `BrowserResultPage` + `AssistantSidebarPanel` implemented on branch `codex/browser-result-assistant-sidebar` (PR #5)
-- review comments addressed
-- visual verify against `1708:30204` passed
-- title-bar history icon now exported from source Figma and wired as a local asset
-- AIToolsRow / InputBox legacy inline-icon cleanup also committed on the same branch
-Remaining provisional question intentionally left open: whether the hidden toolbar launcher (`1708:30243`) is the canonical collapsed state for the click-to-open flow.
+- `cases/component-family-definition-workspace-page.md`
+- `cases/component-family-definition-task-chat-panel.md`
+
+## Open PRs
+
+| Repo | PR | Branch | Status |
+|---|---|---|---|
+| agentic-browser-ui | #6 | codex/workspace-page-phase6 | OPEN, MERGEABLE |
+| figma-to-code-skills | #17 | skill/figma-use-gotchas | OPEN — decide: merge or close as superseded |
 
 ## Next Recommended Action
 
-If no further review comments land, merge PR #5 (`agentic-browser-ui`) and PR #27 (`figma-to-code-skills`), then choose the next component-scoped case or explicitly reopen the collapsed launcher path.
+1. Merge agentic-browser-ui PR #6 to close WorkspacePage implementation side.
+2. Decide PR #17: if write-path gotchas are already in main, close as superseded; otherwise rebase and merge.
+3. Start Phase B — Existing-rule capture validation using agentic-browser-ui as baseline.
 
 ## Source-of-Truth Notes
 

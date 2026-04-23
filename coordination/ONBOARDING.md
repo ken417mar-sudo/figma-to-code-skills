@@ -43,7 +43,7 @@ Decision protocol:
 | Phase 3 | closed (2026-04-13) | Tab, InputBox, Toolbar — all verified and committed |
 | Phase 4 | closed (2026-04-20) | `figma-execution-shell` merged; Dialog, AIToolsRow, Sidebar (default-only) all closed |
 | Phase 5 | closed (2026-04-20) | BrowserResultPage + AssistantSidebarPanel composite family case merged and formally closed |
-| Phase 6 | planning | next step is capability validation beyond the proven web component loop |
+| Phase 6 | closed (2026-04-22) | WorkspacePage + TaskChatPanel Repeatability case complete. All 8 component cases closed. |
 
 ## Current component status
 
@@ -54,7 +54,9 @@ Decision protocol:
 | Toolbar | closed | 5 states verified |
 | Dialog | closed | All axes verified, HYQiHei font deferred |
 | AIToolsRow | closed | ToolPill family, hover/active, inline SVG icons |
-| BrowserResultPage / AssistantSidebarPanel | closed | Composite family case; collapsed launcher deferred |
+| Sidebar | closed (2026-04-17) | Formal default-only pass; SVG color hardcoding + interaction/collapsed states deferred |
+| BrowserResultPage / AssistantSidebarPanel | closed (2026-04-21) | Composite family case; collapsed launcher deferred |
+| WorkspacePage / TaskChatPanel | closed (2026-04-22) | Phase 6 Repeatability case; agentic-browser-ui PR #6 pending merge |
 
 ## Component Family Definition
 
@@ -70,10 +72,10 @@ Cards: `experiments/trial-component-family-definition-aitoolsrow.md`, `experimen
 
 ## Current todo
 
-1. Run an existing-rule capture pass first on `agentic-browser-ui`, because that real project baseline is already available
-2. Run one more fresh component-scoped case to prove workflow repeatability
-3. Reopen collapsed launcher (`1708:30243`) or another missing state as a provisional-promotion validation case
-4. Validate sketch / low-fi gap-filling or non-web profile breadth only when a real project need appears
+1. Merge agentic-browser-ui PR #6 to close WorkspacePage implementation side
+2. Decide figma-to-code-skills PR #17 (figma-use write-path gotchas): merge or close as superseded
+3. Start Phase B — Existing-rule capture validation: use agentic-browser-ui as baseline, turn implicit rules into an explicit rule artifact, then run one implementation task that must use those captured rules
+4. Validate provisional-to-formal promotion path (collapsed launcher `1708:30243`) when ready
 5. Shared typography pass for HYQiHei font remains a deferred cross-case non-blocker
 
 ## Quick entry points
@@ -86,5 +88,5 @@ Cards: `experiments/trial-component-family-definition-aitoolsrow.md`, `experimen
 | Skill prompts | `skills/*/README.md` |
 | Workflow baseline | `inventory/workflow-outline.md` |
 | Agent instructions | `CLAUDE.md` (Claude Code) / `AGENTS.md` (Codex) |
-| Implementation repo | `/Users/markun/Documents/Codex/Mars/agentic-browser-ui` |
+| Implementation repo | `~/Documents/Codex/Mars/agentic-browser-ui` |
 | Figma file | `https://www.figma.com/design/iIbL9V4UrFeORPaM7KVji7` |
