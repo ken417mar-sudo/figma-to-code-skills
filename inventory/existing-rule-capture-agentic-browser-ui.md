@@ -78,7 +78,7 @@
 - All design-owned icons must be exported from Figma source before implementation (hard gate).
 - If the asset exists in `src/assets/figma/`, import it. If not, export it first.
 - Do not ship inline SVG or handwritten geometry while the export check is incomplete.
-- Conformance: all 8 components import icons exclusively from `src/assets/figma/` — no handwritten geometry shipped for design-owned icons.
+- Conformance: 7 of 8 components follow this rule. Known exception: `Tab.tsx` defines `CloseIcon` as inline SVG despite exported assets existing (see unresolved gap below).
 
 **SVG import pattern** `evidence-type: file:line`
 - `?react` import → use as React component with `className` for `currentColor` theming (theme-reactive icons)
