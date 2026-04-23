@@ -1,8 +1,8 @@
 # Existing Rule Capture — agentic-browser-ui
 
-> captured: 2026-04-20  
-> enriched: 2026-04-23 (code evidence pointers added)  
-> source: code inspection across all 8 components + index.css  
+> captured: 2026-04-20
+> enriched: 2026-04-23 (code evidence pointers added)
+> source: code inspection across all 8 components + index.css
 > status: confirmed-standard / tentative / unresolved-gap (per rule)
 
 ---
@@ -57,7 +57,7 @@
 | `--spacing-16` | `16px` |
 | `--spacing-24` | `24px` |
 
-**Tentative:** spacing tokens are defined but components use Tailwind arbitrary values (`px-[12px]`, `gap-[8px]`) directly rather than consuming the CSS vars. The tokens exist as documentation, not as enforced constraints. Evidence: all components in `src/components/` use `px-[N]` / `gap-[N]` patterns, not `var(--spacing-*)`.
+**Tentative:** spacing tokens are defined but components use Tailwind arbitrary values directly rather than consuming the CSS vars. The tokens exist as documentation, not as enforced constraints. Evidence: `InputBox.tsx:50` — `gap-[12px] pb-[12px] pt-[16px] px-[12px]`; `Sidebar.tsx:61,86` — `px-[12px] py-[8px]`.
 
 ### Radius tokens
 
