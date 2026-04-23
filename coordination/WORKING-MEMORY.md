@@ -70,6 +70,8 @@ Key node IDs:
 | Dialog | closed (2026-04-16) | HYQiHei font — shared typography pass |
 | AIToolsRow | closed (2026-04-17) | active state remains proposal-level |
 | Sidebar | closed (2026-04-17) | formal default-only pass; SVG color hardcoding + interaction/collapsed states deferred |
+| BrowserResultPage / AssistantSidebarPanel | closed (2026-04-21) | collapsed launcher path provisional; panel-specific chip/composer states deferred |
+| WorkspacePage / TaskChatPanel | closed (2026-04-22) | Phase 6 Repeatability complete |
 
 ## Component Family Definition
 
@@ -96,33 +98,26 @@ Key formal constraints now locked:
 - Implementation is now committed, pushed, and visible in `agentic-browser-ui` PR #4 (`codex/sidebar-phase4`).
 - Deferred (non-blocking): SVG icon colors hardcoded (#333/#999), theme-reactive未确认; interaction/collapsed states unconfirmed.
 
-## Active Case: BrowserResultPage / Assistant Sidebar
+## Phase Status
 
-- New source node selected on 2026-04-20: `1708:30204` (`网页结果页`).
-- User-directed scope order: first clean up hierarchy and naming, then move into implementation.
-- Family boundary is treated as:
-  - composite root: `BrowserResultPage`
-  - simple sub-family: `AssistantSidebarPanel`
-- Live cards:
-  - `cases/component-family-definition-browser-result-page.md`
-  - `cases/component-family-definition-assistant-sidebar-panel.md`
-- Implementation is complete in `agentic-browser-ui` on branch `codex/browser-result-assistant-sidebar` (PR #5).
-- Review cleanup is complete:
-  - prompt-chip alignment restored to Figma intent
-  - assistant chip label weight corrected
-  - history icon exported from Figma node `1708:30289` and wired as `assistant-title-history@1x.svg`
-- Visual verify against the root board `1708:30204` passed.
-- Additional legacy cleanup committed on the same branch:
-  - `AIToolsRow.tsx` inline icons replaced with exported assets
-  - `InputBox.tsx` inline icons replaced with exported assets
-- Remaining non-blocking visual note for this case: compact `InputBox` background inside the sidebar slot still uses the shared opaque base surface instead of the Figma semi-transparent panel-specific fill.
-- Intentionally provisional:
-  - collapsed page state
-  - hidden toolbar launcher reference (`1708:30243`) as canonical click-to-open source
-  - panel-specific chip / composer interaction states beyond existing families
+- Phase 6 Repeatability: **complete** (2026-04-22)
+  - All 8 cases closed: Tab, InputBox, Toolbar, Dialog, AIToolsRow, Sidebar, BrowserResultPage/AssistantSidebarPanel, WorkspacePage/TaskChatPanel
+  - figma-to-code-skills main: `51c919c`
+  - agentic-browser-ui PR #6 (WorkspacePage): OPEN, MERGEABLE
 
-## Next Recommended Action
+## Open PRs
 
-1. Merge PR #5 and PR #27 if no further review comments land.
-2. Decide whether to formally close this case as complete while keeping the collapsed launcher path provisional.
-3. If the product needs close-state behavior next, reopen the hidden launcher path as a confirmed follow-up instead of silently promoting it now.
+| Repo | PR | Branch | Status |
+|---|---|---|---|
+| agentic-browser-ui | #6 | codex/workspace-page-phase6 | OPEN, MERGEABLE |
+| figma-to-code-skills | #17 | skill/figma-use-gotchas | OPEN — decide: merge or close as superseded |
+
+## Next Recommended Action (Phase B)
+
+1. Merge agentic-browser-ui PR #6 to close WorkspacePage implementation.
+2. Decide PR #17: if write-path gotchas are already in main, close as superseded; otherwise rebase and merge.
+3. Start Phase B — Existing-rule capture validation:
+   - Use agentic-browser-ui as baseline.
+   - Turn implicit rules into an explicit rule artifact.
+   - Run one implementation/review task that must use those captured rules.
+   - Success: captured rules actively change agent behavior.
