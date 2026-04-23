@@ -73,6 +73,13 @@ the profile is missing and it changes the output shape, ask first.
    icon's actual geometry in its parent component. Use semantic asset and
    variable names in code rather than copying temporary Figma layer names
    verbatim.
+   For compact icon actions such as collapse, add, more, or close,
+   record three independent sizes before coding:
+   - interactive button/hit area
+   - icon frame inside that control
+   - exported SVG canvas / actual glyph bounds
+   Keep them separate in code. Do not assume the exported asset canvas
+   already matches the intended rendered icon size.
 6. Map layout, tokens, and components to platform-appropriate patterns:
    - **web**: flexbox/grid, CSS vars or Tailwind tokens, JSX component
      API.
@@ -82,7 +89,11 @@ the profile is missing and it changes the output shape, ask first.
      and adaptive layout rules.
 7. Write the implementation. Prefer confirmed rules over inferred ones.
    Mark any inferred choices in comments or mapping notes.
-8. Surface unresolved ambiguity explicitly — do not silently pick a
+8. If implementation temporarily depends on an approved provisional state
+   because the formal component board was incomplete, record that
+   dependency and treat promotion back into the formal component area as a
+   closeout task rather than a forever-state.
+9. Surface unresolved ambiguity explicitly — do not silently pick a
    default for anything that changes the component's behavior or
    structure.
 
@@ -101,6 +112,9 @@ Ask before proceeding when:
 - The implementation would rely on newly added provisional Figma state
   cards rather than an already confirmed component board. Ask whether
   those provisional states are approved before coding against them.
+- The implementation would rely on an approved provisional state, but it
+  is unclear whether the team wants that state promoted back into the
+  formal component board after validation.
 - An implementation choice would be expensive to undo (e.g. choosing a
   state management pattern or a layout approach that affects many
   components).
@@ -122,10 +136,11 @@ Do not ask when:
 - Do not optimize only for pixel similarity. A structurally wrong
   component that looks correct in a screenshot will break under real
   content and state changes.
-- Do not fake design-owned icons or images with placeholder blocks,
-  improvised SVGs, or ad hoc CSS shapes when the design expects an
-  exported asset. Use the asset export workflow first. Icon resources
-  should default to exported assets, preferably SVG.
+- Do not start implementation of a design-owned icon or image until the
+  export check is complete. If the asset already exists in the repository,
+  import it. If it does not exist yet, export it first. Do not leave a
+  component implemented with placeholder blocks, improvised SVGs, ad hoc
+  CSS shapes, or handwritten replacement geometry as a temporary bridge.
 - Code Connect snippets returned by `get_design_context` are the
   authoritative component reference. Use them instead of generating new
   component code from scratch.
@@ -140,6 +155,22 @@ Do not ask when:
   validated state.
 - Common interaction patterns may justify proposing a provisional state,
   but they do not justify silently treating that state as canonical.
+- Do not leave implementation permanently anchored to an approved
+  provisional state if the team has already accepted it as canonical. Use
+  the provisional state as a temporary bridge, then promote it back into
+  the formal component area and retire or archive the provisional copy.
+- Do not assume a state card is correct just because it looks close in a
+  screenshot. If hover/active are expressed by appending a new child
+  rectangle, wrapper, or overlay layer to the default control, treat that
+  as suspect unless the formal component source explicitly shows a
+  structural state change.
+- Default, hover, and active variants should preserve the same root
+  control structure unless the formal component source proves otherwise.
+  Prefer changing border, fill, shadow, opacity, or text/icon color on
+  the existing container instead of introducing a new state-only layer.
+- Do not treat a newly created component set as canonical if its family
+  boundary or one of its state axes is still marked provisional or
+  proposal-only.
 - Stateful stroke or border treatments must not change box geometry between
   states. Reserve the same border/stroke space in all states (e.g. transparent
   border in default, colored border in selected), or use a non-layout-affecting
@@ -164,6 +195,26 @@ Do not ask when:
   Figma, but code should use a semantic identifier based on the confirmed
   product role. If the role is still unclear, ask or mark it provisional
   instead of pretending the name is settled.
+- For compact action icons, do not collapse the button size and icon size
+  into one number. A common pattern is `24×24` interactive area with a
+  `16×16` glyph. If code renders the icon at the full button size, or if
+  the exported SVG still carries a larger padded canvas, the control will
+  look visibly too large or too small even when the CSS seems "correct."
+- When Figma defines a section header as a label plus an optional action
+  button, model those as separate slots in code instead of treating the
+  whole row as an undifferentiated heading. This keeps spacing, alignment,
+  and optionality stable across similar list or panel headers.
+- If Figma gives an explicit row or item width inside a wider parent
+  container, preserve that width in implementation unless the confirmed
+  spec says the item should stretch. Defaulting to `w-full` will often
+  make list items look close in isolation but wrong in the real component.
+- When review feedback says an icon button is "the wrong size," debug it
+  in this order before changing layout:
+  1. measure the outer button box
+  2. measure the rendered icon box
+  3. inspect the exported SVG canvas / viewBox
+  Many size bugs come from asset padding or mismatched icon-frame sizing,
+  not from the parent layout.
 
 ## Verification
 
@@ -171,5 +222,12 @@ Do not ask when:
   guess.
 - The code respects confirmed rules before inferred ones.
 - The result is structurally correct, not only visually similar.
+- State variants preserve the expected root structure and do not rely on
+  ad hoc appended state-only layers unless that structural difference was
+  explicitly confirmed in Figma.
 - Mapping notes explain non-obvious choices.
 - Unresolved ambiguity is listed, not hidden.
+- If the code depended on an approved provisional state, the output or
+  closeout notes state whether that state has already been promoted back
+  into the formal component board or is still pending for an explicit
+  reason.

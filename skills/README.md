@@ -30,6 +30,14 @@ For each skill:
 
 ## Core delivery skills
 
+### `figma-execution-shell`
+
+- `Role`: workflow protocol wrapper for real component cases
+- `Scope`: load context, resolve source of truth, enforce readiness
+  gates, route to the right downstream skills, and standardize closeout
+- `Not for`: replacing lower-level implementation or verification
+  skills, or duplicating existing rule content
+
 ### `figma-capture-design-system`
 
 - `Role`: capture existing team knowledge before implementation

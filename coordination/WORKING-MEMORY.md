@@ -1,38 +1,33 @@
 # Working Memory
 
 Compact project memory for starting a new thread quickly.
+**New to this project? Read [coordination/ONBOARDING.md](ONBOARDING.md) first.**
 
 ## Repos
 
-- `figma-to-code-skills`
-  - path: `/Users/markun/Documents/Codex/Mars/figma-to-code-skills`
-  - purpose: workflow rules, gotchas, skill definitions
-- `agentic-browser-ui`
-  - path: `/Users/markun/Documents/Codex/Mars/agentic-browser-ui`
-  - purpose: implementation testbed for Figma-to-code cases
-- `figma-export-slices-skill`
-  - path: `/Users/markun/Documents/Cursor/skill_test/figma-export-slices`
-  - purpose: standalone export-slices skill repo
+- `figma-to-code-skills` — `/Users/markun/Documents/Codex/Mars/figma-to-code-skills` — workflow rules, gotchas, skill definitions
+- `agentic-browser-ui` — `/Users/markun/Documents/Codex/Mars/agentic-browser-ui` — implementation testbed for Figma-to-code cases
 
 ## Shared Coordination
 
-- stable entry: `/Users/markun/Documents/Codex/Mars/figma-to-code-skills/coordination/INDEX.md`
+- stable entry: `coordination/INDEX.md`
 - current active issue: [#13](https://github.com/ken417mar-sudo/figma-to-code-skills/issues/13) — permanent coordination log, never close
-- historical issue: [#4](https://github.com/ken417mar-sudo/figma-to-code-skills/issues/4)
 
 ## Active Figma File
 
 - file key: `iIbL9V4UrFeORPaM7KVji7`
 - main board: `1708:29412`
-- canonical tab component set: `1714:976`
-- canonical close component set: `1714:1012`
-  - off: `1714:1013`
-  - on: `1714:1017`
-- InputBox: `1708:30342`
-- send button: `1708:30361`
-- send icon: `1708:30363`
-- provisional standalone board: `1787:10395`
-- provisional tab interaction block: `1840:11328`
+
+Key node IDs:
+| Component | Node ID |
+|---|---|
+| Tab component set | `1714:976` |
+| Close off/on | `1714:1013` / `1714:1017` |
+| InputBox | `1708:30342` |
+| AIToolsRow | `1708:30180` |
+| Dialog section | `1922:32133` |
+| Sidebar | `1708:30337` |
+| BrowserResultPage with assistant sidebar expanded | `1708:30204` |
 
 ## Core Workflow
 
@@ -48,69 +43,56 @@ Compact project memory for starting a new thread quickly.
 ## Key Rules Already Settled
 
 - Existing spec/design-system rules outrank inferred design rules.
-- Missing interaction states must be confirmed first; then they can be added
-as `provisional` validation states.
-- Common interaction patterns can justify proposing provisional states, but
-cannot silently redefine canonical component rules.
-- All icon resources default to the export workflow, preferably `svg`.
-- If `FIGMA_TOKEN` is missing and export is required, stop and ask the user
-for the token before continuing.
-- Exported SVG canvas dimensions are not the source of truth for rendered
-icon size; match the icon's in-component geometry from Figma.
-- After exporting an SVG, inspect stroke/fill values before wiring. If they
-are hardcoded design-system colors, inline as SVG component with
-`currentColor`. Only use `<img>` for intentionally fixed colors (e.g.
-white arrow on colored button, brand logo).
-- **Pre-implementation asset check (hard gate):** Before writing any icon
-geometry in a component, check whether the icon has already been exported
-into the repo. If `src/assets/figma/*.svg` already contains the source
-icon, implementation must import that file — do not write or keep a
-handwritten SVG substitute. This check must happen before implementation
-starts, not as a cleanup step afterward.
-- Newly added provisional Figma state cards must be explicitly approved by
-the user or team before they become implementation input.
-- Provisional state cards for an existing component must start from the
-approved baseline component and preserve all unchanged parts, including
-icon assets, text, and structure. Only the state-specific delta should
-change.
-- When `get_design_context` returns a CSS transform on an icon, verify the
-exported SVG orientation before copying it. The asset may already encode
-the correct direction — copying the transform blindly causes double-rotation.
+- Missing interaction states must be confirmed first; then they can be added as `provisional` validation states.
+- Common interaction patterns can justify proposing provisional states, but cannot silently redefine canonical component rules.
+- All icon resources default to the export workflow, preferably `svg`. Inline as SVG component with `currentColor` for theme-reactive icons; only use `<img>` for intentionally fixed colors.
+- **Pre-implementation asset check (hard gate):** For every design-owned icon or image, complete the export check before implementation. If the asset already exists in `src/assets/figma/`, import it. If it does not exist yet, export it first. Do not ship component code with inline SVG, placeholder geometry, or handwritten replacement icons while that export check is still incomplete.
+- Provisional boards must be standalone (not inside a formal artboard) and have clear canvas separation from neighboring boards.
+- Provisional state cards must apply state to the root control container, not by appending extra layers.
+- Do not promote a component set to canonical while any family boundary or state axis is still provisional — even if the user explicitly requests it.
 - Stateful borders/strokes must not change geometry between states.
+- `figma-execution-shell` is the protocol wrapper for all real component cases.
+- Compact action-icon controls should separate interactive size from icon size.
+  Default pattern: `24×24` button/hit area with a `16×16` icon frame unless the formal source says otherwise.
+- Exported SVG canvas size is packaging data, not the rendered-size contract.
+  If a small icon looks wrong in code, inspect the SVG viewBox / padding and normalize the asset before changing component layout.
+- Section headers with optional actions should be modeled as separate slots (`label` + optional `action`) rather than as a single undifferentiated row.
+- If Figma gives an explicit inner row width, preserve it instead of defaulting list items to `w-full`.
+- For icon-size review comments, debug in this order: outer button box → rendered icon box → exported SVG canvas.
 
-## Tab Status
+## Component Status
 
-- considered functionally closed for now
-- all 8 variants were implemented and checked
-- close icon flow uses source-exported assets
-- product-layer hover-close behavior lives in provisional validation, not in
-the canonical tab component set
+| Component | Status | Deferred |
+|---|---|---|
+| Tab | closed | hover-close lives in provisional validation |
+| InputBox | closed | focus-shadow token mismatch accepted as-is; compact sidebar bg remains a deferred non-blocker |
+| Toolbar | closed | `border border-[0.5px]` redundancy in urlFocused |
+| Dialog | closed (2026-04-16) | HYQiHei font — shared typography pass |
+| AIToolsRow | closed (2026-04-17) | active state remains proposal-level |
+| Sidebar | closed (2026-04-17) | formal default-only pass; SVG color hardcoding + interaction/collapsed states deferred |
+| BrowserResultPage / AssistantSidebarPanel | closed (2026-04-21) | collapsed launcher path provisional; panel-specific chip/composer states deferred |
+| WorkspacePage / TaskChatPanel | closed (2026-04-22) | Phase 6 Repeatability complete |
 
-## InputBox Status
+## Phase Status
 
-- **closed** — all 4 states verified, geometry stable
-- commits: `d6afa94` (4 states), `ef0099c` (geometry fix)
-- deferred non-blockers: `ic_` rename, `开关` bridge exception,
-  focus-state shadow token mismatch accepted as-is
+- Phase 6 Repeatability: **complete** (2026-04-22)
+  - All 8 cases closed: Tab, InputBox, Toolbar, Dialog, AIToolsRow, Sidebar, BrowserResultPage/AssistantSidebarPanel, WorkspacePage/TaskChatPanel
+  - figma-to-code-skills main: `7624dbe`
+  - agentic-browser-ui PR #6 (WorkspacePage): OPEN, MERGEABLE
 
-## Toolbar Status
+## Open PRs
 
-- **closed** — all 5 states verified, committed, and pushed
-- commits: `eb13c90` (Toolbar.tsx + assets), `dbd1136` (bookmark icon viewBox fix)
-- provisional boards confirmed:
-  - NavIcon disabled (`1872:10395`): `opacity: 0.3` on 24×24 wrapper ✓
-  - Bookmark bookmarked + URLBar focused (`1873:10395`): icons correct ✓
-- deferred non-blocker: `border border-[0.5px]` redundancy in `urlFocused`
+| Repo | PR | Branch | Status |
+|---|---|---|---|
+| agentic-browser-ui | #6 | codex/workspace-page-phase6 | OPEN, MERGEABLE |
+| figma-to-code-skills | #17 | skill/figma-use-gotchas | OPEN — decide: merge or close as superseded |
 
-## Open Questions
+## Next Recommended Action (Phase B)
 
-None at the moment.
-
-## Current Local Changes To Remember
-
-- `figma-to-code-skills`: main closeout sync in progress on current branch
-- `agentic-browser-ui`: clean on `main`, latest `dbd1136`
-
-## Next Recommended Action
-
-Phase 3 formally closed (2026-04-13). Decide the next component case to start Phase 4.
+1. Merge agentic-browser-ui PR #6 to close WorkspacePage implementation.
+2. Decide PR #17: if write-path gotchas are already in main, close as superseded; otherwise rebase and merge.
+3. Start Phase B — Existing-rule capture validation:
+   - Use agentic-browser-ui as baseline.
+   - Turn implicit rules into an explicit rule artifact.
+   - Run one implementation/review task that must use those captured rules.
+   - Success: captured rules actively change agent behavior.

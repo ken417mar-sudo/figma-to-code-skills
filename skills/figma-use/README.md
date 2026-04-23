@@ -50,14 +50,28 @@ modify the Figma file, not just read from it.
 2. Determine the minimum safe write scope. Prefer scoped edits over
    broad canvas operations.
 3. If the write adds a validation-only supplement board, make it
-   explicitly provisional and check whether it should live inside an
-   existing board or become a standalone validation board on the same
-   page.
-4. Execute the write via `use_figma` with a JavaScript snippet targeting
+   explicitly provisional and declare the intended landing zone before
+   writing:
+   - existing component board supplement area
+   - standalone validation board on the same page
+   - never a formal product page artboard unless the user or team
+     explicitly approved that placement
+   Prefer the standalone validation board when there is any risk of
+   mixing workflow-only material into formal page content. Standalone
+   validation boards must sit in clear empty canvas space and must not
+   overlap any existing artboard, component board, or validation board.
+   Leave a visible safety gap instead of butting boards directly
+   together.
+4. If the write adds or edits component state cards, default to applying
+   the state treatment on the same root control container used by the
+   default state. Do not append a new state-only rectangle, wrapper, or
+   overlay shape unless the formal source of truth explicitly proves that
+   the state is structurally different.
+5. Execute the write via `use_figma` with a JavaScript snippet targeting
    the resolved node.
-5. Verify the result: call `get_screenshot` or `get_metadata` on the
+6. Verify the result: call `get_screenshot` or `get_metadata` on the
    affected node to confirm the change landed correctly.
-6. Hand the updated node reference or file state to the next workflow
+7. Hand the updated node reference or file state to the next workflow
    step.
 
 ## Clarification policy
@@ -70,6 +84,15 @@ Ask before proceeding when:
   source or only a local instance.
 - The write scope is unclear (e.g. "clean up the file" without a
   specified frame) — ask for a specific target.
+- The intended provisional supplement would land inside a formal product
+  page artboard rather than a component board or standalone validation
+  board — ask whether that exception is actually intended.
+- The standalone validation board placement is ambiguous, crowded, or
+  likely to overlap an existing artboard or board — ask before placing
+  it.
+- The proposed state treatment only works by adding a new child shape,
+  wrapper, or overlay, and it is unclear whether the formal component
+  really changes structure across states.
 
 Do not ask when:
 - A single unambiguous node id is provided and the write intent is clear.
@@ -105,6 +128,19 @@ Do not ask when:
   into Figma because the canvas has no CSS color context. If a
   provisional board or other Figma write needs the final icon color,
   replace `currentColor` with the intended hex value before insertion.
+- Do not place workflow-only provisional boards inside a formal product
+  page artboard by default. Keep validation material in a clearly
+  labeled supplement area or a standalone provisional board on the same
+  page.
+- Do not treat "outside the artboard" as sufficient placement logic.
+  A standalone provisional board still needs its own clear canvas area
+  and should not overlap, touch, or visually merge into neighboring
+  artboards or boards.
+- Do not build state variants by appending ad hoc rectangle layers to a
+  control unless the formal component source explicitly proves that the
+  state introduces a structural layer. Default, hover, and active should
+  normally share the same root container and differ only in container-
+  level styling.
 - If a provisional supplement grows beyond its parent board, move it into
   a standalone validation board on the same page instead of stretching
   the formal board.
@@ -116,6 +152,12 @@ Do not ask when:
 
 - The intended node or page was changed, not a neighboring one (confirm
   via screenshot or metadata check).
+- Any new provisional validation board landed in the declared parent
+  area rather than inside a formal product page artboard by accident.
+- Any standalone provisional board sits in clear empty canvas space with
+  a visible buffer and does not overlap any existing artboard or board.
+- State cards preserve the same root control structure as the baseline
+  unless the formal source explicitly proves a structural state change.
 - No unintended broad canvas changes were introduced.
 - The edit moved the workflow forward — reduced ambiguity, created the
   required structure, or normalized the target correctly.

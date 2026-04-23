@@ -27,6 +27,10 @@ failure patterns back into the skill set as gotchas.
   `inventory/tech-stack-profile.md`).
 - Design target: the Figma frame or node that was implemented.
 - Implementation target: the rendered surface to compare against.
+- Evidence mode: full Figma context plus screenshot, screenshot-only, or
+  code-review-only. Use this mode to limit the verification status.
+- Reuse contract: any existing component, variant, token, or asset the
+  implementation claims to reuse.
 
 ## Inputs
 
@@ -39,13 +43,22 @@ failure patterns back into the skill set as gotchas.
 - Tech-stack profile.
 - Optional: project severity rubric for mismatch scoring (e.g. spacing
   delta threshold, color tolerance).
+- Relevant implementation files for the rendered target and any reused
+  component or variant.
 
 ## Outputs
 
 - Annotated mismatch report listing each difference with location and
   description.
-- Severity or priority classification for each mismatch (blocking,
-  significant, minor, intentional).
+- Severity or priority classification for each mismatch:
+  - `P1 / blocking`
+  - `P2 / significant`
+  - `P3 / minor`
+  - `intentional`
+- Verification status for the case:
+  - `coverage-complete`
+  - `visual-verification-complete`
+  - `partial`
 - Implementation feedback: specific changes needed to close each blocking
   or significant mismatch.
 - Candidate gotchas: recurring failure patterns worth adding to the
@@ -55,13 +68,54 @@ failure patterns back into the skill set as gotchas.
 
 1. Confirm the design target and implementation surface. If either is
    ambiguous, ask before comparing.
-2. Fetch the Figma design context:
+2. Declare the evidence mode before reviewing:
+   - `full-visual`: Figma design context plus a design screenshot and a
+     real implementation surface are available.
+   - `screenshot-only`: only screenshot evidence is available for the
+     design. Continue only with an explicit limitation note.
+   - `code-review-only`: no reliable rendered comparison is available.
+     You may check coverage and obvious structural risks, but you must
+     not mark the case `visual-verification-complete`.
+3. Fetch the Figma design context:
    - Call `get_design_context` on the target node for layout, tokens, and
      component structure.
    - Call `get_screenshot` to get the reference design image.
-3. Collect the implementation screenshot or inspection context using the
+4. Collect the implementation screenshot or inspection context using the
    platform-appropriate path (see Inputs).
-4. Compare the two surfaces across these dimensions in order:
+   - Use the real implementation branch, not a handwritten stand-in built
+     only for verification.
+   - If the target variant depends on exported assets (especially images
+     or media), verify with the real asset rather than a placeholder.
+5. Run the component-reuse equivalence gate before visual scoring:
+   - List each component, variant, token, and asset the implementation
+     claims to reuse.
+   - Compare the reused item's design role, dimensions, visible
+     structure, state axes, asset slots, and rendered behavior against the
+     target node.
+   - If a reused item has a different family role or materially different
+     structure, classify it as `P1 / blocking` and set the case status to
+     `partial`.
+   - If a reused item is plausible but missing a required variant, asset,
+     or state axis, classify it as `P1 / blocking` until the gap is
+     implemented or explicitly deferred.
+6. Run the asset-source gate:
+   - Confirm every design-owned icon or image uses the exported Figma
+     asset or an approved currentColor conversion from that asset.
+   - Confirm the exported node granularity matches the rendered intent:
+     do not export a wrapper/control frame and then render it as the inner
+     glyph, or export an inner glyph and render it as the full control.
+   - Confirm the rendered size matches the source node being used. If a
+     `24px` wrapper asset contains a `16px` icon, either render the
+     wrapper at `24px` or export the inner `16px` icon directly.
+   - If the implementation uses handwritten geometry, placeholder media,
+     or a similarly named but different asset family, classify it as
+     `P1 / blocking` when it changes the visible structure or required
+     state, otherwise `P2 / significant`.
+   - If the implementation scales an exported wrapper asset down to mimic
+     an inner icon, or scales an inner icon up to mimic a wrapper,
+     classify it as `P2 / significant`; upgrade to `P1 / blocking` when
+     the asset becomes visibly wrong or masks a missing required node.
+7. Compare the two surfaces across these dimensions in order:
    - **Structure**: component hierarchy, nesting, element count.
    - **Spacing**: padding, margin, gap values against token or pixel spec.
    - **Typography**: font family, size, weight, line height, color.
@@ -69,14 +123,32 @@ failure patterns back into the skill set as gotchas.
    - **States**: hover, focus, disabled, error, empty — are all required
      states present?
    - **Component behavior**: interactive elements, scroll, overflow.
-5. Classify each mismatch:
-   - **Blocking**: breaks functionality or violates a hard design rule.
-   - **Significant**: visible and inconsistent with the spec, should fix.
-   - **Minor**: small delta within acceptable tolerance.
+   - **Media / overlays when present**: image fit, crop, mask, overlay
+     controls, and any variant-specific shell differences from text
+     versions.
+8. Classify each mismatch:
+   - **P1 / blocking**: wrong component family, wrong major structure,
+     missing required state, missing required asset, wrong breakpoint,
+     placeholder masking the real target, or any issue that materially
+     changes the user's visible UI.
+   - **P2 / significant**: clear layout, spacing, typography, color,
+     token, or behavior drift that should be fixed before final closeout.
+   - **P3 / minor**: small visual delta or style-system cleanup with low
+     user-visible impact.
    - **Intentional**: a known platform-specific deviation (document it).
-6. Produce the mismatch report. For each blocking or significant item,
-   include the specific fix needed.
-7. Identify any recurring failure patterns across this and prior runs.
+9. Decide the verification status:
+   - `coverage-complete`: all intended variant axes are rendered through
+     real implementation branches or explicitly deferred, but a full
+     visual check is still outstanding.
+   - `visual-verification-complete`: the rendered implementation has been
+     visually checked against the target node in `full-visual` evidence
+     mode and no `P1 / blocking` or `P2 / significant` mismatches remain.
+   - `partial`: required axes are still missing, a placeholder is still
+     masking the real target, a reuse/asset gate failed, or `P1 /
+     blocking` / `P2 / significant` mismatches are still open.
+10. Produce the mismatch report. For each `P1 / blocking` or `P2 /
+    significant` item, include the specific fix needed.
+11. Identify any recurring failure patterns across this and prior runs.
    For each pattern, propose a gotcha entry for the relevant skill's
    README.
 
@@ -85,6 +157,8 @@ failure patterns back into the skill set as gotchas.
 Ask before proceeding when:
 - The implementation surface does not clearly correspond to the target
   design (e.g. wrong breakpoint, wrong state, wrong platform build).
+- A component is marked as reused, but its role, dimensions, state axes,
+  or asset slots do not clearly match the target node.
 - A difference may be intentional because of platform-specific conventions
   (e.g. iOS safe area insets, Android status bar handling) — ask whether
   to classify it as intentional before marking it as a mismatch.
@@ -95,10 +169,18 @@ Ask before proceeding when:
 - The severity rubric is unclear and the project has not defined
   acceptable tolerances — ask what threshold separates minor from
   significant.
+- The case is about to be marked as visually verified, but the current
+  surface still uses placeholders, hand-built stand-ins, or otherwise
+  avoids the real implementation branch.
+- The design can only be reviewed from screenshots and the user expects
+  exact token, node, or hidden-state verification.
 
 Do not ask when:
 - The mismatch is clearly unintentional and the correct value is
   specified in the design or token system.
+- The implementation reuses a visibly different component family from the
+  target node. Mark it `P1 / blocking`; do not treat that as a design
+  judgment call.
 - The difference is structural — classify it based on impact: blocking if
   it affects reusability, state correctness, layout stability, or
   behavior; significant if it is a meaningful deviation without functional
@@ -111,6 +193,14 @@ Do not ask when:
 - Do not ignore structural mismatches just because the screenshot looks
   close. A wrong component hierarchy will break under real content and
   state changes.
+- Do not accept a reuse claim based on a similar name. A reused component
+  must match the target node's role, dimensions, structure, states, and
+  asset slots before it can count as covered.
+- Do not mark code-review-only results as `visual-verification-complete`.
+  Without a real rendered surface checked against the design target, the
+  highest status is `coverage-complete`.
+- Screenshot-only review is allowed only as a limited review. State that
+  exact tokens, node structure, and hidden states were not verified.
 - Do not compare against the wrong state, breakpoint, or platform target.
   Verify the correct build variant before starting.
 - Platform-specific deviations (safe areas, status bars, density
@@ -123,6 +213,21 @@ Do not ask when:
   verification surface. A grid that covers only a subset of axes will miss
   entire classes of rendering bugs. A missing axis is itself a blocking
   mismatch.
+- A variant axis is not actually covered until the verification surface
+  drives the real implementation branch for that axis. Listing the axis
+  in notes or drawing a lookalike verification card is not enough.
+- Verify cards must render the real implementation path. Handwritten
+  stand-ins can help explain intent, but they do not prove the component
+  actually matches Figma.
+- Media or image variants should be checked with the real exported asset,
+  not a placeholder. Otherwise fit, crop, masking, or overlay-control
+  bugs will stay hidden until later.
+- Do not assume a media/image variant can reuse the same spacing shell as
+  a text variant. Re-check outer padding, internal wrappers, and overlay
+  controls independently for the media branch.
+- Overlay controls (for example a circular close button over an image) are
+  easy to miss if verification only checks structure or text-based
+  variants first. Inspect image/media branches explicitly.
 - Stateful stroke or border treatments that change box geometry between
   states (e.g. adding a border only in selected state) are a significant
   mismatch. The default state must pre-allocate the same stroke space, or
@@ -133,13 +238,42 @@ Do not ask when:
   in Figma. If the implementation sized the icon from raw asset canvas
   dimensions instead of the component's icon frame and glyph bounds,
   classify that as a significant mismatch.
+- Do not confuse wrapper assets with glyph assets. If Figma shows a
+  `24px` action wrapper containing a `16px` icon, export or render the
+  correct layer for the implementation slot instead of scaling the wrong
+  layer to fit.
+- Do not hand-draw small divider or stroke assets just because they look
+  simple. Export/check the real Figma node first; many divider assets use
+  a larger canvas with a shorter centered stroke.
+- When creating verify cards, default the container width to the Figma
+  source component's original width. For adaptive or flex components,
+  treat the Figma width as the reference lower bound, then propose a
+  suggested adaptive range (e.g. min / max) and let the user confirm
+  before adding responsive test cases. Never set the container narrower
+  than the component's natural expanded width — doing so compresses flex
+  children and makes the verify surface misleading.
 
 ## Verification
 
 - The comparison uses the correct platform path and the correct build
   variant.
+- The verification surface uses the real implementation branch and the
+  real exported assets for the target variant where applicable.
+- Every claimed component reuse has passed the equivalence gate: role,
+  dimensions, structure, states, assets, and rendered behavior match the
+  target node or the difference is explicitly deferred.
+- Every design-owned asset has passed the asset-source gate; no
+  handwritten or similarly named substitute is masking the target.
+- Exported asset node granularity matches the implementation slot:
+  wrapper assets are rendered as wrappers, glyph assets as glyphs, and
+  divider/stroke assets preserve their source canvas and visible stroke
+  geometry.
 - Mismatches are prioritized by severity, not dumped as an undifferentiated
   list.
+- The final result clearly distinguishes `coverage-complete` from
+  `visual-verification-complete`.
+- `visual-verification-complete` is only used for `full-visual` evidence
+  mode with no open `P1 / blocking` or `P2 / significant` findings.
 - Intentional platform deviations are documented, not silently ignored.
 - Recurring failure patterns are identified and proposed as gotcha entries
   for the relevant skill.
