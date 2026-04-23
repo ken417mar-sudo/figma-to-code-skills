@@ -1,7 +1,8 @@
 # Existing Rule Capture — agentic-browser-ui
 
-> captured: 2026-04-20  
-> source: code inspection across all 8 components + index.css  
+> captured: 2026-04-20
+> enriched: 2026-04-23 (code evidence pointers added)
+> source: code inspection across all 8 components + index.css
 > status: confirmed-standard / tentative / unresolved-gap (per rule)
 
 ---
@@ -56,7 +57,7 @@
 | `--spacing-16` | `16px` |
 | `--spacing-24` | `24px` |
 
-**Tentative:** spacing tokens are defined but components use Tailwind arbitrary values (`px-[12px]`, `gap-[8px]`) directly rather than consuming the CSS vars. The tokens exist as documentation, not as enforced constraints.
+**Tentative:** spacing tokens are defined but components use Tailwind arbitrary values directly rather than consuming the CSS vars. The tokens exist as documentation, not as enforced constraints. Evidence: `InputBox.tsx:50` — `gap-[12px] pb-[12px] pt-[16px] px-[12px]`; `Sidebar.tsx:61,86` — `px-[12px] py-[8px]`.
 
 ### Radius tokens
 
@@ -67,108 +68,131 @@
 | `--radius-24` | `24px` | InputBox shell |
 | `--radius-99` | `99px` | pills, send button |
 
-**Confirmed standard:** radius tokens are consumed via `rounded-[var(--radius-*)]` in InputBox and some components. Inconsistently applied elsewhere (arbitrary values used in parallel).
+**Confirmed standard:** radius tokens are consumed via `rounded-[var(--radius-*)]` in InputBox and some components. Inconsistently applied elsewhere (arbitrary values used in parallel). Evidence: `InputBox.tsx:50,70,73,85,94` uses `var(--radius-*)` consistently; other components mix arbitrary values.
 
 ---
 
 ## Icon Rules
 
-**Confirmed standard:**
+**Confirmed standard** `evidence-type: pattern-compliance`
 - All design-owned icons must be exported from Figma source before implementation (hard gate).
 - If the asset exists in `src/assets/figma/`, import it. If not, export it first.
 - Do not ship inline SVG or handwritten geometry while the export check is incomplete.
+- Conformance: 7 of 8 components follow this rule. Known exception: `Tab.tsx` defines `CloseIcon` as inline SVG despite exported assets existing (see unresolved gap below).
 
-**SVG import pattern:**
+**SVG import pattern** `evidence-type: file:line`
 - `?react` import → use as React component with `className` for `currentColor` theming (theme-reactive icons)
+  - Evidence: `Toolbar.tsx:2-6`, `Sidebar.tsx:2-6`, `AIToolsRow.tsx:2-6` — all nav/action icons use `?react`
 - Regular import → use as `<img src={...}>` for icons with hardcoded colors baked into the SVG
+  - Evidence: `InputBox.tsx:1-4`, `Dialog.tsx:1-3`, `Toolbar.tsx:8` — control icons with baked colors use regular import
 
-**Confirmed standard — color baking rule:**
+**Confirmed standard — color baking rule** `evidence-type: file:line`
 - Exported SVGs with hardcoded `#333333` = `--color-text-primary` → use as `<img>`
 - Exported SVGs with hardcoded `#999999` = `--color-text-tertiary` → use as `<img>`
 - Exported SVGs using `currentColor` → use as `?react` component
+- Evidence: `Dialog.tsx:1-3` imports `close-default/hover/circle` as regular (baked colors); `Toolbar.tsx:2-6` imports nav icons as `?react` (currentColor)
 
-**Unresolved gap:** Toolbar has two inline SVG dividers (`NavDivider`, `RightDivider`) that are not exported assets. These use `currentColor` and are structural, not design-owned icons — acceptable as inline, but not explicitly documented as an exception to the export gate.
+**Unresolved gap:** Toolbar has two inline SVG dividers (`NavDivider`, `RightDivider`) that are not exported assets. These use `currentColor` and are structural, not design-owned icons — acceptable as inline, but not explicitly documented as an exception to the export gate. Evidence: `Toolbar.tsx:10-26`.
 
-**Confirmed standard — icon sizing:**
+**Unresolved gap:** `Tab.tsx` defines `CloseIcon` as an inline SVG (`Tab.tsx:6-14`) but exported assets `close-off@1x.svg` / `close-on@1x.svg` already exist in `src/assets/figma/`. Implementation drift — should wire to exports or document exception.
+
+**Confirmed standard — icon sizing** `evidence-type: file:line`
 - Compact action-icon controls: `24×24` hit area, `16×16` icon frame (default pattern)
+- Evidence: `Sidebar.tsx:71-72` — `size-[24px]` button wrapping `size-[16px]` icon; same pattern in `SidebarSectionHeader` at `Sidebar.tsx:53-75`
 - Exported SVG canvas size is packaging data, not rendered-size contract — normalize via `className` size, not by changing layout
 
 ---
 
 ## Stateful Border Rule
 
-**Confirmed standard:** stateful borders must not change geometry between states. Visual ring expressed via `inset box-shadow` (not border-width change) to avoid layout shift. Applied in InputBox.
+**Confirmed standard:** stateful borders must not change geometry between states. Visual ring expressed via `inset box-shadow` (not border-width change) to avoid layout shift. Evidence: `InputBox.tsx:18-23` — all four states (`default`, `focus`, `disabled`, `error`) use `border-[1.5px] border-transparent` with varying `inset` shadow values.
 
 ---
 
 ## Component Prop API Conventions
 
-**Confirmed standard:**
+**Confirmed standard** `evidence-type: file:line`
 - Boolean props for simple on/off states: `selected`, `hovered`, `bookmarked`, `urlFocused`
+  - Evidence: `Tab.tsx:19-20,28-29` — `selected?`, `hovered?` with `false` defaults
 - Optional callback props: `onClick?`, `onClose?`, `onSend?`
+  - Evidence: `InputBox.tsx:14,39` — `onSend?: (value: string) => void`
 - Optional `ReactNode` slots for composition: `assistantButton?: ReactNode | null`
   - `undefined` → render default; `null` → render nothing; provided value → render that value
+  - Evidence: `Toolbar.tsx:32,134-148`
 - Default prop values always provided (no required props except label/content)
+  - Evidence: `Tab.tsx:28-29` — `selected = false, hovered = false`
 
 ---
 
 ## Interaction State Pattern
 
-**Confirmed standard:** prop-driven state is the baseline pattern for explicitly verifiable states. Examples: `Toolbar` uses `bookmarked`, `urlFocused` props; `Dialog` close icon uses a `variant` prop to force hover state for verify purposes.
+**Confirmed standard:** prop-driven state is the baseline pattern for explicitly verifiable states.
+- `Toolbar.tsx:30-31,45-46` — `bookmarked`, `urlFocused` boolean props
+- `Dialog.tsx:9,30-31` — `CloseIcon` uses `variant` prop to force hover state for verify purposes
 
-**Tentative:** local `useState` + mouse event handlers (`onMouseEnter`, `onMouseLeave`, `onMouseDown`, `onMouseUp`) is a recurring implementation tactic for interactive hover/active controls where the state is pointer-driven and not externally observable. Applied in `AIToolsRow` (ToolPill) and `Tab` (close button hover). Not a mandatory pattern — prop-driven and pointer-driven approaches coexist in this codebase.
+**Tentative:** local `useState` + mouse event handlers (`onMouseEnter`, `onMouseLeave`, `onMouseDown`, `onMouseUp`) is a recurring implementation tactic for interactive hover/active controls where the state is pointer-driven and not externally observable.
+- `AIToolsRow.tsx:17-24` — `ToolPill` uses `hovered`/`active` local state
+- `Tab.tsx:35,40-41` — close button uses `closeHovered` local state
+Not a mandatory pattern — prop-driven and pointer-driven approaches coexist in this codebase.
 
 ---
 
 ## Typography
 
-**Confirmed standard:**
+**Confirmed standard** `evidence-type: file:line`
 - `HYQiHei:60S` — primary body text, labels, button text (14px / 20px leading)
-- `HYQiHei:55S` — input placeholder (16px / 24px leading)
+  - Evidence: `AIToolsRow.tsx:39`; `Dialog.tsx:76-78,173,191`
+- `HYQiHei:55S` — input placeholder (16px / 24px leading); also section header labels
+  - Evidence: `InputBox.tsx:60`; `Sidebar.tsx:65`
 - `PICO_Sans_VFE_SC:Light` — assistant chip label (12px)
+  - Evidence: `AssistantSidebarPanel.tsx:35`
 - `SF Pro` — browser tab active label (12px, Latin/system context)
+  - Evidence: `Toolbar.tsx:103,122`
 - All font families applied via inline `style={{ fontFamily: ... }}` with `PingFang SC` or `sans-serif` fallback
+  - Evidence: `AssistantSidebarPanel.tsx:61` — `fontFamily: "'HYQiHei:60S', 'PingFang SC', sans-serif"`
 
 **Unresolved gap:** HYQiHei font loading is deferred across all components. Font may not render correctly in all environments. Shared typography pass is a known non-blocker.
 
-**Unresolved gap:** `fontFeatureSettings: "'ss01' 1, 'cv01' 1, 'cv11' 1"` applied inconsistently — present on some HYQiHei:60S usages, absent on others.
+**Unresolved gap:** `fontFeatureSettings: "'ss01' 1, 'cv01' 1, 'cv11' 1"` applied inconsistently — present on `AssistantSidebarPanel.tsx:62`, `TaskChatPanel.tsx:80`, `Sidebar.tsx:92`; absent on `InputBox.tsx`, `Tab.tsx`, `Toolbar.tsx` HYQiHei:60S usages.
 
 ---
 
 ## Layout Conventions
 
 **Confirmed standard:**
-- Fixed pixel dimensions for component shells (no fluid sizing within components)
+- Fixed pixel dimensions for component shells (no fluid sizing within components). Evidence: `AssistantSidebarPanel.tsx:88` — `h-[856px] w-[400px]`; `BrowserResultPage.tsx:78` — `h-[856px] w-[1592px]`
 - `w-full` only used inside a component when the parent constrains width
-- If Figma gives an explicit inner row width, preserve it (e.g. `w-[368px]` for prompt list inside 400px panel)
-- Overflow hidden on shells that clip content
+- If Figma gives an explicit inner row width, preserve it. Evidence: `AssistantSidebarPanel.tsx:112` — `w-[368px]` for prompt list inside 400px panel
+- Overflow hidden on shells that clip content. Evidence: `BrowserResultPage.tsx:60,78,89,90`; `Sidebar.tsx:38,86`
 
 **Confirmed standard — section headers with optional actions:**
 - Model as separate slots (`label` + optional `action`) not as a single undifferentiated row
-- Applied in Sidebar `SidebarSectionHeader`
+- Evidence: `Sidebar.tsx:53-75` — `SidebarSectionHeader` accepts `label: string` and `action?: { icon, ariaLabel }`
 
 ---
 
 ## Asset Naming Convention
 
-**Confirmed standard:** `{component}-{descriptor}@{scale}.{ext}`
+**Confirmed standard** `evidence-type: file:line`
+- Pattern: `{component}-{descriptor}@{scale}.{ext}`
+- Evidence (import sites): `InputBox.tsx:1-4`, `Dialog.tsx:1-3`, `Toolbar.tsx:2-8`, `AIToolsRow.tsx:2-6`
+- Examples from `src/assets/figma/`:
+  - `toolbar-back@1x.svg`, `inputbox-send@1x.svg`, `dialog-close-default@1x.svg`, `aitoolsrow-knowledge@1x.svg`
 
-Examples:
-- `toolbar-back@1x.svg`
-- `inputbox-send@1x.svg`
-- `assistant-title-history@1x.svg`
-- `dialog-close-default@1x.svg`
-
-All assets live in `src/assets/figma/`. Source node mapping tracked in `slices-name-map.json`.
+All assets live in `src/assets/figma/`. Source node mapping tracked in `src/assets/figma/slices-name-map.json`.
 
 ---
 
 ## Provisional State Rules
 
-**Confirmed standard:**
+**Confirmed standard** `evidence-type: canvas-rule`
 - Provisional boards must be standalone (not inside a formal artboard), with clear canvas separation
 - Provisional state cards must apply state to the root control container, not by appending extra layers
 - Do not promote a component set to canonical while any family boundary or state axis is still provisional
+- Note: these are Figma canvas structure rules — no code file:line evidence exists by nature.
+
+**Code-side correspondence** `evidence-type: file:line`
+- `Tab.tsx:35-41` — close hover state implemented as pointer-driven local state, corresponding to the Tab hover-close provisional board on canvas
 
 ---
 
