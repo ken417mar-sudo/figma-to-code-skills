@@ -75,24 +75,21 @@ Key node IDs:
 
 ## Phase Status
 
-- Phase 6 Repeatability: **complete** (2026-04-22)
-  - All 8 cases closed: Tab, InputBox, Toolbar, Dialog, AIToolsRow, Sidebar, BrowserResultPage/AssistantSidebarPanel, WorkspacePage/TaskChatPanel
-  - figma-to-code-skills main: `7624dbe`
-  - agentic-browser-ui PR #6 (WorkspacePage): OPEN, MERGEABLE
+- Phase 6 Repeatability: **complete** (2026-04-22). All PRs merged.
+  - figma-to-code-skills main: `0227d31` (PR #17 figma-use gotchas merged)
+  - agentic-browser-ui main: `a70eacc` (PR #6 WorkspacePage merged)
+  - No open PRs in either repo.
 
-## Open PRs
+## Phase B — Existing-rule capture validation (next)
 
-| Repo | PR | Branch | Status |
-|---|---|---|---|
-| agentic-browser-ui | #6 | codex/workspace-page-phase6 | OPEN, MERGEABLE |
-| figma-to-code-skills | #17 | skill/figma-use-gotchas | OPEN — decide: merge or close as superseded |
+B.1 Capture and normalize existing rules
+- Branch: `phase-b/existing-rule-capture-validation` in figma-to-code-skills
+- Update `inventory/existing-rule-capture-agentic-browser-ui.md` with concrete rules across 8 dimensions: tech stack, typography, color tokens, asset rules, component reuse, state handling, layout, verify gates
+- Exit: rules usable by another agent without re-reading implementation code; each rule has a code evidence pointer
 
-## Next Recommended Action (Phase B)
+B.2 Exercise captured rules on a small task
+- Candidates: review-only audit of a closed component; small state/variant addition; analyze collapsed launcher `1708:30243`
+- Exit: at least one decision demonstrably driven by captured rules, not fresh Figma inference
 
-1. Merge agentic-browser-ui PR #6 to close WorkspacePage implementation.
-2. Decide PR #17: if write-path gotchas are already in main, close as superseded; otherwise rebase and merge.
-3. Start Phase B — Existing-rule capture validation:
-   - Use agentic-browser-ui as baseline.
-   - Turn implicit rules into an explicit rule artifact.
-   - Run one implementation/review task that must use those captured rules.
-   - Success: captured rules actively change agent behavior.
+B.3 Promote learnings back into skills
+- Update figma-capture-design-system / figma-execution-shell / figma-verify-implementation as needed

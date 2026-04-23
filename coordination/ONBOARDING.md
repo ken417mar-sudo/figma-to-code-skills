@@ -72,11 +72,13 @@ Cards: `experiments/trial-component-family-definition-aitoolsrow.md`, `experimen
 
 ## Current todo
 
-1. Merge agentic-browser-ui PR #6 to close WorkspacePage implementation side
-2. Decide figma-to-code-skills PR #17 (figma-use write-path gotchas): merge or close as superseded
-3. Start Phase B — Existing-rule capture validation: use agentic-browser-ui as baseline, turn implicit rules into an explicit rule artifact, then run one implementation task that must use those captured rules
-4. Validate provisional-to-formal promotion path (collapsed launcher `1708:30243`) when ready
-5. Shared typography pass for HYQiHei font remains a deferred cross-case non-blocker
+1. Start Phase B — Existing-rule capture validation
+   - Open branch `phase-b/existing-rule-capture-validation` in figma-to-code-skills
+   - Update `inventory/existing-rule-capture-agentic-browser-ui.md` (8 dimensions, each with code evidence)
+   - Run one small downstream task that must cite the captured rules
+   - Exit when at least one decision is demonstrably rule-driven
+2. Validate provisional-to-formal promotion path (collapsed launcher `1708:30243`) when ready
+3. Shared typography pass for HYQiHei font remains a deferred cross-case non-blocker
 
 ## Quick entry points
 
