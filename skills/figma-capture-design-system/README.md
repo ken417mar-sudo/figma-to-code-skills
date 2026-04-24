@@ -3,17 +3,28 @@
 ## Goal
 
 Turn undocumented design-system knowledge into an explicit, reusable
-implementation reference by interviewing the user or team. Run this skill
-before broad implementation work starts on a partially documented system.
+implementation reference. Two capture modes are supported:
+
+- **Interview mode** — extract rules by interviewing the user or team.
+  Use when rules live in people's heads and no code base exists yet.
+- **Code-backed mode** — extract rules by inspecting existing implementation
+  code. Use when the project already has components and the rules are
+  implicit in the code rather than written down.
+
+Run this skill before broad implementation work starts on a partially
+documented system.
 
 ## When to use
 
 - A project already has design rules, but they are mostly implicit or
-  spread across team members' heads.
+  spread across team members' heads. *(interview mode)*
 - Implementation quality depends on team knowledge that is not written
-  down anywhere.
+  down anywhere. *(interview mode)*
 - A new contributor (human or agent) is about to implement against a
-  design system they have not seen before.
+  design system they have not seen before. *(either mode)*
+- The project has existing implementation code that encodes design rules
+  implicitly — no interview is needed, but the rules must be extracted
+  from code before implementation can proceed safely. *(code-backed mode)*
 
 ## When not to use
 
@@ -30,9 +41,11 @@ before broad implementation work starts on a partially documented system.
 ## Inputs
 
 - Tech-stack profile.
-- Team answers from interview or structured prompts.
-- Any existing docs, component notes, or code references the team can
+- **Interview mode:** team answers from interview or structured prompts;
+  any existing docs, component notes, or code references the team can
   point to.
+- **Code-backed mode:** existing codebase — component files, token
+  definitions (e.g. `index.css`), asset directory, build output.
 
 ## Outputs
 
@@ -41,8 +54,23 @@ before broad implementation work starts on a partially documented system.
 - Implementation conventions per platform where they differ.
 - Clarified component expectations (states, variants, edge cases).
 - List of unresolved questions or gaps — visible, not smoothed over.
+- **Code-backed mode additionally:** evidence taxonomy per rule, using
+  three evidence types validated on web/React projects (see note below):
+  - `file:line` — direct code reference (specific file and line number)
+  - `pattern-compliance` — rule inferred from consistent pattern across
+    multiple files
+  - `canvas-rule` — Figma canvas structure rule; no code file:line
+    evidence exists by nature
+
+> **Note:** the three-type evidence taxonomy above was validated on a
+> web/React project (agentic-browser-ui, Vite + TypeScript + Tailwind v4).
+> It is not automatically applicable to iOS, Android, or other targets —
+> adapt evidence types to the platform's verification surface before
+> applying to non-web projects.
 
 ## Workflow
+
+### Interview mode
 
 1. Confirm the tech-stack profile. If `target`, `framework`, or
    `token_format` are missing, ask for them before proceeding — the
@@ -65,6 +93,36 @@ before broad implementation work starts on a partially documented system.
    preference, or unresolved gap. Do not collapse these into one category.
 5. Produce the implementation reference. Separate platform-specific
    sections where the rules differ. List unresolved gaps at the end.
+6. Hand the reference to `figma-create-design-system-rules`,
+   `figma-implement-design`, or `figma-verify-implementation` as the next
+   step.
+
+### Code-backed mode
+
+1. Confirm the tech-stack profile. If `target`, `framework`, or
+   `token_format` are missing, read them from the codebase before
+   proceeding.
+2. Confirm the project scope: which components and token files are in
+   scope for this capture session.
+3. Inspect the codebase. Cover these areas in order:
+   - **Token definitions**: read the token source file (e.g. `index.css`,
+     `theme.ts`) — extract all defined tokens and note which are actually
+     consumed by components.
+   - **Component files**: read each component file — extract prop API
+     conventions, state patterns, layout patterns, and asset import
+     patterns.
+   - **Asset directory**: list exported assets — infer naming convention
+     and import pattern from the directory and import sites.
+   - **Build output / config**: check `tailwind.config.*`, `vite.config.*`,
+     or equivalent — confirm token format and utility-class conventions.
+4. For each extracted rule, classify it as: confirmed standard, tentative
+   preference, or unresolved gap. Assign an evidence type per rule:
+   - `file:line` for rules with a direct code reference
+   - `pattern-compliance` for rules inferred from consistent patterns
+     across multiple files
+   - `canvas-rule` for Figma canvas structure rules with no code evidence
+5. Produce the implementation reference with evidence pointers. List
+   unresolved gaps at the end.
 6. Hand the reference to `figma-create-design-system-rules`,
    `figma-implement-design`, or `figma-verify-implementation` as the next
    step.

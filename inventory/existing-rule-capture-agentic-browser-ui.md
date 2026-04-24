@@ -78,7 +78,7 @@
 - All design-owned icons must be exported from Figma source before implementation (hard gate).
 - If the asset exists in `src/assets/figma/`, import it. If not, export it first.
 - Do not ship inline SVG or handwritten geometry while the export check is incomplete.
-- Conformance: 7 of 8 components follow this rule. Known exception: `Tab.tsx` defines `CloseIcon` as inline SVG despite exported assets existing (see unresolved gap below).
+- Conformance: 8 of 8 components follow this rule. Previously `Tab.tsx` defined `CloseIcon` as inline SVG despite exported assets existing — resolved in B.2 (PR #7, `agentic-browser-ui`).
 
 **SVG import pattern** `evidence-type: file:line`
 - `?react` import → use as React component with `className` for `currentColor` theming (theme-reactive icons)
@@ -94,7 +94,7 @@
 
 **Unresolved gap:** Toolbar has two inline SVG dividers (`NavDivider`, `RightDivider`) that are not exported assets. These use `currentColor` and are structural, not design-owned icons — acceptable as inline, but not explicitly documented as an exception to the export gate. Evidence: `Toolbar.tsx:10-26`.
 
-**Unresolved gap:** `Tab.tsx` defines `CloseIcon` as an inline SVG (`Tab.tsx:6-14`) but exported assets `close-off@1x.svg` / `close-on@1x.svg` already exist in `src/assets/figma/`. Implementation drift — should wire to exports or document exception.
+**Resolved (B.2 — PR #7, `agentic-browser-ui`):** `Tab.tsx` previously defined `CloseIcon` as an inline SVG (`Tab.tsx:6-14`) but exported assets `close-off@1x.svg` / `close-on@1x.svg` already existed in `src/assets/figma/`. Wired to exports in B.2.
 
 **Confirmed standard — icon sizing** `evidence-type: file:line`
 - Compact action-icon controls: `24×24` hit area, `16×16` icon frame (default pattern)
@@ -113,14 +113,14 @@
 
 **Confirmed standard** `evidence-type: file:line`
 - Boolean props for simple on/off states: `selected`, `hovered`, `bookmarked`, `urlFocused`
-  - Evidence: `Tab.tsx:19-20,28-29` — `selected?`, `hovered?` with `false` defaults
+  - Evidence: `Tab.tsx:11-12,20-21` — `selected?`, `hovered?` in interface; `selected = false, hovered = false` defaults
 - Optional callback props: `onClick?`, `onClose?`, `onSend?`
   - Evidence: `InputBox.tsx:14,39` — `onSend?: (value: string) => void`
 - Optional `ReactNode` slots for composition: `assistantButton?: ReactNode | null`
   - `undefined` → render default; `null` → render nothing; provided value → render that value
   - Evidence: `Toolbar.tsx:32,134-148`
 - Default prop values always provided (no required props except label/content)
-  - Evidence: `Tab.tsx:28-29` — `selected = false, hovered = false`
+  - Evidence: `Tab.tsx:20-21` — `selected = false, hovered = false`
 
 ---
 
@@ -132,7 +132,7 @@
 
 **Tentative:** local `useState` + mouse event handlers (`onMouseEnter`, `onMouseLeave`, `onMouseDown`, `onMouseUp`) is a recurring implementation tactic for interactive hover/active controls where the state is pointer-driven and not externally observable.
 - `AIToolsRow.tsx:17-24` — `ToolPill` uses `hovered`/`active` local state
-- `Tab.tsx:35,40-41` — close button uses `closeHovered` local state
+- `Tab.tsx:27,32-33` — close button uses `closeHovered` local state
 Not a mandatory pattern — prop-driven and pointer-driven approaches coexist in this codebase.
 
 ---
@@ -192,7 +192,7 @@ All assets live in `src/assets/figma/`. Source node mapping tracked in `src/asse
 - Note: these are Figma canvas structure rules — no code file:line evidence exists by nature.
 
 **Code-side correspondence** `evidence-type: file:line`
-- `Tab.tsx:35-41` — close hover state implemented as pointer-driven local state, corresponding to the Tab hover-close provisional board on canvas
+- `Tab.tsx:27,29-38` — close hover state implemented as pointer-driven local state, corresponding to the Tab hover-close provisional board on canvas
 
 ---
 
@@ -206,4 +206,9 @@ All assets live in `src/assets/figma/`. Source node mapping tracked in `src/asse
 | `NavDivider` / `RightDivider` inline SVG in Toolbar | `Toolbar.tsx` | structural dividers, not design-owned icons — needs explicit exception rule |
 | `fontFeatureSettings` inconsistently applied | multiple | present on some HYQiHei:60S usages, absent on others |
 | HYQiHei font loading | all components | deferred non-blocker, shared typography pass needed |
-| Tab.tsx `CloseIcon` inline SVG | `Tab.tsx` | exported assets `close-off@1x.svg` / `close-on@1x.svg` already exist — implementation drift, should wire to exports or document exception |
+
+## Resolved Gaps
+
+| Gap | Location | Resolution |
+|---|---|---|
+| Tab.tsx `CloseIcon` inline SVG | `Tab.tsx` | resolved-by-B.2 (PR #7) — wired to `close-off@1x.svg` / `close-on@1x.svg` |

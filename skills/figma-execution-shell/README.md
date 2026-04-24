@@ -80,7 +80,10 @@ of duplicating them.
    - explicitly approved provisional validation states
    - if the above are insufficient, stop and route to
      `figma-capture-design-system` or
-     `figma-create-design-system-rules` before implementation
+     `figma-create-design-system-rules` before implementation;
+     when project rules are implicit in existing implementation code
+     rather than documented, use the **code-backed capture mode** of
+     `figma-capture-design-system`
 3. Run readiness gates for the case:
    - tech-stack profile is complete enough to shape implementation
    - component target and variant axes are identified
