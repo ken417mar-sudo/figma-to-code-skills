@@ -94,6 +94,14 @@
 
 **Unresolved gap:** Toolbar has two inline SVG dividers (`NavDivider`, `RightDivider`) that are not exported assets. These use `currentColor` and are structural, not design-owned icons — acceptable as inline, but not explicitly documented as an exception to the export gate. Evidence: `Toolbar.tsx:10-26`.
 
+**Confirmed standard — structural inline SVG exception** `evidence-type: file:line`
+- Structural separators that meet all three criteria may be implemented as inline SVG without an export check:
+  1. The element is a layout/structural separator, not a design-owned icon with visual identity
+  2. The geometry is simple and purely structural (single path or minimal shape — no fills, gradients, or multi-element composition)
+  3. It uses `currentColor` for theme reactivity (no hardcoded color values)
+- Evidence: `Toolbar.tsx:10-24` — `NavDivider` (8×24, single stroke path) and `RightDivider` (2×24, single stroke path) both qualify
+- This exception does not apply to icons that have a Figma source node or that carry visual identity (e.g. brand icons, action icons, state indicators)
+
 **Resolved (B.2 — PR #7, `agentic-browser-ui`):** `Tab.tsx` previously defined `CloseIcon` as an inline SVG (`Tab.tsx:6-14`) but exported assets `close-off@1x.svg` / `close-on@1x.svg` already existed in `src/assets/figma/`. Wired to exports in B.2.
 
 **Confirmed standard — icon sizing** `evidence-type: file:line`
@@ -203,7 +211,6 @@ All assets live in `src/assets/figma/`. Source node mapping tracked in `src/asse
 | `--color-border-input-default` and `--color-focus-ring` unused | `index.css` | stale or reserved — confirm or remove |
 | Spacing tokens not consumed by components | all components | tokens exist as docs only; components use arbitrary Tailwind values |
 | Radius tokens inconsistently applied | mixed | some components use `var(--radius-*)`, others use arbitrary values |
-| `NavDivider` / `RightDivider` inline SVG in Toolbar | `Toolbar.tsx` | structural dividers, not design-owned icons — needs explicit exception rule |
 | `fontFeatureSettings` inconsistently applied | multiple | present on some HYQiHei:60S usages, absent on others |
 | HYQiHei font loading | all components | deferred non-blocker, shared typography pass needed |
 
@@ -212,3 +219,4 @@ All assets live in `src/assets/figma/`. Source node mapping tracked in `src/asse
 | Gap | Location | Resolution |
 |---|---|---|
 | Tab.tsx `CloseIcon` inline SVG | `Tab.tsx` | resolved-by-B.2 (PR #7) — wired to `close-off@1x.svg` / `close-on@1x.svg` |
+| `NavDivider` / `RightDivider` inline SVG in Toolbar | `Toolbar.tsx` | structural inline SVG exception rule documented (see Icon Rules) |
