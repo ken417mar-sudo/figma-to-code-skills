@@ -119,11 +119,11 @@ No open PRs in either repo.
 
 ## Next Recommended Action
 
-Phase B complete. Active track: code-backed capture mode validation case.
+Phase B complete. All tracks resolved:
+- Toolbar divider exception rule: resolved, PR #34 (2026-04-24)
+- Code-backed capture mode validation: complete, PR #35 (2026-04-24)
 
-- Target: Toolbar (exercises asset rules + structural inline SVG exception)
-- Goal: run `figma-capture-design-system` code-backed mode on Toolbar, produce evidence-backed reference, compare against existing inventory
-- Coordination sync: Toolbar divider exception rule resolved via PR #34 (2026-04-24)
+No active track. Decide next direction before opening a new branch.
 
 ## Source-of-Truth Notes
 

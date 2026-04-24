@@ -97,6 +97,6 @@
 
 The code-backed capture mode successfully reproduced all major confirmed-standard rules from the existing inventory, with correct evidence types (`file:line` for all code-backed rules). The workflow followed the documented steps: read component file → extract rules → classify → assign evidence type.
 
-**New findings:** four component-specific color values in Toolbar are not token-backed. These are tentative — they may be intentional one-off values rather than missing tokens. Not added to the main inventory in this pass; flagged here for a future token audit.
+**New findings:** five component-specific color values in Toolbar are not token-backed. These are tentative — they may be intentional one-off values rather than missing tokens. Not added to the main inventory in this pass; flagged here for a future token audit.
 
 **Exit criterion met:** the capture run produced an evidence-backed reference that matches the existing inventory without re-reading Figma. The skill is validated for web/React projects.
