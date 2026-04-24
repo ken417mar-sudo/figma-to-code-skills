@@ -15,6 +15,7 @@ Phase 4 closed (2026-04-20) — `figma-execution-shell` merged; Dialog, AIToolsR
 Phase 5 closed (2026-04-20) — BrowserResultPage + AssistantSidebarPanel composite family case merged and formally closed.
 Phase 6 closed (2026-04-22) — WorkspacePage + TaskChatPanel Repeatability case complete. All 8 component cases closed.
 Phase A closed (2026-04-23) — PR #6 (agentic-browser-ui WorkspacePage) and PR #17 (figma-use gotchas) both merged. No open PRs.
+Phase B closed (2026-04-24) — Existing-rule capture validation complete. B.1: inventory enriched with code evidence (PR #31). B.2: Tab CloseIcon inline SVG → exported assets, rule-driven (agentic-browser-ui PR #7). B.3: figma-capture-design-system code-backed mode + execution-shell routing reference + inventory resolved-gap cleanup (PR #32).
 
 ## Active Repos
 
@@ -118,10 +119,12 @@ No open PRs in either repo.
 
 ## Next Recommended Action
 
-Start Phase B — Existing-rule capture validation:
-1. Open branch `phase-b/existing-rule-capture-validation` in figma-to-code-skills.
-2. Update `inventory/existing-rule-capture-agentic-browser-ui.md` with concrete rules (8 dimensions, each with code evidence).
-3. Run one small downstream task that must cite the captured rules — exit when at least one decision is demonstrably rule-driven.
+Phase B complete. Two candidate next tracks:
+
+1. **Toolbar inline divider exception rule** — `NavDivider` / `RightDivider` in `Toolbar.tsx` are structural inline SVGs not covered by the export gate. Needs an explicit exception rule in the inventory.
+2. **Code-backed capture mode validation** — run a new small case using the updated `figma-capture-design-system` code-backed mode to prove the skill works in practice.
+
+Decide track before opening a new branch.
 
 ## Source-of-Truth Notes
 
