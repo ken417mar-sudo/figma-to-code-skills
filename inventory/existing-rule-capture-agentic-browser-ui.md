@@ -120,7 +120,7 @@
   - `undefined` → render default; `null` → render nothing; provided value → render that value
   - Evidence: `Toolbar.tsx:32,134-148`
 - Default prop values always provided (no required props except label/content)
-  - Evidence: `Tab.tsx:28-29` — `selected = false, hovered = false`
+  - Evidence: `Tab.tsx:20-21` — `selected = false, hovered = false`
 
 ---
 
