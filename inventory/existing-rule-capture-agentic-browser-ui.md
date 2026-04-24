@@ -92,10 +92,8 @@
 - Exported SVGs using `currentColor` → use as `?react` component
 - Evidence: `Dialog.tsx:1-3` imports `close-default/hover/circle` as regular (baked colors); `Toolbar.tsx:2-6` imports nav icons as `?react` (currentColor)
 
-**Unresolved gap:** Toolbar has two inline SVG dividers (`NavDivider`, `RightDivider`) that are not exported assets. These use `currentColor` and are structural, not design-owned icons — acceptable as inline, but not explicitly documented as an exception to the export gate. Evidence: `Toolbar.tsx:10-26`.
-
 **Confirmed standard — structural inline SVG exception** `evidence-type: file:line`
-- Structural separators that meet all three criteria may be implemented as inline SVG without an export check:
+- Structural separators that meet all three criteria do not require exported asset wiring:
   1. The element is a layout/structural separator, not a design-owned icon with visual identity
   2. The geometry is simple and purely structural (single path or minimal shape — no fills, gradients, or multi-element composition)
   3. It uses `currentColor` for theme reactivity (no hardcoded color values)
