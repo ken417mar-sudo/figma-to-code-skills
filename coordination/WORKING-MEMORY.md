@@ -88,5 +88,5 @@ Key node IDs:
 
 ## Next Candidates
 
-1. Toolbar inline divider exception rule (known unresolved gap in inventory)
-2. Code-backed capture mode validation case (prove updated skill in practice)
+1. ~~Toolbar inline divider exception rule~~ — resolved, PR #34 merged (2026-04-24)
+2. ~~Code-backed capture mode validation case~~ — complete, PR #35 (2026-04-24); skill confirmed working for web/React

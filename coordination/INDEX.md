@@ -119,12 +119,11 @@ No open PRs in either repo.
 
 ## Next Recommended Action
 
-Phase B complete. Two candidate next tracks:
+Phase B complete. All tracks resolved:
+- Toolbar divider exception rule: resolved, PR #34 (2026-04-24)
+- Code-backed capture mode validation: complete, PR #35 (2026-04-24)
 
-1. **Toolbar inline divider exception rule** — `NavDivider` / `RightDivider` in `Toolbar.tsx` are structural inline SVGs not covered by the export gate. Needs an explicit exception rule in the inventory.
-2. **Code-backed capture mode validation** — run a new small case using the updated `figma-capture-design-system` code-backed mode to prove the skill works in practice.
-
-Decide track before opening a new branch.
+No active track. Decide next direction before opening a new branch.
 
 ## Source-of-Truth Notes
 
