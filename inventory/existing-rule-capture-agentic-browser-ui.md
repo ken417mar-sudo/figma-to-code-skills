@@ -78,7 +78,7 @@
 - All design-owned icons must be exported from Figma source before implementation (hard gate).
 - If the asset exists in `src/assets/figma/`, import it. If not, export it first.
 - Do not ship inline SVG or handwritten geometry while the export check is incomplete.
-- Conformance: 7 of 8 components follow this rule. Known exception: `Tab.tsx` defines `CloseIcon` as inline SVG despite exported assets existing (see unresolved gap below).
+- Conformance: 7 of 8 components follow this rule. Known exception: `Tab.tsx` previously defined `CloseIcon` as inline SVG despite exported assets existing — resolved in B.2 (PR #7, `agentic-browser-ui`).
 
 **SVG import pattern** `evidence-type: file:line`
 - `?react` import → use as React component with `className` for `currentColor` theming (theme-reactive icons)
@@ -94,7 +94,7 @@
 
 **Unresolved gap:** Toolbar has two inline SVG dividers (`NavDivider`, `RightDivider`) that are not exported assets. These use `currentColor` and are structural, not design-owned icons — acceptable as inline, but not explicitly documented as an exception to the export gate. Evidence: `Toolbar.tsx:10-26`.
 
-**Unresolved gap:** `Tab.tsx` defines `CloseIcon` as an inline SVG (`Tab.tsx:6-14`) but exported assets `close-off@1x.svg` / `close-on@1x.svg` already exist in `src/assets/figma/`. Implementation drift — should wire to exports or document exception.
+**Resolved (B.2 — PR #7, `agentic-browser-ui`):** `Tab.tsx` previously defined `CloseIcon` as an inline SVG (`Tab.tsx:6-14`) but exported assets `close-off@1x.svg` / `close-on@1x.svg` already existed in `src/assets/figma/`. Wired to exports in B.2.
 
 **Confirmed standard — icon sizing** `evidence-type: file:line`
 - Compact action-icon controls: `24×24` hit area, `16×16` icon frame (default pattern)
@@ -206,4 +206,4 @@ All assets live in `src/assets/figma/`. Source node mapping tracked in `src/asse
 | `NavDivider` / `RightDivider` inline SVG in Toolbar | `Toolbar.tsx` | structural dividers, not design-owned icons — needs explicit exception rule |
 | `fontFeatureSettings` inconsistently applied | multiple | present on some HYQiHei:60S usages, absent on others |
 | HYQiHei font loading | all components | deferred non-blocker, shared typography pass needed |
-| Tab.tsx `CloseIcon` inline SVG | `Tab.tsx` | exported assets `close-off@1x.svg` / `close-on@1x.svg` already exist — implementation drift, should wire to exports or document exception |
+| Tab.tsx `CloseIcon` inline SVG | `Tab.tsx` | resolved-by-B.2 (PR #7) — wired to `close-off@1x.svg` / `close-on@1x.svg` |
