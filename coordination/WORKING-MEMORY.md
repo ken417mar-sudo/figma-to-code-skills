@@ -80,16 +80,13 @@ Key node IDs:
   - agentic-browser-ui main: `a70eacc` (PR #6 WorkspacePage merged)
   - No open PRs in either repo.
 
-## Phase B — Existing-rule capture validation (next)
+- Phase B — Existing-rule capture validation: **complete** (2026-04-24).
+  - B.1: `inventory/existing-rule-capture-agentic-browser-ui.md` enriched with code evidence taxonomy (PR #31, figma-to-code-skills)
+  - B.2: Tab CloseIcon inline SVG → exported assets, three decisions rule-driven (agentic-browser-ui PR #7)
+  - B.3: `figma-capture-design-system` code-backed capture mode added; `figma-execution-shell` routing reference added; inventory resolved-gap cleanup (PR #32, figma-to-code-skills)
+  - Evidence taxonomy (file:line / pattern-compliance / canvas-rule) validated on web/React — not universal
 
-B.1 Capture and normalize existing rules
-- Branch: `phase-b/existing-rule-capture-validation` in figma-to-code-skills
-- Update `inventory/existing-rule-capture-agentic-browser-ui.md` with concrete rules across 8 dimensions: tech stack, typography, color tokens, asset rules, component reuse, state handling, layout, verify gates
-- Exit: rules usable by another agent without re-reading implementation code; each rule has a code evidence pointer
+## Next Candidates
 
-B.2 Exercise captured rules on a small task
-- Candidates: review-only audit of a closed component; small state/variant addition; analyze collapsed launcher `1708:30243`
-- Exit: at least one decision demonstrably driven by captured rules, not fresh Figma inference
-
-B.3 Promote learnings back into skills
-- Update figma-capture-design-system / figma-execution-shell / figma-verify-implementation as needed
+1. Toolbar inline divider exception rule (known unresolved gap in inventory)
+2. Code-backed capture mode validation case (prove updated skill in practice)
