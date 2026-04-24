@@ -119,12 +119,11 @@ No open PRs in either repo.
 
 ## Next Recommended Action
 
-Phase B complete. Two candidate next tracks:
+Phase B complete. Active track: code-backed capture mode validation case.
 
-1. **Toolbar inline divider exception rule** — `NavDivider` / `RightDivider` in `Toolbar.tsx` are structural inline SVGs not covered by the export gate. Needs an explicit exception rule in the inventory.
-2. **Code-backed capture mode validation** — run a new small case using the updated `figma-capture-design-system` code-backed mode to prove the skill works in practice.
-
-Decide track before opening a new branch.
+- Target: Toolbar (exercises asset rules + structural inline SVG exception)
+- Goal: run `figma-capture-design-system` code-backed mode on Toolbar, produce evidence-backed reference, compare against existing inventory
+- Coordination sync: Toolbar divider exception rule resolved via PR #34 (2026-04-24)
 
 ## Source-of-Truth Notes
 
