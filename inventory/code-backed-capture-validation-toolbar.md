@@ -83,7 +83,7 @@
 
 | Finding | Location | Classification | Action |
 |---|---|---|---|
-| URLBar focused text uses `text-[#333]` instead of `text-[var(--color-text-primary)]` | `Toolbar.tsx:101` | **implementation drift** — `#333` = `#333333` = `--color-text-primary` value | fixed: replaced with `text-[var(--color-text-primary)]` |
+| URLBar focused text previously used `text-[#333]` instead of `text-[var(--color-text-primary)]` | pre-fix `Toolbar.tsx:101` | **implementation drift** — `#333` = `#333333` = `--color-text-primary` value | fixed in agentic-browser-ui PR #8 |
 | URLBar focused border `rgba(31,99,237,0.25)` | `Toolbar.tsx:94` | **intentional component-specific** — semi-transparent tint of `--color-border-focus` (#1f63ed); no token at this opacity | document only |
 | Bookmark active bg `rgba(255,202,40,0.12)` | `Toolbar.tsx:115` | **intentional component-specific** — tint of the baked bookmark icon color (#FFCA28); active-state visual feedback | document only |
 | More button bg `rgba(255,255,255,0.12)` | `Toolbar.tsx:129` | **intentional component-specific** — subtle frosted-glass overlay; distinct from `--color-surface-overlay-white` (0.8 opacity) | document only |
@@ -97,7 +97,7 @@
 
 The code-backed capture mode successfully reproduced all major confirmed-standard rules from the existing inventory, with correct evidence types (`file:line` for all code-backed rules). The workflow followed the documented steps: read component file → extract rules → classify → assign evidence type.
 
-**Token audit (2026-04-27):** five component-specific color values classified.
+**Token audit (2026-04-27):** five non-token color findings classified.
 - One implementation drift fixed: `text-[#333]` → `text-[var(--color-text-primary)]` (agentic-browser-ui).
 - Four intentional component-specific values documented; no token additions needed.
 
