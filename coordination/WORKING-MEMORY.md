@@ -90,3 +90,4 @@ Key node IDs:
 
 1. ~~Toolbar inline divider exception rule~~ — resolved, PR #34 merged (2026-04-24)
 2. ~~Code-backed capture mode validation case~~ — complete, PR #35 (2026-04-24); skill confirmed working for web/React
+3. ~~Toolbar token audit~~ — complete (2026-04-27); drift fixed (agentic-browser-ui PR #8), doc updated (figma-to-code-skills PR #36)
