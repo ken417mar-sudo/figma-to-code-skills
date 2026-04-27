@@ -79,15 +79,15 @@
 | Interaction state pattern (prop-driven baseline) | confirmed standard | ✓ reproduced — no local state in Toolbar |
 | Typography (HYQiHei:55S for input/URL, SF Pro for labels) | confirmed standard | ✓ reproduced — `Toolbar.tsx:103,122,143` |
 
-### New findings not in existing inventory
+### New findings — token audit (2026-04-27)
 
-| Finding | Location | Classification |
-|---|---|---|
-| URLBar focused text uses `text-[#333]` instead of `text-[var(--color-text-primary)]` | `Toolbar.tsx:101` | tentative — minor drift, `#333` ≈ `#333333` but not token-backed |
-| URLBar focused border `rgba(31,99,237,0.25)` is not a defined token | `Toolbar.tsx:94` | tentative — component-specific, no token equivalent |
-| Bookmark active bg `rgba(255,202,40,0.12)` is not a defined token | `Toolbar.tsx:115` | tentative — component-specific |
-| More button bg `rgba(255,255,255,0.12)` is not a defined token | `Toolbar.tsx:129` | tentative — component-specific |
-| Chat button gradient colors not defined as tokens | `Toolbar.tsx:137` | tentative — component-specific |
+| Finding | Location | Classification | Action |
+|---|---|---|---|
+| URLBar focused text previously used `text-[#333]` instead of `text-[var(--color-text-primary)]` | pre-fix `Toolbar.tsx:101` | **implementation drift** — `#333` = `#333333` = `--color-text-primary` value | fixed in agentic-browser-ui PR #8 |
+| URLBar focused border `rgba(31,99,237,0.25)` | `Toolbar.tsx:94` | **intentional component-specific** — semi-transparent tint of `--color-border-focus` (#1f63ed); no token at this opacity | document only |
+| Bookmark active bg `rgba(255,202,40,0.12)` | `Toolbar.tsx:115` | **intentional component-specific** — tint of the baked bookmark icon color (#FFCA28); active-state visual feedback | document only |
+| More button bg `rgba(255,255,255,0.12)` | `Toolbar.tsx:129` | **intentional component-specific** — subtle frosted-glass overlay; distinct from `--color-surface-overlay-white` (0.8 opacity) | document only |
+| Chat button gradient `rgba(65,231,154,0.3)` → `rgba(106,181,255,0.3)` | `Toolbar.tsx:137` | **intentional component-specific** — AI branding gradient; no token equivalent expected | document only |
 
 ---
 
@@ -97,6 +97,8 @@
 
 The code-backed capture mode successfully reproduced all major confirmed-standard rules from the existing inventory, with correct evidence types (`file:line` for all code-backed rules). The workflow followed the documented steps: read component file → extract rules → classify → assign evidence type.
 
-**New findings:** five component-specific color values in Toolbar are not token-backed. These are tentative — they may be intentional one-off values rather than missing tokens. Not added to the main inventory in this pass; flagged here for a future token audit.
+**Token audit (2026-04-27):** five non-token color findings classified.
+- One implementation drift fixed: `text-[#333]` → `text-[var(--color-text-primary)]` (agentic-browser-ui).
+- Four intentional component-specific values documented; no token additions needed.
 
 **Exit criterion met:** the capture run produced an evidence-backed reference that matches the existing inventory without re-reading Figma. The skill is validated for web/React projects.
