@@ -50,7 +50,7 @@ Key node IDs:
 - Provisional boards must be standalone (not inside a formal artboard) and have clear canvas separation from neighboring boards.
 - Provisional state cards must apply state to the root control container, not by appending extra layers.
 - Do not promote a component set to canonical while any family boundary or state axis is still provisional — even if the user explicitly requests it.
-- Stateful borders/strokes must not change geometry between states.
+- Stateful borders/strokes must not change geometry between states. This applies equally to static components: use `outline` or `inset box-shadow` instead of `border` when Figma specifies exact section heights. Apply `outline` to the element itself (not a parent) to avoid clipping by `overflow: hidden`.
 - `figma-execution-shell` is the protocol wrapper for all real component cases.
 - Compact action-icon controls should separate interactive size from icon size.
   Default pattern: `24×24` button/hit area with a `16×16` icon frame unless the formal source says otherwise.
@@ -59,6 +59,10 @@ Key node IDs:
 - Section headers with optional actions should be modeled as separate slots (`label` + optional `action`) rather than as a single undifferentiated row.
 - If Figma gives an explicit inner row width, preserve it instead of defaulting list items to `w-full`.
 - For icon-size review comments, debug in this order: outer button box → rendered icon box → exported SVG canvas.
+- Hidden Figma layers (`hidden="true"`) are a valid source for alternate states when confirmed to represent a distinct product state. Call `get_design_context` with the hidden layer's node ID directly.
+- Figma layer name prefixes such as `【H2】`, `【H3】` are Chinese Figma workflow annotation labels, not visible copy. Strip them before rendering; align typography to the node spec.
+- All skill README changes must go through a feature branch + PR. Never commit directly to main.
+- Newly exported assets must be `git add`-ed before committing. A clean local build does not guarantee CI will pass on a fresh checkout.
 
 ## Component Status
 
@@ -72,22 +76,18 @@ Key node IDs:
 | Sidebar | closed (2026-04-17) | formal default-only pass; SVG color hardcoding + interaction/collapsed states deferred |
 | BrowserResultPage / AssistantSidebarPanel | closed (2026-05-01) | collapsed launcher closed (PR #13, 56×24 geometry fixed); panel-specific chip/composer states deferred |
 | WorkspacePage / TaskChatPanel | closed (2026-04-22) | Phase 6 Repeatability complete |
+| TaskResultPage | closed (2026-05-01) | running state (PR #10) + completed state (PR #11) both merged |
+| FileListCard (列表卡片/展开) | closed (2026-05-01) | PR #12 merged; geometry fixed via outline/inset-shadow |
 
 ## Phase Status
 
-- Phase 6 Repeatability: **complete** (2026-04-22). All PRs merged.
-  - figma-to-code-skills main: `0227d31` (PR #17 figma-use gotchas merged)
-  - agentic-browser-ui main: `a70eacc` (PR #6 WorkspacePage merged)
-  - No open PRs in either repo.
-
+- Phase 6 Repeatability: **complete** (2026-04-22).
 - Phase B — Existing-rule capture validation: **complete** (2026-04-24).
-  - B.1: `inventory/existing-rule-capture-agentic-browser-ui.md` enriched with code evidence taxonomy (PR #31, figma-to-code-skills)
-  - B.2: Tab CloseIcon inline SVG → exported assets, three decisions rule-driven (agentic-browser-ui PR #7)
-  - B.3: `figma-capture-design-system` code-backed capture mode added; `figma-execution-shell` routing reference added; inventory resolved-gap cleanup (PR #32, figma-to-code-skills)
-  - Evidence taxonomy (file:line / pattern-compliance / canvas-rule) validated on web/React — not universal
+- Phase C — TaskResultPage chain + provisional cleanup: **complete** (2026-05-01).
+  - agentic-browser-ui PRs #10–#13 merged
+  - figma-to-code-skills PRs #37–#38 merged; 79e67f9 (doc sync)
+  - All provisional markers cleared
 
 ## Next Candidates
 
-1. ~~Toolbar inline divider exception rule~~ — resolved, PR #34 merged (2026-04-24)
-2. ~~Code-backed capture mode validation case~~ — complete, PR #35 (2026-04-24); skill confirmed working for web/React
-3. ~~Toolbar token audit~~ — complete (2026-04-27); drift fixed (agentic-browser-ui PR #8), doc updated (figma-to-code-skills PR #36)
+No active track. Next: pick a new narrow component/state slice from Figma.
