@@ -172,15 +172,17 @@ Do not ask when:
   boundary or one of its state axes is still marked provisional or
   proposal-only.
 - Hidden Figma layers are a valid source for alternate states. When a frame
-  contains layers marked `hidden="true"` that represent a different product
-  state (e.g. completed vs. running), call `get_design_context` with the
-  hidden layer's node ID directly to extract its styles and copy. Do not
-  reconstruct alternate-state content by guessing — use the hidden node as
-  the authoritative source, the same way you would use a visible node.
-- Figma layer name prefixes such as `【H2】`, `【H3】`, or similar annotation
-  markers are design labels, not visible copy. Strip them before rendering.
-  Align the rendered text to the typography spec on the node (font size,
-  weight, line-height), not to the label text itself.
+  contains layers marked `hidden="true"` that are confirmed to represent a
+  distinct product state (e.g. completed vs. running, not legacy or noise),
+  call `get_design_context` with the hidden layer's node ID directly to
+  extract its styles and copy. Do not reconstruct alternate-state content by
+  guessing — use the hidden node as the authoritative source, the same way
+  you would use a visible node.
+- Figma layer name prefixes such as `【H2】`, `【H3】`, or similar full-width
+  bracket markers are design annotation labels in Chinese Figma workflows,
+  not visible copy. Strip them before rendering. Align the rendered text to
+  the typography spec on the node (font size, weight, line-height), not to
+  the label text itself.
 - Stateful stroke or border treatments must not change box geometry between
   states. Reserve the same border/stroke space in all states (e.g. transparent
   border in default, colored border in selected), or use a non-layout-affecting
