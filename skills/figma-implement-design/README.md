@@ -187,7 +187,12 @@ Do not ask when:
   states. Reserve the same border/stroke space in all states (e.g. transparent
   border in default, colored border in selected), or use a non-layout-affecting
   layer such as inset box-shadow or outline. Geometry drift between states is a
-  visible layout jump.
+  visible layout jump. This applies equally to static components: when Figma
+  specifies exact section heights (e.g. header 58px, footer 64px), use
+  `outline` or `box-shadow: inset` for visual strokes rather than `border`,
+  so the strokes do not consume layout space. When using `outline` on a
+  component that also has `overflow: hidden`, apply the outline to the element
+  itself (not a parent), so it is not clipped.
 - Figma CDN image URLs returned by design-context tools are temporary signed
   links that expire. Download assets into the repository (or use the
   `figma-export-slices` workflow) immediately during implementation. Do not
