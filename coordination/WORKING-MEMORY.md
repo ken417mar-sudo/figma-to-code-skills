@@ -70,7 +70,7 @@ Key node IDs:
 | Dialog | closed (2026-04-16) | HYQiHei font — shared typography pass |
 | AIToolsRow | closed (2026-04-17) | active state remains proposal-level |
 | Sidebar | closed (2026-04-17) | formal default-only pass; SVG color hardcoding + interaction/collapsed states deferred |
-| BrowserResultPage / AssistantSidebarPanel | closed (2026-04-21) | collapsed launcher path provisional; panel-specific chip/composer states deferred |
+| BrowserResultPage / AssistantSidebarPanel | closed (2026-05-01) | collapsed launcher closed (PR #13, 56×24 geometry fixed); panel-specific chip/composer states deferred |
 | WorkspacePage / TaskChatPanel | closed (2026-04-22) | Phase 6 Repeatability complete |
 
 ## Phase Status

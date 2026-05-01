@@ -103,7 +103,8 @@ Verify card: `experiments/trial-component-family-definition-sidebar.md`
 ### BrowserResultPage / AssistantSidebarPanel — closed (2026-04-21)
 Composite family case. Source node: `1708:30204`.
 Implementation merged via PR #5 (agentic-browser-ui) and PR #27 (figma-to-code-skills).
-Remaining provisional: collapsed launcher path (`1708:30243`); panel-specific chip/composer states deferred.
+Collapsed launcher (`1708:30243`) closed (2026-05-01): geometry fixed to 56×24 via agentic-browser-ui PR #13 (border → outline).
+Remaining deferred: panel-specific chip/composer states.
 
 ### WorkspacePage / TaskChatPanel — closed (2026-04-22)
 Phase 6 Repeatability case. Composite family.
