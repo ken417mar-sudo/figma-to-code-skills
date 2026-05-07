@@ -64,6 +64,11 @@ workflow:
   code generation.
 - `figma-sketch-to-system-components`: fills missing coverage from
   low-fidelity inputs while respecting existing rules.
+- `ui-motion-patterns`: captures lightweight web interaction motion
+  standards and copy-adaptable CSS/JS templates. It is intentionally
+  downstream of source-of-truth confirmation: motion may enhance a
+  confirmed state, but it must not invent canonical component states or
+  mask static geometry drift.
 
 ## Adopted Official Ideas
 
