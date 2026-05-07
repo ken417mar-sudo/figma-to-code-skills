@@ -121,10 +121,12 @@ For each skill:
 ### `figma-generate-design`
 
 - `Role`: code-to-Figma or structure-to-Figma generation
-- `Scope`: create or update screens in Figma from existing code, pages,
-  or structured descriptions
-- `Not for`: final code implementation or verifying implementation
-  quality
+- `Scope`: create or update composed Figma screens, views, modals,
+  sidebars, or multi-section containers from existing code, running UI,
+  or structured descriptions by reusing real components, variables, and
+  styles where possible
+- `Not for`: final code implementation, canonical library generation, or
+  verifying implementation quality against a source Figma node
 
 ### `figma-create-new-file`
 
@@ -148,3 +150,14 @@ For each skill:
 - Gap-filling: `figma-sketch-to-system-components`
 - Screen generation: `figma-generate-design`
 - Workspace setup: `figma-create-new-file`
+
+## Official Figma Skill Alignment
+
+The current alignment with official Figma MCP skills is tracked in
+`inventory/official-skills-alignment.md`.
+
+Treat official skills as the upstream boundary reference, but preserve
+local stricter gates when validated cases have proven they are needed:
+asset export-first, provisional-state approval, hidden-layer product-state
+confirmation, Code Connect maturity checks, and platform/rendered
+verification before closeout.

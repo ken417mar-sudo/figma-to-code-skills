@@ -238,6 +238,10 @@ enough
 
 ## Skill Implications
 
+- `inventory/official-skills-alignment.md`
+Records how local skills map to official Figma MCP skills. Use it as the
+boundary reference before adding a new skill or importing a community
+skill.
 - `figma-ai-implementation-cleanup`
 Prepare messy files so later steps have less noise.
 - `figma-create-design-system-rules`
@@ -260,7 +264,8 @@ confirmation of naming and semantics.
 - `figma-code-connect-components`
 Link repeated design patterns to real code components once the mapping is
 clear enough, but only when Code Connect support matches the target
-framework.
+framework, the Figma components are published to a team library, and the
+user or team has approved the proposed code mappings.
 - `figma-implement-design`
 Produce code from the design plus the corrected rule set for the target
 platform and framework.
@@ -274,6 +279,11 @@ project's established system.
 Compare built UI against design, classify mismatches, and feed the
 findings back into code and rules using the correct verification path
 for web, iOS, or Android.
+- `figma-generate-design`
+Create or update composed Figma screens/views from existing code, running
+UI, or structured descriptions by reusing real components, variables, and
+styles. Treat generated screens as review artifacts until confirmed, not
+as implementation verification or canonical library output.
 
 ## Near-Term Deliverables
 
