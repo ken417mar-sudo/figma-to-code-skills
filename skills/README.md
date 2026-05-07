@@ -135,6 +135,16 @@ For each skill:
   have a target workspace
 - `Not for`: any design-system reasoning, implementation, or validation
 
+### `ui-motion-patterns`
+
+- `Role`: web interaction motion rule and template layer
+- `Scope`: adapt lightweight CSS/JavaScript motion patterns for tabs,
+  dropdowns, modals, panels, cards, badges, icon/text/number swaps, and
+  page transitions after the relevant state source is confirmed
+- `Not for`: static design implementation, unapproved interaction-state
+  invention, non-web platform motion, or complex timelines/gestures that
+  justify a dedicated animation library
+
 ## Workflow shorthand
 
 - Read layer: `figma`
@@ -149,6 +159,7 @@ For each skill:
 - Asset export: `figma-export-slices`
 - Gap-filling: `figma-sketch-to-system-components`
 - Screen generation: `figma-generate-design`
+- Web motion templates: `ui-motion-patterns`
 - Workspace setup: `figma-create-new-file`
 
 ## Official Figma Skill Alignment

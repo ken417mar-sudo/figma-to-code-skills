@@ -275,6 +275,11 @@ implementation reference, including platform-specific conventions.
 - `figma-sketch-to-system-components`
 Fill missing components or states from sketches while staying inside the
 project's established system.
+- `ui-motion-patterns`
+Add lightweight web interaction motion only after the relevant state has
+an approved source of truth. Use it for reusable CSS/JS templates and
+motion verification, not for inventing missing states or covering static
+geometry drift.
 - `figma-verify-implementation`
 Compare built UI against design, classify mismatches, and feed the
 findings back into code and rules using the correct verification path
