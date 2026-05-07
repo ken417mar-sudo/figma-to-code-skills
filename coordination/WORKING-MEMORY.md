@@ -28,6 +28,11 @@ Key node IDs:
 | Dialog section | `1922:32133` |
 | Sidebar | `1708:30337` |
 | BrowserResultPage with assistant sidebar expanded | `1708:30204` |
+| AssistantSidebar collapsed launcher | `1708:30243` |
+| AssistantSidebarPanel compact input | `1708:30323` |
+| AssistantSidebarPanel prompt list | `1708:30311` |
+| TaskResultPage | `1708:30544` |
+| FileListCard (列表卡片/展开) | `1708:30738` |
 
 ## Core Workflow
 
@@ -63,6 +68,13 @@ Key node IDs:
 - Figma layer name prefixes such as `【H2】`, `【H3】` are Chinese Figma workflow annotation labels, not visible copy. Strip them before rendering; align typography to the node spec.
 - All skill README changes must go through a feature branch + PR. Never commit directly to main.
 - Newly exported assets must be `git add`-ed before committing. A clean local build does not guarantee CI will pass on a fresh checkout.
+- Official Figma MCP skills are the upstream boundary reference, but local
+  stricter gates still apply when validated cases prove they are needed:
+  asset export-first, provisional approval, hidden-layer product-state
+  confirmation, Code Connect maturity checks, and rendered verification.
+- `ui-motion-patterns` is a web-only motion rule/template layer. Use it
+  after source-of-truth and state confirmation; it does not authorize
+  inventing new states or masking static Figma geometry drift.
 
 ## Component Status
 
@@ -74,7 +86,7 @@ Key node IDs:
 | Dialog | closed (2026-04-16) | HYQiHei font — shared typography pass |
 | AIToolsRow | closed (2026-04-17) | active state remains proposal-level |
 | Sidebar | closed (2026-04-17) | formal default-only pass; SVG color hardcoding + interaction/collapsed states deferred |
-| BrowserResultPage / AssistantSidebarPanel | closed (2026-05-01) | collapsed launcher closed (PR #13, 56×24 geometry fixed); panel-specific chip/composer states deferred |
+| BrowserResultPage / AssistantSidebarPanel | closed (2026-05-07) | collapsed launcher closed (PR #13, 56×24 geometry fixed); panel-specific chip/composer verified with no drift; fully closed |
 | WorkspacePage / TaskChatPanel | closed (2026-04-22) | Phase 6 Repeatability complete |
 | TaskResultPage | closed (2026-05-01) | running state (PR #10) + completed state (PR #11) both merged |
 | FileListCard (列表卡片/展开) | closed (2026-05-01) | PR #12 merged; geometry fixed via outline/inset-shadow |
@@ -87,7 +99,19 @@ Key node IDs:
   - agentic-browser-ui PRs #10–#13 merged
   - figma-to-code-skills PRs #37–#38 merged; 79e67f9 (doc sync)
   - All provisional markers cleared
+- Phase D — official skills alignment + motion skill + AssistantSidebarPanel closeout: **complete** (2026-05-07).
+  - figma-to-code-skills PR #39 merged: official Figma MCP skills alignment
+  - figma-to-code-skills PR #40 merged: `ui-motion-patterns` skill and templates
+  - AssistantSidebarPanel compact composer (`1708:30323`) and prompt list (`1708:30311`) verified with no drift
+  - `coordination/INDEX.md` cleaned up and Phase D state written
+  - Both repos have no open PRs or active track
 
 ## Next Candidates
 
 No active track. Next: pick a new narrow component/state slice from Figma.
+
+Current candidates:
+- BookmarkButton bookmarked state (`1708:30231~30233`)
+- Sidebar TitleBar (`1708:30268`)
+- Sidebar collapsed state — first confirm whether Figma has a formal
+  variant before treating it as implementation input
