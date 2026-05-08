@@ -91,6 +91,10 @@ review
   boundary is clear enough, produce a `Component Family Definition` card
   as the formal component-scoped rule artifact before implementation.
   Update the same card as definition or verification status changes.
+  If the case is a small new slice and a full card would be premature,
+  record a minimum scope note before implementation instead. That note
+  must include source node(s), component boundary, intended states, asset
+  inventory, verification surface, and explicit exclusions.
 9. Let a human editor adjust the rough spec or the component-family card.
 10. Map the confirmed part of that revised spec into Figma foundations:
   variables for reusable tokens, styles for reusable presentation
@@ -115,15 +119,19 @@ review
    the final rendered size in code; match the asset's in-component geometry
    from Figma. Name exported assets by their confirmed product role in code,
    not by temporary raw layer names such as `ic_`, `Group 12`, or `Frame 1`.
-13. If the file already contains external variable aliases or mixed
+13. Before implementing stateful components, scan for layout-affecting
+  state strokes. If one state adds/removes a border or stroke, reserve the
+   same geometry in every state or use `outline`, `inset box-shadow`, or
+   pinned dimensions. This is a preflight gate, not only a review gotcha.
+14. If the file already contains external variable aliases or mixed
   foundation sources, decide whether to preserve, remap, or bridge
    them before broad component binding begins.
-14. Use the revised spec plus design context to implement code for the
+15. Use the revised spec plus design context to implement code for the
   chosen platform.
-15. Validate the result against the design using the platform-specific
+16. Validate the result against the design using the platform-specific
   verification surface and feed issues back into the
    spec.
-16. Record recurring mistakes as gotchas for the relevant skill.
+17. Record recurring mistakes as gotchas for the relevant skill.
 
 ## What The Workflow Must Handle
 
@@ -187,6 +195,9 @@ human revise it
 implementation work
 - if the design is incomplete, sketches or low-fi drafts can be expanded
 to fill missing pieces, but they must respect the existing rule set
+- if a new component slice has no component-family card yet, record the
+minimum scope note before code starts; a loose candidate note is not
+enough
 - if the platform profile is missing and platform affects the output,
 clarify the profile before implementation proceeds
 
