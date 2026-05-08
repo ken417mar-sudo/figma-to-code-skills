@@ -87,6 +87,13 @@ of duplicating them.
 3. Run readiness gates for the case:
    - tech-stack profile is complete enough to shape implementation
    - component target and variant axes are identified
+   - for a new component or new component-family slice, a `Component
+     Family Definition` card exists, or a minimum scope note is recorded
+     in coordination before implementation starts. The minimum scope note
+     must name the source Figma node(s), component boundary, intended
+     states, asset inventory, verification surface, and explicit
+     exclusions. Do not begin code from only a component name or a loose
+     candidate note.
    - every claimed variant axis is mapped to an explicit implementation
      branch, prop, structural fork, or verification case — not just
      mentioned in notes
@@ -108,8 +115,17 @@ of duplicating them.
      formal component area was incomplete, there is an explicit plan for
      whether those states stay temporary or are promoted back into the
      formal component area after validation
-   - asset needs are known, and export is scheduled before code if real
-     design-owned assets are required
+   - asset needs are known, recorded as an asset inventory, and export is
+     scheduled before code if real design-owned assets are required. The
+     inventory must classify each icon/image as `existing export`,
+     `new export required`, `no asset needed`, or `approved code-drawn
+     primitive`. A design-owned icon cannot be left as an unclassified
+     inline SVG.
+   - state geometry risk has been scanned before implementation: if any
+     state uses `border`, `border-*`, or another layout-affecting stroke,
+     either all states reserve the same stroke space or the plan uses
+     `outline`, `inset box-shadow`, or pinned dimensions. Do not defer
+     known 0.5px state-border drift to visual review.
    - verification surface is not only known, but scoped to cover every
      axis the team intends to claim as verified; if coverage is partial,
      mark the case implementation-ready only, not verification-ready
@@ -166,6 +182,13 @@ Ask before proceeding when:
   component area after validation.
 - The formal component board appears incomplete and the missing detail
   changes implementation shape.
+- A new component slice does not yet have a component-family card or
+  minimum scope note with source nodes, states, assets, verification
+  surface, and exclusions.
+- A design-owned asset appears in the source node but has not been
+  classified in the asset inventory.
+- A state changes visual strokes/borders and the implementation plan does
+  not reserve geometry or use non-layout-affecting strokes.
 - The case needs provisional validation cards, but their landing zone is
   still unclear or they would fall inside a formal product page artboard
   without explicit approval.
@@ -204,6 +227,17 @@ Do not ask when:
   rule inline.
 - Do not start implementation just because the design target looks
   understandable. The case must still pass readiness gates.
+- Do not treat a rule in a README as sufficient enforcement. New cases
+  need explicit preflight evidence: scope/card, asset inventory, state
+  geometry scan, and verification plan. If those are missing, the case is
+  not ready even if the same rule exists elsewhere.
+- Do not hand-code a "simple" icon during an initial implementation pass
+  just because the design context is obvious. Unclassified inline SVGs are
+  a failed asset gate until proven to be approved code-drawn primitives.
+- Do not rely on review to catch state-only borders later. If selected,
+  hover, active, or disabled states add/remove `0.5px` borders, the
+  execution shell should block implementation until geometry handling is
+  planned.
 - Do not confuse "variant axes identified" with "variant axes actually
   exercisable." An axis that is only described in prose but cannot be
   driven through component props, structural branches, or verify cases is
@@ -244,6 +278,12 @@ Do not ask when:
 - The shell clearly identified the source of truth before implementation.
 - The case passed or failed readiness gates explicitly; nothing important
   was left implicit.
+- New component slices have a component-family card or minimum scope note
+  before code starts.
+- The asset inventory is complete and no design-owned asset remains as an
+  unclassified inline SVG or placeholder.
+- State-border geometry has been checked before implementation when
+  state changes affect strokes/borders.
 - Every claimed variant axis is either:
   - explicitly mapped to implementation and verification coverage, or
   - explicitly marked as deferred / not yet verified.

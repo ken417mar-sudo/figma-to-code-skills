@@ -75,6 +75,10 @@ Key node IDs:
 - `ui-motion-patterns` is a web-only motion rule/template layer. Use it
   after source-of-truth and state confirmation; it does not authorize
   inventing new states or masking static Figma geometry drift.
+- New component slices must pass preflight before code is considered
+  implementation-ready: component-family card or minimum scope note,
+  asset inventory, state-geometry scan, and verification surface. Review
+  should grep for unclassified inline SVGs and state-only 0.5px borders.
 
 ## Component Status
 

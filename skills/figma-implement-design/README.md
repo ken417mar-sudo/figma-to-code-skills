@@ -31,6 +31,10 @@ the profile is missing and it changes the output shape, ask first.
 - Design context: the Figma frame, component, or node to implement.
 - Rule source: confirmed project spec or output from
   `figma-create-design-system-rules`.
+- For a new component-family slice: an existing `Component Family
+  Definition` card, or a minimum scope note that names source nodes,
+  component boundary, intended states, asset inventory, verification
+  surface, and explicit exclusions.
 
 ## Inputs
 
@@ -60,7 +64,17 @@ the profile is missing and it changes the output shape, ask first.
    - Read only the target node — do not pull the entire file.
 4. Check the codebase for existing components that match the design
    target. Reuse them rather than generating new code from scratch.
-5. Check whether the design depends on real assets such as icons,
+5. If this is a new component-family slice, confirm the case preflight
+   exists before coding:
+   - source Figma node(s)
+   - component boundary and state axes
+   - asset inventory
+   - verification surface
+   - explicit exclusions
+   Stop and route back to `figma-execution-shell` or
+   `figma-create-design-system-rules` if the case only has a loose
+   candidate note.
+6. Check whether the design depends on real assets such as icons,
    raster images, or exported slices. If yes, route them through
    `figma-export-slices` (or the equivalent asset-export path) before
    final implementation. Do not replace design-owned assets with generic
@@ -80,20 +94,25 @@ the profile is missing and it changes the output shape, ask first.
    - exported SVG canvas / actual glyph bounds
    Keep them separate in code. Do not assume the exported asset canvas
    already matches the intended rendered icon size.
-6. Map layout, tokens, and components to platform-appropriate patterns:
+7. Run a state-geometry scan before writing state variants. If selected,
+   hover, active, disabled, focus, error, or loading states add/remove a
+   border or stroke, reserve equal stroke space in every state or use
+   `outline`, `inset box-shadow`, or pinned dimensions. Do not implement
+   state-only `0.5px` borders as a temporary bridge.
+8. Map layout, tokens, and components to platform-appropriate patterns:
    - **web**: flexbox/grid, CSS vars or Tailwind tokens, JSX component
      API.
    - **ios**: SwiftUI stacks/modifiers or UIKit layout, Swift token
      references, Apple platform conventions.
    - **android**: Compose layout or XML, Material token mapping, density
      and adaptive layout rules.
-7. Write the implementation. Prefer confirmed rules over inferred ones.
+9. Write the implementation. Prefer confirmed rules over inferred ones.
    Mark any inferred choices in comments or mapping notes.
-8. If implementation temporarily depends on an approved provisional state
+10. If implementation temporarily depends on an approved provisional state
    because the formal component board was incomplete, record that
    dependency and treat promotion back into the formal component area as a
    closeout task rather than a forever-state.
-9. Surface unresolved ambiguity explicitly — do not silently pick a
+11. Surface unresolved ambiguity explicitly — do not silently pick a
    default for anything that changes the component's behavior or
    structure.
 
@@ -103,8 +122,16 @@ Ask before proceeding when:
 - The platform profile is missing or incomplete.
 - Component boundaries are unclear (e.g. should this be one component or
   two?).
+- A new component-family slice has no component card or minimum scope note
+  with source nodes, states, asset inventory, verification surface, and
+  exclusions.
 - Interaction behavior or content hierarchy changes the code shape (e.g.
   a list that could be static or dynamic).
+- A design-owned icon/image appears in the target node but the asset
+  inventory does not classify it as existing export, new export required,
+  no asset needed, or approved code-drawn primitive.
+- A state variant changes border/stroke usage and the design or rules do
+  not make the geometry handling clear.
 - The product appears to need interaction states or affordances that the
   current component board does not explicitly show (e.g. hover-only close
   button, selected affordance, focus treatment). Confirm the required
@@ -141,6 +168,14 @@ Do not ask when:
   import it. If it does not exist yet, export it first. Do not leave a
   component implemented with placeholder blocks, improvised SVGs, ad hoc
   CSS shapes, or handwritten replacement geometry as a temporary bridge.
+- Do not treat an inline `<svg>` in a new component as harmless because it
+  is small or simple. If it represents a design-owned icon, the asset
+  inventory must prove it is an exported asset/currentColor conversion, or
+  explicitly record it as an approved code-drawn primitive before it can
+  ship.
+- Do not implement a new component slice from only a Figma node name and a
+  quick code draft. The case must have either a component-family card or a
+  minimum scope note before code is treated as implementation-ready.
 - Code Connect snippets returned by `get_design_context` are the
   authoritative component reference. Use them instead of generating new
   component code from scratch.
@@ -193,6 +228,10 @@ Do not ask when:
   so the strokes do not consume layout space. When using `outline` on a
   component that also has `overflow: hidden`, apply the outline to the element
   itself (not a parent), so it is not clipped.
+- This stroke rule is a pre-implementation gate, not only a review
+  gotcha. Before coding a stateful component, inspect whether any state
+  adds/removes borders or strokes. If yes, choose the geometry-safe
+  treatment first instead of waiting for visual verification to catch it.
 - Figma CDN image URLs returned by design-context tools are temporary signed
   links that expire. Download assets into the repository (or use the
   `figma-export-slices` workflow) immediately during implementation. Do not
@@ -239,6 +278,12 @@ Do not ask when:
   guess.
 - The code respects confirmed rules before inferred ones.
 - The result is structurally correct, not only visually similar.
+- New component-family slices have a component-family card or minimum
+  scope note before implementation.
+- The asset inventory has no unclassified design-owned inline SVG,
+  placeholder, or hand-drawn replacement.
+- State variants do not add/remove layout-affecting strokes without
+  reserved geometry or non-layout-affecting treatment.
 - State variants preserve the expected root structure and do not rely on
   ad hoc appended state-only layers unless that structural difference was
   explicitly confirmed in Figma.
