@@ -18,6 +18,7 @@ Phase A closed (2026-04-23) — PR #6 (agentic-browser-ui WorkspacePage) and PR 
 Phase B closed (2026-04-24) — Existing-rule capture validation complete. B.1: inventory enriched with code evidence (PR #31). B.2: Tab CloseIcon inline SVG → exported assets, rule-driven (agentic-browser-ui PR #7). B.3: figma-capture-design-system code-backed mode + execution-shell routing reference + inventory resolved-gap cleanup (PR #32).
 Phase C closed (2026-05-01) — TaskResultPage running+completed validation chain + FileListCard + provisional cleanup. agentic-browser-ui PRs #10–#13 merged. figma-to-code-skills PRs #37–#38 merged. All provisional markers cleared.
 Phase D closed (2026-05-07) — Official skills alignment (PR #39) + ui-motion-patterns skill (PR #40) merged. AssistantSidebarPanel composer/prompt area verified, no drift. All stale remote branches cleaned from both repos.
+Phase E closed (2026-05-08) — NavigationMenu (pill-style nav, Figma 2080:42251) implemented and verified. agentic-browser-ui PR #14 + figma-to-code-skills PR #43 merged. Preflight hard-gate rules added (PR #42).
 
 ## Active Repos
 
@@ -60,6 +61,7 @@ Key node IDs:
 | AssistantSidebar collapsed launcher | `1708:30243` |
 | AssistantSidebarPanel 输入框 | `1708:30323` |
 | AssistantSidebarPanel 预设问题 | `1708:30311` |
+| NavigationMenu (pill-style nav) | `2080:42251` |
 
 ## Current State
 
@@ -106,15 +108,21 @@ Source node: `1708:30738` (TaskResultPage hidden layer, confirmed product state)
 agentic-browser-ui PR #12 merged.
 Durable lesson: static component strokes must be non-layout-affecting (outline/inset-shadow).
 
+### NavigationMenu — closed (2026-05-08)
+Source node: `2080:42251` (联想规范页 925:13013, pill-style nav).
+agentic-browser-ui PR #14 merged. figma-to-code-skills PR #43 (case card) merged.
+Durable lesson: preflight (scope note + asset inventory + state-geometry scan) must happen before code, not after. PR #42 made this a hard gate in figma-execution-shell.
+
 ## Open PRs
 
 No open PRs in either repo.
 
 ## Next Recommended Action
 
-Phase D complete. No active track.
-Next: pick a new narrow component/state slice from Figma.
-Candidates: BookmarkButton bookmarked 状态 (`1708:30231~30233`)、侧边栏 TitleBar (`1708:30268`)、Sidebar collapsed 状态（需先确认 Figma variant 是否正式存在）。
+Phase E complete. No active track.
+Next: pick a new narrow component/state slice from Figma (联想规范页 925:13013 有更多候选).
+Candidates: Navigation Menu dropdown variant (`2080:42252`)、顶栏变体 (`2080:7520`)、BookmarkButton bookmarked 状态 (`1708:30231~30233`)。
+Preflight required before code: scope note + asset inventory + state-geometry scan.
 
 ## Source-of-Truth Notes
 
