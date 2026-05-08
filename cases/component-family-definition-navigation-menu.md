@@ -2,7 +2,8 @@
 
 ## Status
 
-`in-progress` — implementation complete, visual verification pending
+`verified` — implementation complete; build, visual review, and DOM geometry
+checks passed
 
 ## Source
 
@@ -30,9 +31,9 @@ is out of scope for this case — not used in agentic-browser-ui.
 |---|---|
 | state | Normal, Selected |
 
-- Normal: `bg-white border-[0.5px] border-[rgba(0,0,0,0.1)] text-[#18181b]`
-- Selected: `bg-[#18181b] text-white border-transparent`
-- Geometry rule: `border-[0.5px]` reserved in all states (transparent when selected) — no layout shift on state change
+- Normal: `bg-white outline-[0.5px] outline-[rgba(0,0,0,0.1)] text-[#18181b]`
+- Selected: `bg-[#18181b] text-white outline-transparent`
+- Geometry rule: 0.5px visual stroke uses `outline`, not `border`, so selected and normal states keep identical 32px layout height
 - Padding: `px-[16px] py-[5px]`, radius: `rounded-[12px]`, text: `14px / 22px HYQiHei:60S`
 
 ### MoreButton
@@ -41,6 +42,7 @@ is out of scope for this case — not used in agentic-browser-ui.
 - Same pill geometry as Normal NavOptionItem
 - Icon: `nav-more-icon@1x.svg` (15×3px three-dot, `currentColor`)
 - Icon container: `size-[18px]` wrapper, icon `w-[15px] h-[3px]`
+- Height: `32px`, matching NavOptionItem DOM measurement
 
 ### NavigationMenu (container)
 
@@ -52,10 +54,10 @@ is out of scope for this case — not used in agentic-browser-ui.
 | Check | Status |
 |---|---|
 | Build passes (tsc + vite) | ✓ |
-| Selected pill geometry stable (no layout shift) | ✓ rule applied |
+| Selected pill geometry stable (no layout shift) | ✓ outline stroke; no layout-affecting border |
 | MoreButton uses exported asset | ✓ |
-| Visual match vs Figma screenshot | pending |
-| DOM geometry measurement | pending |
+| Visual match vs Figma screenshot | ✓ verified in browser review |
+| DOM geometry measurement | ✓ NavOptionItem 32px; MoreButton 32px; gap 12px |
 
 ## Deferred
 
