@@ -74,6 +74,11 @@ the profile is missing and it changes the output shape, ask first.
    Stop and route back to `figma-execution-shell` or
    `figma-create-design-system-rules` if the case only has a loose
    candidate note.
+   Apply the same preflight requirement to follow-up expansions of an
+   existing component when the work adds a new axis, optional control,
+   design-owned asset, or verification surface. Do not treat a closed
+   component's new variant as implementation-ready just because the base
+   component already exists.
 6. Check whether the design depends on real assets such as icons,
    raster images, or exported slices. If yes, route them through
    `figma-export-slices` (or the equivalent asset-export path) before
