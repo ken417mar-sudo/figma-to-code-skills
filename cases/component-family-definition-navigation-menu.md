@@ -8,20 +8,24 @@ checks passed
 ## Source
 
 - Figma file: `iIbL9V4UrFeORPaM7KVji7`
-- Source node: `2080:42251` (TabMenu 区域，联想规范页 `925:13013`)
+- Initial source node: `2080:42251` (TabMenu 区域，联想规范页 `925:13013`)
+- Full variant source node: `2080:42252`
 - Component name in Figma: NavMenu / 导航菜单
 
 ## Scope
 
 Pill-style horizontal navigation menu. Supports 3–10 items with a selected
-state, optional overflow "more" button. Right-side control button (管理)
-is out of scope for this case — not used in agentic-browser-ui.
+state, optional overflow "more" button, and optional right-side control button
+(管理). The first pass covered the core pill/menu shape; the follow-up pass
+brings the full `2080:42252` variant board into scope.
 
 ## Implementation
 
 - File: `agentic-browser-ui/src/components/NavigationMenu.tsx`
-- Branch: `feature/navigation-menu`
+- Initial branch: `feature/navigation-menu`
+- Follow-up branch: `feature/navigation-menu-variant-expansion`
 - Exported asset: `src/assets/figma/nav-more-icon@1x.svg` (icon/更多, from design context)
+- Exported asset: `src/assets/figma/nav-manage-icon@1x.svg` (icon/设置（大）, from design context)
 
 ## Component Axes
 
@@ -44,10 +48,29 @@ is out of scope for this case — not used in agentic-browser-ui.
 - Icon container: `size-[18px]` wrapper, icon `w-[15px] h-[3px]`
 - Height: `32px`, matching NavOptionItem DOM measurement
 
+### ManageButton
+
+- Shown when `showManage=true`
+- Same 32px pill height as NavOptionItem and MoreButton
+- Icon: `nav-manage-icon@1x.svg` (`18 × 18`, `currentColor`)
+- Label: `管理`, `14px / 22px HYQiHei:60S`
+- Padding/gap: `px-[16px] py-[5px] gap-[4px]`
+
 ### NavigationMenu (container)
 
 - `gap-[12px]` between items
 - `flex items-center justify-between` outer layout
+- Full-width management variant uses `1162px` verification surface, matching
+  the full Figma variant board.
+
+## Component Axes
+
+| Axis | Values |
+|---|---|
+| `itemCount` | `3` through `10` |
+| `selectedIndex` | item index; Figma board shows first item selected |
+| `showMore` | `false`, `true` |
+| `showManage` | `false`, `true` |
 
 ## Verification Status
 
@@ -56,11 +79,11 @@ is out of scope for this case — not used in agentic-browser-ui.
 | Build passes (tsc + vite) | ✓ |
 | Selected pill geometry stable (no layout shift) | ✓ outline stroke; no layout-affecting border |
 | MoreButton uses exported asset | ✓ |
+| ManageButton uses exported asset | ✓ |
 | Visual match vs Figma screenshot | ✓ verified in browser review |
-| DOM geometry measurement | ✓ NavOptionItem 32px; MoreButton 32px; gap 12px |
+| DOM geometry measurement | ✓ NavOptionItem 32px; MoreButton 32px; ManageButton 32px; `2080:42252` surface 1162px; tab gap 12px; manage button right edge 1162px |
 
 ## Deferred
 
-- Right-side 管理/control button (not in agentic-browser-ui scope)
 - Hover/pressed states (not shown in formal Figma spec node)
 - Overflow scroll behavior for > 10 items
