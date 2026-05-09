@@ -129,6 +129,11 @@ of duplicating them.
    - verification surface is not only known, but scoped to cover every
      axis the team intends to claim as verified; if coverage is partial,
      mark the case implementation-ready only, not verification-ready
+   - if an existing component case expands scope by adding a new axis,
+     optional control, asset, or verification surface, rerun the same
+     preflight checks for the expansion before coding. Treat the
+     expansion as a small follow-up case, not as a free patch on the
+     already-closed component.
    - if the case is expected to close in the same run, there is a real
      plan to visually compare the rendered implementation against the
      target node; axis coverage alone is not enough to claim

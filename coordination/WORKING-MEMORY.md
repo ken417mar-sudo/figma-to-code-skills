@@ -80,6 +80,10 @@ Key node IDs:
   implementation-ready: component-family card or minimum scope note,
   asset inventory, state-geometry scan, and verification surface. Review
   should grep for unclassified inline SVGs and state-only 0.5px borders.
+- Scope expansions of an existing component must also rerun preflight
+  when they add a new axis, optional control, design-owned asset, or
+  verification surface. Treat them as small follow-up cases, not free
+  patches on a closed component.
 
 ## Component Status
 
