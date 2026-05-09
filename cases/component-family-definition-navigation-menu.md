@@ -55,6 +55,9 @@ brings the full `2080:42252` variant board into scope.
 - Icon: `nav-manage-icon@1x.svg` (`18 × 18`, `currentColor`)
 - Label: `管理`, `14px / 22px HYQiHei:60S`
 - Padding/gap: `px-[16px] py-[5px] gap-[4px]`
+- DOM padding check: button `82 × 32`; icon frame starts 16px from the
+  left edge; text ends 16px from the right edge. The gear path is inset
+  inside its own 18px SVG frame, matching Figma's icon structure.
 
 ### NavigationMenu (container)
 
@@ -63,7 +66,7 @@ brings the full `2080:42252` variant board into scope.
 - Full-width management variant uses `1162px` verification surface, matching
   the full Figma variant board.
 
-## Component Axes
+## NavigationMenu Axes
 
 | Axis | Values |
 |---|---|
@@ -80,6 +83,7 @@ brings the full `2080:42252` variant board into scope.
 | Selected pill geometry stable (no layout shift) | ✓ outline stroke; no layout-affecting border |
 | MoreButton uses exported asset | ✓ |
 | ManageButton uses exported asset | ✓ |
+| ManageButton left/right padding | ✓ 16px left and right, matching Figma `control_btn` |
 | Visual match vs Figma screenshot | ✓ verified in browser review |
 | DOM geometry measurement | ✓ NavOptionItem 32px; MoreButton 32px; ManageButton 32px; `2080:42252` surface 1162px; tab gap 12px; manage button right edge 1162px |
 
