@@ -27,6 +27,7 @@ Key node IDs:
 | AIToolsRow | `1708:30180` |
 | Dialog section | `1922:32133` |
 | Sidebar | `1708:30337` |
+| Sidebar icon-only source | `1708:30181` |
 | BrowserResultPage with assistant sidebar expanded | `1708:30204` |
 | AssistantSidebar collapsed launcher | `1708:30243` |
 | AssistantSidebarPanel compact input | `1708:30323` |
@@ -94,7 +95,7 @@ Key node IDs:
 | Toolbar | closed | `border border-[0.5px]` redundancy in urlFocused |
 | Dialog | closed (2026-04-16) | HYQiHei font — shared typography pass |
 | AIToolsRow | closed (2026-04-17) | active state remains proposal-level |
-| Sidebar | closed (2026-04-17) | formal default-only pass; SVG color hardcoding + interaction/collapsed states deferred |
+| Sidebar | verified (expanded + icon-only source) | expanded/default pass closed; icon-only source `1708:30181` matches existing collapsed implementation; hover/active rows + animation deferred |
 | BrowserResultPage / AssistantSidebarPanel | closed (2026-05-07) | collapsed launcher closed (PR #13, 56×24 geometry fixed); panel-specific chip/composer verified with no drift; fully closed |
 | WorkspacePage / TaskChatPanel | closed (2026-04-22) | Phase 6 Repeatability complete |
 | TaskResultPage | closed (2026-05-01) | running state (PR #10) + completed state (PR #11) both merged |
@@ -117,9 +118,14 @@ Key node IDs:
   - Both repos have no open PRs or active track
 - Phase E — NavigationMenu + new-slice preflight hard gate: **complete** (2026-05-09).
   - figma-to-code-skills PR #42 merged: new component slices require scope note/case card, asset inventory, and state-geometry scan before code.
+  - figma-to-code-skills PR #45 merged: follow-up scope expansions of existing components must rerun preflight when adding a new axis, optional control, design-owned asset, or verification surface.
   - agentic-browser-ui PR #14 + figma-to-code-skills PR #43 merged: initial `2080:42251` NavigationMenu.
   - agentic-browser-ui PR #15 + figma-to-code-skills PR #44 merged: full `2080:42252` NavigationMenu variant board, including optional 管理 control.
   - DOM evidence: 1162px full-width surface, 32px NavOption/More/Manage buttons, 12px tab gap, ManageButton 16px left/right padding.
+- Phase F — Sidebar icon-only source confirmation: **in progress** (2026-05-09).
+  - Figma `1708:30181` confirmed as the source for the icon-only/collapsed-like Sidebar rail.
+  - `1990:11765` resolves to a single Sidebar component (`1708:30408`) under a plain frame, not a component set, so icon-only is source-confirmed but not a formal Figma variant axis.
+  - Existing browser implementation measured: collapsed aside 240×816, padding 16px, icon row 60×24, gap 12px, buttons 24×24, icons 16×16.
 
 ## Next Candidates
 
@@ -128,8 +134,6 @@ No active track. Next: pick a new narrow component/state slice from Figma.
 Current candidates:
 - BookmarkButton bookmarked state (`1708:30231~30233`)
 - Sidebar TitleBar (`1708:30268`)
-- Sidebar collapsed state — first confirm whether Figma has a formal
-  variant before treating it as implementation input
 - 顶栏变体 (`2080:7520`) if it can be narrowed to a stateful slice
 - ChatBubble / 对话气泡 is a weak validation case unless the goal is only
   extracting/reusing the existing embedded bubble from `TaskChatPanel`
