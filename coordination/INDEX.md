@@ -18,7 +18,7 @@ Phase A closed (2026-04-23) — PR #6 (agentic-browser-ui WorkspacePage) and PR 
 Phase B closed (2026-04-24) — Existing-rule capture validation complete. B.1: inventory enriched with code evidence (PR #31). B.2: Tab CloseIcon inline SVG → exported assets, rule-driven (agentic-browser-ui PR #7). B.3: figma-capture-design-system code-backed mode + execution-shell routing reference + inventory resolved-gap cleanup (PR #32).
 Phase C closed (2026-05-01) — TaskResultPage running+completed validation chain + FileListCard + provisional cleanup. agentic-browser-ui PRs #10–#13 merged. figma-to-code-skills PRs #37–#38 merged. All provisional markers cleared.
 Phase D closed (2026-05-07) — Official skills alignment (PR #39) + ui-motion-patterns skill (PR #40) merged. AssistantSidebarPanel composer/prompt area verified, no drift. All stale remote branches cleaned from both repos.
-Phase E closed (2026-05-08) — NavigationMenu (pill-style nav, Figma 2080:42251) implemented and verified. agentic-browser-ui PR #14 + figma-to-code-skills PR #43 merged. Preflight hard-gate rules added (PR #42).
+Phase E closed (2026-05-09) — NavigationMenu (pill-style nav, Figma 2080:42251 + full variant board 2080:42252) implemented and verified. agentic-browser-ui PRs #14–#15 + figma-to-code-skills PRs #43–#44 merged. Preflight hard-gate rules added (PR #42).
 
 ## Active Repos
 
@@ -61,7 +61,7 @@ Key node IDs:
 | AssistantSidebar collapsed launcher | `1708:30243` |
 | AssistantSidebarPanel 输入框 | `1708:30323` |
 | AssistantSidebarPanel 预设问题 | `1708:30311` |
-| NavigationMenu (pill-style nav) | `2080:42251` |
+| NavigationMenu (pill-style nav) | `2080:42251`, `2080:42252` |
 
 ## Current State
 
@@ -109,8 +109,10 @@ agentic-browser-ui PR #12 merged.
 Durable lesson: static component strokes must be non-layout-affecting (outline/inset-shadow).
 
 ### NavigationMenu — closed (2026-05-08)
-Source node: `2080:42251` (联想规范页 925:13013, pill-style nav).
-agentic-browser-ui PR #14 merged. figma-to-code-skills PR #43 (case card) merged.
+Source nodes: `2080:42251` (initial pill-style nav) and `2080:42252` (full variant board with 3–10 items, optional more, optional 管理 control).
+agentic-browser-ui PR #14 merged the initial component; PR #15 merged full variant/manage-control coverage.
+figma-to-code-skills PR #43 added the case card; PR #44 synced full variant evidence.
+DOM evidence: 1162px full-width surface, 32px pills, 12px tab gap, 管理 button 16px left/right padding.
 Durable lesson: preflight (scope note + asset inventory + state-geometry scan) must happen before code, not after. PR #42 made this a hard gate in figma-execution-shell.
 
 ## Open PRs
@@ -121,7 +123,8 @@ No open PRs in either repo.
 
 Phase E complete. No active track.
 Next: pick a new narrow component/state slice from Figma (联想规范页 925:13013 有更多候选).
-Candidates: Navigation Menu dropdown variant (`2080:42252`)、顶栏变体 (`2080:7520`)、BookmarkButton bookmarked 状态 (`1708:30231~30233`)。
+Candidates: 顶栏变体 (`2080:7520`)、BookmarkButton bookmarked 状态 (`1708:30231~30233`)、Sidebar collapsed / TitleBar after source confirmation.
+Avoid ChatBubble as a capability-validation case unless the goal is only reuse/formalization cleanup; it has weak state coverage.
 Preflight required before code: scope note + asset inventory + state-geometry scan.
 
 ## Source-of-Truth Notes

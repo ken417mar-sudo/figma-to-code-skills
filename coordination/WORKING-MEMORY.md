@@ -33,6 +33,7 @@ Key node IDs:
 | AssistantSidebarPanel prompt list | `1708:30311` |
 | TaskResultPage | `1708:30544` |
 | FileListCard (列表卡片/展开) | `1708:30738` |
+| NavigationMenu (pill-style nav) | `2080:42251`, `2080:42252` |
 
 ## Core Workflow
 
@@ -94,6 +95,7 @@ Key node IDs:
 | WorkspacePage / TaskChatPanel | closed (2026-04-22) | Phase 6 Repeatability complete |
 | TaskResultPage | closed (2026-05-01) | running state (PR #10) + completed state (PR #11) both merged |
 | FileListCard (列表卡片/展开) | closed (2026-05-01) | PR #12 merged; geometry fixed via outline/inset-shadow |
+| NavigationMenu | closed (2026-05-09) | PR #14 initial pill nav + PR #15 full variant/manage control; case PRs #43–#44; 1162px surface, 32px pills, 12px tab gap, ManageButton 16px side padding |
 
 ## Phase Status
 
@@ -109,6 +111,11 @@ Key node IDs:
   - AssistantSidebarPanel compact composer (`1708:30323`) and prompt list (`1708:30311`) verified with no drift
   - `coordination/INDEX.md` cleaned up and Phase D state written
   - Both repos have no open PRs or active track
+- Phase E — NavigationMenu + new-slice preflight hard gate: **complete** (2026-05-09).
+  - figma-to-code-skills PR #42 merged: new component slices require scope note/case card, asset inventory, and state-geometry scan before code.
+  - agentic-browser-ui PR #14 + figma-to-code-skills PR #43 merged: initial `2080:42251` NavigationMenu.
+  - agentic-browser-ui PR #15 + figma-to-code-skills PR #44 merged: full `2080:42252` NavigationMenu variant board, including optional 管理 control.
+  - DOM evidence: 1162px full-width surface, 32px NavOption/More/Manage buttons, 12px tab gap, ManageButton 16px left/right padding.
 
 ## Next Candidates
 
@@ -119,3 +126,6 @@ Current candidates:
 - Sidebar TitleBar (`1708:30268`)
 - Sidebar collapsed state — first confirm whether Figma has a formal
   variant before treating it as implementation input
+- 顶栏变体 (`2080:7520`) if it can be narrowed to a stateful slice
+- ChatBubble / 对话气泡 is a weak validation case unless the goal is only
+  extracting/reusing the existing embedded bubble from `TaskChatPanel`
