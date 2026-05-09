@@ -122,7 +122,7 @@ Key node IDs:
   - agentic-browser-ui PR #14 + figma-to-code-skills PR #43 merged: initial `2080:42251` NavigationMenu.
   - agentic-browser-ui PR #15 + figma-to-code-skills PR #44 merged: full `2080:42252` NavigationMenu variant board, including optional 管理 control.
   - DOM evidence: 1162px full-width surface, 32px NavOption/More/Manage buttons, 12px tab gap, ManageButton 16px left/right padding.
-- Phase F — Sidebar icon-only source confirmation: **in progress** (2026-05-09).
+- Phase F — Sidebar icon-only source confirmation: **complete** (2026-05-09). figma-to-code-skills PR #46 merged.
   - Figma `1708:30181` confirmed as the source for the icon-only/collapsed-like Sidebar rail.
   - `1990:11765` resolves to a single Sidebar component (`1708:30408`) under a plain frame, not a component set, so icon-only is source-confirmed but not a formal Figma variant axis.
   - Existing browser implementation measured: collapsed aside 240×816, padding 16px, icon row 60×24, gap 12px, buttons 24×24, icons 16×16.

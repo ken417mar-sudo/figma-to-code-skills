@@ -19,7 +19,7 @@ Phase B closed (2026-04-24) — Existing-rule capture validation complete. B.1: 
 Phase C closed (2026-05-01) — TaskResultPage running+completed validation chain + FileListCard + provisional cleanup. agentic-browser-ui PRs #10–#13 merged. figma-to-code-skills PRs #37–#38 merged. All provisional markers cleared.
 Phase D closed (2026-05-07) — Official skills alignment (PR #39) + ui-motion-patterns skill (PR #40) merged. AssistantSidebarPanel composer/prompt area verified, no drift. All stale remote branches cleaned from both repos.
 Phase E closed (2026-05-09) — NavigationMenu (pill-style nav, Figma 2080:42251 + full variant board 2080:42252) implemented and verified. agentic-browser-ui PRs #14–#15 + figma-to-code-skills PRs #43–#44 merged. Preflight hard-gate rules added (PRs #42 and #45).
-Phase F in progress (2026-05-09) — Sidebar icon-only/collapsed-like source confirmation. Figma `1708:30181` confirmed as the source frame and matched to the existing `Sidebar collapsed` implementation.
+Phase F closed (2026-05-09) — Sidebar icon-only/collapsed-like source confirmation. Figma `1708:30181` confirmed as the source frame and matched to the existing `Sidebar collapsed` implementation. figma-to-code-skills PR #46 merged.
 
 ## Active Repos
 
