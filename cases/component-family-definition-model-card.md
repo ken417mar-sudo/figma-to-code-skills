@@ -2,8 +2,8 @@
 
 ## Status
 
-`verified` — first slice covers the 模型广场 Card states from Figma
-`2080:40041`; PRs pending merge.
+`closed` — first slice covers the 模型广场 Card states from Figma
+`2080:40041`.
 
 ## Source
 
@@ -33,7 +33,7 @@ Those are intentionally out of scope for this pass.
 
 - File: `agentic-browser-ui/src/components/ModelCard.tsx`
 - Verify surface: `agentic-browser-ui/src/App.tsx` ModelCard verify cards
-- Branch: `skill/model-card-case`
+- PRs: agentic-browser-ui #17, figma-to-code-skills #50
 - Exported assets:
   - `src/assets/figma/modelcard-deepseek-vector@1x.svg`
   - `src/assets/figma/modelcard-deepseek-vector-inner@1x.svg`
@@ -69,7 +69,7 @@ Those are intentionally out of scope for this pass.
 |---|---|
 | Figma design context | passed: all four source nodes inspected |
 | Asset inventory | passed: DeepSeek vectors and progress mask exported locally |
-| Build | pending |
+| Build | passed: `npm run build` in agentic-browser-ui |
 | Lint | passed: `npm run lint` |
 | Browser DOM measurement | passed: all four cards `284 × 132`; Normal/Hover/loading outline `0.5px`; Selected outline `1px #000`; Hover button `88 × 32`; loading track `244 × 6`; loading fill `73 × 6` |
 | Visual review | passed: browser render checked after build |

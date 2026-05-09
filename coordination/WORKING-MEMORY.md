@@ -103,7 +103,7 @@ Key node IDs:
 | FileListCard (列表卡片/展开) | closed (2026-05-01) | PR #12 merged; geometry fixed via outline/inset-shadow |
 | NavigationMenu | closed (2026-05-09) | PR #14 initial pill nav + PR #15 full variant/manage control; case PRs #43–#44; 1162px surface, 32px pills, 12px tab gap, ManageButton 16px side padding |
 | SearchBar | closed (2026-05-09) | agentic-browser-ui PR #16 merged; source `2080:8086`; 240×32, rounded-12, 1.5px border, search+clear icons 18×18 |
-| ModelCard | verified, PRs pending merge (2026-05-09) | first slice from Card board `2080:40041`: 模型广场 Normal/Hover/loading/Selected; DOM evidence all cards 284×132, loading track 244×6/fill 73×6; excludes 写作助手, AI 搜索, AI Space, local tag |
+| ModelCard | closed (2026-05-11) | first slice from Card board `2080:40041`: 模型广场 Normal/Hover/loading/Selected; DOM evidence all cards 284×132, loading track 244×6/fill 73×6; excludes 写作助手, AI 搜索, AI Space, local tag |
 
 ## Phase Status
 
@@ -130,16 +130,16 @@ Key node IDs:
   - `1990:11765` resolves to a single Sidebar component (`1708:30408`) under a plain frame, not a component set, so icon-only is source-confirmed but not a formal Figma variant axis.
   - Existing browser implementation measured: collapsed aside 240×816, padding 16px, icon row 60×24, gap 12px, buttons 24×24, icons 16×16.
 - Phase G — SearchBar: **complete** (2026-05-09). agentic-browser-ui PR #16 + figma-to-code-skills PR #48 merged.
-- Phase H — ModelCard first slice: **verified, PRs pending merge** (2026-05-09).
+- Phase H — ModelCard first slice: **closed** (2026-05-11).
   - Source board: `2080:40041`.
   - Scope: 模型广场 `2080:40042` Normal, `2080:40051` Hover download overlay, `2080:40064` loading progress overlay, `2080:40079` Selected.
   - Value: compact stateful card case with exported icon/progress assets and geometry-sensitive strokes.
-  - Branches/PRs: `skill/model-card-case` in both repos; agentic-browser-ui PR #17 and figma-to-code-skills PR #50.
+  - PRs: agentic-browser-ui PR #17 and figma-to-code-skills PR #50.
   - Verification: `npm run build`, `npm run lint`, `git diff --check`, browser DOM measurement passed. DOM evidence: four cards `284 × 132`; Hover button `88 × 32`; loading track `244 × 6`; loading fill `73 × 6`; Selected outline `1px #000`.
 
 ## Next Candidates
 
-Active track: open/merge ModelCard first-slice PRs.
+No active track.
 
 After Phase H candidates:
 - Expand Card to AI Space only if first slice reveals reusable overlay/progress rules worth broadening
