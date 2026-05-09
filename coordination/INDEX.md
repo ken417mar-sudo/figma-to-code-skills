@@ -21,6 +21,7 @@ Phase D closed (2026-05-07) — Official skills alignment (PR #39) + ui-motion-p
 Phase E closed (2026-05-09) — NavigationMenu (pill-style nav, Figma 2080:42251 + full variant board 2080:42252) implemented and verified. agentic-browser-ui PRs #14–#15 + figma-to-code-skills PRs #43–#44 merged. Preflight hard-gate rules added (PRs #42 and #45).
 Phase F closed (2026-05-09) — Sidebar icon-only/collapsed-like source confirmation. Figma `1708:30181` confirmed as the source frame and matched to the existing `Sidebar collapsed` implementation. figma-to-code-skills PR #46 merged.
 Phase G closed (2026-05-09) — SearchBar component (Figma `2080:8086`, 240×32). agentic-browser-ui PR #16 + figma-to-code-skills PR #48 merged.
+Phase H verified, PRs pending merge (2026-05-09) — ModelCard first slice from Card board `2080:40041`: 模型广场 Normal/Hover/loading/Selected (`2080:40042`, `2080:40051`, `2080:40064`, `2080:40079`).
 
 ## Active Repos
 
@@ -65,6 +66,7 @@ Key node IDs:
 | AssistantSidebarPanel 输入框 | `1708:30323` |
 | AssistantSidebarPanel 预设问题 | `1708:30311` |
 | NavigationMenu (pill-style nav) | `2080:42251`, `2080:42252` |
+| ModelCard / Card board | `2080:40041`; 模型广场 slice `2080:40042`, `2080:40051`, `2080:40064`, `2080:40079` |
 
 ## Current State
 
@@ -123,17 +125,28 @@ Source node: `2080:8086` (instance in NavigationMenu spec board, 240×32).
 agentic-browser-ui PR #16 merged: SearchBar component + showSearch slot in NavigationMenu.
 DOM evidence: `h-[32px] w-[240px] rounded-[12px] border-[1.5px]`, search icon 18×18, clear button visible when value non-empty.
 
+### ModelCard — verified, PRs pending merge (2026-05-09)
+Source board: `2080:40041`.
+First slice: 模型广场 Normal/Hover/loading/Selected (`2080:40042`, `2080:40051`, `2080:40064`, `2080:40079`).
+Implementation branch: `skill/model-card-case` in agentic-browser-ui.
+Case branch: `skill/model-card-case` in figma-to-code-skills.
+DOM evidence: all four cards `284 × 132`; Normal/Hover/loading outline `0.5px`; Selected outline `1px #000`; Hover button `88 × 32`; loading track `244 × 6`; loading fill `73 × 6`.
+Scope intentionally excludes 写作助手, AI 搜索, AI Space, and optional local tag until the first slice is verified.
+
 ## Open PRs
 
-No open PRs in either repo.
+- agentic-browser-ui PR #17 — ModelCard first slice implementation
+- figma-to-code-skills PR #50 — ModelCard first slice case card + coordination sync
 
 ## Next Recommended Action
 
-Phase E complete. No active track.
-Next: pick a new narrow component/state slice from Figma (联想规范页 925:13013 有更多候选).
-Candidates: 顶栏变体 (`2080:7520`) if it can be narrowed to a stateful slice, BookmarkButton bookmarked 状态 (`1708:30231~30233`) if reframed as standalone extraction/formalization, or Sidebar/Assistant title-bar cleanup only if the goal is static source cleanup.
-Avoid ChatBubble as a capability-validation case unless the goal is only reuse/formalization cleanup; it has weak state coverage.
-Preflight required before code: scope note + asset inventory + state-geometry scan.
+Phase H verified. Finish closeout:
+1. Push both PRs and sync the result to issue #13.
+2. Merge/close Phase H after review.
+
+After Phase H, consider whether to expand the Card family to AI Space or return
+to the previously noted SearchBar micro-drift cleanup. Keep ChatBubble as a
+reuse/formalization cleanup candidate only.
 
 ## Source-of-Truth Notes
 
