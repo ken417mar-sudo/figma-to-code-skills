@@ -20,7 +20,7 @@ Phase C closed (2026-05-01) — TaskResultPage running+completed validation chai
 Phase D closed (2026-05-07) — Official skills alignment (PR #39) + ui-motion-patterns skill (PR #40) merged. AssistantSidebarPanel composer/prompt area verified, no drift. All stale remote branches cleaned from both repos.
 Phase E closed (2026-05-09) — NavigationMenu (pill-style nav, Figma 2080:42251 + full variant board 2080:42252) implemented and verified. agentic-browser-ui PRs #14–#15 + figma-to-code-skills PRs #43–#44 merged. Preflight hard-gate rules added (PRs #42 and #45).
 Phase F closed (2026-05-09) — Sidebar icon-only/collapsed-like source confirmation. Figma `1708:30181` confirmed as the source frame and matched to the existing `Sidebar collapsed` implementation. figma-to-code-skills PR #46 merged.
-Phase G in progress (2026-05-09) — SearchBar component (Figma `2080:8086`, 240×32). agentic-browser-ui PR #16 open.
+Phase G closed (2026-05-09) — SearchBar component (Figma `2080:8086`, 240×32). agentic-browser-ui PR #16 + figma-to-code-skills PR #48 merged.
 
 ## Active Repos
 
@@ -118,9 +118,9 @@ figma-to-code-skills PR #43 added the case card; PR #44 synced full variant evid
 DOM evidence: 1162px full-width surface, 32px pills, 12px tab gap, 管理 button 16px left/right padding.
 Durable lesson: preflight (scope note + asset inventory + state-geometry scan) must happen before code, not after. PR #42 made this a hard gate in figma-execution-shell.
 
-### SearchBar — in progress (2026-05-09)
+### SearchBar — closed (2026-05-09)
 Source node: `2080:8086` (instance in NavigationMenu spec board, 240×32).
-agentic-browser-ui PR #16 open: SearchBar component + showSearch slot in NavigationMenu.
+agentic-browser-ui PR #16 merged: SearchBar component + showSearch slot in NavigationMenu.
 DOM evidence: `h-[32px] w-[240px] rounded-[12px] border-[1.5px]`, search icon 18×18, clear button visible when value non-empty.
 
 ## Open PRs
