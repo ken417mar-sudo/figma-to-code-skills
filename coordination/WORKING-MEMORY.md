@@ -101,6 +101,7 @@ Key node IDs:
 | TaskResultPage | closed (2026-05-01) | running state (PR #10) + completed state (PR #11) both merged |
 | FileListCard (列表卡片/展开) | closed (2026-05-01) | PR #12 merged; geometry fixed via outline/inset-shadow |
 | NavigationMenu | closed (2026-05-09) | PR #14 initial pill nav + PR #15 full variant/manage control; case PRs #43–#44; 1162px surface, 32px pills, 12px tab gap, ManageButton 16px side padding |
+| SearchBar | in progress (2026-05-09) | agentic-browser-ui PR #16 open; source `2080:8086`; 240×32, rounded-12, 1.5px border, search+clear icons 18×18 |
 
 ## Phase Status
 
@@ -126,14 +127,16 @@ Key node IDs:
   - Figma `1708:30181` confirmed as the source for the icon-only/collapsed-like Sidebar rail.
   - `1990:11765` resolves to a single Sidebar component (`1708:30408`) under a plain frame, not a component set, so icon-only is source-confirmed but not a formal Figma variant axis.
   - Existing browser implementation measured: collapsed aside 240×816, padding 16px, icon row 60×24, gap 12px, buttons 24×24, icons 16×16.
+- Phase G — SearchBar: **in progress** (2026-05-09).
+  - Source: `2080:8086` instance (240×32) in NavigationMenu spec board `2080:7520`.
+  - agentic-browser-ui PR #16 open: SearchBar component + showSearch/onSearch props in NavigationMenu.
+  - DOM verified: `h-[32px] w-[240px] rounded-[12px] border-[1.5px]`, search icon 18×18, clear button visible when value non-empty, font HYQiHei:60S.
 
 ## Next Candidates
 
-No active track. Next: pick a new narrow component/state slice from Figma.
+Active track: SearchBar (agentic-browser-ui PR #16 open, figma-to-code-skills PR pending).
 
-Current candidates:
-- BookmarkButton bookmarked state (`1708:30231~30233`)
-- Sidebar TitleBar (`1708:30268`)
-- 顶栏变体 (`2080:7520`) if it can be narrowed to a stateful slice
-- ChatBubble / 对话气泡 is a weak validation case unless the goal is only
-  extracting/reusing the existing embedded bubble from `TaskChatPanel`
+After SearchBar closes:
+- BookmarkButton bookmarked state (`1708:30231~30233`) — reframe as standalone extraction/formalization
+- 顶栏变体 (`2080:7520`) is a documentation board; useful narrow slices are Tab bar (`2080:8062`) or upgrade dialog progress state
+- ChatBubble / 对话气泡 is a weak validation case unless the goal is only extracting/reusing the existing embedded bubble from `TaskChatPanel`
