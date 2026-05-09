@@ -18,7 +18,8 @@ Phase A closed (2026-04-23) — PR #6 (agentic-browser-ui WorkspacePage) and PR 
 Phase B closed (2026-04-24) — Existing-rule capture validation complete. B.1: inventory enriched with code evidence (PR #31). B.2: Tab CloseIcon inline SVG → exported assets, rule-driven (agentic-browser-ui PR #7). B.3: figma-capture-design-system code-backed mode + execution-shell routing reference + inventory resolved-gap cleanup (PR #32).
 Phase C closed (2026-05-01) — TaskResultPage running+completed validation chain + FileListCard + provisional cleanup. agentic-browser-ui PRs #10–#13 merged. figma-to-code-skills PRs #37–#38 merged. All provisional markers cleared.
 Phase D closed (2026-05-07) — Official skills alignment (PR #39) + ui-motion-patterns skill (PR #40) merged. AssistantSidebarPanel composer/prompt area verified, no drift. All stale remote branches cleaned from both repos.
-Phase E closed (2026-05-09) — NavigationMenu (pill-style nav, Figma 2080:42251 + full variant board 2080:42252) implemented and verified. agentic-browser-ui PRs #14–#15 + figma-to-code-skills PRs #43–#44 merged. Preflight hard-gate rules added (PR #42).
+Phase E closed (2026-05-09) — NavigationMenu (pill-style nav, Figma 2080:42251 + full variant board 2080:42252) implemented and verified. agentic-browser-ui PRs #14–#15 + figma-to-code-skills PRs #43–#44 merged. Preflight hard-gate rules added (PRs #42 and #45).
+Phase F in progress (2026-05-09) — Sidebar icon-only/collapsed-like source confirmation. Figma `1708:30181` confirmed as the source frame and matched to the existing `Sidebar collapsed` implementation.
 
 ## Active Repos
 
@@ -54,6 +55,7 @@ Key node IDs:
 | 关闭 Hover=off | `1714:1013` |
 | 关闭 Hover=on | `1714:1017` |
 | 侧边栏展开 board | `1708:30337` |
+| Sidebar icon-only source | `1708:30181` |
 | Dialog section | `1922:32133` |
 | Dialog core block | `1922:31967` |
 | TaskResultPage | `1708:30544` |
@@ -85,8 +87,8 @@ All axes implemented. Deferred non-blocker: HYQiHei font loading.
 ### AIToolsRow — closed (2026-04-17)
 All axes implemented. Deferred: active state remains proposal-level.
 
-### Sidebar — closed (2026-04-17)
-Formal default-only pass. Deferred: SVG color hardcoding + interaction/collapsed states.
+### Sidebar — verified (expanded + icon-only source)
+Expanded/default pass closed (2026-04-17). Icon-only/collapsed-like rail source confirmed (2026-05-09): Figma `1708:30181` is a 240×816 rail with 16px padding, two 24×24 buttons, 12px gap, and 16px icons. Browser DOM measurement of the existing implementation matches those dimensions. This is a source-confirmed frame, not a Figma component-set variant; hover/active row states and animation remain deferred.
 
 ### BrowserResultPage / AssistantSidebarPanel — closed (2026-05-07)
 Composite family case. Source node: `1708:30204`.
@@ -123,7 +125,7 @@ No open PRs in either repo.
 
 Phase E complete. No active track.
 Next: pick a new narrow component/state slice from Figma (联想规范页 925:13013 有更多候选).
-Candidates: 顶栏变体 (`2080:7520`)、BookmarkButton bookmarked 状态 (`1708:30231~30233`)、Sidebar collapsed / TitleBar after source confirmation.
+Candidates: 顶栏变体 (`2080:7520`) if it can be narrowed to a stateful slice, BookmarkButton bookmarked 状态 (`1708:30231~30233`) if reframed as standalone extraction/formalization, or Sidebar/Assistant title-bar cleanup only if the goal is static source cleanup.
 Avoid ChatBubble as a capability-validation case unless the goal is only reuse/formalization cleanup; it has weak state coverage.
 Preflight required before code: scope note + asset inventory + state-geometry scan.
 

@@ -54,7 +54,7 @@ Decision protocol:
 | Toolbar | closed | 5 states verified |
 | Dialog | closed | All axes verified, HYQiHei font deferred |
 | AIToolsRow | closed | ToolPill family, hover/active, inline SVG icons |
-| Sidebar | closed (2026-04-17) | Formal default-only pass; SVG color hardcoding + interaction/collapsed states deferred |
+| Sidebar | verified (expanded + icon-only source) | Expanded/default pass closed; icon-only rail `1708:30181` source-confirmed and matched to existing collapsed implementation |
 | BrowserResultPage / AssistantSidebarPanel | closed (2026-04-21) | Composite family case; collapsed launcher deferred |
 | WorkspacePage / TaskChatPanel | closed (2026-04-22) | Phase 6 Repeatability case; agentic-browser-ui PR #6 pending merge |
 
@@ -77,7 +77,7 @@ Cards: `experiments/trial-component-family-definition-aitoolsrow.md`, `experimen
    - Update `inventory/existing-rule-capture-agentic-browser-ui.md` (8 dimensions, each with code evidence)
    - Run one small downstream task that must cite the captured rules
    - Exit when at least one decision is demonstrably rule-driven
-2. Validate provisional-to-formal promotion path (collapsed launcher `1708:30243`) when ready
+2. Validate a richer stateful candidate only after preflight; Sidebar icon-only is now a source-confirmed closeout, not a new variant-axis case
 3. Shared typography pass for HYQiHei font remains a deferred cross-case non-blocker
 
 ## Quick entry points
