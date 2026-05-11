@@ -131,7 +131,8 @@ Source board: `2080:40041`.
 First slice: 模型广场 Normal/Hover/loading/Selected (`2080:40042`, `2080:40051`, `2080:40064`, `2080:40079`).
 Implementation merged via agentic-browser-ui PR #17.
 Case card and coordination merged via figma-to-code-skills PR #50.
-DOM evidence: all four cards `284 × 132`; Normal/Hover/loading outline `0.5px`; Selected outline `1px #000`; Hover button `88 × 32`; loading track `244 × 6`; loading fill `73 × 6`.
+Icon-size follow-up: user visual review found the DeepSeek glyph too small; render it in a `20 × 20` slot with visible glyph `18 × 13.25`.
+DOM evidence: all four cards `284 × 132`; DeepSeek icon slot `20 × 20`; visible glyph `18 × 13.25`; Normal/Hover/loading outline `0.5px`; Selected outline `1px #000`; Hover button `88 × 32`; loading track `244 × 6`; loading fill `73 × 6`.
 Scope intentionally excludes 写作助手, AI 搜索, AI Space, and optional local tag until the first slice is verified.
 
 ## Open PRs

@@ -103,7 +103,7 @@ Key node IDs:
 | FileListCard (列表卡片/展开) | closed (2026-05-01) | PR #12 merged; geometry fixed via outline/inset-shadow |
 | NavigationMenu | closed (2026-05-09) | PR #14 initial pill nav + PR #15 full variant/manage control; case PRs #43–#44; 1162px surface, 32px pills, 12px tab gap, ManageButton 16px side padding |
 | SearchBar | closed (2026-05-09) | agentic-browser-ui PR #16 merged; micro-drift follow-up in PR #18; source `2080:8086`; 240×32, rounded-12, 1.5px border, search+clear icons 18×18, icon-to-text gap 6px, input-to-clear gap 8px, text black |
-| ModelCard | closed (2026-05-11) | first slice from Card board `2080:40041`: 模型广场 Normal/Hover/loading/Selected; DOM evidence all cards 284×132, loading track 244×6/fill 73×6; excludes 写作助手, AI 搜索, AI Space, local tag |
+| ModelCard | closed (2026-05-11) | first slice from Card board `2080:40041`: 模型广场 Normal/Hover/loading/Selected; icon-size follow-up renders DeepSeek in 20×20 slot with 18×13.25 visible glyph; DOM evidence all cards 284×132, loading track 244×6/fill 73×6; excludes 写作助手, AI 搜索, AI Space, local tag |
 
 ## Phase Status
 
@@ -135,7 +135,7 @@ Key node IDs:
   - Scope: 模型广场 `2080:40042` Normal, `2080:40051` Hover download overlay, `2080:40064` loading progress overlay, `2080:40079` Selected.
   - Value: compact stateful card case with exported icon/progress assets and geometry-sensitive strokes.
   - PRs: agentic-browser-ui PR #17 and figma-to-code-skills PR #50.
-  - Verification: `npm run build`, `npm run lint`, `git diff --check`, browser DOM measurement passed. DOM evidence: four cards `284 × 132`; Hover button `88 × 32`; loading track `244 × 6`; loading fill `73 × 6`; Selected outline `1px #000`.
+  - Verification: `npm run build`, `npm run lint`, `git diff --check`, browser DOM measurement passed. DOM evidence: four cards `284 × 132`; DeepSeek icon slot `20 × 20` with visible glyph `18 × 13.25`; Hover button `88 × 32`; loading track `244 × 6`; loading fill `73 × 6`; Selected outline `1px #000`.
 
 ## Next Candidates
 
