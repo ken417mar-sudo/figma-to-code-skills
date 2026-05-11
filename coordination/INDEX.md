@@ -123,7 +123,8 @@ Durable lesson: preflight (scope note + asset inventory + state-geometry scan) m
 ### SearchBar — closed (2026-05-09)
 Source node: `2080:8086` (instance in NavigationMenu spec board, 240×32).
 agentic-browser-ui PR #16 merged: SearchBar component + showSearch slot in NavigationMenu.
-DOM evidence: `h-[32px] w-[240px] rounded-[12px] border-[1.5px]`, search icon 18×18, clear button visible when value non-empty.
+Micro-drift follow-up: agentic-browser-ui PR #18 fixes icon-to-text gap to 6px and input text to black while preserving caret `#1f2329`.
+DOM evidence: `h-[32px] w-[240px] rounded-[12px] border-[1.5px]`, search icon 18×18, icon-to-text gap 6px, input-to-clear gap 8px, clear button visible when value non-empty, focused with-value border `rgba(51,51,51,0.9)`.
 
 ### ModelCard — closed (2026-05-11)
 Source board: `2080:40041`.
@@ -139,9 +140,10 @@ No open PRs in either repo.
 
 ## Next Recommended Action
 
-Phase H closed. Next: either expand the Card family to AI Space if overlay/progress
-rules are worth broadening, or do the previously noted SearchBar micro-drift
-cleanup. Keep ChatBubble as a reuse/formalization cleanup candidate only.
+Phase H closed. SearchBar micro-drift cleanup is in paired follow-up PRs. Next:
+either expand the Card family to AI Space if overlay/progress rules are worth
+broadening, or pick another hard-path case. Keep ChatBubble as a
+reuse/formalization cleanup candidate only.
 
 ## Source-of-Truth Notes
 
