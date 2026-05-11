@@ -3,7 +3,8 @@
 ## Status
 
 `closed` — first slice covers the 模型广场 Card states from Figma
-`2080:40041`.
+`2080:40041`. User visual review follow-up corrected the visible DeepSeek
+icon glyph size after PR #50.
 
 ## Source
 
@@ -36,7 +37,8 @@ Those are intentionally out of scope for this pass.
 - PRs: agentic-browser-ui #17, figma-to-code-skills #50
 - Exported assets:
   - `src/assets/figma/modelcard-deepseek-vector@1x.svg`
-  - `src/assets/figma/modelcard-deepseek-vector-inner@1x.svg`
+  - `src/assets/figma/modelcard-deepseek-vector-inner@1x.svg` — rendered as
+    the visible glyph
   - `src/assets/figma/modelcard-loading-progress@1x.svg`
 
 ## Component Axes
@@ -59,7 +61,7 @@ Those are intentionally out of scope for this pass.
 | content gap | `8px` |
 | title | `16px / 24px`, HYQiHei:85S |
 | description | `12px / 18px`, max height `36px` |
-| DeepSeek icon frame | `13.5 × 13.5` inside `1.5px` padded wrapper |
+| DeepSeek icon | `20 × 20` slot; visible blue glyph `18 × 13.25` |
 | overlay inset | full-card overlay, inner content left/right `20px` |
 | loading progress | track `244 × 6`, fill `73 × 6` |
 
@@ -71,7 +73,7 @@ Those are intentionally out of scope for this pass.
 | Asset inventory | passed: DeepSeek vectors and progress mask exported locally |
 | Build | passed: `npm run build` in agentic-browser-ui |
 | Lint | passed: `npm run lint` |
-| Browser DOM measurement | passed: all four cards `284 × 132`; Normal/Hover/loading outline `0.5px`; Selected outline `1px #000`; Hover button `88 × 32`; loading track `244 × 6`; loading fill `73 × 6` |
+| Browser DOM measurement | passed: all four cards `284 × 132`; DeepSeek icon slot `20 × 20`; visible glyph `18 × 13.25`; Normal/Hover/loading outline `0.5px`; Selected outline `1px #000`; Hover button `88 × 32`; loading track `244 × 6`; loading fill `73 × 6` |
 | Visual review | passed: browser render checked after build |
 | git diff --check | passed |
 
