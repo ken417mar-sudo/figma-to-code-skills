@@ -140,9 +140,9 @@ No open PRs in either repo.
 
 ## Next Recommended Action
 
-Phase H closed. SearchBar micro-drift cleanup is in paired follow-up PRs. Next:
-either expand the Card family to AI Space if overlay/progress rules are worth
-broadening, or pick another hard-path case. Keep ChatBubble as a
+Phase H closed. SearchBar micro-drift cleanup is closed via paired follow-up
+PRs. Next: either expand the Card family to AI Space if overlay/progress rules
+are worth broadening, or pick another hard-path case. Keep ChatBubble as a
 reuse/formalization cleanup candidate only.
 
 ## Source-of-Truth Notes
