@@ -2,7 +2,7 @@
 
 ## Status
 
-`verified` — default (empty) and with-value (clear button visible) states confirmed via browser DOM measurement.
+`verified` — default (empty) and focused with-value states confirmed via browser DOM measurement. Micro-drift follow-up fixed the icon-to-text gap and input text color in agentic-browser-ui PR #18.
 
 ## Source
 
@@ -44,8 +44,10 @@ The master component is in a linked library and cannot be accessed directly. Spe
 | padding | `px-[8px]` |
 | shadow | `0px 0px 20px rgba(0,0,0,0.06)` |
 | search icon | `18 × 18`, `currentColor` |
+| search icon → text gap | `6px` |
 | clear icon | `18 × 18`, `currentColor`, visible only when value non-empty |
-| text | `14px`, `leading-[22px]`, HYQiHei:60S |
+| input → clear icon gap | `8px` |
+| text | `14px`, `leading-[22px]`, `#000`, HYQiHei:60S |
 | cursor | `1px × 22px`, `#1f2329` |
 
 ## Verification Status
@@ -58,7 +60,9 @@ The master component is in a linked library and cannot be accessed directly. Spe
 | DOM — container | passed: `h-[32px] w-[240px] rounded-[12px] border-[1.5px]` |
 | DOM — search icon | passed: SVG 18×18 with circle + path |
 | DOM — default state | passed: no clear button, empty input |
-| DOM — with-value state | passed: clear button rendered, value="字幕" |
+| DOM — focused with-value state | passed: value="字幕", clear button rendered, focused border `rgba(51,51,51,0.9)` |
+| DOM — spacing | passed: icon-to-text gap `6px`, input-to-clear gap `8px` |
+| DOM — text/caret color | passed: text `rgb(0,0,0)`, caret `rgb(31,35,41)` |
 | DOM — font | passed: `HYQiHei:60S, PingFang SC, sans-serif` |
 | git diff --check | passed |
 
