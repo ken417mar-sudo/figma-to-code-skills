@@ -105,7 +105,7 @@ Key node IDs:
 | NavigationMenu | closed (2026-05-09) | PR #14 initial pill nav + PR #15 full variant/manage control; case PRs #43–#44; 1162px surface, 32px pills, 12px tab gap, ManageButton 16px side padding |
 | SearchBar | closed (2026-05-09) | agentic-browser-ui PR #16 merged; micro-drift follow-up in PR #18; source `2080:8086`; 240×32, rounded-12, 1.5px border, search+clear icons 18×18, icon-to-text gap 6px, input-to-clear gap 8px, text black |
 | ModelCard | closed (2026-05-11) | PR #17 merged; icon-size follow-up renders DeepSeek in 20×20 slot with 18×13.25 visible glyph; DOM evidence all cards 284×132, loading track 244×6/fill 73×6; excludes 写作助手, AI 搜索, AI Space, local tag |
-| TopTabBar | closed (2026-05-12) | first slice: operation + tab-strip (source `2080:8062`); PR #20 merged; global actions deferred; frame-preserving normalization + currentColor lessons recorded |
+| TopTabBar | closed (2026-05-12) | Phase I (PR #20): operation + tab-strip; Phase J (PR #21): global actions fully closed; 12 assets; frame-preserving normalization + currentColor + multi-layer gradient lessons |
 
 ## Phase Status
 
@@ -134,15 +134,14 @@ Key node IDs:
 - Phase G — SearchBar: **complete** (2026-05-09). agentic-browser-ui PR #16 + figma-to-code-skills PR #48 merged; follow-up PR #18 cleans up 6px icon-to-text spacing, black input text, and focused with-value evidence.
 - Phase H — ModelCard first slice: **closed** (2026-05-11).
 - Phase I — TopTabBar operation + tab-strip: **closed** (2026-05-12).
-  - Source: `2080:8062`. agentic-browser-ui PR #20 merged.
-  - Durable lessons: frame-preserving icon normalization; currentColor needs explicit text-* class; shared arrow SVG with CSS rotation.
-  - Global actions (功能组, window controls) deferred.
+- Phase J — TopTabBar global actions: **closed** (2026-05-12).
+  - agentic-browser-ui PR #21 merged. TopTabBar fully closed.
+  - New lesson: multi-layer gradient icon composition into single SVG canvas.
 
 ## Next Candidates
 
 No active track.
 
-After Phase I candidates:
-- TopTabBar global actions slice (natural continuation of `2080:8062`)
-- BookmarkButton bookmarked state (`1708:30231~30233`) — needs Figma source confirmation
-- Tab bar (`2080:8062`) right-side expansion
+After Phase J candidates:
+- BookmarkButton bookmarked state (`1708:30231~30233`) — needs Figma source confirmation first
+- Upgrade dialog progress state (`2080:7977`) — download progress bar state
