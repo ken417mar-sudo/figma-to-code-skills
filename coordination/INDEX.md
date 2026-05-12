@@ -22,7 +22,7 @@ Phase E closed (2026-05-09) — NavigationMenu (pill-style nav, Figma 2080:42251
 Phase F closed (2026-05-09) — Sidebar icon-only/collapsed-like source confirmation. Figma `1708:30181` confirmed as the source frame and matched to the existing `Sidebar collapsed` implementation. figma-to-code-skills PR #46 merged.
 Phase G closed (2026-05-09) — SearchBar component (Figma `2080:8086`, 240×32). agentic-browser-ui PR #16 + figma-to-code-skills PR #48 merged.
 Phase H closed (2026-05-11) — ModelCard first slice from Card board `2080:40041`: 模型广场 Normal/Hover/loading/Selected (`2080:40042`, `2080:40051`, `2080:40064`, `2080:40079`). agentic-browser-ui PR #17 + figma-to-code-skills PR #50 merged.
-Phase I closed (2026-05-12) — TopTabBar operation + tab-strip first slice (Figma `2080:8062`, 1166×52). agentic-browser-ui PR #20 merged; figma-to-code-skills PR #54 merged. Global actions deferred.
+Phase I closed (2026-05-12) — TopTabBar operation + tab-strip first slice (Figma `2080:8062`, 1166×52). agentic-browser-ui PR #20 merged; figma-to-code-skills PR #54 pending. Global actions deferred.
 
 ## Active Repos
 
@@ -140,7 +140,7 @@ Scope intentionally excludes 写作助手, AI 搜索, AI Space, and optional loc
 Source node: `2080:8062` (Tab bar, 1166×52).
 First slice: operation area (back/forward 32×32) + 3-tab strip (主页/设置/小程序名称). Home-selected state confirmed.
 Implementation merged via agentic-browser-ui PR #20.
-Case card and coordination merged via figma-to-code-skills PR #54.
+Case card and coordination pending via figma-to-code-skills PR #54.
 Durable lessons: frame-preserving normalization for icon export; currentColor requires explicit text-* class; shared arrow SVG with CSS rotation.
 DOM evidence: bar 1166×52; nav buttons 32×32; nav svg 11.5×11.5; tabs 200×32; active home bg white; home slot 18×18 with visible path 12.16×14.33 at #3F4046; settings svg 18×18 stroke #18181B; apps img 18×18 natural 36×36; inactive divider 1×17 top 7.5.
 Scope intentionally excludes right-side global actions (功能组, window controls).
