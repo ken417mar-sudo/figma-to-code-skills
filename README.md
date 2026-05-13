@@ -60,10 +60,12 @@ This repo is built collaboratively by the user, Claude Code, and Codex.
 
 Phase K closed (2026-05-13). All PRs merged — no open PRs in either repo.
 
-Completed phases: A–K. Components closed: Tab, InputBox, Toolbar, Dialog,
-AIToolsRow, Sidebar, BrowserResultPage/AssistantSidebarPanel, WorkspacePage,
-TaskResultPage, FileListCard, NavigationMenu, SearchBar, ModelCard,
-TopTabBar (Phase I+J), UpgradeDialog.
+Lettered phases A–K complete (earlier numbered phases 3–6 also closed; see
+[coordination/INDEX.md](coordination/INDEX.md) for full history). Components
+closed: Tab, InputBox, Toolbar, Dialog, AIToolsRow, Sidebar,
+BrowserResultPage/AssistantSidebarPanel, WorkspacePage, TaskResultPage,
+FileListCard, NavigationMenu, SearchBar, ModelCard, TopTabBar (Phase I+J),
+UpgradeDialog.
 
 No active track. Next candidates:
 - BookmarkItem (`1708:30231~30233`) — lightweight layout case, low priority
