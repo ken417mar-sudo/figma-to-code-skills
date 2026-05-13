@@ -106,6 +106,7 @@ Key node IDs:
 | SearchBar | closed (2026-05-09) | agentic-browser-ui PR #16 merged; micro-drift follow-up in PR #18; source `2080:8086`; 240×32, rounded-12, 1.5px border, search+clear icons 18×18, icon-to-text gap 6px, input-to-clear gap 8px, text black |
 | ModelCard | closed (2026-05-11) | PR #17 merged; icon-size follow-up renders DeepSeek in 20×20 slot with 18×13.25 visible glyph; DOM evidence all cards 284×132, loading track 244×6/fill 73×6; excludes 写作助手, AI 搜索, AI Space, local tag |
 | TopTabBar | closed (2026-05-12) | Phase I (PR #20): operation + tab-strip; Phase J (PR #21): global actions fully closed; 12 assets; frame-preserving normalization + currentColor + multi-layer gradient lessons |
+| UpgradeDialog | closed (2026-05-13) | PR #22 merged; downloading state 310×216; outline not border; pin height; shrink-0 on progress bar |
 
 ## Phase Status
 
@@ -137,11 +138,14 @@ Key node IDs:
 - Phase J — TopTabBar global actions: **closed** (2026-05-12).
   - agentic-browser-ui PR #21 merged. TopTabBar fully closed.
   - New lesson: multi-layer gradient icon composition into single SVG canvas.
+- Phase K — UpgradeDialog downloading state: **closed** (2026-05-13).
+  - agentic-browser-ui PR #22 merged.
+  - New lessons: outline not border for exact-size surfaces; pin root height; shrink-0 on progress bar in fixed-height flex column.
 
 ## Next Candidates
 
 No active track.
 
-After Phase J candidates:
-- BookmarkButton bookmarked state (`1708:30231~30233`) — needs Figma source confirmation first
-- Upgrade dialog progress state (`2080:7977`) — download progress bar state
+After Phase K candidates:
+- BookmarkItem (`1708:30231~30233`) — lightweight layout case, low priority
+- Expand UpgradeDialog to default/complete states when needed
