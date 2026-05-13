@@ -23,7 +23,7 @@ Phase F closed (2026-05-09) — Sidebar icon-only/collapsed-like source confirma
 Phase G closed (2026-05-09) — SearchBar component (Figma `2080:8086`, 240×32). agentic-browser-ui PR #16 + figma-to-code-skills PR #48 merged.
 Phase H closed (2026-05-11) — ModelCard first slice from Card board `2080:40041`: 模型广场 Normal/Hover/loading/Selected (`2080:40042`, `2080:40051`, `2080:40064`, `2080:40079`). agentic-browser-ui PR #17 + figma-to-code-skills PR #50 merged.
 Phase I closed (2026-05-12) — TopTabBar operation + tab-strip first slice (Figma `2080:8062`, 1166×52). agentic-browser-ui PR #20 merged; figma-to-code-skills PR #54 merged. Global actions deferred.
-Phase J closed (2026-05-12) — TopTabBar global actions (功能组 + window controls). agentic-browser-ui PR #21 merged; figma-to-code-skills PR #56 pending. TopTabBar fully closed.
+Phase J closed (2026-05-12) — TopTabBar global actions (功能组 + window controls). agentic-browser-ui PR #21 merged; figma-to-code-skills PR #56 merged. TopTabBar fully closed.
 
 ## Active Repos
 
@@ -147,7 +147,7 @@ Durable lessons: frame-preserving normalization, currentColor needs explicit col
 
 ## Open PRs
 
-figma-to-code-skills PR (this PR) — TopTabBar Phase J docs (pending merge).
+No open PRs in either repo.
 
 ## Next Recommended Action
 

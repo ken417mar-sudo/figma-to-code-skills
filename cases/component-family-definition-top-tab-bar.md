@@ -29,7 +29,7 @@ This is a distinct component family from:
 
 - File: `agentic-browser-ui/src/components/TopTabBar.tsx`
 - Verify surface: `agentic-browser-ui/src/App.tsx` TopTabBar verify cards (full bar + showGlobalActions=false)
-- PRs: agentic-browser-ui #20 (Phase I) + #21 (Phase J); figma-to-code-skills #54 + this PR
+- PRs: agentic-browser-ui #20 (Phase I) + #21 (Phase J); figma-to-code-skills #54 + #56
 - Exported assets (12 total):
   - `topbar-nav-arrow@1x.svg` — forward arrow (node `2080:3949`); rotated 180° for back
   - `topbar-home@1x.svg` — frame-preserving normalization of node `1020:11765`; 18×18 canvas, Union glyph 12.16×14.33 at translate(2.92, 1.84); `currentColor` fill → `#3f4046`
@@ -85,7 +85,7 @@ This is a distinct component family from:
 |---|---|
 | Figma design context | passed: node `2080:8062` inspected (Phase I + J) |
 | Asset inventory | passed: 12 assets exported/normalized, all recorded in slices-name-map.json |
-| State-geometry scan | passed: inactive divider and hover bg layers are absolute-positioned, non-layout-affecting |
+| State-geometry scan | passed: inactive divider is absolute-positioned, non-layout-affecting; hover backgrounds are background-color-only and do not affect geometry |
 | Build | passed: `npm run build` in agentic-browser-ui |
 | Lint | passed: `npm run lint` |
 | git diff --check | passed |
