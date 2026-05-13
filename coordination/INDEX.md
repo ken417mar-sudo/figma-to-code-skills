@@ -23,6 +23,7 @@ Phase F closed (2026-05-09) — Sidebar icon-only/collapsed-like source confirma
 Phase G closed (2026-05-09) — SearchBar component (Figma `2080:8086`, 240×32). agentic-browser-ui PR #16 + figma-to-code-skills PR #48 merged.
 Phase H closed (2026-05-11) — ModelCard first slice from Card board `2080:40041`: 模型广场 Normal/Hover/loading/Selected (`2080:40042`, `2080:40051`, `2080:40064`, `2080:40079`). agentic-browser-ui PR #17 + figma-to-code-skills PR #50 merged.
 Phase I closed (2026-05-12) — TopTabBar operation + tab-strip first slice (Figma `2080:8062`, 1166×52). agentic-browser-ui PR #20 merged; figma-to-code-skills PR #54 merged. Global actions deferred.
+Phase J closed (2026-05-12) — TopTabBar global actions (功能组 + window controls). agentic-browser-ui PR #21 merged; figma-to-code-skills PR #56 merged. TopTabBar fully closed.
 
 ## Active Repos
 
@@ -138,12 +139,11 @@ Scope intentionally excludes 写作助手, AI 搜索, AI Space, and optional loc
 
 ### TopTabBar — closed (2026-05-12)
 Source node: `2080:8062` (Tab bar, 1166×52).
-First slice: operation area (back/forward 32×32) + 3-tab strip (主页/设置/小程序名称). Home-selected state confirmed.
-Implementation merged via agentic-browser-ui PR #20.
-Case card and coordination merged via figma-to-code-skills PR #54.
-Durable lessons: frame-preserving normalization for icon export; currentColor requires explicit text-* class; shared arrow SVG with CSS rotation.
-DOM evidence: bar 1166×52; nav buttons 32×32; nav svg 11.5×11.5; tabs 200×32; active home bg white; home slot 18×18 with visible path 12.16×14.33 at #3F4046; settings svg 18×18 stroke #18181B; apps img 18×18 natural 36×36; inactive divider 1×17 top 7.5.
-Scope intentionally excludes right-side global actions (功能组, window controls).
+Phase I (PR #20/#54): operation + tab-strip, home-selected state.
+Phase J (PR #21/PR #56): global actions — 功能组 (新版本 pill, 签到 pill, user chip) + window controls (pin/min/max/close 32×32).
+12 assets total, all recorded in slices-name-map.json.
+DOM evidence: bar 1166×52; global group 388×32 pl-64 gap-4; feature group 180×28 gap-8; pills h-28; window buttons 32×32; all icon sizes match source.
+Durable lessons: frame-preserving normalization, currentColor needs explicit color class, shared arrow rotation, multi-layer gradient icon composition.
 
 ## Open PRs
 
@@ -151,10 +151,9 @@ No open PRs in either repo.
 
 ## Next Recommended Action
 
-Phase I closed. TopTabBar operation + tab-strip slice merged. Next candidates:
-- TopTabBar global actions slice (功能组 + window controls) — natural continuation
+Phase J closed. TopTabBar fully closed. Next candidates:
 - BookmarkButton bookmarked state (`1708:30231~30233`) — needs Figma source confirmation first
-- Tab bar (`2080:8062`) right-side expansion
+- Upgrade dialog progress state (`2080:7977`) — download progress bar state
 
 ## Source-of-Truth Notes
 
