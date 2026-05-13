@@ -121,11 +121,23 @@ of duplicating them.
      `new export required`, `no asset needed`, or `approved code-drawn
      primitive`. A design-owned icon cannot be left as an unclassified
      inline SVG.
+   - when exporting icon assets, prefer the icon frame node over the
+     inner path/union when a padded frame exists. If exporting the inner
+     vector directly, record why that node is canonical and verify the
+     visible glyph bounding box matches the Figma inset geometry. When
+     a frame-preserving normalization is needed, create an SVG with the
+     frame's canvas size and translate the inner path to its inset position.
+   - SVG components using `currentColor` require an explicit color applied
+     via CSS (e.g. a `text-*` class in Tailwind, or an inline `color`
+     style). Without it, the color falls back to black regardless of the
+     Figma source. Always set the source color explicitly.
    - state geometry risk has been scanned before implementation: if any
      state uses `border`, `border-*`, or another layout-affecting stroke,
      either all states reserve the same stroke space or the plan uses
      `outline`, `inset box-shadow`, or pinned dimensions. Do not defer
-     known 0.5px state-border drift to visual review.
+     known 0.5px state-border drift to visual review. For components with
+     a fixed Figma frame size, prefer `outline` over `border` to preserve
+     exact root dimensions and inner content width.
    - verification surface is not only known, but scoped to cover every
      axis the team intends to claim as verified; if coverage is partial,
      mark the case implementation-ready only, not verification-ready

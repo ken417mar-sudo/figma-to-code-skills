@@ -87,6 +87,21 @@ Key node IDs:
   when they add a new axis, optional control, design-owned asset, or
   verification surface. Treat them as small follow-up cases, not free
   patches on a closed component.
+- **Frame-preserving icon export**: prefer the icon frame node when a
+  padded frame exists. If exporting the inner vector directly, record
+  why it is canonical and verify the visible glyph bounding box matches
+  the Figma inset geometry. Normalize: SVG with frame canvas size, inner
+  path translated to inset position.
+- **currentColor requires explicit color**: SVG components using
+  currentColor render black without an explicit CSS color (e.g. a
+  `text-*` class in Tailwind, or an inline `color` style). Always set
+  the source color explicitly on the icon component.
+- **Outline not border for exact-size surfaces**: `border` shifts root
+  height and inner content width under border-box sizing. Use `outline`
+  or `inset box-shadow` for components with a fixed Figma frame size.
+- **Progress bar in fixed-height flex column**: add `shrink-0` to the
+  progress bar and `h-[N] shrink-0` to the label row to prevent flex
+  compression from collapsing the bar.
 
 ## Component Status
 

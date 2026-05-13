@@ -58,14 +58,19 @@ This repo is built collaboratively by the user, Claude Code, and Codex.
 
 ## Current Focus
 
-Phase A closed (2026-04-23). All PRs merged — no open PRs in either repo.
-- figma-to-code-skills main: `0227d31`
-- agentic-browser-ui main: `a70eacc`
+Phase K closed (2026-05-13). All PRs merged — no open PRs in either repo.
 
-Phase B next — Existing-rule capture validation:
+Lettered phases A–K complete (earlier numbered phases 3–6 also closed; see
+[coordination/INDEX.md](coordination/INDEX.md) for full history). Components
+closed: Tab, InputBox, Toolbar, Dialog, AIToolsRow, Sidebar,
+BrowserResultPage/AssistantSidebarPanel, WorkspacePage, TaskResultPage,
+FileListCard, NavigationMenu, SearchBar, ModelCard, TopTabBar (Phase I+J),
+UpgradeDialog.
 
-1. open branch `phase-b/existing-rule-capture-validation`, update `inventory/existing-rule-capture-agentic-browser-ui.md` with concrete rules (8 dimensions, each with code evidence)
-2. run one small downstream task that must cite the captured rules — exit when at least one decision is demonstrably rule-driven
-3. promote learnings back into skills (figma-capture-design-system / figma-execution-shell / figma-verify-implementation)
-4. validate provisional-to-formal promotion path (collapsed launcher `1708:30243`) when ready
-5. validate sketch / low-fidelity gap-filling or platform breadth only when a real project need appears
+No active track. Next candidates:
+- BookmarkItem (`1708:30231~30233`) — lightweight layout case, low priority
+- UpgradeDialog default/complete states
+
+See [coordination/INDEX.md](coordination/INDEX.md) for full phase history
+and [coordination/WORKING-MEMORY.md](coordination/WORKING-MEMORY.md) for
+compact current state.
