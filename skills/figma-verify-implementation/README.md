@@ -288,6 +288,29 @@ Do not ask when:
   before adding responsive test cases. Never set the container narrower
   than the component's natural expanded width — doing so compresses flex
   children and makes the verify surface misleading.
+- **Frame-preserving icon normalization**: when verifying icon sizing,
+  check that the exported SVG was taken from the icon frame node, not
+  the inner path/union. An inner-path export gives a viewBox matching
+  the path bounds; rendering it at the frame size stretches the visible
+  glyph to fill the slot. Verify: icon slot size matches the frame node
+  dimensions, and the visible glyph bounding box matches the inset
+  geometry inside that frame.
+- **currentColor requires an explicit color class**: SVG components
+  using `currentColor` inherit from CSS `color`. If no `text-*` class
+  is set on the component, the color falls back to black regardless of
+  the Figma source color. Always verify that the rendered fill/stroke
+  color matches the Figma source, not just that the icon renders.
+- **Outline not border for exact-size surfaces**: `border` participates
+  in layout under `border-box` sizing and shifts both root height and
+  inner content width. For components with a fixed Figma frame size,
+  use `outline` or `inset box-shadow` instead. Verify: root DOM size
+  matches Figma frame exactly; inner content width equals frame width
+  minus padding (not minus padding minus border).
+- **Progress bar compression in fixed-height flex columns**: in a
+  fixed-height flex column, a progress bar without `shrink-0` will be
+  compressed by sibling elements. Verify: progress bar height matches
+  Figma spec (e.g. 8px); label row has a fixed height and `shrink-0`
+  so it does not grow and squeeze the bar.
 
 ## Verification
 
