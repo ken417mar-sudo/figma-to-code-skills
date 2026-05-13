@@ -24,7 +24,7 @@ Phase G closed (2026-05-09) — SearchBar component (Figma `2080:8086`, 240×32)
 Phase H closed (2026-05-11) — ModelCard first slice from Card board `2080:40041`: 模型广场 Normal/Hover/loading/Selected (`2080:40042`, `2080:40051`, `2080:40064`, `2080:40079`). agentic-browser-ui PR #17 + figma-to-code-skills PR #50 merged.
 Phase I closed (2026-05-12) — TopTabBar operation + tab-strip first slice (Figma `2080:8062`, 1166×52). agentic-browser-ui PR #20 merged; figma-to-code-skills PR #54 merged. Global actions deferred.
 Phase J closed (2026-05-12) — TopTabBar global actions (功能组 + window controls). agentic-browser-ui PR #21 merged; figma-to-code-skills PR #56 merged. TopTabBar fully closed.
-Phase K closed (2026-05-13) — UpgradeDialog downloading state (Figma `2080:7977`, 310×216). agentic-browser-ui PR #22 merged; figma-to-code-skills (this PR) pending.
+Phase K closed (2026-05-13) — UpgradeDialog downloading state (Figma `2080:7977`, 310×216). agentic-browser-ui PR #22 merged; figma-to-code-skills PR #57 merged.
 
 ## Active Repos
 
@@ -150,14 +150,14 @@ Durable lessons: frame-preserving normalization, currentColor needs explicit col
 Source node: `2080:7977` (升级弹窗, 310×216).
 Downloading state: 75% progress, logo slot, progress bar track/fill.
 Implementation merged via agentic-browser-ui PR #22.
-Case card and coordination pending via figma-to-code-skills (this PR).
+Case card and coordination merged via figma-to-code-skills PR #57.
 Durable lesson: use outline instead of border for exact-size dialog surfaces; pin root height explicitly; add shrink-0 to progress bar in fixed-height flex column.
 DOM evidence: root 310×216; content 262×192; logo 96×96; track 262×8 bg #d7d7db; fill 75%=196.5×8 bg #18181b.
 Deferred: pre-download default state, download-complete state.
 
 ## Open PRs
 
-figma-to-code-skills (this PR) — UpgradeDialog Phase K docs (pending merge).
+No open PRs in either repo.
 
 ## Next Recommended Action
 

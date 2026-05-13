@@ -22,7 +22,7 @@ Deferred states: pre-download default and download-complete states (not present 
 
 - File: `agentic-browser-ui/src/components/UpgradeDialog.tsx`
 - Verify surface: `agentic-browser-ui/src/App.tsx` UpgradeDialog verify cards (progress=75/30/100)
-- PRs: agentic-browser-ui #22, figma-to-code-skills (this PR)
+- PRs: agentic-browser-ui #22, figma-to-code-skills #57
 - Exported assets: none — progress bar uses CSS width, logo is a placeholder slot
 
 ## Component Axes
