@@ -87,6 +87,15 @@ Key node IDs:
   when they add a new axis, optional control, design-owned asset, or
   verification surface. Treat them as small follow-up cases, not free
   patches on a closed component.
+- New standalone product restoration work should not live under
+  `figma-to-code-skills`. Create a product repo, copy
+  `templates/product-restoration/`, and complete Product Restoration
+  Preflight before UI code: Figma board/state map, layout constants,
+  token snapshot, asset manifest, and interaction contract.
+- Product restoration must proceed board by board. Each implemented state
+  needs a Figma node or approved provisional source; dev-server preview
+  is not sufficient handoff evidence without build plus preview/package
+  asset verification.
 - **Frame-preserving icon export**: prefer the icon frame node when a
   padded frame exists. If exporting the inner vector directly, record
   why it is canonical and verify the visible glyph bounding box matches

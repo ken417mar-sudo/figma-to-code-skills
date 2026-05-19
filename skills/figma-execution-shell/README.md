@@ -17,6 +17,11 @@ of duplicating them.
   readiness gates and closeout shape.
 - The case should be run through existing Figma read, write,
   implementation, export, and verification skills in a fixed order.
+- A new standalone product repo wants to reuse this workflow for product
+  restoration. In that case, first apply the product bootstrap/preflight
+  package from `inventory/product-restoration-preflight.md` and
+  `templates/product-restoration/`, then run board-level implementation
+  inside the product repo.
 
 ## When not to use
 
@@ -39,6 +44,14 @@ of duplicating them.
   target.
 - Codebase target repo and any existing implementation surface if one
   exists.
+- For standalone product restoration, the target product repo's local
+  preflight artifacts:
+  - `docs/FIGMA_BOARD_STATE_MAP.md`
+  - `docs/LAYOUT_CONSTANTS.md`
+  - `docs/TOKEN_SNAPSHOT.md`
+  - `docs/ASSET_MANIFEST.md`
+  - `docs/INTERACTION_CONTRACT.md`
+  - `docs/PROGRESS.md`
 
 ## Inputs
 
@@ -74,6 +87,11 @@ of duplicating them.
      claiming the case.
    - Confirm whether the case is new, already in progress, or being
      resumed.
+   - If the work is a new product restoration, confirm the product lives
+     in its own repo. Do not place active product implementation under
+     `figma-to-code-skills` as an untracked subdirectory. Copy/adapt
+     `templates/product-restoration/` into the product repo and complete
+     the product preflight artifacts before coding.
 2. Resolve the source of truth in this order:
    - confirmed project spec or confirmed workflow rules
    - approved formal Figma component board
@@ -85,6 +103,14 @@ of duplicating them.
      rather than documented, use the **code-backed capture mode** of
      `figma-capture-design-system`
 3. Run readiness gates for the case:
+   - for product restoration, the five product preflight artifacts exist
+     before UI code starts: Figma board/state map, layout constants,
+     token snapshot, asset manifest, and interaction contract. If any is
+     missing, stop and create it first in the product repo.
+   - for product restoration, implementation proceeds board by board from
+     the board/state map. Do not start by inventing a generally
+     reasonable product UI; each state needs a Figma node or approved
+     provisional source.
    - tech-stack profile is complete enough to shape implementation
    - component target and variant axes are identified
    - for a new component or new component-family slice, a `Component
@@ -150,6 +176,9 @@ of duplicating them.
      plan to visually compare the rendered implementation against the
      target node; axis coverage alone is not enough to claim
      verification-complete
+   - for product restoration handoff, a dev server is not enough. There
+     must be a build plus production preview/package asset-path check
+     before claiming production-preview-verified.
 4. Route the case to the minimum required downstream skills:
    - use `figma` for read-only design inspection
    - use `figma-ai-implementation-cleanup` if the design file is too

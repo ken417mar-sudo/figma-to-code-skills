@@ -169,6 +169,12 @@ Phase K closed. Next candidates:
 
 - Skill rules live in `skills/*/README.md` — authoritative for agent behavior
 - Workflow rules live in `inventory/workflow-outline.md`
+- Product restoration bootstrap/preflight lives in
+  `inventory/product-restoration-preflight.md` and
+  `templates/product-restoration/`
+- New product implementation repos should copy/adapt the product
+  restoration templates and keep product-specific state outside
+  `figma-to-code-skills`
 - CSS tokens live in `agentic-browser-ui/src/index.css`
 - Exported assets live in `agentic-browser-ui/src/assets/figma/`
 - FIGMA_TOKEN is available in env (set in `~/.zshrc`) — export workflow is unblocked
