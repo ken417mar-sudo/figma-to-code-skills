@@ -104,6 +104,27 @@ Before handoff, run:
 - a production preview or equivalent packaged artifact check;
 - browser verification against the implemented state;
 - asset path verification in the production build.
+- a handoff cleanup pass that removes temporary demo/test/verification
+  UI from the production-facing product.
+
+## Handoff Cleanup Gate
+
+Product restoration often needs temporary routes, verify cards, mock
+fixtures, or debug controls while the implementation is being built.
+Those are allowed during restoration, but they must not remain in the
+final product surface or production package unless explicitly approved.
+
+Before handoff:
+
+- remove temporary demo pages, verify cards, screenshot-only boards,
+  mock data panels, debug labels, and test controls from the
+  user-facing product flow;
+- keep browser/DOM/build evidence in docs or PR notes instead of
+  rendering it in the product UI;
+- confirm the production preview/package starts on the intended product
+  surface, not a validation playground;
+- do not delete real automated tests, build scripts, verification
+  evidence, or reusable fixtures unless they are explicitly obsolete.
 
 The handoff should state whether the result is:
 
@@ -111,6 +132,7 @@ The handoff should state whether the result is:
 - implementation-ready;
 - board-verified;
 - production-preview-verified;
+- handoff-cleaned;
 - still blocked.
 
 ## Template Package

@@ -44,6 +44,12 @@ product worktree.
 - Every implemented state must have browser verification evidence.
 - A dev server preview is not sufficient handoff evidence; run the build
   command and verify the production preview/package path.
+- Before handoff, remove temporary demo/test/verification UI from the
+  production-facing product. Keep evidence in docs or PR notes, not in
+  the final user flow.
+- Do not delete real automated tests, build scripts, verification docs,
+  or reusable fixtures unless the user explicitly confirms they are
+  obsolete.
 
 ## Documentation Rules
 
@@ -64,5 +70,8 @@ Before handoff, run:
 2. `[PREVIEW_COMMAND_OR_PACKAGE_CHECK]`
 3. Browser verification for the current board/state.
 4. Asset path check for production output.
+5. Handoff cleanup check: no temporary demo route, verify card,
+   screenshot-only board, mock panel, debug label, or test control is
+   visible in the production-facing product.
 
 Report what passed, what was not run, and any remaining drift.

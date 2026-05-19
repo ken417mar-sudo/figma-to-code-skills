@@ -22,6 +22,16 @@ Last updated: `[DATE]`
 |---|---|---|---|
 | `[DATE]` | `[STATE]` | `[BUILD/PREVIEW/DOM/SCREENSHOT]` | `[PASS/FAIL]` |
 
+## Handoff Cleanup
+
+| Item | Status | Notes |
+|---|---|---|
+| Temporary demo routes/pages removed | `[ ]` | `[NOTES]` |
+| Verify cards / screenshot-only boards removed from product UI | `[ ]` | `[NOTES]` |
+| Mock panels, debug labels, and test controls hidden from production | `[ ]` | `[NOTES]` |
+| Production preview opens on intended product surface | `[ ]` | `[NOTES]` |
+| Verification evidence preserved in docs/PR notes | `[ ]` | `[NOTES]` |
+
 ## Next Step
 
 1. `[NEXT_ACTION]`

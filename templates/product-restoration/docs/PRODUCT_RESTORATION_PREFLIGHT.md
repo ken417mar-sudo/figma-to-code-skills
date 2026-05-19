@@ -31,6 +31,22 @@ Implementation may start only after:
 - [ ] required assets are classified and exported or scheduled;
 - [ ] interaction rules for the first slice are confirmed;
 - [ ] verification surface is defined.
+- [ ] handoff cleanup rule is defined: temporary demo/test/verification
+      UI must be removed from the production-facing product before
+      closeout.
+
+## Handoff Cleanup Gate
+
+Before final handoff:
+
+- [ ] temporary demo pages/routes are removed or excluded from production
+- [ ] verify cards, screenshot-only boards, and mock panels are removed
+      from the user-facing flow
+- [ ] debug labels, test controls, and fixture selectors are not visible
+      in the production preview/package
+- [ ] browser/DOM/build evidence is recorded in docs or PR notes
+- [ ] automated tests, build scripts, verification docs, and reusable
+      fixtures are preserved unless explicitly obsolete
 
 ## Blockers
 
@@ -46,4 +62,5 @@ Current status:
 - `[ ]` implementation-ready
 - `[ ]` board-verified
 - `[ ]` production-preview-verified
+- `[ ]` handoff-cleaned
 - `[ ]` blocked

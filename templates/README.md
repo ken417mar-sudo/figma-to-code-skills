@@ -8,5 +8,5 @@ targets.
 
 - `product-restoration/` — standalone product repo bootstrap for
   Figma-driven product restoration. Use it when a new product needs to
-  carry the preflight gates, progress log, and agent instructions proven
-  in this repo.
+  carry the preflight gates, progress log, PR checklist, and agent
+  instructions proven in this repo.

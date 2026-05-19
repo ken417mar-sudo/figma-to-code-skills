@@ -179,6 +179,11 @@ of duplicating them.
    - for product restoration handoff, a dev server is not enough. There
      must be a build plus production preview/package asset-path check
      before claiming production-preview-verified.
+   - for product restoration handoff, temporary demo/test/verification
+     UI must be removed from the production-facing product before
+     closeout. Preserve verification evidence in docs or PR notes; do
+     not delete real automated tests or build scripts unless the user
+     explicitly confirms they are obsolete.
 4. Route the case to the minimum required downstream skills:
    - use `figma` for read-only design inspection
    - use `figma-ai-implementation-cleanup` if the design file is too

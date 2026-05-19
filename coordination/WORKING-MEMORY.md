@@ -96,6 +96,10 @@ Key node IDs:
   needs a Figma node or approved provisional source; dev-server preview
   is not sufficient handoff evidence without build plus preview/package
   asset verification.
+- Product restoration closeout must include a handoff cleanup pass:
+  remove temporary demo/test/verification UI from the production-facing
+  product, while preserving automated tests, build scripts, and evidence
+  docs unless explicitly obsolete.
 - **Frame-preserving icon export**: prefer the icon frame node when a
   padded frame exists. If exporting the inner vector directly, record
   why it is canonical and verify the visible glyph bounding box matches
