@@ -29,7 +29,7 @@ Width is content-driven (text length). Height is fixed at 24px.
 - File: `agentic-browser-ui/src/components/BookmarkItem.tsx`
 - Used in: `agentic-browser-ui/src/components/Toolbar.tsx` (right actions, Collection chip)
 - PRs: agentic-browser-ui #24, figma-to-code-skills #61
-- Exported assets: none new — reuses `toolbar-bookmark-icon@1x.svg` (star icon, `#FFCA28`)
+- Exported assets (2): `bookmark-airbnb-app@1x.png` (source: `I1708:30231;490:39783`), `bookmark-disney-app@1x.png` (source: `I1708:30232;490:39783`)
 
 ## Component Axes
 
@@ -62,7 +62,8 @@ Width is content-driven (text length). Height is fixed at 24px.
 | Lint | passed: `npm run lint` |
 | git diff --check | passed |
 | DOM evidence (Collection) | passed: 83.71×24, gap 4px, px 4px, icon 16×16, text 12px #666. Width ~1px short of Figma 85px — font rendering tolerance, accepted. |
-| DOM evidence (app favicon variants) | not verified: verify cards use Wikimedia URLs blocked by ORB (net::ERR_BLOCKED_BY_ORB, naturalWidth=0). App favicon rendering requires local/source assets. Scoped out — app favicon props are structurally correct but unverified against real assets. |
+| DOM evidence (app favicon variants) | passed: Airbnb and Disney+ render with local PNG assets (200 OK in production preview). App icon slot: 16×16, overflow-clip, bg color + border radius applied. No failed image requests. |
+| Asset path verification | passed: both PNGs resolve 200 in `npm run preview` production build. |
 
 ## Durable Lessons
 
