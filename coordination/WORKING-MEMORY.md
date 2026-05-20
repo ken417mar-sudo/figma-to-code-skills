@@ -115,6 +115,9 @@ Key node IDs:
 - **Progress bar in fixed-height flex column**: add `shrink-0` to the
   progress bar and `h-[N] shrink-0` to the label row to prevent flex
   compression from collapsing the bar.
+- **Instance-context vs canonical component-set source**: a scaled instance in a board may differ from the formal component set in a spec page (different geometry, radius, border style). Always preflight the canonical component set before implementing. If only an instance is available, document it as instance-derived and flag for correction.
+- **Hidden Figma variant handling**: hidden variants (`hidden="true"`) return blank renders from `get_design_context` and `get_screenshot`. Infer structure from sibling variants and metadata; document as inferred in the case card.
+- **Empty SVG export from ellipse nodes**: Figma ellipse nodes can export as empty SVG groups with no path/circle element. Detect by inspecting the exported SVG. Fix by pixel-sampling the rendered screenshot to confirm fill color, then hand-authoring the circle element with correct viewBox.
 
 ## Component Status
 
@@ -134,7 +137,7 @@ Key node IDs:
 | SearchBar | closed (2026-05-09) | agentic-browser-ui PR #16 merged; micro-drift follow-up in PR #18; source `2080:8086`; 240×32, rounded-12, 1.5px border, search+clear icons 18×18, icon-to-text gap 6px, input-to-clear gap 8px, text black |
 | ModelCard | closed (2026-05-11) | PR #17 merged; icon-size follow-up renders DeepSeek in 20×20 slot with 18×13.25 visible glyph; DOM evidence all cards 284×132, loading track 244×6/fill 73×6; excludes 写作助手, AI 搜索, AI Space, local tag |
 | TopTabBar | closed (2026-05-12) | Phase I (PR #20): operation + tab-strip; Phase J (PR #21): global actions fully closed; 12 assets; frame-preserving normalization + currentColor + multi-layer gradient lessons |
-| UpgradeDialog | closed (2026-05-13) | PR #22 merged; downloading state 310×216; outline not border; pin height; shrink-0 on progress bar |
+| UpgradeDialog | closed (2026-05-20) | PRs #22/#23 merged; Phase K: downloading state 310×216 (instance-derived); Phase L: corrected to formal component set 2080:40359, all 4 variants 320×222/356, rounded-12, border+shadow; 6 assets; source promotion + hidden variant + empty SVG export lessons |
 
 ## Phase Status
 
@@ -166,14 +169,17 @@ Key node IDs:
 - Phase J — TopTabBar global actions: **closed** (2026-05-12).
   - agentic-browser-ui PR #21 merged. TopTabBar fully closed.
   - New lesson: multi-layer gradient icon composition into single SVG canvas.
-- Phase K — UpgradeDialog downloading state: **closed** (2026-05-13).
-  - agentic-browser-ui PR #22 merged.
-  - New lessons: outline not border for exact-size surfaces; pin root height; shrink-0 on progress bar in fixed-height flex column.
+- Phase L — UpgradeDialog formal source correction: **closed** (2026-05-20).
+  - agentic-browser-ui PR #23 merged. figma-to-code-skills PR #60 pending.
+  - Corrected Phase K geometry (310×216 instance → 320×222/356 formal component set 2080:40359).
+  - All 4 variants implemented: 升级前/升级中/升级成功(inferred)/升级失败.
+  - 6 assets exported. Codex P2 fix: upgrade-fail-circle empty SVG restored.
+  - New lessons: instance-context vs canonical source; hidden variant handling; empty SVG export from ellipse nodes.
 
 ## Next Candidates
 
 No active track.
 
-After Phase K candidates:
+Recommended next:
+- browser-ai-tools-product Product Restoration closeout: write gotchas back into templates/product-restoration/
 - BookmarkItem (`1708:30231~30233`) — lightweight layout case, low priority
-- Expand UpgradeDialog to default/complete states when needed
