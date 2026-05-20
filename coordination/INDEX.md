@@ -164,8 +164,7 @@ Durable lessons: inline extraction clarifies component boundary; content-driven 
 
 ## Open PRs
 
-- agentic-browser-ui PR #24: BookmarkItem component (open, awaiting merge)
-- figma-to-code-skills PR #61: Phase M closeout (open, awaiting merge)
+No open PRs in either repo.
 
 ## Next Recommended Action
 

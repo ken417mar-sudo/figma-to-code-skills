@@ -61,6 +61,8 @@ Width is content-driven (text length). Height is fixed at 24px.
 | Build | passed: `npm run build` |
 | Lint | passed: `npm run lint` |
 | git diff --check | passed |
+| DOM evidence (Collection) | passed: 83.71×24, gap 4px, px 4px, icon 16×16, text 12px #666. Width ~1px short of Figma 85px — font rendering tolerance, accepted. |
+| DOM evidence (app favicon variants) | not verified: verify cards use Wikimedia URLs blocked by ORB (net::ERR_BLOCKED_BY_ORB, naturalWidth=0). App favicon rendering requires local/source assets. Scoped out — app favicon props are structurally correct but unverified against real assets. |
 
 ## Durable Lessons
 
