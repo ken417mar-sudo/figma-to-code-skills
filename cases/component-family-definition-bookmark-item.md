@@ -28,7 +28,7 @@ Width is content-driven (text length). Height is fixed at 24px.
 
 - File: `agentic-browser-ui/src/components/BookmarkItem.tsx`
 - Used in: `agentic-browser-ui/src/components/Toolbar.tsx` (right actions, Collection chip)
-- PRs: agentic-browser-ui #24, figma-to-code-skills #61
+- PRs: agentic-browser-ui #24 (component), #25 (ORB fix), #26 (app favicon assets); figma-to-code-skills #61 (closeout), #62 (INDEX sync + DOM evidence), #63 (complete verification)
 - Exported assets (2): `bookmark-airbnb-app@1x.png` (source: `I1708:30231;490:39783`), `bookmark-disney-app@1x.png` (source: `I1708:30232;490:39783`)
 
 ## Component Axes
