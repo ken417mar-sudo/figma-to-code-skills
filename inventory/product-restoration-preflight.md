@@ -140,3 +140,8 @@ The handoff should state whether the result is:
 Copy `templates/product-restoration/` into the product repo at project
 start, then replace the bracketed placeholders with product-specific
 values.
+
+`docs/GOTCHAS.md` is a living file. After each completed product
+restoration loop, write the non-obvious lessons back into the template's
+`GOTCHAS.md` so the next product repo starts with accumulated knowledge.
+The first proof loop is `browser-ai-tools-product` (2026-05-20).

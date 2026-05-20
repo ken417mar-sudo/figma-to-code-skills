@@ -63,18 +63,18 @@ This repo is built collaboratively by the user, Claude Code, and Codex.
 
 ## Current Focus
 
-Phase K closed (2026-05-13). All PRs merged — no open PRs in either repo.
+Phase L closed (2026-05-20). PR #60 open (Phase L closeout + product-restoration gotchas).
 
-Lettered phases A–K complete (earlier numbered phases 3–6 also closed; see
+Lettered phases A–L complete (earlier numbered phases 3–6 also closed; see
 [coordination/INDEX.md](coordination/INDEX.md) for full history). Components
 closed: Tab, InputBox, Toolbar, Dialog, AIToolsRow, Sidebar,
 BrowserResultPage/AssistantSidebarPanel, WorkspacePage, TaskResultPage,
 FileListCard, NavigationMenu, SearchBar, ModelCard, TopTabBar (Phase I+J),
-UpgradeDialog.
+UpgradeDialog (Phase K instance-derived + Phase L formal source correction).
 
 No active track. Next candidates:
 - BookmarkItem (`1708:30231~30233`) — lightweight layout case, low priority
-- UpgradeDialog default/complete states
+- Next product restoration loop (TBD)
 
 See [coordination/INDEX.md](coordination/INDEX.md) for full phase history
 and [coordination/WORKING-MEMORY.md](coordination/WORKING-MEMORY.md) for
