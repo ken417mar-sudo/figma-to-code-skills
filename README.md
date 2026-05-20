@@ -46,13 +46,18 @@ This repo is built collaboratively by the user, Claude Code, and Codex.
   [coordination/WORKING-MEMORY.md](coordination/WORKING-MEMORY.md)
 - Current workflow baseline:
   [inventory/workflow-outline.md](inventory/workflow-outline.md)
+- Product restoration bootstrap/preflight:
+  [inventory/product-restoration-preflight.md](inventory/product-restoration-preflight.md)
 - Skill inventory:
   [skills/README.md](skills/README.md)
+- Copyable templates:
+  [templates/README.md](templates/README.md)
 
 ## Repository Layout
 
 - `skills/`: executable skill prompts used by agents
 - `inventory/`: workflow rules, templates, and stack profiles
+- `templates/`: copyable starter files for product repos and case work
 - `coordination/`: shared status, active case memory, and handoff context
 - `experiments/`: case writeups, provisional findings, and workflow tests
 
