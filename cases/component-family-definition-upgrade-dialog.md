@@ -2,9 +2,9 @@
 
 ## Status
 
-`closed` — all 4 variants implemented from formal component set `2080:40359`. agentic-browser-ui PRs #22, #23 merged.
+`closed` — 3 variants verified + 1 inferred. agentic-browser-ui PRs #22, #23, #27 merged.
 
-**Phase K note:** PR #22 was implemented from a scaled instance `2080:7977` (310×216, rounded-16, outline). Phase L (PR #23) corrected to the formal component set source with proper geometry and all variants.
+**Phase K note:** PR #22 was implemented from a scaled instance `2080:7977` (310×216, rounded-16, outline). Phase L (PR #23) corrected to the formal component set source. PR #27 fixed state-specific radius regression (升级前 rounded-16, others rounded-12).
 
 ## Source
 
@@ -27,7 +27,7 @@ UpgradeDialog covers 4 variants from the formal component set:
 
 - File: `agentic-browser-ui/src/components/UpgradeDialog.tsx`
 - Verify surface: `agentic-browser-ui/src/App.tsx` UpgradeDialog verify cards
-- PRs: agentic-browser-ui #22 (Phase K), #23 (Phase L); figma-to-code-skills #57, #60
+- PRs: agentic-browser-ui #22 (Phase K), #23 (Phase L), #27 (geometry fix); figma-to-code-skills #57, #60, #64
 - Exported assets (6): `upgrade-logo`, `upgrade-version-logo`, `upgrade-version-logo-mask`, `upgrade-fail-circle`, `upgrade-fail-triangle`, `upgrade-fail-exclaim`
 
 ## Component Axes
@@ -45,10 +45,10 @@ UpgradeDialog covers 4 variants from the formal component set:
 | Property | Value |
 |---|---|
 | root | `320 × 356` (升级前) / `320 × 222` (升级中/成功/失败) |
-| border radius | `rounded-[12px]` |
-| border | `border border-[0.5px] border-black/8` |
-| shadow | `shadow-[0_4px_16px_rgba(0,0,0,0.12)]` |
-| padding | `px-[24px] pb-[24px] pt-[20px]` |
+| border radius | `16px` (升级前) / `12px` (升级中/成功/失败) |
+| border | `0.5px solid rgba(0,0,0,0.08)` |
+| shadow | `0px 4px 30px 0px rgba(0,0,0,0.1)` |
+| padding | `px-[24px] pb-[24px]`; `pt-[6px]` for 升级中/成功/失败; 升级前 has no explicit pt (top spacing from user_id row `py-[16px]`) |
 
 ### 升级前 (320×356)
 | Property | Value |
@@ -80,17 +80,21 @@ UpgradeDialog covers 4 variants from the formal component set:
 |---|---|
 | Figma design context | passed: component set `2080:40359` inspected, all 4 variants |
 | Asset inventory | passed: 6 assets exported and recorded in slices-name-map.json |
-| State-geometry scan | passed: Phase K geometry corrected (310→320, 216→222/356, r16→r12, outline→border+shadow) |
+| State-geometry scan | passed: Phase K geometry corrected (310→320, 216→222/356, outline→border+shadow); PR #27 corrected radius to state-specific (升级前 r16, others r12) and added pt-6 for non-升级前 states |
 | Build | passed: `npm run build` |
 | Lint | passed: `npm run lint` |
 | git diff --check | passed |
 | Codex P2 review | passed: upgrade-fail-circle SVG empty group fixed (circle cx=30 cy=30 r=30 fill=#FDE8E8) |
+| DOM evidence (升级前) | bundle: `borderRadius:u?16:12` ✓, `paddingTop:u?0:6` ✓, `shadow 4px 30px` ✓ |
+| DOM evidence (升级中/失败) | bundle: radius 12, pt 6, shadow confirmed |
+| DOM evidence (升级成功) | inferred only — hidden Figma layer, no rendered evidence available |
 
 ## Durable Lessons
 
 - **Outline for exact-size dialog surfaces**: use `outline` instead of `border` when the Figma source specifies an exact frame size. `border` participates in layout under `border-box` sizing and shifts both root height and inner content width. `outline` is non-layout-affecting. *(Phase K lesson — corrected in Phase L to border+shadow per formal source.)*
 - **Pin root height explicitly**: when a dialog has a fixed Figma height, set `height` explicitly on the root rather than relying on auto height.
 - **Progress bar compression**: in a fixed-height flex column, always add `shrink-0` to the progress bar and `h-[N] shrink-0` to the label row to prevent flex compression.
+- **State-specific border radius**: multi-variant dialogs may have different radii per state. Always check each variant's root class in Figma design context — do not assume a single radius applies globally. 升级前 is `rounded-[16px]`; 升级中/成功/失败 are `rounded-[12px]`.
 - **Instance-context vs canonical component-set source**: a scaled instance in a board (e.g. 310×216 in 顶栏) may differ from the formal component set (320×222/356 in 联想规范). Always preflight the canonical component set before implementing. Phase K was derived from an instance; Phase L corrected from the formal source.
 - **Hidden variant handling**: hidden Figma variants (e.g. 升级成功 `2080:40415`) return blank renders from get_design_context and get_screenshot. Infer structure from sibling variants and metadata; document as inferred in case card.
 - **Empty SVG export from ellipse nodes**: Figma ellipse nodes can export as empty SVG groups. Detect by checking for missing path/circle elements. Fix by pixel-sampling the rendered screenshot to confirm fill color, then hand-authoring the circle element with correct viewBox.
