@@ -154,15 +154,24 @@ Durable lessons: frame-preserving normalization, currentColor needs explicit col
 
 Durable lessons: instance-context vs canonical source; hidden variant handling; empty SVG export from ellipse nodes; outline not border for exact-size surfaces; pin root height; shrink-0 on progress bar.
 
+### BookmarkItem — closed (2026-05-20)
+Source nodes: `1708:30231~30233` (书签, Agentic Browser page).
+Bookmark bar chip: 24px height, content-driven width, gap-4, px-4, 16×16 icon, 12px text #666.
+Two icon variants: generic star icon (default) and app favicon (appIconSrc + appIconBg + appIconRadius props).
+Extracted from inline Toolbar implementation; removed unused bookmarked prop.
+agentic-browser-ui PR #24, figma-to-code-skills PR #61.
+Durable lessons: inline extraction clarifies component boundary; content-driven width (no fixed width); two icon slot types in one component via optional props.
+
 ## Open PRs
 
-- figma-to-code-skills PR #60: Phase L closeout + product-restoration GOTCHAS write-back (open, awaiting merge)
+- agentic-browser-ui PR #24: BookmarkItem component (open, awaiting merge)
+- figma-to-code-skills PR #61: Phase M closeout (open, awaiting merge)
 
 ## Next Recommended Action
 
-Phase L closed. Next candidates:
-- BookmarkItem (`1708:30231~30233`) — lightweight layout case, low priority
-- Next product restoration loop (TBD)
+Phase M closed. Next candidates:
+- browser-ai-tools-product board-by-board UI restoration (9 boards, currently only assets exported)
+- Quality gates: smallest executable check scripts
 
 ## Source-of-Truth Notes
 

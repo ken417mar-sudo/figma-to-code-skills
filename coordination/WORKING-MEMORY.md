@@ -138,6 +138,7 @@ Key node IDs:
 | ModelCard | closed (2026-05-11) | PR #17 merged; icon-size follow-up renders DeepSeek in 20×20 slot with 18×13.25 visible glyph; DOM evidence all cards 284×132, loading track 244×6/fill 73×6; excludes 写作助手, AI 搜索, AI Space, local tag |
 | TopTabBar | closed (2026-05-12) | Phase I (PR #20): operation + tab-strip; Phase J (PR #21): global actions fully closed; 12 assets; frame-preserving normalization + currentColor + multi-layer gradient lessons |
 | UpgradeDialog | closed (2026-05-20) | PRs #22/#23 merged; Phase K: downloading state 310×216 (instance-derived); Phase L: corrected to formal component set 2080:40359, all 4 variants 320×222/356, rounded-12, border+shadow; 6 assets; source promotion + hidden variant + empty SVG export lessons |
+| BookmarkItem | closed (2026-05-20) | PR #24 merged; bookmark bar chip 1708:30231~30233; 24px height, content-driven width; generic star icon + app favicon variants; no new assets |
 
 ## Phase Status
 
@@ -175,11 +176,16 @@ Key node IDs:
   - All 4 variants implemented: 升级前/升级中/升级成功(inferred)/升级失败.
   - 6 assets exported. Codex P2 fix: upgrade-fail-circle empty SVG restored.
   - New lessons: instance-context vs canonical source; hidden variant handling; empty SVG export from ellipse nodes.
+- Phase M — BookmarkItem: **closed** (2026-05-20).
+  - agentic-browser-ui PR #24 merged. figma-to-code-skills PR #61 merged.
+  - Extracted inline Toolbar bookmark chip to standalone BookmarkItem component.
+  - Two icon variants: generic star + app favicon with bg/radius props.
+  - Removed unused bookmarked prop from Toolbar and BrowserResultPage.
 
 ## Next Candidates
 
 No active track.
 
-Recommended next:
-- browser-ai-tools-product Product Restoration closeout: write gotchas back into templates/product-restoration/
-- BookmarkItem (`1708:30231~30233`) — lightweight layout case, low priority
+Next candidates:
+- browser-ai-tools-product board-by-board UI restoration (9 boards, currently only assets exported)
+- Quality gates: smallest executable check scripts
