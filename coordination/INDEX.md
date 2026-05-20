@@ -146,24 +146,23 @@ Phase J (PR #21/PR #56): global actions — 功能组 (新版本 pill, 签到 pi
 DOM evidence: bar 1166×52; global group 388×32 pl-64 gap-4; feature group 180×28 gap-8; pills h-28; window buttons 32×32; all icon sizes match source.
 Durable lessons: frame-preserving normalization, currentColor needs explicit color class, shared arrow rotation, multi-layer gradient icon composition.
 
-### UpgradeDialog — closed (2026-05-13)
-Source node: `2080:7977` (升级弹窗, 310×216).
-Downloading state: 75% progress, logo slot, progress bar track/fill.
-Implementation merged via agentic-browser-ui PR #22.
-Case card and coordination merged via figma-to-code-skills PR #57.
-Durable lesson: use outline instead of border for exact-size dialog surfaces; pin root height explicitly; add shrink-0 to progress bar in fixed-height flex column.
-DOM evidence: root 310×216; content 262×192; logo 96×96; track 262×8 bg #d7d7db; fill 75%=196.5×8 bg #18181b.
-Deferred: pre-download default state, download-complete state.
+### UpgradeDialog — closed (2026-05-20)
+
+**Phase K** (2026-05-13): instance-derived from `2080:7977` (310×216, rounded-16, outline). Downloading state only. agentic-browser-ui PR #22, figma-to-code-skills PR #57.
+
+**Phase L** (2026-05-20): corrected to formal component set `2080:40359` (联想规范 page). All 4 variants: 升级前 (320×356), 升级中 (320×222), 升级成功 (320×222, inferred), 升级失败 (320×222). 6 assets. Codex P2 fix: upgrade-fail-circle empty SVG restored. agentic-browser-ui PR #23, figma-to-code-skills PR #60.
+
+Durable lessons: instance-context vs canonical source; hidden variant handling; empty SVG export from ellipse nodes; outline not border for exact-size surfaces; pin root height; shrink-0 on progress bar.
 
 ## Open PRs
 
-No open PRs in either repo.
+- figma-to-code-skills PR #60: Phase L closeout + product-restoration GOTCHAS write-back (open, awaiting merge)
 
 ## Next Recommended Action
 
-Phase K closed. Next candidates:
+Phase L closed. Next candidates:
 - BookmarkItem (`1708:30231~30233`) — lightweight layout case, low priority
-- Expand UpgradeDialog to default/complete states when needed
+- Next product restoration loop (TBD)
 
 ## Source-of-Truth Notes
 
