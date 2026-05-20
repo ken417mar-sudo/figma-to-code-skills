@@ -26,6 +26,7 @@ product worktree.
    - `docs/ASSET_MANIFEST.md`
    - `docs/INTERACTION_CONTRACT.md`
    - `docs/PROGRESS.md`
+   - `docs/GOTCHAS.md` (if present — lessons from prior loops)
 3. If the relevant board or interaction is not documented, update the
    preflight docs before coding.
 4. If a state cannot point to a Figma node or approved provisional card,
