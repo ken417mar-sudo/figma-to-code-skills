@@ -62,7 +62,7 @@ UpgradeDialog covers 4 variants from the formal component set:
 | Property | Value |
 |---|---|
 | logo slot | `96 × 96`, centered |
-| progress bar track | `272 × 8`, `rounded-[24px]`, `#d7d7db` |
+| progress bar track | `271 × 8` (browser-measured; Figma spec 272, 1px tolerance under 0.5px border), `rounded-[24px]`, `#d7d7db` |
 | progress bar fill | CSS `width: {progress}%`, `#18181b`, `rounded-[24px]`, `shrink-0` |
 
 ### 升级失败 (320×222)
@@ -78,16 +78,17 @@ UpgradeDialog covers 4 variants from the formal component set:
 
 | Check | Status |
 |---|---|
-| Figma design context | passed: component set `2080:40359` inspected, all 4 variants |
+| Figma design context | passed: component set `2080:40359` inspected; 升级前/升级中/升级失败 visible; 升级成功 hidden/inferred |
 | Asset inventory | passed: 6 assets exported and recorded in slices-name-map.json |
 | State-geometry scan | passed: Phase K geometry corrected (310→320, 216→222/356, outline→border+shadow); PR #27 corrected radius to state-specific (升级前 r16, others r12) and added pt-6 for non-升级前 states |
 | Build | passed: `npm run build` |
 | Lint | passed: `npm run lint` |
 | git diff --check | passed |
 | Codex P2 review | passed: upgrade-fail-circle SVG empty group fixed (circle cx=30 cy=30 r=30 fill=#FDE8E8) |
-| DOM evidence (升级前) | bundle: `borderRadius:u?16:12` ✓, `paddingTop:u?0:6` ✓, `shadow 4px 30px` ✓ |
-| DOM evidence (升级中/失败) | bundle: radius 12, pt 6, shadow confirmed |
-| DOM evidence (升级成功) | inferred only — hidden Figma layer, no rendered evidence available |
+| DOM evidence (升级前) | bundle: `borderRadius:u?16:12` ✓, `paddingTop:u?0:6` ✓, `shadow 4px 30px` ✓; logo slot 40×40, inner glyph ~33.95×34 (7.5%/7.57% inset) |
+| DOM evidence (升级中) | logo slot 96×96, inner glyph ~81.47×81.61; progress track 271×8 at y≈189.5; button not present in this state |
+| DOM evidence (升级失败) | content flex-1 + button shrink-0 sibling; warning outer 60×60 at y≈38; triangle frame ~49×42 (Figma inset 9.43%/3.77%/11.32%/3.77%); button y≈165.5 h=32, bottom gap≈24.5px |
+| DOM evidence (升级成功) | inferred only — hidden Figma layer; button structure mirrors 升级失败 (content flex-1 + button shrink-0) |
 
 ## Durable Lessons
 
