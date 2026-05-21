@@ -2,9 +2,9 @@
 
 ## Status
 
-`closed` — 3 variants verified + 1 inferred. agentic-browser-ui PRs #22, #23, #27 merged.
+`closed` — 3 variants verified + 1 inferred. agentic-browser-ui PRs #22, #23 merged; #27 (geometry/layout/framing fix) pending merge.
 
-**Phase K note:** PR #22 was implemented from a scaled instance `2080:7977` (310×216, rounded-16, outline). Phase L (PR #23) corrected to the formal component set source. PR #27 fixed state-specific radius regression (升级前 rounded-16, others rounded-12).
+**Phase K note:** PR #22 was implemented from a scaled instance `2080:7977` (310×216, rounded-16, outline). Phase L (PR #23) corrected to the formal component set source. PR #27 fixed state-specific radius regression (升级前 rounded-16, others rounded-12), added pt-6 for non-升级前 states, corrected success/failure button structure (content flex-1 + button shrink-0 sibling), and fixed logo/triangle asset framing (Figma inset wrappers).
 
 ## Source
 
@@ -27,7 +27,7 @@ UpgradeDialog covers 4 variants from the formal component set:
 
 - File: `agentic-browser-ui/src/components/UpgradeDialog.tsx`
 - Verify surface: `agentic-browser-ui/src/App.tsx` UpgradeDialog verify cards
-- PRs: agentic-browser-ui #22 (Phase K), #23 (Phase L), #27 (geometry fix); figma-to-code-skills #57, #60, #64
+- PRs: agentic-browser-ui #22 (Phase K), #23 (Phase L), #27 (geometry/layout/framing fix); figma-to-code-skills #57, #60, #64
 - Exported assets (6): `upgrade-logo`, `upgrade-version-logo`, `upgrade-version-logo-mask`, `upgrade-fail-circle`, `upgrade-fail-triangle`, `upgrade-fail-exclaim`
 
 ## Component Axes
@@ -70,7 +70,7 @@ UpgradeDialog covers 4 variants from the formal component set:
 |---|---|
 | warning icon slot | `60 × 60`, composite of 3 SVG layers |
 | circle background | `upgrade-fail-circle`, fill `#FDE8E8`, viewBox `0 0 60 60` |
-| triangle | `upgrade-fail-triangle`, `53 × 53` slot at `left:3 top:4`, fill `#EF4444` |
+| triangle | `upgrade-fail-triangle`, warning slot `53 × 53` at `left:3 top:4`; inner vector inset `9.43% 3.77% 11.32% 3.77%` → rendered frame ~49×42, fill `#EF4444` |
 | exclamation | `upgrade-fail-exclaim`, `15.1% × 39.82%` of triangle slot |
 | retry button | `w-full h-[32px]`, `rounded-[8px]`, `bg-black` |
 
@@ -80,7 +80,7 @@ UpgradeDialog covers 4 variants from the formal component set:
 |---|---|
 | Figma design context | passed: component set `2080:40359` inspected; 升级前/升级中/升级失败 visible; 升级成功 hidden/inferred |
 | Asset inventory | passed: 6 assets exported and recorded in slices-name-map.json |
-| State-geometry scan | passed: Phase K geometry corrected (310→320, 216→222/356, outline→border+shadow); PR #27 corrected radius to state-specific (升级前 r16, others r12) and added pt-6 for non-升级前 states |
+| State-geometry scan | passed: Phase K geometry corrected (310→320, 216→222/356, outline→border+shadow); PR #27 corrected radius (升级前 r16, others r12), pt-6 for non-升级前, button structure (content flex-1 + button shrink-0), logo inset (7.5%/7.57%), triangle inset (9.43%/3.77%/11.32%/3.77%) |
 | Build | passed: `npm run build` |
 | Lint | passed: `npm run lint` |
 | git diff --check | passed |
