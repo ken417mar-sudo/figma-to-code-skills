@@ -2,7 +2,7 @@
 
 ## Status
 
-`closed` — 3 variants verified + 1 inferred. agentic-browser-ui PRs #22, #23 merged; #27 (geometry/layout/framing fix) pending merge.
+`closed` — 3 variants verified + 1 inferred. agentic-browser-ui PRs #22, #23, #27 merged.
 
 **Phase K note:** PR #22 was implemented from a scaled instance `2080:7977` (310×216, rounded-16, outline). Phase L (PR #23) corrected to the formal component set source. PR #27 fixed state-specific radius regression (升级前 rounded-16, others rounded-12), added pt-6 for non-升级前 states, corrected success/failure button structure (content flex-1 + button shrink-0 sibling), and fixed logo/triangle asset framing (Figma inset wrappers).
 
