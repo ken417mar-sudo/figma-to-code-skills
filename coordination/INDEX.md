@@ -150,9 +150,9 @@ Durable lessons: frame-preserving normalization, currentColor needs explicit col
 
 **Phase K** (2026-05-13): instance-derived from `2080:7977` (310×216, rounded-16, outline). Downloading state only. agentic-browser-ui PR #22, figma-to-code-skills PR #57.
 
-**Phase L** (2026-05-20): corrected to formal component set `2080:40359` (联想规范 page). All 4 variants: 升级前 (320×356), 升级中 (320×222), 升级成功 (320×222, inferred), 升级失败 (320×222). 6 assets. Codex P2 fix: upgrade-fail-circle empty SVG restored. agentic-browser-ui PR #23, figma-to-code-skills PR #60.
+**Phase L** (2026-05-20): corrected to formal component set `2080:40359` (联想规范 page). All 4 variants: 升级前 (320×356), 升级中 (320×222), 升级成功 (320×222, inferred), 升级失败 (320×222). 6 assets; `upgrade-fail-circle` is a legacy unused export because Figma ellipse `2080:40429` has fill `visible=false`. agentic-browser-ui PR #23, figma-to-code-skills PR #60.
 
-Durable lessons: instance-context vs canonical source; hidden variant handling; empty SVG export from ellipse nodes; outline not border for exact-size surfaces; pin root height; shrink-0 on progress bar.
+Durable lessons: instance-context vs canonical source; hidden variant handling; check layer/fill visibility before repairing empty SVG exports; outline not border for exact-size surfaces; pin root height; shrink-0 on progress bar.
 
 ### BookmarkItem — closed (2026-05-20)
 Source nodes: `1708:30231~30233` (书签, Agentic Browser page).

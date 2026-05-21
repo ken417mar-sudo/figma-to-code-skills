@@ -19,7 +19,7 @@ UpgradeDialog covers 4 variants from the formal component set:
 - `升级前` (320×356): logo 40px + version row + changelog + restart button
 - `升级中` (320×222): logo 96px + progress bar (正在升级中)
 - `升级成功` (320×222): logo + success text + restart button (hidden layer — inferred from structure)
-- `升级失败` (320×222): warning icon composite (circle + triangle + exclamation) + retry button
+- `升级失败` (320×222): warning icon composite (triangle + exclamation; ellipse fill hidden) + retry button
 
 **Component boundary:** distinct from `Dialog.tsx` — different border (`border-[0.5px] rgba(0,0,0,0.08)` + shadow vs `outline`), different radius (`12px` vs `24px`).
 
@@ -27,8 +27,8 @@ UpgradeDialog covers 4 variants from the formal component set:
 
 - File: `agentic-browser-ui/src/components/UpgradeDialog.tsx`
 - Verify surface: `agentic-browser-ui/src/App.tsx` UpgradeDialog verify cards
-- PRs: agentic-browser-ui #22 (Phase K), #23 (Phase L), #27 (geometry/layout/framing fix); figma-to-code-skills #57, #60, #64
-- Exported assets (6): `upgrade-logo`, `upgrade-version-logo`, `upgrade-version-logo-mask`, `upgrade-fail-circle`, `upgrade-fail-triangle`, `upgrade-fail-exclaim`
+- PRs: agentic-browser-ui #22 (Phase K), #23 (Phase L), #27 (geometry/layout/framing fix), #28 (failure icon source fix); figma-to-code-skills #57, #60, #64
+- Exported assets (6): `upgrade-logo`, `upgrade-version-logo`, `upgrade-version-logo-mask`, `upgrade-fail-circle` (legacy/unused; source fill `visible=false`), `upgrade-fail-triangle`, `upgrade-fail-exclaim`
 
 ## Component Axes
 
@@ -68,10 +68,10 @@ UpgradeDialog covers 4 variants from the formal component set:
 ### 升级失败 (320×222)
 | Property | Value |
 |---|---|
-| warning icon slot | `60 × 60`, composite of 3 SVG layers |
-| circle background | `upgrade-fail-circle`, fill `#FDE8E8`, viewBox `0 0 60 60` |
-| triangle | `upgrade-fail-triangle`, warning slot `53 × 53` at `left:3 top:4`; inner vector inset `9.43% 3.77% 11.32% 3.77%` → rendered frame ~49×42, fill `#EF4444` |
-| exclamation | `upgrade-fail-exclaim`, `15.1% × 39.82%` of triangle slot |
+| warning icon slot | `60 × 60`, composite of triangle + exclamation only |
+| ellipse node | `2080:40429`, `60 × 60`, fill `visible=false`; do not render `upgrade-fail-circle` or any pink circle |
+| triangle | `upgrade-fail-triangle`, outer-relative `left:5 top:9 width:49 height:42`, fill `#EF4444` |
+| exclamation | `upgrade-fail-exclaim`, outer-relative `left:26.66 top:21.99 width:7.47 height:21.11` |
 | retry button | `w-full h-[32px]`, `rounded-[8px]`, `bg-black` |
 
 ## Verification Status
@@ -84,10 +84,10 @@ UpgradeDialog covers 4 variants from the formal component set:
 | Build | passed: `npm run build` |
 | Lint | passed: `npm run lint` |
 | git diff --check | passed |
-| Codex P2 review | passed: upgrade-fail-circle SVG empty group fixed (circle cx=30 cy=30 r=30 fill=#FDE8E8) |
+| Codex follow-up review | failed previous circle restoration: Figma node `2080:40429` fill is `visible=false`; implementation must not render a pink circle |
 | DOM evidence (升级前) | bundle: `borderRadius:u?16:12` ✓, `paddingTop:u?0:6` ✓, `shadow 4px 30px` ✓; logo slot 40×40, inner glyph ~33.95×34 (7.5%/7.57% inset) |
 | DOM evidence (升级中) | logo slot 96×96, inner glyph ~81.47×81.61; progress track 271×8 at y≈189.5; button not present in this state |
-| DOM evidence (升级失败) | content flex-1 + button shrink-0 sibling; warning outer 60×60 at y≈38; triangle frame ~49×42 (Figma inset 9.43%/3.77%/11.32%/3.77%); button y≈165.5 h=32, bottom gap≈24.5px |
+| DOM evidence (升级失败) | content flex-1 + button shrink-0 sibling; warning outer 60×60 at y≈38; no circle layer rendered; triangle frame 49×42 at outer x=5 y=9; exclamation 7.47×21.11 at outer x≈26.66 y≈21.99; button y≈165.5 h=32, bottom gap≈24.5px |
 | DOM evidence (升级成功) | inferred only — hidden Figma layer; button structure mirrors 升级失败 (content flex-1 + button shrink-0) |
 
 ## Durable Lessons
@@ -98,7 +98,7 @@ UpgradeDialog covers 4 variants from the formal component set:
 - **State-specific border radius**: multi-variant dialogs may have different radii per state. Always check each variant's root class in Figma design context — do not assume a single radius applies globally. 升级前 is `rounded-[16px]`; 升级中/成功/失败 are `rounded-[12px]`.
 - **Instance-context vs canonical component-set source**: a scaled instance in a board (e.g. 310×216 in 顶栏) may differ from the formal component set (320×222/356 in 联想规范). Always preflight the canonical component set before implementing. Phase K was derived from an instance; Phase L corrected from the formal source.
 - **Hidden variant handling**: hidden Figma variants (e.g. 升级成功 `2080:40415`) return blank renders from get_design_context and get_screenshot. Infer structure from sibling variants and metadata; document as inferred in case card.
-- **Empty SVG export from ellipse nodes**: Figma ellipse nodes can export as empty SVG groups. Detect by checking for missing path/circle elements. Fix by pixel-sampling the rendered screenshot to confirm fill color, then hand-authoring the circle element with correct viewBox.
+- **Hidden fill beats empty-export repair**: when an ellipse export is empty, inspect the Figma node visibility before hand-authoring geometry. In `2080:40429`, the ellipse exists but fill is `visible=false`, so rendering a pink circle is wrong.
 
 ## Deferred
 
